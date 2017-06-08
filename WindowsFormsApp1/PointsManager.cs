@@ -82,17 +82,30 @@ namespace WindowsFormsApp1
             return marker;
         }
 
-        //public PointLatLng GetPos()
-        //{
-        //    if(marker != null)
-        //        PointLatLng pos = new PointLatLng(marker.Position.Lat, marker.Position.Lng);
-        //}
+        public PointLatLng GetPos()
+        {
+            PointLatLng pos = new PointLatLng(0, 0);
 
-        //public void SetPos(float lat, float lon)
-        //{
-        //    point.Lat = lat;
-        //    point.Lng = lon;
-        //}
+            //marker.Position.Lat, marker.Position.Lng
+            if (marker != null)
+                pos = new PointLatLng(marker.Position.Lat, marker.Position.Lng);
+       
+            return pos;
+        }
+
+        public void SetPos(float lat, float lon)
+        {
+            PointLatLng pos = new PointLatLng(0, 0);
+
+            if (marker != null)
+            {
+                marker.Position.Lat = lat;
+                marker.Position.Lng = lon;
+            }
+                
+            point.Lat = lat;
+            point.Lng = lon;
+        }
 
         GMapMarker marker = null;
     }

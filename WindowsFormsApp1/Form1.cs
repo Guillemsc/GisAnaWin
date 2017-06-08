@@ -26,14 +26,14 @@ namespace WindowsFormsApp1
             Marcador m = new Marcador(0, 0);
 
             // Overlay
-            GMapOverlay overlay = new GMap.NET.WindowsForms.GMapOverlay("markers");
+            GMapOverlay overlay = new GMapOverlay("markers");
 
             // Map pos
-            PointLatLng pos = new GMap.NET.PointLatLng(48.8617774, 2.349272);
+            PointLatLng pos = new PointLatLng(48.8617774, 2.349272);
 
             // Marker
             GMapMarker marker
-            = new GMarkerGoogle(pos, GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
+            = new GMarkerGoogle(pos, GMarkerGoogleType.blue_pushpin);
 
             marker.ToolTipText = "x:" + pos.Lat + " " + "y:" + pos.Lng;
 
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
             overlay.Polygons.Add(polygon);
             // ------
 
-            //overlay.Markers.Add(marker);
+            overlay.Markers.Add(marker);
             gmap.Overlays.Add(overlay);
 
 
