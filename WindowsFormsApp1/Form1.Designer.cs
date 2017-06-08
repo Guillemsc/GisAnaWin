@@ -28,23 +28,14 @@ namespace WindowsFormsApp1
         /// Método necesario para admitir el Diseñador. No se puede modificar
         /// el contenido de este método con el editor de código.
         /// </summary>
-        /// 
-
-        System.Windows.Forms.Button showButton;
+        ///
 
         private void InitializeComponent()
         {
-            this.showButton = new System.Windows.Forms.Button();
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.button1 = new System.Windows.Forms.Button();
+            this.crea = new System.Windows.Forms.Button();
+            this.neteja = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // showButton
-            // 
-            this.showButton.Location = new System.Drawing.Point(0, 0);
-            this.showButton.Name = "showButton";
-            this.showButton.Size = new System.Drawing.Size(75, 23);
-            this.showButton.TabIndex = 0;
             // 
             // gmap
             // 
@@ -71,23 +62,33 @@ namespace WindowsFormsApp1
             this.gmap.Size = new System.Drawing.Size(572, 529);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
+            this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
-            // button1
+            // crea
             // 
-            this.button1.Location = new System.Drawing.Point(13, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(193, 46);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.crea.Location = new System.Drawing.Point(12, 12);
+            this.crea.Name = "crea";
+            this.crea.Size = new System.Drawing.Size(193, 51);
+            this.crea.TabIndex = 2;
+            this.crea.Text = "Crea Finca";
+            this.crea.UseVisualStyleBackColor = true;
+            // 
+            // neteja
+            // 
+            this.neteja.Location = new System.Drawing.Point(12, 69);
+            this.neteja.Name = "neteja";
+            this.neteja.Size = new System.Drawing.Size(193, 28);
+            this.neteja.TabIndex = 3;
+            this.neteja.Text = "Neteja";
+            this.neteja.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.neteja);
+            this.Controls.Add(this.crea);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
@@ -97,17 +98,20 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        private GMap.NET.WindowsForms.GMapControl gmap;
-
         override protected void OnLoad(EventArgs e)
         {
             gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Paris, France");
             gmap.ShowCenter = false;
+
+            point_manager = new PointsManager(gmap);
         }
 
-        private System.Windows.Forms.Button button1;
+        public GMap.NET.WindowsForms.GMapControl gmap = null;
+        public PointsManager point_manager = null;
+        private System.Windows.Forms.Button crea;
+        private System.Windows.Forms.Button neteja;
     }
 }
 

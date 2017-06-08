@@ -7,12 +7,22 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    class PointsManager
+    public class PointsManager
     {
+        public PointsManager(GMapControl gmap)
+        {
+            gmap.Overlays.Add(overlay_markers);
+            gmap.Overlays.Add(overlay_parcela);
+        }
+
         List<Parcela> parceles = new List<Parcela>();
+
+        public GMapOverlay overlay_markers = new GMapOverlay("markers");
+        public GMapOverlay overlay_parcela = new GMapOverlay("parceles");
     }
 
     class Finca
@@ -41,40 +51,42 @@ namespace WindowsFormsApp1
 
     class Parcela
     {
-        public Parcela() { }
-
-        public void AfegeixMarcador(Marcador marcador)
+        public Parcela(string name, List<Marcador> marcadors, GMapOverlay overlay)
         {
-            if(marcador != null)
-                marcadors.Add(marcador);
-        }
+            _name = name;
 
-        public void EliminaMarcador(Marcador marcador)
-        {
-            for(int i = 0; i < marcadors.Count; i++)
+            List<PointLatLng> points = new List<PointLatLng>();
+
+            for (int i = 0; i < marcadors.Count; i++)
             {
-                if (marcadors[i] == marcador)
-                {
-                    marcadors.Remove(marcador);
-                    break;
-                }
+                points.Add(marcadors[i].GetPos());
             }
+
+            polygon = new GMapPolygon(points, _name);
+
+            overlay.Polygons.Add(polygon);
         }
 
         public string GetName() { return _name; }
         public void SetName(string name) { _name = name; }
 
-        private List<Marcador> marcadors = new List<Marcador>();
-        //private Console color;
-        private string _name = "Parcela sense nom";
+        public void SetColor(Brush fons, Pen linea)
+        {
+            polygon.Fill = fons;
+            polygon.Stroke = linea;
+        }
+
+        private string _name;
+        GMapPolygon polygon = null;
     }
 
     class Marcador
     {
-        public Marcador(float lat, float lon)
+        public Marcador(double lat, double lon, GMapOverlay overlay)
         {
             PointLatLng pos = new PointLatLng(lat, lon);
             marker = new GMarkerGoogle(pos, GMarkerGoogleType.blue_pushpin);
+            overlay.Markers.Add(marker);
         }
 
         public GMapMarker GetMarcador()
@@ -82,29 +94,41 @@ namespace WindowsFormsApp1
             return marker;
         }
 
+        public void SetMarcadorText(string text)
+        {
+            if(marker != null)
+                marker.ToolTipText = text;
+            
+        }
+
         public PointLatLng GetPos()
         {
             PointLatLng pos = new PointLatLng(0, 0);
 
-            //marker.Position.Lat, marker.Position.Lng
             if (marker != null)
                 pos = new PointLatLng(marker.Position.Lat, marker.Position.Lng);
        
             return pos;
         }
 
-        public void SetPos(float lat, float lon)
+        public void SetPos(double lat, double lon)
         {
             PointLatLng pos = new PointLatLng(0, 0);
 
             if (marker != null)
             {
-                marker.Position.Lat = lat;
-                marker.Position.Lng = lon;
+                marker.Position = new PointLatLng(lat, lon);
             }
-                
-            point.Lat = lat;
-            point.Lng = lon;
+        }
+
+        public void SetColor(Brush omple, Brush pla, Pen linea)
+        {
+            if(marker != null)
+            {
+                marker.ToolTip.Fill = omple;
+                marker.ToolTip.Foreground = pla;
+                marker.ToolTip.Stroke = linea;
+            }
         }
 
         GMapMarker marker = null;
