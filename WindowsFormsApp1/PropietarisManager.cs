@@ -3,41 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    class PropietarisManager
+    public class PropietarisManager
     {
-        public class Propietari
+        public List<Propietari> GetPropietaris()
         {
-            Propietari(string nom)
-            {
-                _nom = nom;
-            }
-
-            public string GetNom()
-            {
-                return _nom;
-            }
-
-            public void AfegirParcela(Parcela parcela)
-            {
-                parceles.Add(parcela);
-            }
-
-            public void EliminarParcela(Parcela parcela)
-            {
-                for (int i = 0; i < parceles.Count; i++)
-                {
-                    if (parceles[i] == parcela)
-                    {
-                        parceles.Remove(parcela);
-                        break;
-                    }
-                }
-            }
-            private string _nom;
-            List<Parcela> parceles = new List<Parcela>();
+            return propietaris;
         }
 
         public void AfegirPropietari(Propietari propietari)
@@ -49,9 +24,9 @@ namespace WindowsFormsApp1
         {
             Propietari ret = null;
 
-            for(int i = 0; i<propietaris.Count; i++)
+            for (int i = 0; i < propietaris.Count; i++)
             {
-                if(propietaris[i].GetNom() == nom)
+                if (propietaris[i].GetNom() == nom)
                 {
                     ret = propietaris[i];
                     break;
@@ -62,5 +37,58 @@ namespace WindowsFormsApp1
         }
 
         List<Propietari> propietaris = new List<Propietari>();
+        public List<Label> propietaris_texts = new List<Label>();
+
+        public Propietari propietari_actual = null;
+    }
+
+    public class Propietari
+    {
+        public Propietari(string nom)
+        {
+            _nom = nom;
+        }
+
+        public string GetNom()
+        {
+            return _nom;
+        }
+
+        public void AfegirParcela(Parcela parcela)
+        {
+            parceles.Add(parcela);
+        }
+
+        public void LoadInfo()
+        {
+            for(int p = 0; p < parceles.Count(); p++)
+            {
+                parceles[p].Add();
+            }
+        }
+
+        public void UnloadInfo()
+        {
+            for (int p = 0; p < parceles.Count(); p++)
+            {
+                parceles[p].Remove();
+            }
+        }
+
+        public void EliminarParcela(Parcela parcela)
+        {
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i] == parcela)
+                {
+                    parceles.Remove(parcela);
+                    break;
+                }
+            }
+        }
+        private string _nom;
+        List<Parcela> parceles = new List<Parcela>();
+
+        Finca parcela_actual = null;
     }
 }

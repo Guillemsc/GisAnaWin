@@ -95,6 +95,7 @@ namespace WindowsFormsApp1
         private List<Parcela> parceles = new List<Parcela>();
         string _nom;
         GMapOverlay _overlay = null;
+        Parcela parcela_actual = null;
     }
 
     public class Parcela
@@ -133,6 +134,11 @@ namespace WindowsFormsApp1
         {
             if (_overlay != null)
                 _overlay.Polygons.Remove(polygon);
+        }
+
+        public void Add()
+        {
+            _overlay.Polygons.Add(polygon);
         }
 
         private string _descripcio;
@@ -196,6 +202,11 @@ namespace WindowsFormsApp1
         {
             if (_overlay != null)
                 _overlay.Markers.Remove(marker);
+        }
+
+        public void Add()
+        {
+            _overlay.Markers.Add(marker);
         }
 
         GMapMarker marker = null;
