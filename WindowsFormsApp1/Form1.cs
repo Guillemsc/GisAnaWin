@@ -21,53 +21,19 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void crea_Click(object sender, EventArgs e)
         {
-            //if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            //{
-            //    double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
-            //    double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
-
-            //    Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
-            //}
-
-            //Marcador m = new Marcador(0, 0);
-
-            // Overlay
-            //GMapOverlay overlay = new GMapOverlay("markers");
-
-            //// Map pos
-            //PointLatLng pos = new PointLatLng(48.8617774, 2.349272);
-
-            //// Marker
-            //GMapMarker marker
-            //= new GMarkerGoogle(pos, GMarkerGoogleType.blue_pushpin);
-
-            //marker.ToolTipText = "x:" + pos.Lat + " " + "y:" + pos.Lng;
-
-            //marker.ToolTip.Fill = Brushes.Black;
-            //marker.ToolTip.Foreground = Brushes.White;
-            //marker.ToolTip.Stroke = Pens.Black;
-            //marker.ToolTip.TextPadding = new Size(20, 20);
-
-            //// ------
-            //List<PointLatLng> points = new List<PointLatLng>();
-            //points.Add(new PointLatLng(48.866383, 2.323575));
-            //points.Add(new PointLatLng(48.863868, 2.321554));
-            //points.Add(new PointLatLng(48.861017, 2.330030));
-            //points.Add(new PointLatLng(48.863727, 2.331918));
-
-            //// Poligon
-            //GMapPolygon polygon = new GMapPolygon(points, "Jardin des Tuileries");
-            //overlay.Polygons.Add(polygon);
-            //// ------
-
-            //overlay.Markers.Add(marker);
-            //gmap.Overlays.Add(overlay);
+            if (point_manager.GetTmpMarcadors().Count > 2)
+            {
+                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
+                point_manager.AfegeixTmpParcela(p);
+            } 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void neteja_Click(object sender, EventArgs e)
         {
+            point_manager.NetejaTmpMarcadors();
+            point_manager.NetejaTmpParceles();
         }
 
         private void gmap_MouseClick(object sender, MouseEventArgs e)
@@ -80,8 +46,24 @@ namespace WindowsFormsApp1
                     double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
 
                     Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
+                    point_manager.AfegeixTmpMarcadors(m);
                 }
             }
+        }
+
+        private void afegeix_button_Click(object sender, EventArgs e)
+        {
+            main_panel.Visible = false;
+        }
+
+        protected override void OnLayout(LayoutEventArgs e)
+        {
+            PerformAutoScale();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

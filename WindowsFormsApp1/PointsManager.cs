@@ -17,17 +17,59 @@ namespace WindowsFormsApp1
         {
             gmap.Overlays.Add(overlay_markers);
             gmap.Overlays.Add(overlay_parcela);
+
+            finca = new Finca(overlay_finca);
         }
 
-        List<Parcela> parceles = new List<Parcela>();
+        public void NetejaTmpMarcadors()
+        {
+            for(int i = 0; i< tmp_marcadors.Count; i++)
+            {
+                tmp_marcadors[i].Remove(); 
+            }
+            tmp_marcadors.Clear();
+        }
+
+        public void NetejaTmpParceles()
+        {
+            for (int i = 0; i < tmp_parceles.Count; i++)
+            {
+                tmp_parceles[i].Remove();
+            }
+            tmp_parceles.Clear();
+        }
+
+        public void AfegeixTmpMarcadors(Marcador marcador)
+        {
+            tmp_marcadors.Add(marcador);
+        }
+
+        public void AfegeixTmpParcela(Parcela parcela)
+        {
+            tmp_parceles.Add(parcela);
+        }
+
+        public List<Marcador> GetTmpMarcadors()
+        {
+            return tmp_marcadors;
+        }
 
         public GMapOverlay overlay_markers = new GMapOverlay("markers");
         public GMapOverlay overlay_parcela = new GMapOverlay("parceles");
+        public GMapOverlay overlay_finca = new GMapOverlay("finca");
+
+        Finca finca = null;
+
+        List<Marcador> tmp_marcadors = new List<Marcador>();
+        List<Parcela> tmp_parceles = new List<Parcela>();
     }
 
     class Finca
     {
-        Finca() { }
+        public Finca(GMapOverlay overlay)
+        {
+            _overlay = overlay;
+        }
 
         public void AfegeixParcela(Parcela parcela)
         {
@@ -40,20 +82,26 @@ namespace WindowsFormsApp1
             {
                 if (parceles[i] == parcela)
                 {
+                    parceles[i].Remove();
                     parceles.Remove(parcela);
                     break;
                 }
             }
         }
 
+        public string GetNom() { return _nom; }
+        public void SetNom(string nom) { _nom = nom; }
+
         private List<Parcela> parceles = new List<Parcela>();
+        string _nom;
+        GMapOverlay _overlay = null;
     }
 
-    class Parcela
+    public class Parcela
     {
-        public Parcela(string name, List<Marcador> marcadors, GMapOverlay overlay)
+        public Parcela(List<Marcador> marcadors, GMapOverlay overlay, string descripcio = "")
         {
-            _name = name;
+            _descripcio = descripcio;
 
             List<PointLatLng> points = new List<PointLatLng>();
 
@@ -62,13 +110,18 @@ namespace WindowsFormsApp1
                 points.Add(marcadors[i].GetPos());
             }
 
-            polygon = new GMapPolygon(points, _name);
+            polygon = new GMapPolygon(points, _descripcio);
 
-            overlay.Polygons.Add(polygon);
+            _overlay = overlay;
+            _overlay.Polygons.Add(polygon);
         }
 
-        public string GetName() { return _name; }
-        public void SetName(string name) { _name = name; }
+        public string GetDescripcio() { return _descripcio; }
+        public void SetDescripcio(string descripcio)
+        {
+            _descripcio = descripcio;
+            polygon.Name = descripcio;
+        }
 
         public void SetColor(Brush fons, Pen linea)
         {
@@ -76,17 +129,25 @@ namespace WindowsFormsApp1
             polygon.Stroke = linea;
         }
 
-        private string _name;
+        public void Remove()
+        {
+            if (_overlay != null)
+                _overlay.Polygons.Remove(polygon);
+        }
+
+        private string _descripcio;
         GMapPolygon polygon = null;
+        GMapOverlay _overlay = null;
     }
 
-    class Marcador
+    public class Marcador
     {
         public Marcador(double lat, double lon, GMapOverlay overlay)
         {
             PointLatLng pos = new PointLatLng(lat, lon);
             marker = new GMarkerGoogle(pos, GMarkerGoogleType.blue_pushpin);
-            overlay.Markers.Add(marker);
+            _overlay = overlay;
+            _overlay.Markers.Add(marker);
         }
 
         public GMapMarker GetMarcador()
@@ -131,6 +192,13 @@ namespace WindowsFormsApp1
             }
         }
 
+        public void Remove()
+        {
+            if (_overlay != null)
+                _overlay.Markers.Remove(marker);
+        }
+
         GMapMarker marker = null;
+        GMapOverlay _overlay = null;
     }
 }
