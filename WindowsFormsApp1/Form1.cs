@@ -21,6 +21,12 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        protected override void OnLayout(LayoutEventArgs e)
+        {
+            PerformAutoScale();
+        }
+
+        // Debug
         private void crea_Click(object sender, EventArgs e)
         {
             if (point_manager.GetTmpMarcadors().Count > 2)
@@ -30,16 +36,24 @@ namespace WindowsFormsApp1
             } 
         }
 
+        // Debug
         private void neteja_Click(object sender, EventArgs e)
         {
             point_manager.NetejaTmpMarcadors();
             point_manager.NetejaTmpParceles();
         }
 
+        // Click a la pantalla per crear punts
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
             if (!propietaris_manager.can_point)
                 return;
+
+            if(point_manager.eliminant_marcador)
+            {
+                point_manager.eliminant_marcador = false;
+                return;
+            }
 
             if (e.Button == MouseButtons.Left)
             {
@@ -67,11 +81,20 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Click a un marcador per a eliminar-lo
+        public void gmap_MouseClick(GMapMarker item, MouseEventArgs e)
+        {
+            point_manager.EliminaTmpMarcadorSiEsTroba(item);
+            point_manager.eliminant_marcador = true;
+        }
+
+        // Obra la finestra per a crear un nou propietari
         private void AfegeixPropietari(object sender, EventArgs e)
         {
             ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(true);
         }
 
+        // Afegeix un nou propietari
         private void AfegirPropietari(object sender, EventArgs e)
         {
             MaskedTextBox mt = ui_manager.GetElement("nom_propietari_text_input").GetElement() as MaskedTextBox;
@@ -87,11 +110,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        protected override void OnLayout(LayoutEventArgs e)
-        {
-            PerformAutoScale();
-        }
-
+        // Click a un text dels propietaris
         private void PropietariClick(object sender, EventArgs e)
         {
             Label b = sender as Label;
@@ -119,11 +138,31 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Canvia de propietari
+        public void CanviaPropietari(object sender, EventArgs e)
+        {
+            if (propietaris_manager.propietari_actual != null)
+            {
+                if (propietaris_manager.propietari_actual.finca_actual != null)
+                {
+                    propietaris_manager.propietari_actual.finca_actual = null;
+                }
+                propietaris_manager.propietari_actual.ClearDraw();
+                propietaris_manager.propietari_actual = null;
+            }
+
+            propietari_info_win.SetEnabled(false);
+            main_win.SetEnabled(true);
+
+        }
+
+        // Obra la finestra per a crear una nova finca
         public void AfegeixFinca(object sender, EventArgs e)
         {
             afegir_finca_win.SetEnabled(true);
         }
 
+        // Afegeix una nova finca
         public void AfegirFinca(object sender, EventArgs e)
         {
             afegir_finca_win.SetEnabled(false);
@@ -139,21 +178,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void AfegeixParcela(object sender, EventArgs e)
-        {
-            if(point_manager.GetTmpMarcadors().Count >= 3)
-            {
-                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
-                propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
-
-                point_manager.NetejaTmpMarcadors(); 
-
-                ActualitzaUIFinca();
-
-                ui_manager.GetElement("crea_parcela").SetEnabled(false);
-            }
-        }
-
+        // Selecciona una finca pera poder crear parceles
         public void FinquesClick(object sender, EventArgs e)
         {
             Label l = sender as Label;
@@ -169,23 +194,23 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void CanviaPropietari(object sender, EventArgs e)
+        // Afegeix una parcela si hi ha 3> punts en pantalla
+        public void AfegeixParcela(object sender, EventArgs e)
         {
-            if (propietaris_manager.propietari_actual != null)
+            if(point_manager.GetTmpMarcadors().Count >= 3)
             {
-                if (propietaris_manager.propietari_actual.finca_actual != null)
-                {
-                    propietaris_manager.propietari_actual.finca_actual = null;
-                }
-                propietaris_manager.propietari_actual.ClearDraw();
-                propietaris_manager.propietari_actual = null;
-            }
-        
-            propietari_info_win.SetEnabled(false);
-            main_win.SetEnabled(true);
+                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
+                propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
 
+                point_manager.NetejaTmpMarcadors(); 
+
+                ActualitzaUIFinca();
+
+                ui_manager.GetElement("crea_parcela").SetEnabled(false);
+            }
         }
 
+        // Actualitza la UI que mostra tots els propietaris
         public void ActualitzaUIPropietari()
         {
             UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
@@ -201,11 +226,13 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Actualitza la UI que mostra les finques i les parceles
         public void ActualitzaUIFinca()
         {
             UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
             pan.ClearPanel();
 
+            // Finques
             int acumulation = 0;
             for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
             {
@@ -216,11 +243,13 @@ namespace WindowsFormsApp1
                 pan.AddElement(t2);
                 acumulation += 18;
 
+                // Finca seleccionada
                 if (curr_finca == propietaris_manager.propietari_actual.finca_actual)
                 {
                     t2.SetColor(Color.Crimson, Color.White);
                 }
 
+                // Parceles
                 for(int y = 0; y < curr_finca.parceles.Count(); y++)
                 {
                     Parcela curr_parcela = curr_finca.parceles[y];

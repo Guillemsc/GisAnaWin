@@ -86,6 +86,7 @@ namespace WindowsFormsApp1
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Paris, France");
             gmap.ShowCenter = false;
+            gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(gmap_MouseClick);
 
             point_manager = new PointsManager(gmap);
             propietaris_manager = new PropietarisManager();

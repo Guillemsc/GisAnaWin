@@ -47,6 +47,19 @@ namespace WindowsFormsApp1
             tmp_parceles.Add(parcela);
         }
 
+        public void EliminaTmpMarcadorSiEsTroba(GMapMarker item)
+        {
+            for(int i = 0; i < tmp_marcadors.Count; i++)
+            {
+                if(tmp_marcadors[i].GetMarcador() == item)
+                {
+                    tmp_marcadors[i].ClearDraw();
+                    tmp_marcadors.Remove(tmp_marcadors[i]);
+                    break;
+                }
+            }
+        }
+
         public List<Marcador> GetTmpMarcadors()
         {
             return tmp_marcadors;
@@ -55,6 +68,8 @@ namespace WindowsFormsApp1
         public GMapOverlay overlay_markers = new GMapOverlay("markers");
         public GMapOverlay overlay_parcela = new GMapOverlay("parceles");
         public GMapOverlay overlay_finca = new GMapOverlay("finca");
+
+        public bool eliminant_marcador = false;
 
         Finca finca = null;
 
@@ -120,7 +135,7 @@ namespace WindowsFormsApp1
         string _nom;
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
-        Parcela parcela_actual = null;
+        public Parcela parcela_actual = null;
     }
 
     public class Parcela
@@ -139,7 +154,6 @@ namespace WindowsFormsApp1
             polygon = new GMapPolygon(points, _descripcio);
 
             _overlay = overlay;
-
             Draw();
         }
 
@@ -199,7 +213,6 @@ namespace WindowsFormsApp1
         {
             if(marker != null)
                 marker.ToolTipText = text;
-            
         }
 
         public PointLatLng GetPos()
