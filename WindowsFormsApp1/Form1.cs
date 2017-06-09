@@ -54,30 +54,27 @@ namespace WindowsFormsApp1
                 point_manager.eliminant_marcador = false;
                 return;
             }
-
+           
             if (e.Button == MouseButtons.Left)
             {
-                if (e.Button == MouseButtons.Left)
-                {
-                    if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
-                    {
-                        double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
-                        double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
+               if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
+               {
+                   double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
+                   double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
 
-                        Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
-                        point_manager.AfegeixTmpMarcadors(m);
+                   Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
+                   point_manager.AfegeixTmpMarcadors(m);
 
-                        if(point_manager.GetTmpMarcadors().Count >= 3)
-                        {
-                            ui_manager.GetElement("crea_parcela").SetEnabled(true);
-                        }
-                        else
-                        {
-                            ui_manager.GetElement("crea_parcela").SetEnabled(false);
-                        }
+                   if(point_manager.GetTmpMarcadors().Count >= 3)
+                   {
+                       ui_manager.GetElement("crea_parcela").SetEnabled(true);
+                   }
+                   else
+                   {
+                       ui_manager.GetElement("crea_parcela").SetEnabled(false);
+                   }
 
-                    }
-                }
+               }
             }
         }
 
@@ -86,6 +83,15 @@ namespace WindowsFormsApp1
         {
             point_manager.EliminaTmpMarcadorSiEsTroba(item);
             point_manager.eliminant_marcador = true;
+
+            if (point_manager.GetTmpMarcadors().Count >= 3)
+            {
+                ui_manager.GetElement("crea_parcela").SetEnabled(true);
+            }
+            else
+            {
+                ui_manager.GetElement("crea_parcela").SetEnabled(false);
+            }
         }
 
         // Obra la finestra per a crear un nou propietari
@@ -260,6 +266,11 @@ namespace WindowsFormsApp1
                     acumulation += 18;
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             this.gmap.Location = new System.Drawing.Point(224, -1);
             this.gmap.MarkersEnabled = true;
             this.gmap.MaximumSize = new System.Drawing.Size(1000, 1000);
-            this.gmap.MaxZoom = 18;
+            this.gmap.MaxZoom = 23;
             this.gmap.MinZoom = 2;
             this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.gmap.Name = "gmap";
@@ -82,9 +82,9 @@ namespace WindowsFormsApp1
 
         override protected void OnLoad(EventArgs e)
         {
-            gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            gmap.MapProvider = GMap.NET.MapProviders.BingSatelliteMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
-            gmap.SetPositionByKeywords("Paris, France");
+            gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
             gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(gmap_MouseClick);
 
@@ -92,7 +92,18 @@ namespace WindowsFormsApp1
             propietaris_manager = new PropietarisManager();
             ui_manager = new UIManager(this);
 
+            LoadUI();
+        }
+
+        public void LoadUI()
+        {
             // UI
+            map_win = new UI_Window("map_win", this);
+            {
+                UI_TextInput text_input = new UI_TextInput("corrdenates_input", new Point(600, 15), 50, 50);
+                map_win.AddElement(text_input);
+            }
+
             main_win = new UI_Window("main_window", this);
             {
                 UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
@@ -174,12 +185,15 @@ namespace WindowsFormsApp1
             }
             ui_manager.AddUIWindow(afegir_finca_win);
             afegir_finca_win.SetEnabled(false);
+
+            gmap.SendToBack();
         }
 
         UI_Window afegir_finca_win = null;
         UI_Window propietari_info_win = null;
         UI_Window afegir_propietari_win = null;
         UI_Window main_win = null;
+        UI_Window map_win = null;
 
         public GMap.NET.WindowsForms.GMapControl gmap = null;
         public PropietarisManager propietaris_manager = null;
