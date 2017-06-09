@@ -98,15 +98,41 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual = p;
                 propietaris_manager.propietari_actual.LoadInfo();
 
+                main_win.SetEnabled(false);
+                propietari_info_win.SetEnabled(true);
+
                 UI_Text t = ui_manager.GetElement("nom_propietari") as UI_Text;
                 t.SetText(propietaris_manager.propietari_actual.GetNom());
 
-                main_win.SetEnabled(false);
-                propietari_info_win.SetEnabled(true);
+                UI_Panel pan = ui_manager.GetElement("parceles_panel") as UI_Panel;
+
+                int acumulation = 0;
+                for (int i = 0; i < propietaris_manager.propietari_actual.parceles.Count(); i++)
+                {
+                    UI_Text t2 = new UI_Text(propietaris_manager.propietari_actual.parceles[i].GetDescripcio(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.propietari_actual.parceles[i].GetDescripcio());
+                    t2.GetElement().Click += new EventHandler(ParcelesClick);
+                    pan.AddElement(t2);
+                    acumulation += 18;
+                }
             }
         }
 
+        public void AfegeixParcela(object sender, EventArgs e)
+        {
+            afegir_parcela_win.SetEnabled(true);
+        }
+
+        public void ParcelesClick(object sender, EventArgs e)
+        {
+ 
+        }
+
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

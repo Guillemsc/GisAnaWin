@@ -87,8 +87,8 @@ namespace WindowsFormsApp1
             }
         }
         private string _nom;
-        List<Parcela> parceles = new List<Parcela>();
+        public List<Parcela> parceles = new List<Parcela>();
 
-        Finca parcela_actual = null;
+        public Finca parcela_actual = null;
     }
 }

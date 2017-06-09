@@ -53,8 +53,8 @@ namespace WindowsFormsApp1
 
                         for(int z = 0; z < panel.elements.Count(); z++)
                         {
-                            if (panel.elements[i].GetName() == name)
-                                return panel.elements[i];
+                            if (panel.elements[z].GetName() == name)
+                                return panel.elements[z];
                         }
                     }
                 }

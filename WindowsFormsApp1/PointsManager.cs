@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
         List<Parcela> tmp_parceles = new List<Parcela>();
     }
 
-    class Finca
+    public class Finca
     {
         public Finca(GMapOverlay overlay)
         {
