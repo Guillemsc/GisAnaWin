@@ -17,8 +17,6 @@ namespace WindowsFormsApp1
         {
             gmap.Overlays.Add(overlay_markers);
             gmap.Overlays.Add(overlay_parcela);
-
-            finca = new Finca(overlay_finca);
         }
 
         public void NetejaTmpMarcadors()
@@ -66,9 +64,10 @@ namespace WindowsFormsApp1
 
     public class Finca
     {
-        public Finca(GMapOverlay overlay)
+        public Finca(GMapOverlay overlay, string nom)
         {
             _overlay = overlay;
+            _nom = nom;
         }
 
         public void AfegeixParcela(Parcela parcela)

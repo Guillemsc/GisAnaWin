@@ -40,6 +40,8 @@ namespace WindowsFormsApp1
         public List<Label> propietaris_texts = new List<Label>();
 
         public Propietari propietari_actual = null;
+
+        public bool can_point = false;
     }
 
     public class Propietari
@@ -54,41 +56,41 @@ namespace WindowsFormsApp1
             return _nom;
         }
 
-        public void AfegirParcela(Parcela parcela)
+        public void AfegirFinca(Finca finca)
         {
-            parceles.Add(parcela);
+            finques.Add(finca);
         }
 
         public void LoadInfo()
         {
-            for(int p = 0; p < parceles.Count(); p++)
+            for(int p = 0; p < finques.Count(); p++)
             {
-                parceles[p].Add();
+     
             }
         }
 
         public void UnloadInfo()
         {
-            for (int p = 0; p < parceles.Count(); p++)
+            for (int p = 0; p < finques.Count(); p++)
             {
-                parceles[p].Remove();
+
             }
         }
 
-        public void EliminarParcela(Parcela parcela)
+        public void EliminarFinca(Finca finca)
         {
-            for (int i = 0; i < parceles.Count; i++)
+            for (int i = 0; i < finques.Count; i++)
             {
-                if (parceles[i] == parcela)
+                if (finques[i] == finca)
                 {
-                    parceles.Remove(parcela);
+                    finques.Remove(finca);
                     break;
                 }
             }
         }
         private string _nom;
-        public List<Parcela> parceles = new List<Parcela>();
+        public List<Finca> finques = new List<Finca>();
 
-        public Finca parcela_actual = null;
+        public Finca finca_actual = null;
     }
 }

@@ -132,41 +132,42 @@ namespace WindowsFormsApp1
                 UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
                 propietari_info_win.AddElement(t3);
 
-                UI_Button b3 = new UI_Button("afegeix_parcela", new Point(15, 30), 193, 28, "Afegeix Parcel.la");
-                b3.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+                UI_Button b3 = new UI_Button("afegeix_finca", new Point(15, 30), 193, 28, "Afegeix Finca");
+                b3.GetElement().Click += new System.EventHandler(this.AfegeixFinca);
                 propietari_info_win.AddElement(b3);
 
-                UI_Text t4 = new UI_Text("parceles_text", new Point(15, 60), 193, 40, "Parcel.les: ");
+                UI_Text t4 = new UI_Text("finca_text", new Point(15, 60), 193, 40, "Finques: ");
                 propietari_info_win.AddElement(t4);
 
-                UI_Panel p3 = new UI_Panel("parceles_panel", new Point(230, 13), 400, 60);
+                UI_Panel p3 = new UI_Panel("finques_panel", new Point(230, 200), 400, 60);
+                p3.SetColor(Color.Black);
                 propietari_info_win.AddElement(p3);
             }
             ui_manager.AddUIWindow(propietari_info_win);
             propietari_info_win.SetEnabled(false);
 
-            afegir_parcela_win = new UI_Window("afegir_parcela_win", this);
+            afegir_finca_win = new UI_Window("afegir_finca_win", this);
             {
-                UI_Panel p4 = new UI_Panel("parcela_panel", new Point(230, 13), 500, 60);
-                afegir_parcela_win.AddElement(p4);
+                UI_Panel p4 = new UI_Panel("finca_panel", new Point(230, 13), 500, 60);
+                afegir_finca_win.AddElement(p4);
                 p4.GetElement().BringToFront();
                 {
-                    UI_Text tex = new UI_Text("nom_parcela_text", new Point(5, 10), 20, 40, "Descripció parcel.la: ");
+                    UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Descripció finca: ");
                     p4.AddElement(tex);
 
-                    UI_TextInput ti2 = new UI_TextInput("nom_parcela_text_input", new Point(120, 7), 300, 80);
+                    UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(120, 7), 300, 80);
                     p4.AddElement(ti2);
 
-                    UI_Button b6 = new UI_Button("afegir_parcela_button", new Point(120, 30), 130, 25, "Afegir Parcel.la");
-                    b6.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+                    UI_Button b6 = new UI_Button("afegir_finca_button", new Point(120, 30), 130, 25, "Afegir Finca");
+                    b6.GetElement().Click += new System.EventHandler(this.AfegirFinca);
                     p4.AddElement(b6);
                 }
             }
-            ui_manager.AddUIWindow(afegir_parcela_win);
-            afegir_parcela_win.SetEnabled(false);
+            ui_manager.AddUIWindow(afegir_finca_win);
+            afegir_finca_win.SetEnabled(false);
         }
 
-        UI_Window afegir_parcela_win = null;
+        UI_Window afegir_finca_win = null;
         UI_Window propietari_info_win = null;
         UI_Window afegir_propietari_win = null;
         UI_Window main_win = null;
