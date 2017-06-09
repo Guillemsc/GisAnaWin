@@ -255,6 +255,13 @@ namespace WindowsFormsApp1
             Label l = GetElement() as Label;
             l.Text = text;
         }
+
+        public void SetColor(Color back_color, Color fore_color)
+        {
+            Label l = GetElement() as Label;
+            l.BackColor = back_color;
+            l.ForeColor = fore_color;
+        }
     }
 
     public class UI_TextInput : UI_Element

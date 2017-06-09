@@ -100,7 +100,7 @@ namespace WindowsFormsApp1
             if(p != null)
             {
                 if (propietaris_manager.propietari_actual != null)
-                    propietaris_manager.propietari_actual.UnloadInfo();
+                    propietaris_manager.propietari_actual.ClearDraw();
 
                 propietaris_manager.propietari_actual = p;
                 propietaris_manager.propietari_actual.LoadInfo();
@@ -114,6 +114,8 @@ namespace WindowsFormsApp1
                 ActualitzaUIFinca();
 
                 ui_manager.GetElement("crea_parcela").SetEnabled(false);
+
+                propietaris_manager.propietari_actual.Draw();
             }
         }
 
@@ -139,7 +141,17 @@ namespace WindowsFormsApp1
 
         public void AfegeixParcela(object sender, EventArgs e)
         {
+            if(point_manager.GetTmpMarcadors().Count >= 3)
+            {
+                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
+                propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
 
+                point_manager.NetejaTmpMarcadors(); 
+
+                ActualitzaUIFinca();
+
+                ui_manager.GetElement("crea_parcela").SetEnabled(false);
+            }
         }
 
         public void FinquesClick(object sender, EventArgs e)
@@ -152,16 +164,25 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual.finca_actual = f;
 
                 propietaris_manager.can_point = true;
+
+                ActualitzaUIFinca();
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void CanviaPropietari(object sender, EventArgs e)
         {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
+            if (propietaris_manager.propietari_actual != null)
+            {
+                if (propietaris_manager.propietari_actual.finca_actual != null)
+                {
+                    propietaris_manager.propietari_actual.finca_actual = null;
+                }
+                propietaris_manager.propietari_actual.ClearDraw();
+                propietaris_manager.propietari_actual = null;
+            }
+        
+            propietari_info_win.SetEnabled(false);
+            main_win.SetEnabled(true);
 
         }
 
@@ -188,10 +209,27 @@ namespace WindowsFormsApp1
             int acumulation = 0;
             for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
             {
-                UI_Text t2 = new UI_Text(propietaris_manager.propietari_actual.finques[i].GetNom(), new Point(5, 0 + acumulation), 20, 40, "- " + propietaris_manager.propietari_actual.finques[i].GetNom());
+                Finca curr_finca = propietaris_manager.propietari_actual.finques[i];
+
+                UI_Text t2 = new UI_Text(curr_finca.GetNom(), new Point(5, 0 + acumulation), 20, 40, "- " + curr_finca.GetNom());
                 t2.GetElement().Click += new EventHandler(FinquesClick);
                 pan.AddElement(t2);
                 acumulation += 18;
+
+                if (curr_finca == propietaris_manager.propietari_actual.finca_actual)
+                {
+                    t2.SetColor(Color.Crimson, Color.White);
+                }
+
+                for(int y = 0; y < curr_finca.parceles.Count(); y++)
+                {
+                    Parcela curr_parcela = curr_finca.parceles[y];
+
+                    UI_Text t3 = new UI_Text(y.ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y+1).ToString());
+                    t3.GetElement().Click += new EventHandler(FinquesClick);
+                    pan.AddElement(t3);
+                    acumulation += 18;
+                }
             }
         }
     }

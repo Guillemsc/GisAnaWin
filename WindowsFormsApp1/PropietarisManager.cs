@@ -69,11 +69,19 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void UnloadInfo()
+        public void ClearDraw()
         {
-            for (int p = 0; p < finques.Count(); p++)
+            for (int i = 0; i < finques.Count(); i++)
             {
+                finques[i].ClearDraw();
+            }
+        }
 
+        public void Draw()
+        {
+            for (int i = 0; i < finques.Count(); i++)
+            {
+                finques[i].Draw();
             }
         }
 
@@ -88,6 +96,18 @@ namespace WindowsFormsApp1
                     ret = finques[i];
                     break;
                 }
+            }
+
+            return ret;
+        }
+
+        public Finca GetFincaPerIndex(int index)
+        {
+            Finca ret = null;
+
+            if(index < finques.Count())
+            {
+                ret = finques[index];
             }
 
             return ret;

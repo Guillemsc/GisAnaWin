@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         {
             for(int i = 0; i< tmp_marcadors.Count; i++)
             {
-                tmp_marcadors[i].Remove(); 
+                tmp_marcadors[i].ClearDraw(); 
             }
             tmp_marcadors.Clear();
         }
@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < tmp_parceles.Count; i++)
             {
-                tmp_parceles[i].Remove();
+                tmp_parceles[i].ClearDraw();
             }
             tmp_parceles.Clear();
         }
@@ -75,13 +75,38 @@ namespace WindowsFormsApp1
             parceles.Add(parcela);
         }
 
+        public void ClearDraw()
+        {
+            for(int i = 0; i< parceles.Count; i++)
+            {
+                parceles[i].ClearDraw();
+
+                if (_overlay != null)
+                    _overlay.Polygons.Remove(polygon);
+                
+            }
+        }
+
+        public void Draw()
+        {
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                parceles[i].Draw();
+            }
+
+            if (_overlay != null && !_overlay.Polygons.Contains(polygon))
+            {
+                _overlay.Polygons.Add(polygon);
+            }
+        }
+
         public void EliminaParcela(Parcela parcela)
         {
             for (int i = 0; i < parceles.Count; i++)
             {
                 if (parceles[i] == parcela)
                 {
-                    parceles[i].Remove();
+                    parceles[i].ClearDraw();
                     parceles.Remove(parcela);
                     break;
                 }
@@ -91,9 +116,10 @@ namespace WindowsFormsApp1
         public string GetNom() { return _nom; }
         public void SetNom(string nom) { _nom = nom; }
 
-        private List<Parcela> parceles = new List<Parcela>();
+        public List<Parcela> parceles = new List<Parcela>();
         string _nom;
         GMapOverlay _overlay = null;
+        GMapPolygon polygon = null;
         Parcela parcela_actual = null;
     }
 
@@ -113,7 +139,8 @@ namespace WindowsFormsApp1
             polygon = new GMapPolygon(points, _descripcio);
 
             _overlay = overlay;
-            _overlay.Polygons.Add(polygon);
+
+            Draw();
         }
 
         public string GetDescripcio() { return _descripcio; }
@@ -129,10 +156,18 @@ namespace WindowsFormsApp1
             polygon.Stroke = linea;
         }
 
-        public void Remove()
+        public void ClearDraw()
         {
             if (_overlay != null)
                 _overlay.Polygons.Remove(polygon);
+        }
+
+        public void Draw()
+        {
+            if(_overlay != null && !_overlay.Polygons.Contains(polygon))
+            {
+                _overlay.Polygons.Add(polygon);
+            }
         }
 
         public void Add()
@@ -197,7 +232,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void Remove()
+        public void ClearDraw()
         {
             if (_overlay != null)
                 _overlay.Markers.Remove(marker);
