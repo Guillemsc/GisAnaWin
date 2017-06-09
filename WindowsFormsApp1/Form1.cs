@@ -45,11 +45,24 @@ namespace WindowsFormsApp1
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
-                    double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
+                    if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
+                    {
+                        double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
+                        double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
 
-                    Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
-                    point_manager.AfegeixTmpMarcadors(m);
+                        Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
+                        point_manager.AfegeixTmpMarcadors(m);
+
+                        if(point_manager.GetTmpMarcadors().Count >= 3)
+                        {
+                            ui_manager.GetElement("crea_parcela").SetEnabled(true);
+                        }
+                        else
+                        {
+                            ui_manager.GetElement("crea_parcela").SetEnabled(false);
+                        }
+
+                    }
                 }
             }
         }
@@ -62,22 +75,13 @@ namespace WindowsFormsApp1
         private void AfegirPropietari(object sender, EventArgs e)
         {
             MaskedTextBox mt = ui_manager.GetElement("nom_propietari_text_input").GetElement() as MaskedTextBox;
-            UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
 
             if(mt.Text != "" && mt.Text.Length > 2)
             {
                 Propietari pro = new Propietari(mt.Text);
                 propietaris_manager.AfegirPropietari(pro);
-                p.ClearPanel();
 
-                int acumulation = 0;
-                for(int i = 0; i < propietaris_manager.GetPropietaris().Count; i++)
-                {
-                    UI_Text t = new UI_Text(propietaris_manager.GetPropietaris()[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.GetPropietaris()[i].GetNom());
-                    t.GetElement().Click += new EventHandler(PropietariClick);
-                    p.AddElement(t);
-                    acumulation += 18;
-                }
+                ActualitzaUIPropietari();
 
                 afegir_propietari_win.SetEnabled(false);
             }
@@ -107,16 +111,9 @@ namespace WindowsFormsApp1
                 UI_Text t = ui_manager.GetElement("nom_propietari") as UI_Text;
                 t.SetText(propietaris_manager.propietari_actual.GetNom());
 
-                UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
+                ActualitzaUIFinca();
 
-                int acumulation = 0;
-                for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
-                {
-                    UI_Text t2 = new UI_Text(propietaris_manager.propietari_actual.finques[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.propietari_actual.finques[i].GetNom());
-                    t2.GetElement().Click += new EventHandler(ParcelesClick);
-                    pan.AddElement(t2);
-                    acumulation += 18;
-                }
+                ui_manager.GetElement("crea_parcela").SetEnabled(false);
             }
         }
 
@@ -136,22 +133,26 @@ namespace WindowsFormsApp1
                 Finca f = new Finca(point_manager.overlay_finca, mt.Text);
                 propietaris_manager.propietari_actual.AfegirFinca(f);
 
-                UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
-
-                int acumulation = 0;
-                for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
-                {
-                    UI_Text t2 = new UI_Text(propietaris_manager.propietari_actual.finques[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.propietari_actual.finques[i].GetNom());
-                    t2.GetElement().Click += new EventHandler(ParcelesClick);
-                    pan.AddElement(t2);
-                    acumulation += 18;
-                }
+                ActualitzaUIFinca();
             }
         }
 
-        public void ParcelesClick(object sender, EventArgs e)
+        public void AfegeixParcela(object sender, EventArgs e)
         {
- 
+
+        }
+
+        public void FinquesClick(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+            Finca f = propietaris_manager.propietari_actual.GetFincaPerNom(l.Name);
+
+            if (f != null)
+            {
+                propietaris_manager.propietari_actual.finca_actual = f;
+
+                propietaris_manager.can_point = true;
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -162,6 +163,36 @@ namespace WindowsFormsApp1
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void ActualitzaUIPropietari()
+        {
+            UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
+            p.ClearPanel();
+
+            int acumulation = 0;
+            for (int i = 0; i < propietaris_manager.GetPropietaris().Count; i++)
+            {
+                UI_Text t = new UI_Text(propietaris_manager.GetPropietaris()[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.GetPropietaris()[i].GetNom());
+                t.GetElement().Click += new EventHandler(PropietariClick);
+                p.AddElement(t);
+                acumulation += 18;
+            }
+        }
+
+        public void ActualitzaUIFinca()
+        {
+            UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
+            pan.ClearPanel();
+
+            int acumulation = 0;
+            for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
+            {
+                UI_Text t2 = new UI_Text(propietaris_manager.propietari_actual.finques[i].GetNom(), new Point(5, 0 + acumulation), 20, 40, "- " + propietaris_manager.propietari_actual.finques[i].GetNom());
+                t2.GetElement().Click += new EventHandler(FinquesClick);
+                pan.AddElement(t2);
+                acumulation += 18;
+            }
         }
     }
 }

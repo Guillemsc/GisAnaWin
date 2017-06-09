@@ -77,6 +77,22 @@ namespace WindowsFormsApp1
             }
         }
 
+        public Finca GetFincaPerNom(string nom)
+        {
+            Finca ret = null;
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                if (finques[i].GetNom() == nom)
+                {
+                    ret = finques[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
         public void EliminarFinca(Finca finca)
         {
             for (int i = 0; i < finques.Count; i++)

@@ -139,9 +139,13 @@ namespace WindowsFormsApp1
                 UI_Text t4 = new UI_Text("finca_text", new Point(15, 60), 193, 40, "Finques: ");
                 propietari_info_win.AddElement(t4);
 
-                UI_Panel p3 = new UI_Panel("finques_panel", new Point(230, 200), 400, 60);
-                p3.SetColor(Color.Black);
+                UI_Panel p3 = new UI_Panel("finques_panel", new Point(15, 80), 400, 60);
                 propietari_info_win.AddElement(p3);
+
+                UI_Button b4 = new UI_Button("crea_parcela", new Point(15, 300), 193, 28, "Crea Parcela");
+                b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+                propietari_info_win.AddElement(b4);
+                b4.SetEnabled(false);
             }
             ui_manager.AddUIWindow(propietari_info_win);
             propietari_info_win.SetEnabled(false);
