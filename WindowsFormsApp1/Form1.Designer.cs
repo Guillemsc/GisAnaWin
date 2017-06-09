@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -33,20 +34,11 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.crea = new System.Windows.Forms.Button();
-            this.neteja = new System.Windows.Forms.Button();
-            this.propietaris_text = new System.Windows.Forms.Label();
-            this.afegeix_button = new System.Windows.Forms.Button();
-            this.panelPropietaris = new System.Windows.Forms.FlowLayoutPanel();
-            this.main_panel = new System.Windows.Forms.FlowLayoutPanel();
             this.panelAfegeixPropietari = new System.Windows.Forms.Panel();
             this.errorText = new System.Windows.Forms.Label();
             this.buttonAfegeix = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelAfegeix = new System.Windows.Forms.MaskedTextBox();
-            this.propietariActual = new System.Windows.Forms.Label();
-            this.panelPropietaris.SuspendLayout();
-            this.main_panel.SuspendLayout();
             this.panelAfegeixPropietari.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,64 +70,6 @@ namespace WindowsFormsApp1
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
             this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
-            // 
-            // crea
-            // 
-            this.crea.Location = new System.Drawing.Point(3, 108);
-            this.crea.Name = "crea";
-            this.crea.Size = new System.Drawing.Size(193, 51);
-            this.crea.TabIndex = 2;
-            this.crea.Text = "Crea nova parcel·la";
-            this.crea.UseVisualStyleBackColor = true;
-            this.crea.Click += new System.EventHandler(this.crea_Click);
-            // 
-            // neteja
-            // 
-            this.neteja.Location = new System.Drawing.Point(3, 74);
-            this.neteja.Name = "neteja";
-            this.neteja.Size = new System.Drawing.Size(193, 28);
-            this.neteja.TabIndex = 3;
-            this.neteja.Text = "Neteja";
-            this.neteja.UseVisualStyleBackColor = true;
-            this.neteja.Click += new System.EventHandler(this.neteja_Click);
-            // 
-            // propietaris_text
-            // 
-            this.propietaris_text.AutoSize = true;
-            this.propietaris_text.Location = new System.Drawing.Point(3, 0);
-            this.propietaris_text.Name = "propietaris_text";
-            this.propietaris_text.Size = new System.Drawing.Size(59, 13);
-            this.propietaris_text.TabIndex = 4;
-            this.propietaris_text.Text = "Propietaris:";
-            this.propietaris_text.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // afegeix_button
-            // 
-            this.afegeix_button.Location = new System.Drawing.Point(16, 27);
-            this.afegeix_button.Name = "afegeix_button";
-            this.afegeix_button.Size = new System.Drawing.Size(193, 28);
-            this.afegeix_button.TabIndex = 5;
-            this.afegeix_button.Text = "Afegeix Propietari";
-            this.afegeix_button.UseVisualStyleBackColor = true;
-            this.afegeix_button.Click += new System.EventHandler(this.afegeix_button_Click);
-            // 
-            // panelPropietaris
-            // 
-            this.panelPropietaris.Controls.Add(this.propietaris_text);
-            this.panelPropietaris.Location = new System.Drawing.Point(3, 3);
-            this.panelPropietaris.Name = "panelPropietaris";
-            this.panelPropietaris.Size = new System.Drawing.Size(194, 65);
-            this.panelPropietaris.TabIndex = 6;
-            // 
-            // main_panel
-            // 
-            this.main_panel.Controls.Add(this.panelPropietaris);
-            this.main_panel.Controls.Add(this.neteja);
-            this.main_panel.Controls.Add(this.crea);
-            this.main_panel.Location = new System.Drawing.Point(12, 61);
-            this.main_panel.Name = "main_panel";
-            this.main_panel.Size = new System.Drawing.Size(203, 473);
-            this.main_panel.TabIndex = 7;
             // 
             // panelAfegeixPropietari
             // 
@@ -184,29 +118,15 @@ namespace WindowsFormsApp1
             this.labelAfegeix.Size = new System.Drawing.Size(363, 20);
             this.labelAfegeix.TabIndex = 0;
             // 
-            // propietariActual
-            // 
-            this.propietariActual.AutoSize = true;
-            this.propietariActual.Location = new System.Drawing.Point(15, 8);
-            this.propietariActual.Name = "propietariActual";
-            this.propietariActual.Size = new System.Drawing.Size(0, 13);
-            this.propietariActual.TabIndex = 9;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.Controls.Add(this.propietariActual);
             this.Controls.Add(this.panelAfegeixPropietari);
-            this.Controls.Add(this.main_panel);
             this.Controls.Add(this.gmap);
-            this.Controls.Add(this.afegeix_button);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
-            this.panelPropietaris.ResumeLayout(false);
-            this.panelPropietaris.PerformLayout();
-            this.main_panel.ResumeLayout(false);
             this.panelAfegeixPropietari.ResumeLayout(false);
             this.panelAfegeixPropietari.PerformLayout();
             this.ResumeLayout(false);
@@ -225,24 +145,58 @@ namespace WindowsFormsApp1
 
             point_manager = new PointsManager(gmap);
             propietaris_manager = new PropietarisManager();
+            ui_manager = new UIManager(this);
+
+            // UI
+            UI_Window main_win = new UI_Window("main_window", this);
+            {
+                UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
+                b.GetElement().Click += new System.EventHandler(this.AfegeixPropietari);
+                main_win.AddElement(b);
+
+                UI_Panel p = new UI_Panel("propietaris_panel", new Point(15, 48), 193, 100);
+                main_win.AddElement(p);
+                {
+                    UI_Text t = new UI_Text("propietaris_text", new Point(0, 0), 193, 40, "Propietaris: ");
+                    main_win.AddElement(t);
+                    p.AddElement(t);
+                }
+            }
+            ui_manager.AddUIWindow(main_win);
+
+            UI_Window afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
+            {
+                UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
+                afegir_propietari_win.AddElement(p2);
+                p2.GetElement().BringToFront();
+                {
+                    UI_Text t2 = new UI_Text("nom_propietaris_text", new Point(5, 10), 20, 40, "Nom: ");
+                    afegir_propietari_win.AddElement(t2);
+                    p2.AddElement(t2);
+
+                    UI_TextInput ti = new UI_TextInput("nom_propietari_text_input", new Point(40, 7), 300, 30);
+                    afegir_propietari_win.AddElement(ti);
+                    p2.AddElement(ti);
+
+                    UI_Button b2 = new UI_Button("afegir_propietari_button", new Point(40, 30), 100, 25, "Afegir Propietari");
+                    afegir_propietari_win.AddElement(b2);
+                    p2.AddElement(b2);
+
+                }
+            }
+            afegir_propietari_win.SetEnabled(false);
         }
 
 
         public GMap.NET.WindowsForms.GMapControl gmap = null;
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
-        private System.Windows.Forms.Button crea;
-        private System.Windows.Forms.Button neteja;
-        private System.Windows.Forms.Label propietaris_text;
-        private System.Windows.Forms.Button afegeix_button;
-        private System.Windows.Forms.FlowLayoutPanel panelPropietaris;
-        private System.Windows.Forms.FlowLayoutPanel main_panel;
+        public UIManager ui_manager = null;
         private System.Windows.Forms.Panel panelAfegeixPropietari;
         private System.Windows.Forms.Button buttonAfegeix;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox labelAfegeix;
         private System.Windows.Forms.Label errorText;
-        private System.Windows.Forms.Label propietariActual;
     }
 }
 

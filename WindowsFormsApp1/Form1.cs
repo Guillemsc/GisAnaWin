@@ -51,7 +51,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void afegeix_button_Click(object sender, EventArgs e)
+        private void AfegeixPropietari(object sender, EventArgs e)
         {
             panelAfegeixPropietari.Visible = true;
         }
@@ -74,12 +74,13 @@ namespace WindowsFormsApp1
                 propietaris_manager.AfegirPropietari(p);
                 panelAfegeixPropietari.Visible = false;
                 labelAfegeix.Text = "";
+    
 
                 List<Propietari> propietaris = propietaris_manager.GetPropietaris();
 
                 for(int i = 0; i < propietaris_manager.propietaris_texts.Count; i++)
                 {
-                    panelPropietaris.Controls.Remove(propietaris_manager.propietaris_texts[i]);
+                    //panelPropietaris.Controls.Remove(propietaris_manager.propietaris_texts[i]);
                     propietaris_manager.propietaris_texts[i] = null;
                 }
 
@@ -91,18 +92,19 @@ namespace WindowsFormsApp1
                     l.Height = 13;
                     l.Width = 193;
 
+
                     l.Text = "- " + propietaris[i].GetNom();
                     l.Name = "" + propietaris[i].GetNom();
 
                     l.Click += new EventHandler(propietari_Click);
-                    panelPropietaris.Controls.Add(l);
+                    //panelPropietaris.Controls.Add(l);
                     propietaris_manager.propietaris_texts.Add(l);
 
-                    panelPropietaris.AutoScroll = false;
-                    panelPropietaris.HorizontalScroll.Enabled = false;
-                    panelPropietaris.HorizontalScroll.Visible = false;
-                    panelPropietaris.HorizontalScroll.Maximum = 0;
-                    panelPropietaris.AutoScroll = true;
+                    //panelPropietaris.AutoScroll = false;
+                    //panelPropietaris.HorizontalScroll.Enabled = false;
+                    //panelPropietaris.HorizontalScroll.Visible = false;
+                    //panelPropietaris.HorizontalScroll.Maximum = 0;
+                    //panelPropietaris.AutoScroll = true;
                 }
             }
         }
@@ -119,7 +121,7 @@ namespace WindowsFormsApp1
 
                 propietaris_manager.propietari_actual = p;
                 propietaris_manager.propietari_actual.LoadInfo();
-                propietariActual.Text = propietaris_manager.propietari_actual.GetNom();
+                //propietariActual.Text = propietaris_manager.propietari_actual.GetNom();
 
 
             }
