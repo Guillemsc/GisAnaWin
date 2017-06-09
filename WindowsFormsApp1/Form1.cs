@@ -53,7 +53,31 @@ namespace WindowsFormsApp1
 
         private void AfegeixPropietari(object sender, EventArgs e)
         {
-            panelAfegeixPropietari.Visible = true;
+            ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(true);
+        }
+
+        private void AfegirPropietari(object sender, EventArgs e)
+        {
+            MaskedTextBox mt = ui_manager.GetElement("nom_propietari_text_input").GetElement() as MaskedTextBox;
+            UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
+
+            if(mt.Text != "" && mt.Text.Length > 2)
+            {
+                Propietari pro = new Propietari(mt.Text);
+                propietaris_manager.AfegirPropietari(pro);
+                p.ClearPanel();
+
+                int acumulation = 0;
+                for(int i = 0; i < propietaris_manager.GetPropietaris().Count; i++)
+                {
+                    UI_Text t = new UI_Text(propietaris_manager.GetPropietaris()[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.GetPropietaris()[i].GetNom());
+                    t.GetElement().Click += new EventHandler(PropietariClick);
+                    p.AddElement(t);
+                    acumulation += 18;
+                }
+
+                afegir_propietari_win.SetEnabled(false);
+            }
         }
 
         protected override void OnLayout(LayoutEventArgs e)
@@ -61,55 +85,7 @@ namespace WindowsFormsApp1
             PerformAutoScale();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonAfegeix_Click(object sender, EventArgs e)
-        {
-            if(labelAfegeix.Text != "")
-            {
-                Propietari p = new Propietari(labelAfegeix.Text);
-                propietaris_manager.AfegirPropietari(p);
-                panelAfegeixPropietari.Visible = false;
-                labelAfegeix.Text = "";
-    
-
-                List<Propietari> propietaris = propietaris_manager.GetPropietaris();
-
-                for(int i = 0; i < propietaris_manager.propietaris_texts.Count; i++)
-                {
-                    //panelPropietaris.Controls.Remove(propietaris_manager.propietaris_texts[i]);
-                    propietaris_manager.propietaris_texts[i] = null;
-                }
-
-                propietaris_manager.propietaris_texts.Clear();
-
-                for (int i = 0; i < propietaris.Count; i++)
-                {
-                    Label l = new Label();
-                    l.Height = 13;
-                    l.Width = 193;
-
-
-                    l.Text = "- " + propietaris[i].GetNom();
-                    l.Name = "" + propietaris[i].GetNom();
-
-                    l.Click += new EventHandler(propietari_Click);
-                    //panelPropietaris.Controls.Add(l);
-                    propietaris_manager.propietaris_texts.Add(l);
-
-                    //panelPropietaris.AutoScroll = false;
-                    //panelPropietaris.HorizontalScroll.Enabled = false;
-                    //panelPropietaris.HorizontalScroll.Visible = false;
-                    //panelPropietaris.HorizontalScroll.Maximum = 0;
-                    //panelPropietaris.AutoScroll = true;
-                }
-            }
-        }
-
-        private void propietari_Click(object sender, EventArgs e)
+        private void PropietariClick(object sender, EventArgs e)
         {
             Label b = sender as Label;
             Propietari p = propietaris_manager.GetPropietariPerNom(b.Name);
@@ -121,9 +97,12 @@ namespace WindowsFormsApp1
 
                 propietaris_manager.propietari_actual = p;
                 propietaris_manager.propietari_actual.LoadInfo();
-                //propietariActual.Text = propietaris_manager.propietari_actual.GetNom();
 
+                UI_Text t = ui_manager.GetElement("nom_propietari") as UI_Text;
+                t.SetText(propietaris_manager.propietari_actual.GetNom());
 
+                main_win.SetEnabled(false);
+                propietari_info_win.SetEnabled(true);
             }
         }
 

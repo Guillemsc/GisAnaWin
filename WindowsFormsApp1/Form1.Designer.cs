@@ -34,12 +34,6 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.panelAfegeixPropietari = new System.Windows.Forms.Panel();
-            this.errorText = new System.Windows.Forms.Label();
-            this.buttonAfegeix = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelAfegeix = new System.Windows.Forms.MaskedTextBox();
-            this.panelAfegeixPropietari.SuspendLayout();
             this.SuspendLayout();
             // 
             // gmap
@@ -71,64 +65,14 @@ namespace WindowsFormsApp1
             this.gmap.Zoom = 13D;
             this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
-            // panelAfegeixPropietari
-            // 
-            this.panelAfegeixPropietari.Controls.Add(this.errorText);
-            this.panelAfegeixPropietari.Controls.Add(this.buttonAfegeix);
-            this.panelAfegeixPropietari.Controls.Add(this.label1);
-            this.panelAfegeixPropietari.Controls.Add(this.labelAfegeix);
-            this.panelAfegeixPropietari.Location = new System.Drawing.Point(236, 27);
-            this.panelAfegeixPropietari.Name = "panelAfegeixPropietari";
-            this.panelAfegeixPropietari.Size = new System.Drawing.Size(432, 79);
-            this.panelAfegeixPropietari.TabIndex = 8;
-            this.panelAfegeixPropietari.Visible = false;
-            // 
-            // errorText
-            // 
-            this.errorText.AutoSize = true;
-            this.errorText.Location = new System.Drawing.Point(164, 37);
-            this.errorText.Name = "errorText";
-            this.errorText.Size = new System.Drawing.Size(0, 13);
-            this.errorText.TabIndex = 3;
-            this.errorText.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // buttonAfegeix
-            // 
-            this.buttonAfegeix.Location = new System.Drawing.Point(50, 41);
-            this.buttonAfegeix.Name = "buttonAfegeix";
-            this.buttonAfegeix.Size = new System.Drawing.Size(98, 23);
-            this.buttonAfegeix.TabIndex = 2;
-            this.buttonAfegeix.Text = "Afegeix";
-            this.buttonAfegeix.UseVisualStyleBackColor = true;
-            this.buttonAfegeix.Click += new System.EventHandler(this.buttonAfegeix_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nom";
-            // 
-            // labelAfegeix
-            // 
-            this.labelAfegeix.Location = new System.Drawing.Point(50, 14);
-            this.labelAfegeix.Name = "labelAfegeix";
-            this.labelAfegeix.Size = new System.Drawing.Size(363, 20);
-            this.labelAfegeix.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.Controls.Add(this.panelAfegeixPropietari);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
-            this.panelAfegeixPropietari.ResumeLayout(false);
-            this.panelAfegeixPropietari.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,55 +92,58 @@ namespace WindowsFormsApp1
             ui_manager = new UIManager(this);
 
             // UI
-            UI_Window main_win = new UI_Window("main_window", this);
+            main_win = new UI_Window("main_window", this);
             {
                 UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
                 b.GetElement().Click += new System.EventHandler(this.AfegeixPropietari);
                 main_win.AddElement(b);
 
-                UI_Panel p = new UI_Panel("propietaris_panel", new Point(15, 48), 193, 100);
+                UI_Text t = new UI_Text("propietaris_text", new Point(15, 50), 193, 40, "Propietaris: ");
+                main_win.AddElement(t);
+
+                UI_Panel p = new UI_Panel("propietaris_panel", new Point(15, 58), 193, 400);
                 main_win.AddElement(p);
-                {
-                    UI_Text t = new UI_Text("propietaris_text", new Point(0, 0), 193, 40, "Propietaris: ");
-                    main_win.AddElement(t);
-                    p.AddElement(t);
-                }
             }
             ui_manager.AddUIWindow(main_win);
 
-            UI_Window afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
+            afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
             {
                 UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
                 afegir_propietari_win.AddElement(p2);
                 p2.GetElement().BringToFront();
                 {
                     UI_Text t2 = new UI_Text("nom_propietaris_text", new Point(5, 10), 20, 40, "Nom: ");
-                    afegir_propietari_win.AddElement(t2);
                     p2.AddElement(t2);
 
                     UI_TextInput ti = new UI_TextInput("nom_propietari_text_input", new Point(40, 7), 300, 30);
-                    afegir_propietari_win.AddElement(ti);
                     p2.AddElement(ti);
 
                     UI_Button b2 = new UI_Button("afegir_propietari_button", new Point(40, 30), 100, 25, "Afegir Propietari");
-                    afegir_propietari_win.AddElement(b2);
+                    b2.GetElement().Click += new System.EventHandler(this.AfegirPropietari);
                     p2.AddElement(b2);
 
                 }
             }
             afegir_propietari_win.SetEnabled(false);
+            ui_manager.AddUIWindow(afegir_propietari_win);
+
+            propietari_info_win = new UI_Window(" propietari_info_win", this);
+            {
+                UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
+                propietari_info_win.AddElement(t3);
+            }
+            ui_manager.AddUIWindow(propietari_info_win);
+            propietari_info_win.SetEnabled(false);
         }
 
+        UI_Window propietari_info_win = null;
+        UI_Window afegir_propietari_win = null;
+        UI_Window main_win = null;
 
         public GMap.NET.WindowsForms.GMapControl gmap = null;
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
         public UIManager ui_manager = null;
-        private System.Windows.Forms.Panel panelAfegeixPropietari;
-        private System.Windows.Forms.Button buttonAfegeix;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox labelAfegeix;
-        private System.Windows.Forms.Label errorText;
     }
 }
 
