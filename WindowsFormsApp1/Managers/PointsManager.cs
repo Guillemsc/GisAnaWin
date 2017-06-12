@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
         List<Marcador> tmp_marcadors = new List<Marcador>();
         List<Parcela> tmp_parceles = new List<Parcela>();
 
-        public bool is_deleting = false;
+        public bool deleting_marker = false;
     }
 
     public class Finca

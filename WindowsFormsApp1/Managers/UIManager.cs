@@ -149,6 +149,12 @@ namespace WindowsFormsApp1
                 _element.BringToFront();
         }
 
+        public void SetDock(DockStyle dock)
+        {
+            if (_element != null)
+                _element.Dock = dock;
+        }
+
         public void Layer(int layer)
         {
             _element.TabIndex = layer;
@@ -194,7 +200,6 @@ namespace WindowsFormsApp1
             p.Width = w;
             p.Height = h;
             p.TabIndex = 8;
-            p.AutoScroll = false;
             p.HorizontalScroll.Enabled = false;
             p.HorizontalScroll.Visible = false;
             p.HorizontalScroll.Maximum = 0;

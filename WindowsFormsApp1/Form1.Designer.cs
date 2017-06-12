@@ -63,7 +63,6 @@ namespace WindowsFormsApp1
             this.gmap.Size = new System.Drawing.Size(600, 550);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
-            //this.gmap.OnMarkerLeave += new GMap.NET.WindowsForms.MarkerLeave(this.gmap_MarkerClick);
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
             this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
@@ -116,6 +115,7 @@ namespace WindowsFormsApp1
                 map_win.AddElement(search_button);
 
                 UI_Text lat_text = new UI_Text("lat_text", new Point(8, 505), 193, 40, "Lat");
+                //lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
                 map_win.AddElement(lat_text);
 
                 UI_Text lon_text = new UI_Text("lon_text", new Point(115, 505), 193, 40, "Lon");
@@ -208,13 +208,13 @@ namespace WindowsFormsApp1
                 afegir_finca_win.AddElement(p4);
                 p4.GetElement().BringToFront();
                 {
-                    UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Descripció finca: ");
+                    UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
                     p4.AddElement(tex);
 
-                    UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(120, 7), 300, 80);
+                    UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(80, 7), 300, 80);
                     p4.AddElement(ti2);
 
-                    UI_Button b6 = new UI_Button("afegir_finca_button", new Point(120, 30), 130, 25, "Afegir Finca");
+                    UI_Button b6 = new UI_Button("afegir_finca_button", new Point(80, 30), 130, 25, "Afegir Finca");
                     b6.GetElement().Click += new System.EventHandler(this.AfegirFinca);
                     p4.AddElement(b6);
                 }
@@ -222,10 +222,31 @@ namespace WindowsFormsApp1
             ui_manager.AddUIWindow(afegir_finca_win);
             afegir_finca_win.SetEnabled(false);
 
+            opcions_finca_win = new UI_Window("opcions_finca_win", this);
+            {
+                UI_Panel opcions_finca_panel = new UI_Panel("opcions_finca_panel", new Point(230, 13), 500, 60);
+                opcions_finca_win.AddElement(opcions_finca_panel);
+                opcions_finca_panel.GetElement().BringToFront();
+                {
+                    UI_Text opcions_nom_finca_text = new UI_Text("opcions_nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
+                    opcions_finca_panel.AddElement(opcions_nom_finca_text);
+
+                    UI_TextInput opcions_nom_finca_text_input = new UI_TextInput("opcions_nom_finca_text_input", new Point(80, 7), 300, 80);
+                    opcions_finca_panel.AddElement(opcions_nom_finca_text_input);
+
+                    UI_Button actualitza_finca = new UI_Button("actualitza_finca", new Point(80, 30), 130, 25, "Actualitza Finca");
+                    actualitza_finca.GetElement().Click += new System.EventHandler(this.ActualitzaFinca);
+                    opcions_finca_panel.AddElement(actualitza_finca);
+                }
+            }
+            ui_manager.AddUIWindow(opcions_finca_win);
+            opcions_finca_win.SetEnabled(false);
+
             gmap.SendToBack();
         }
 
         // Windows
+        UI_Window opcions_finca_win = null;
         UI_Window afegir_finca_win = null;
         UI_Window propietari_info_win = null;
         UI_Window afegir_propietari_win = null;
