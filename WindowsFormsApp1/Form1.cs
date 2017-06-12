@@ -264,6 +264,9 @@ namespace WindowsFormsApp1
                 {
                     propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
                     ActualitzaUIFinca();
+
+                    gmap.Position = propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetCenterPos();
+                    UpdateLatLon();
                 }
             }
             //Parcela p = propietaris_manager.propietari_actual.finca_actual
@@ -278,6 +281,7 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
 
                 propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
+                p.SetText(propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetDescripcio());
 
                 point_manager.NetejaTmpMarcadors(); 
 

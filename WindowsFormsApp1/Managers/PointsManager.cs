@@ -170,8 +170,13 @@ namespace WindowsFormsApp1
             {
                 points.Add(marcadors[i].GetPos());
             }
-
+            
             polygon = new GMapPolygon(points, _descripcio);
+
+            center_pos = (CalculateCenterOfPolygon(points));
+            text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
+            text_marker.ToolTipMode = MarkerTooltipMode.Always;
+            overlay.Markers.Add(text_marker);
 
             _overlay = overlay;
             Draw();
@@ -205,15 +210,50 @@ namespace WindowsFormsApp1
             }
         }
 
+        public PointLatLng GetCenterPos()
+        {
+            return center_pos;
+        }
+
         public void Add()
         {
             _overlay.Polygons.Add(polygon);
+        }
+
+        public void SetText(string text)
+        {
+            text_marker.ToolTipText = text;
+        }
+
+        private PointLatLng CalculateCenterOfPolygon(List<PointLatLng> polypoints)
+        {
+            PointLatLng ret = new PointLatLng(0, 0);
+
+            int sum = 0;
+            double lat = 0;
+            double lon = 0;
+
+            for(int i = 0; i < polypoints.Count; i++)
+            {
+                sum++;
+                lat += polypoints[i].Lat;
+                lon += polypoints[i].Lng;
+            }
+
+            lat = lat / sum;
+            lon = lon / sum;
+
+            ret = new PointLatLng(lat, lon);
+
+            return ret;
         }
 
         private string _descripcio;
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
         private int _id = 0;
+        GMapMarker text_marker = null;
+        PointLatLng center_pos;
     }
 
     public class Marcador
