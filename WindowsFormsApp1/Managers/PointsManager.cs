@@ -79,10 +79,11 @@ namespace WindowsFormsApp1
 
     public class Finca
     {
-        public Finca(GMapOverlay overlay, string nom)
+        public Finca(GMapOverlay overlay, string nom, int id)
         {
             _overlay = overlay;
             _nom = nom;
+            _id = id;
         }
 
         public void AfegeixParcela(Parcela parcela)
@@ -130,19 +131,22 @@ namespace WindowsFormsApp1
 
         public string GetNom() { return _nom; }
         public void SetNom(string nom) { _nom = nom; }
+        public int GetID() { return _id; }
 
         public List<Parcela> parceles = new List<Parcela>();
         string _nom;
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         public Parcela parcela_actual = null;
+        private int _id = 0;
     }
 
     public class Parcela
     {
-        public Parcela(List<Marcador> marcadors, GMapOverlay overlay, string descripcio = "")
+        public Parcela(List<Marcador> marcadors, GMapOverlay overlay, int id, string descripcio = "")
         {
             _descripcio = descripcio;
+            _id = id;
 
             List<PointLatLng> points = new List<PointLatLng>();
 
@@ -158,6 +162,7 @@ namespace WindowsFormsApp1
         }
 
         public string GetDescripcio() { return _descripcio; }
+        public int GetID() { return _id; }
         public void SetDescripcio(string descripcio)
         {
             _descripcio = descripcio;
@@ -192,6 +197,7 @@ namespace WindowsFormsApp1
         private string _descripcio;
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
+        private int _id = 0;
     }
 
     public class Marcador

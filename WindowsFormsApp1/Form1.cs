@@ -26,22 +26,22 @@ namespace WindowsFormsApp1
             PerformAutoScale();
         }
 
-        // Debug
+        // Debug -------
         private void crea_Click(object sender, EventArgs e)
         {
             if (point_manager.GetTmpMarcadors().Count > 2)
             {
-                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
+                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
                 point_manager.AfegeixTmpParcela(p);
             } 
         }
 
-        // Debug
         private void neteja_Click(object sender, EventArgs e)
         {
             point_manager.NetejaTmpMarcadors();
             point_manager.NetejaTmpParceles();
         }
+        // --------------
 
         // Click a un marcador per a eliminar-lo
         public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
@@ -104,6 +104,11 @@ namespace WindowsFormsApp1
             ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(true);
         }
 
+        private void TancarAfegeixPropietari(object sender, EventArgs e)
+        {
+            ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(false);
+        }
+
         // Afegeix un nou propietari
         private void AfegirPropietari(object sender, EventArgs e)
         {
@@ -132,7 +137,6 @@ namespace WindowsFormsApp1
                     propietaris_manager.propietari_actual.ClearDraw();
 
                 propietaris_manager.propietari_actual = p;
-                propietaris_manager.propietari_actual.LoadInfo();
 
                 main_win.SetEnabled(false);
                 propietari_info_win.SetEnabled(true);
@@ -181,7 +185,7 @@ namespace WindowsFormsApp1
 
             if (mt.Text != "")
             {
-                Finca f = new Finca(point_manager.overlay_finca, mt.Text);
+                Finca f = new Finca(point_manager.overlay_finca, mt.Text, id_manager.GetNewID("finca"));
                 propietaris_manager.propietari_actual.AfegirFinca(f);
 
                 ActualitzaUIFinca();
@@ -192,7 +196,7 @@ namespace WindowsFormsApp1
         public void FinquesClick(object sender, EventArgs e)
         {
             Label l = sender as Label;
-            Finca f = propietaris_manager.propietari_actual.GetFincaPerNom(l.Name);
+            Finca f = propietaris_manager.propietari_actual.GetFincaPerID(Int32.Parse(l.Name));
 
             if (f != null)
             {
@@ -209,7 +213,7 @@ namespace WindowsFormsApp1
         {
             if(point_manager.GetTmpMarcadors().Count >= 3)
             {
-                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela);
+                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
                 propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
 
                 point_manager.NetejaTmpMarcadors(); 
@@ -248,7 +252,7 @@ namespace WindowsFormsApp1
             {
                 Finca curr_finca = propietaris_manager.propietari_actual.finques[i];
 
-                UI_Text t2 = new UI_Text(curr_finca.GetNom(), new Point(5, 0 + acumulation), 20, 40, "- " + curr_finca.GetNom());
+                UI_Text t2 = new UI_Text(curr_finca.GetID().ToString(), new Point(5, 0 + acumulation), 20, 40, "- " + curr_finca.GetNom());
                 t2.GetElement().Click += new EventHandler(FinquesClick);
                 pan.AddElement(t2);
                 acumulation += 18;
@@ -264,7 +268,7 @@ namespace WindowsFormsApp1
                 {
                     Parcela curr_parcela = curr_finca.parceles[y];
 
-                    UI_Text t3 = new UI_Text(y.ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y+1).ToString());
+                    UI_Text t3 = new UI_Text(curr_parcela.GetID().ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y+1).ToString());
                     t3.GetElement().Click += new EventHandler(FinquesClick);
                     pan.AddElement(t3);
                     acumulation += 18;
@@ -316,14 +320,14 @@ namespace WindowsFormsApp1
 
         public void UpdateLatLon()
         {
-            UI_TextInput lat = ui_manager.GetElement("cordenates_lat") as UI_TextInput;
-            UI_TextInput lon = ui_manager.GetElement("cordenates_lon") as UI_TextInput;
+            if (text_input_lat != null && text_input_lon != null)
+            {
+                string lat_s = Math.Round(gmap.Position.Lat, 6).ToString();
+                string lon_s = Math.Round(gmap.Position.Lng, 6).ToString();
 
-            string lat_s = Math.Round(gmap.Position.Lat, 6).ToString();
-            string lon_s = Math.Round(gmap.Position.Lng, 6).ToString();
-
-            lat.SetText(lat_s.Replace(',', '.'));
-            lon.SetText(lon_s.Replace(',', '.'));
+                text_input_lat.SetText(lat_s.Replace(',', '.'));
+                text_input_lon.SetText(lon_s.Replace(',', '.'));
+            }
         }
     }
 }

@@ -63,8 +63,9 @@ namespace WindowsFormsApp1
             this.gmap.Size = new System.Drawing.Size(600, 550);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
+            //this.gmap.OnMarkerLeave += new GMap.NET.WindowsForms.MarkerLeave(this.gmap_MarkerClick);
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
-            this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
+            this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
             // 
             // Form1
@@ -87,11 +88,11 @@ namespace WindowsFormsApp1
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
-            gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(gmap_MouseClick);
 
             point_manager = new PointsManager(gmap);
             propietaris_manager = new PropietarisManager();
             ui_manager = new UIManager(this);
+            id_manager = new IDManager();
 
             LoadUI();
 
@@ -101,11 +102,13 @@ namespace WindowsFormsApp1
         public void LoadUI()
         {
             // UI
+
+            // General Map UI Input
             map_win = new UI_Window("map_win", this);
             {
-                UI_TextInput text_input_lat = new UI_TextInput("cordenates_lat", new Point(8, 480), 100, 50);
+                text_input_lat = new UI_TextInput("cordenates_lat", new Point(8, 480), 100, 50);
                 map_win.AddElement(text_input_lat);
-                UI_TextInput text_input_lon = new UI_TextInput("cordenates_lon", new Point(115, 480), 100, 50);
+                text_input_lon = new UI_TextInput("cordenates_lon", new Point(115, 480), 100, 50);
                 map_win.AddElement(text_input_lon);
 
                 UI_Button search_button = new UI_Button("search_button", new Point(7, 450), 50, 23, "Cerca");
@@ -124,6 +127,7 @@ namespace WindowsFormsApp1
             }
             ui_manager.AddUIWindow(map_win);
 
+            // Starting Window
             main_win = new UI_Window("main_window", this);
             {
                 UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
@@ -138,6 +142,7 @@ namespace WindowsFormsApp1
             }
             ui_manager.AddUIWindow(main_win);
 
+            // Finestra per a afegir un propietari
             afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
             {
                 UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
@@ -154,11 +159,16 @@ namespace WindowsFormsApp1
                     b2.GetElement().Click += new System.EventHandler(this.AfegirPropietari);
                     p2.AddElement(b2);
 
+                    UI_Button afegir_propietari_exit_button = new UI_Button("afegir_propietari_exit_button", new Point(375, 5), 19, 19, "X");
+                    afegir_propietari_exit_button.GetElement().Click += new System.EventHandler(this.TancarAfegeixPropietari);
+                    p2.AddElement(afegir_propietari_exit_button);
+
                 }
             }
             afegir_propietari_win.SetEnabled(false);
             ui_manager.AddUIWindow(afegir_propietari_win);
 
+            // Finestra del propietari
             propietari_info_win = new UI_Window(" propietari_info_win", this);
             {
                 UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
@@ -186,6 +196,7 @@ namespace WindowsFormsApp1
             ui_manager.AddUIWindow(propietari_info_win);
             propietari_info_win.SetEnabled(false);
 
+            // Finestra per a afegir una finca
             afegir_finca_win = new UI_Window("afegir_finca_win", this);
             {
                 UI_Panel p4 = new UI_Panel("finca_panel", new Point(230, 13), 500, 60);
@@ -209,16 +220,23 @@ namespace WindowsFormsApp1
             gmap.SendToBack();
         }
 
+        // Windows
         UI_Window afegir_finca_win = null;
         UI_Window propietari_info_win = null;
         UI_Window afegir_propietari_win = null;
         UI_Window main_win = null;
         UI_Window map_win = null;
 
+        // Necessary Elements
+        UI_TextInput text_input_lat = null;
+        UI_TextInput text_input_lon = null;
+
+        // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
         public UIManager ui_manager = null;
+        public IDManager id_manager = null;
     }
 }
 

@@ -61,14 +61,6 @@ namespace WindowsFormsApp1
             finques.Add(finca);
         }
 
-        public void LoadInfo()
-        {
-            for(int p = 0; p < finques.Count(); p++)
-            {
-     
-            }
-        }
-
         public void ClearDraw()
         {
             for (int i = 0; i < finques.Count(); i++)
@@ -85,13 +77,13 @@ namespace WindowsFormsApp1
             }
         }
 
-        public Finca GetFincaPerNom(string nom)
+        public Finca GetFincaPerID(int id)
         {
             Finca ret = null;
 
             for (int i = 0; i < finques.Count; i++)
             {
-                if (finques[i].GetNom() == nom)
+                if (finques[i].GetID() == id)
                 {
                     ret = finques[i];
                     break;

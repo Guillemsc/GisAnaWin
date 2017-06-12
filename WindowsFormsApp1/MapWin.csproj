@@ -98,11 +98,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointsManager.cs" />
+    <Compile Include="Managers\IDManager.cs" />
+    <Compile Include="Managers\PointsManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropietarisManager.cs" />
-    <Compile Include="UIManager.cs" />
+    <Compile Include="Managers\PropietarisManager.cs" />
+    <Compile Include="Managers\UIManager.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
