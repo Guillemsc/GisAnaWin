@@ -69,12 +69,12 @@ namespace WindowsFormsApp1
         public GMapOverlay overlay_parcela = new GMapOverlay("parceles");
         public GMapOverlay overlay_finca = new GMapOverlay("finca");
 
-        public bool eliminant_marcador = false;
-
         Finca finca = null;
 
         List<Marcador> tmp_marcadors = new List<Marcador>();
         List<Parcela> tmp_parceles = new List<Parcela>();
+
+        public bool is_deleting = false;
     }
 
     public class Finca

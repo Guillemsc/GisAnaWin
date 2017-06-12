@@ -126,7 +126,6 @@ namespace WindowsFormsApp1
         }
         private string _nom;
         public List<Finca> finques = new List<Finca>();
-
         public Finca finca_actual = null;
     }
 }

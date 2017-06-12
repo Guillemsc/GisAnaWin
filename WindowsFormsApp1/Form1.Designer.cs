@@ -63,7 +63,9 @@ namespace WindowsFormsApp1
             this.gmap.Size = new System.Drawing.Size(600, 550);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
+            this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
             this.gmap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
+            this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
             // 
             // Form1
             // 
@@ -75,14 +77,13 @@ namespace WindowsFormsApp1
             this.Text = "Finques Maps Test";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
         override protected void OnLoad(EventArgs e)
         {
-            gmap.MapProvider = GMap.NET.MapProviders.BingSatelliteMapProvider.Instance;
+            gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
@@ -93,6 +94,8 @@ namespace WindowsFormsApp1
             ui_manager = new UIManager(this);
 
             LoadUI();
+
+            UpdateLatLon();
         }
 
         public void LoadUI()
@@ -100,9 +103,26 @@ namespace WindowsFormsApp1
             // UI
             map_win = new UI_Window("map_win", this);
             {
-                UI_TextInput text_input = new UI_TextInput("corrdenates_input", new Point(600, 15), 50, 50);
-                map_win.AddElement(text_input);
+                UI_TextInput text_input_lat = new UI_TextInput("cordenates_lat", new Point(8, 480), 100, 50);
+                map_win.AddElement(text_input_lat);
+                UI_TextInput text_input_lon = new UI_TextInput("cordenates_lon", new Point(115, 480), 100, 50);
+                map_win.AddElement(text_input_lon);
+
+                UI_Button search_button = new UI_Button("search_button", new Point(7, 450), 50, 23, "Cerca");
+                search_button.GetElement().Click += new System.EventHandler(this.SearchLatLon);
+                map_win.AddElement(search_button);
+
+                UI_Text lat_text = new UI_Text("lat_text", new Point(8, 505), 193, 40, "Lat");
+                map_win.AddElement(lat_text);
+
+                UI_Text lon_text = new UI_Text("lon_text", new Point(115, 505), 193, 40, "Lon");
+                map_win.AddElement(lon_text);
+
+                UI_Button mapsat_button = new UI_Button("mapsat_button", new Point(690, 500), 100, 23, "Canvia a satel.lit");
+                mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
+                map_win.AddElement(mapsat_button);
             }
+            ui_manager.AddUIWindow(map_win);
 
             main_win = new UI_Window("main_window", this);
             {

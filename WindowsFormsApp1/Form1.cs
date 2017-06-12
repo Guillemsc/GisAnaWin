@@ -43,18 +43,38 @@ namespace WindowsFormsApp1
             point_manager.NetejaTmpParceles();
         }
 
+        // Click a un marcador per a eliminar-lo
+        public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            point_manager.EliminaTmpMarcadorSiEsTroba(item);
+
+            if (point_manager.GetTmpMarcadors().Count >= 3)
+            {
+                ui_manager.GetElement("crea_parcela").SetEnabled(true);
+            }
+            else
+            {
+                ui_manager.GetElement("crea_parcela").SetEnabled(false);
+            }
+
+            point_manager.is_deleting = true;
+        }
+
         // Click a la pantalla per crear punts
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
             if (!propietaris_manager.can_point)
                 return;
 
-            if(point_manager.eliminant_marcador)
+            if (gmap.IsMouseOverMarker)
+                return;
+
+            if(point_manager.is_deleting)
             {
-                point_manager.eliminant_marcador = false;
+                point_manager.is_deleting = false;
                 return;
             }
-           
+
             if (e.Button == MouseButtons.Left)
             {
                if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
@@ -75,22 +95,6 @@ namespace WindowsFormsApp1
                    }
 
                }
-            }
-        }
-
-        // Click a un marcador per a eliminar-lo
-        public void gmap_MouseClick(GMapMarker item, MouseEventArgs e)
-        {
-            point_manager.EliminaTmpMarcadorSiEsTroba(item);
-            point_manager.eliminant_marcador = true;
-
-            if (point_manager.GetTmpMarcadors().Count >= 3)
-            {
-                ui_manager.GetElement("crea_parcela").SetEnabled(true);
-            }
-            else
-            {
-                ui_manager.GetElement("crea_parcela").SetEnabled(false);
             }
         }
 
@@ -268,9 +272,58 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void SearchLatLon(object sender, EventArgs e)
         {
+            UI_TextInput lat = ui_manager.GetElement("cordenates_lat") as UI_TextInput;
+            UI_TextInput lon = ui_manager.GetElement("cordenates_lon") as UI_TextInput;
 
+            if (lat == null || lon == null)
+                return;
+
+            double num_lat = 0;
+            bool is_lat = false;
+            double num_lon = 0;
+            bool is_lon = false;
+            if (double.TryParse(lat.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lat))
+            {
+                is_lat = true;
+            }
+            if (double.TryParse(lon.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lon))
+            {
+                is_lon = true;
+            }
+
+            if(is_lat && is_lon)
+                gmap.Position = new PointLatLng(num_lat, num_lon);
+        }
+
+        public void SwitchMapSat(object sender, EventArgs e)
+        {
+            UI_Button b = ui_manager.GetElement("mapsat_button") as UI_Button;
+
+            if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
+            {
+                gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+                b.SetText("Canvia a Mapa");
+            }
+
+            else
+            {
+                gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+                b.SetText("Canvia a Satel.lit");
+            }
+        }
+
+        public void UpdateLatLon()
+        {
+            UI_TextInput lat = ui_manager.GetElement("cordenates_lat") as UI_TextInput;
+            UI_TextInput lon = ui_manager.GetElement("cordenates_lon") as UI_TextInput;
+
+            string lat_s = Math.Round(gmap.Position.Lat, 6).ToString();
+            string lon_s = Math.Round(gmap.Position.Lng, 6).ToString();
+
+            lat.SetText(lat_s.Replace(',', '.'));
+            lon.SetText(lon_s.Replace(',', '.'));
         }
     }
 }

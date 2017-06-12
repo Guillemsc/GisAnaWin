@@ -284,5 +284,11 @@ namespace WindowsFormsApp1
             MaskedTextBox l = GetElement() as MaskedTextBox;
             return l.Text;
         }
+
+        public void SetText(string text)
+        {
+            MaskedTextBox l = GetElement() as MaskedTextBox;
+            l.Text = text;
+        }
     }
 }
