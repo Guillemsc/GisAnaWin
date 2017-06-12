@@ -103,6 +103,22 @@ namespace WindowsFormsApp1
             }
         }
 
+        public Parcela GetParcelaPerID(int id)
+        {
+            Parcela ret = null;
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i].GetID() == id)
+                {
+                    ret = parceles[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
         public void Draw()
         {
             for (int i = 0; i < parceles.Count; i++)

@@ -192,7 +192,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        // Selecciona una finca pera poder crear parceles
+        // Selecciona una finca
         public void FinquesClick(object sender, EventArgs e)
         {
             Label l = sender as Label;
@@ -208,6 +208,28 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Selecciona una parcela
+        public void ParcelaClick(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+
+            Finca f = TrobaFincaPerParcelaID(Int32.Parse(l.Name));
+
+            if (f != null)
+            {
+                propietaris_manager.propietari_actual.finca_actual = f;
+
+                Parcela p = TrobaParcelaAFincaActual(Int32.Parse(l.Name));
+                
+                if(p != null)
+                {
+                    propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
+                    ActualitzaUIFinca();
+                }
+            }
+            //Parcela p = propietaris_manager.propietari_actual.finca_actual
+        }
+
         // Afegeix una parcela si hi ha 3> punts en pantalla
         public void AfegeixParcela(object sender, EventArgs e)
         {
@@ -215,6 +237,8 @@ namespace WindowsFormsApp1
             {
                 Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
                 propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
+
+                propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
 
                 point_manager.NetejaTmpMarcadors(); 
 
@@ -269,13 +293,20 @@ namespace WindowsFormsApp1
                     Parcela curr_parcela = curr_finca.parceles[y];
 
                     UI_Text t3 = new UI_Text(curr_parcela.GetID().ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y+1).ToString());
-                    t3.GetElement().Click += new EventHandler(FinquesClick);
+                    t3.GetElement().Click += new EventHandler(ParcelaClick);
                     pan.AddElement(t3);
                     acumulation += 18;
+
+                    // Finca seleccionada
+                    if (curr_parcela == propietaris_manager.propietari_actual.finca_actual.parcela_actual)
+                    {
+                        t3.SetColor(Color.Crimson, Color.White);
+                    }
                 }
             }
         }
 
+        // Busca una coordenada amb latitud i longitud
         public void SearchLatLon(object sender, EventArgs e)
         {
             UI_TextInput lat = ui_manager.GetElement("cordenates_lat") as UI_TextInput;
@@ -288,13 +319,16 @@ namespace WindowsFormsApp1
             bool is_lat = false;
             double num_lon = 0;
             bool is_lon = false;
+
             if (double.TryParse(lat.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lat))
             {
-                is_lat = true;
+                if(num_lat <= 360)
+                    is_lat = true;
             }
             if (double.TryParse(lon.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lon))
             {
-                is_lon = true;
+                if (num_lon <= 360)
+                    is_lon = true;
             }
 
             if(is_lat && is_lon)
@@ -310,7 +344,6 @@ namespace WindowsFormsApp1
                 gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
                 b.SetText("Canvia a Mapa");
             }
-
             else
             {
                 gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
@@ -328,6 +361,49 @@ namespace WindowsFormsApp1
                 text_input_lat.SetText(lat_s.Replace(',', '.'));
                 text_input_lon.SetText(lon_s.Replace(',', '.'));
             }
+        }
+
+        public void EliminaParcela(object sender, EventArgs e)
+        {
+
+        }
+
+        public Finca TrobaFincaPerParcelaID(int id)
+        {
+            Finca actual = null;
+
+            for(int i = 0; i < propietaris_manager.propietari_actual.finques.Count; i++)
+            {
+                actual = propietaris_manager.propietari_actual.finques[i];
+
+                for (int y = 0; y < actual.parceles.Count(); y++)
+                {
+                    if(id == actual.parceles[y].GetID())
+                    {
+                        return actual;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public Parcela TrobaParcelaAFincaActual(int id)
+        {
+            Parcela ret = null;
+
+            for(int i = 0; i<propietaris_manager.propietari_actual.finca_actual.parceles.Count; i++)
+            {
+                Parcela parcela_actual = propietaris_manager.propietari_actual.finca_actual.parceles[i];
+
+                if(id == parcela_actual.GetID())
+                {
+                    ret = parcela_actual;
+                    break;
+                }
+            }
+
+            return ret;
         }
     }
 }

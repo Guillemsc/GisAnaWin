@@ -169,7 +169,7 @@ namespace WindowsFormsApp1
             ui_manager.AddUIWindow(afegir_propietari_win);
 
             // Finestra del propietari
-            propietari_info_win = new UI_Window(" propietari_info_win", this);
+            propietari_info_win = new UI_Window("propietari_info_win", this);
             {
                 UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
                 propietari_info_win.AddElement(t3);
@@ -188,6 +188,11 @@ namespace WindowsFormsApp1
                 b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
                 propietari_info_win.AddElement(b4);
                 b4.SetEnabled(false);
+
+                UI_Button elimina_parcela_button = new UI_Button("elimina_parcela_button", new Point(15, 300), 193, 28, "Elimina Parcela");
+                elimina_parcela_button.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+                propietari_info_win.AddElement(elimina_parcela_button);
+                elimina_parcela_button.SetEnabled(false);
 
                 UI_Button b5 = new UI_Button("canvia_propietari", new Point(15, 360), 193, 28, "Canvia de Propietari");
                 b5.GetElement().Click += new System.EventHandler(this.CanviaPropietari);
