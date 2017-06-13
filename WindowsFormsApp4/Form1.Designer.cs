@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     partial class Form1
     {
@@ -23,14 +23,6 @@ namespace WindowsFormsApp1
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
-
-        /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
-        /// </summary>
-        ///
-
         private void InitializeComponent()
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
@@ -51,6 +43,7 @@ namespace WindowsFormsApp1
             this.gmap.MaximumSize = new System.Drawing.Size(1000, 1000);
             this.gmap.MaxZoom = 23;
             this.gmap.MinZoom = 2;
+            this.gmap.MouseWheelZoomEnabled = true;
             this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.gmap.Name = "gmap";
             this.gmap.NegativeMode = false;
@@ -64,8 +57,8 @@ namespace WindowsFormsApp1
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
-            this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
+            this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
             // Form1
             // 
@@ -77,9 +70,10 @@ namespace WindowsFormsApp1
             this.Text = "Finques Maps Test";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
-        #endregion
+        //#endregion
 
         override protected void OnLoad(EventArgs e)
         {

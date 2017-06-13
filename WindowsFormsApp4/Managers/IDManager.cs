@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     public class IDManager
     {
@@ -58,6 +58,6 @@ namespace WindowsFormsApp1
         }
 
         private string _name;
-        private int    id_counter = 0;
+        private int id_counter = 0;
     }
 }

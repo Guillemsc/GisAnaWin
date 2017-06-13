@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     public class UIManager
     {
@@ -39,19 +39,19 @@ namespace WindowsFormsApp1
             {
                 UI_Window curr_win = windows[i];
 
-                for(int y = 0; y < curr_win.elements.Count(); y++)
+                for (int y = 0; y < curr_win.elements.Count(); y++)
                 {
-                    if(curr_win.elements[y].GetName() == name)
+                    if (curr_win.elements[y].GetName() == name)
                     {
                         ret = curr_win.elements[y];
                         break;
                     }
 
-                    if(curr_win.elements[y].GetTyp() == "panel")
+                    if (curr_win.elements[y].GetTyp() == "panel")
                     {
                         UI_Panel panel = curr_win.elements[y] as UI_Panel;
 
-                        for(int z = 0; z < panel.elements.Count(); z++)
+                        for (int z = 0; z < panel.elements.Count(); z++)
                         {
                             if (panel.elements[z].GetName() == name)
                                 return panel.elements[z];

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     public class PropietarisManager
     {
@@ -97,7 +97,7 @@ namespace WindowsFormsApp1
         {
             Finca ret = null;
 
-            if(index < finques.Count())
+            if (index < finques.Count())
             {
                 ret = finques[index];
             }

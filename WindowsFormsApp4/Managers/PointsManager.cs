@@ -9,7 +9,7 @@ using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
 using System.Drawing;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     public class PointsManager
     {
@@ -21,9 +21,9 @@ namespace WindowsFormsApp1
 
         public void NetejaTmpMarcadors()
         {
-            for(int i = 0; i< tmp_marcadors.Count; i++)
+            for (int i = 0; i < tmp_marcadors.Count; i++)
             {
-                tmp_marcadors[i].ClearDraw(); 
+                tmp_marcadors[i].ClearDraw();
             }
             tmp_marcadors.Clear();
         }
@@ -49,9 +49,9 @@ namespace WindowsFormsApp1
 
         public void EliminaTmpMarcadorSiEsTroba(GMapMarker item)
         {
-            for(int i = 0; i < tmp_marcadors.Count; i++)
+            for (int i = 0; i < tmp_marcadors.Count; i++)
             {
-                if(tmp_marcadors[i].GetMarcador() == item)
+                if (tmp_marcadors[i].GetMarcador() == item)
                 {
                     tmp_marcadors[i].ClearDraw();
                     tmp_marcadors.Remove(tmp_marcadors[i]);
@@ -93,13 +93,13 @@ namespace WindowsFormsApp1
 
         public void ClearDraw()
         {
-            for(int i = 0; i< parceles.Count; i++)
+            for (int i = 0; i < parceles.Count; i++)
             {
                 parceles[i].ClearDraw();
 
                 if (_overlay != null)
                     _overlay.Polygons.Remove(polygon);
-                
+
             }
         }
 
@@ -170,7 +170,7 @@ namespace WindowsFormsApp1
             {
                 points.Add(marcadors[i].GetPos());
             }
-            
+
             polygon = new GMapPolygon(points, _descripcio);
 
             center_pos = (CalculateCenterOfPolygon(points));
@@ -204,7 +204,7 @@ namespace WindowsFormsApp1
 
         public void Draw()
         {
-            if(_overlay != null && !_overlay.Polygons.Contains(polygon))
+            if (_overlay != null && !_overlay.Polygons.Contains(polygon))
             {
                 _overlay.Polygons.Add(polygon);
             }
@@ -233,7 +233,7 @@ namespace WindowsFormsApp1
             double lat = 0;
             double lon = 0;
 
-            for(int i = 0; i < polypoints.Count; i++)
+            for (int i = 0; i < polypoints.Count; i++)
             {
                 sum++;
                 lat += polypoints[i].Lat;
@@ -273,7 +273,7 @@ namespace WindowsFormsApp1
 
         public void SetMarcadorText(string text)
         {
-            if(marker != null)
+            if (marker != null)
                 marker.ToolTipText = text;
         }
 
@@ -283,7 +283,7 @@ namespace WindowsFormsApp1
 
             if (marker != null)
                 pos = new PointLatLng(marker.Position.Lat, marker.Position.Lng);
-       
+
             return pos;
         }
 
@@ -299,7 +299,7 @@ namespace WindowsFormsApp1
 
         public void SetColor(Brush omple, Brush pla, Pen linea)
         {
-            if(marker != null)
+            if (marker != null)
             {
                 marker.ToolTip.Fill = omple;
                 marker.ToolTip.Foreground = pla;

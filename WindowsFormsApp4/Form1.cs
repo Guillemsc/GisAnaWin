@@ -12,18 +12,13 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsApp4
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-        }
-
-        protected override void OnLayout(LayoutEventArgs e)
-        {
-            PerformAutoScale();
         }
 
         // Debug -------
@@ -33,7 +28,7 @@ namespace WindowsFormsApp1
             {
                 Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
                 point_manager.AfegeixTmpParcela(p);
-            } 
+            }
         }
 
         private void neteja_Click(object sender, EventArgs e)
@@ -53,7 +48,7 @@ namespace WindowsFormsApp1
 
             else
                 ui_manager.GetElement("crea_parcela").SetEnabled(false);
-            
+
             point_manager.deleting_marker = true;
         }
 
@@ -66,7 +61,7 @@ namespace WindowsFormsApp1
             if (gmap.IsMouseOverMarker)
                 return;
 
-            if(point_manager.deleting_marker)
+            if (point_manager.deleting_marker)
             {
                 point_manager.deleting_marker = false;
                 return;
@@ -74,20 +69,20 @@ namespace WindowsFormsApp1
 
             if (e.Button == MouseButtons.Left)
             {
-               if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
-               {
-                   double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
-                   double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
+                if (propietaris_manager.propietari_actual != null && propietaris_manager.propietari_actual.finca_actual != null)
+                {
+                    double lat = gmap.FromLocalToLatLng(e.X, e.Y).Lat;
+                    double lng = gmap.FromLocalToLatLng(e.X, e.Y).Lng;
 
-                   Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
-                   point_manager.AfegeixTmpMarcadors(m);
+                    Marcador m = new Marcador(lat, lng, point_manager.overlay_markers);
+                    point_manager.AfegeixTmpMarcadors(m);
 
-                   if(point_manager.GetTmpMarcadors().Count >= 3)
-                       ui_manager.GetElement("crea_parcela").SetEnabled(true);
-                   
-                   else
-                       ui_manager.GetElement("crea_parcela").SetEnabled(false);
-               }
+                    if (point_manager.GetTmpMarcadors().Count >= 3)
+                        ui_manager.GetElement("crea_parcela").SetEnabled(true);
+
+                    else
+                        ui_manager.GetElement("crea_parcela").SetEnabled(false);
+                }
             }
         }
 
@@ -128,7 +123,7 @@ namespace WindowsFormsApp1
             Label b = sender as Label;
             Propietari p = propietaris_manager.GetPropietariPerNom(b.Name);
 
-            if(p != null)
+            if (p != null)
             {
                 if (propietaris_manager.propietari_actual != null)
                     propietaris_manager.propietari_actual.ClearDraw();
@@ -190,7 +185,7 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual.finca_actual = f;
 
                 propietaris_manager.can_point = true;
-                    
+
                 ActualitzaUIFinca();
             }
         }
@@ -259,8 +254,8 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual.finca_actual = f;
 
                 Parcela p = TrobaParcelaAFincaActual(Int32.Parse(l.Name));
-                
-                if(p != null)
+
+                if (p != null)
                 {
                     propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
                     ActualitzaUIFinca();
@@ -275,7 +270,7 @@ namespace WindowsFormsApp1
         // Afegeix una parcela si hi ha 3> punts en pantalla
         public void AfegeixParcela(object sender, EventArgs e)
         {
-            if(point_manager.GetTmpMarcadors().Count >= 3)
+            if (point_manager.GetTmpMarcadors().Count >= 3)
             {
                 Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
                 propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
@@ -283,7 +278,7 @@ namespace WindowsFormsApp1
                 propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
                 p.SetText(propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetDescripcio());
 
-                point_manager.NetejaTmpMarcadors(); 
+                point_manager.NetejaTmpMarcadors();
 
                 ActualitzaUIFinca();
 
@@ -380,7 +375,7 @@ namespace WindowsFormsApp1
 
             if (double.TryParse(lat.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lat))
             {
-                if(num_lat <= 360)
+                if (num_lat <= 360)
                     is_lat = true;
             }
             if (double.TryParse(lon.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lon))
@@ -389,7 +384,7 @@ namespace WindowsFormsApp1
                     is_lon = true;
             }
 
-            if(is_lat && is_lon)
+            if (is_lat && is_lon)
                 gmap.Position = new PointLatLng(num_lat, num_lon);
         }
 
@@ -436,13 +431,13 @@ namespace WindowsFormsApp1
         {
             Finca actual = null;
 
-            for(int i = 0; i < propietaris_manager.propietari_actual.finques.Count; i++)
+            for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count; i++)
             {
                 actual = propietaris_manager.propietari_actual.finques[i];
 
                 for (int y = 0; y < actual.parceles.Count(); y++)
                 {
-                    if(id == actual.parceles[y].GetID())
+                    if (id == actual.parceles[y].GetID())
                     {
                         return actual;
                     }
@@ -457,11 +452,11 @@ namespace WindowsFormsApp1
         {
             Parcela ret = null;
 
-            for(int i = 0; i < propietaris_manager.propietari_actual.finca_actual.parceles.Count; i++)
+            for (int i = 0; i < propietaris_manager.propietari_actual.finca_actual.parceles.Count; i++)
             {
                 Parcela parcela_actual = propietaris_manager.propietari_actual.finca_actual.parceles[i];
 
-                if(id == parcela_actual.GetID())
+                if (id == parcela_actual.GetID())
                 {
                     ret = parcela_actual;
                     break;
