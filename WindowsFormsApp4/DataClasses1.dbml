@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AnaWinCellerBatea" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=PCSERVER\SQLEXPRESS2012;Initial Catalog=AnaWinCellerBatea;User ID=sa" SettingsObjectName="WindowsFormsApp4.Properties.Settings" SettingsPropertyName="AnaWinCellerBateaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblParceles" Member="tblParceles">
+    <Type Name="tblParceles">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idFinca" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParcela" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idVarietat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idParcelaVinicola" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nom" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="AnyPlantacio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumPlantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MarcPlantacio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Peu" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emparrat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Observacions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ha" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Poligon" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
+      <Column Name="Parcela" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
+      <Association Name="tblParceles_tblTipoUva" Member="tblTipoUva" ThisKey="idVarietat" OtherKey="idTipoUva" Type="tblTipoUva" />
+      <Association Name="tblParceles_tblAnaliticaFincaParcela" Member="tblAnaliticaFincaParcela" ThisKey="CodigoEmpresa,idParcela,idFinca" OtherKey="CodigoEmpresa,idParcela,idFinca" Type="tblAnaliticaFincaParcela" />
+      <Association Name="tblFinques_tblParceles" Member="tblFinques" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblFinques" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFinques" Member="tblFinques">
+    <Type Name="tblFinques">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idFinca" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Poligon" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Parcela" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SubParcela" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nom1" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Nom2" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="idProveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CodiMunicipi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RegSiNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SistemaReg" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ha" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TipusSol" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Altitud" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Observacions" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UsSIGPAC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idDo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProduccioEcologicaSiNo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProduccioIntegradaSiNo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idDo2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idDo3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblFinques_tblParceles" Member="tblParceles" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblParceles" Cardinality="One" />
+      <Association Name="tblFinques_tblPartesFinca" Member="tblPartesFinca" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblPartesFinca" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProveedores" Member="tblProveedores">
+    <Type Name="tblProveedores">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idProveedor" Type="System.String" DbType="Char(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GrupoEmpresas" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreComercial" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreComercial2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SiglaPaisCif" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Cif" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="CodigoSigla" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="ViaPublica" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Numero1" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Numero2" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="Escalera" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Piso" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Puerta" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Letra" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoPostal" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="CodigoMunicipio" Type="System.String" DbType="Char(7)" CanBeNull="true" />
+      <Column Name="Municipio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoProvincia" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Provincia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodigoNacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono1" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Telefono2" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Telefono3" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Web" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Email1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Email2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FechaUltMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioUltMod" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CodigoDelegacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoRVC" Type="System.String" DbType="NChar(15)" CanBeNull="true" />
+      <Column Name="CodigoTarjeta" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="CupoBlancs" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CupoNegres" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RenQMHa" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="idCAE" Type="System.String" DbType="NChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="ExentSiNo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTipoUva" Member="tblTipoUva">
+    <Type Name="tblTipoUva">
+      <Column Name="idTipoUva" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idColor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Codi_RVC" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Importe" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="tblParceles_tblTipoUva" Member="tblParceles" ThisKey="idTipoUva" OtherKey="idVarietat" Type="tblParceles" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPartesFinca" Member="tblPartesFinca">
+    <Type Name="tblPartesFinca">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParte" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idFinca" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Estat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tblFinques_tblPartesFinca" Member="tblFinques" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblFinques" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAnaliticaFincaParcela" Member="tblAnaliticaFincaParcela">
+    <Type Name="tblAnaliticaFincaParcela">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idAnalitica" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParte" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idFinca" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idParcela" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="grauAlc" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="AciTotal" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="IC" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="DensitatProduccio" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ph" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="EstatSanitari" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Association Name="tblParceles_tblAnaliticaFincaParcela" Member="tblParceles" ThisKey="CodigoEmpresa,idParcela,idFinca" OtherKey="CodigoEmpresa,idParcela,idFinca" Type="tblParceles" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

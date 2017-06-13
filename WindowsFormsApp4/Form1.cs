@@ -486,5 +486,16 @@ namespace WindowsFormsApp4
 
             return false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataClasses1DataContext dt = new DataClasses1DataContext();
+                      
+            foreach (var prov in dt.tblProveedores)
+            {
+                Console.WriteLine(prov.Nombre);
+            }
+            
+        }
     }
 }
