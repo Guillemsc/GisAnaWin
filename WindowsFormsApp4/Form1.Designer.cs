@@ -30,6 +30,9 @@ namespace WindowsFormsApp4
             // 
             // gmap
             // 
+            this.gmap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gmap.AutoSize = true;
             this.gmap.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.gmap.Bearing = 0F;
@@ -38,9 +41,9 @@ namespace WindowsFormsApp4
             this.gmap.GrayScaleMode = false;
             this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gmap.LevelsKeepInMemmory = 5;
-            this.gmap.Location = new System.Drawing.Point(224, -1);
+            this.gmap.Location = new System.Drawing.Point(229, -1);
             this.gmap.MarkersEnabled = true;
-            this.gmap.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.gmap.MaximumSize = new System.Drawing.Size(10000, 10000);
             this.gmap.MaxZoom = 23;
             this.gmap.MinZoom = 2;
             this.gmap.MouseWheelZoomEnabled = true;
@@ -53,7 +56,7 @@ namespace WindowsFormsApp4
             this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
-            this.gmap.Size = new System.Drawing.Size(600, 550);
+            this.gmap.Size = new System.Drawing.Size(580, 551);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
@@ -100,22 +103,28 @@ namespace WindowsFormsApp4
             map_win = new UI_Window("map_win", this);
             {
                 text_input_lat = new UI_TextInput("cordenates_lat", new Point(8, 480), 100, 50);
+                text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
+
                 text_input_lon = new UI_TextInput("cordenates_lon", new Point(115, 480), 100, 50);
+                text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
                 UI_Button search_button = new UI_Button("search_button", new Point(7, 450), 50, 23, "Cerca");
+                search_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button.GetElement().Click += new System.EventHandler(this.SearchLatLon);
                 map_win.AddElement(search_button);
 
                 UI_Text lat_text = new UI_Text("lat_text", new Point(8, 505), 193, 40, "Lat");
-                //lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+                lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lat_text);
 
                 UI_Text lon_text = new UI_Text("lon_text", new Point(115, 505), 193, 40, "Lon");
+                lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lon_text);
 
                 UI_Button mapsat_button = new UI_Button("mapsat_button", new Point(690, 500), 100, 23, "Canvia a satel.lit");
+                mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
             }
@@ -126,12 +135,15 @@ namespace WindowsFormsApp4
             {
                 UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
                 b.GetElement().Click += new System.EventHandler(this.AfegeixPropietari);
+                b.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(b);
 
                 UI_Text t = new UI_Text("propietaris_text", new Point(15, 50), 193, 40, "Propietaris: ");
+                t.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(t);
 
                 UI_Panel p = new UI_Panel("propietaris_panel", new Point(15, 58), 193, 400);
+                p.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(p);
             }
             ui_manager.AddUIWindow(main_win);
@@ -176,19 +188,23 @@ namespace WindowsFormsApp4
                 propietari_info_win.AddElement(t4);
 
                 UI_Panel p3 = new UI_Panel("finques_panel", new Point(15, 80), 193, 200);
+                p3.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top);
                 propietari_info_win.AddElement(p3);
 
                 UI_Button b4 = new UI_Button("crea_parcela", new Point(15, 300), 193, 28, "Crea Parcela");
+                b4.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
                 b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
                 propietari_info_win.AddElement(b4);
                 b4.SetEnabled(false);
 
                 UI_Button elimina_parcela_button = new UI_Button("elimina_parcela_button", new Point(15, 300), 193, 28, "Elimina Parcela");
+                elimina_parcela_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
                 elimina_parcela_button.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
                 propietari_info_win.AddElement(elimina_parcela_button);
                 elimina_parcela_button.SetEnabled(false);
 
                 UI_Button b5 = new UI_Button("canvia_propietari", new Point(15, 360), 193, 28, "Canvia de Propietari");
+                b5.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
                 b5.GetElement().Click += new System.EventHandler(this.CanviaPropietari);
                 propietari_info_win.AddElement(b5);
             }
