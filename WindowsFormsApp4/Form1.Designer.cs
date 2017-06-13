@@ -26,7 +26,6 @@ namespace WindowsFormsApp4
         private void InitializeComponent()
         {
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gmap
@@ -64,22 +63,11 @@ namespace WindowsFormsApp4
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
             this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
@@ -101,8 +89,11 @@ namespace WindowsFormsApp4
             propietaris_manager = new PropietarisManager();
             ui_manager = new UIManager(this);
             id_manager = new IDManager();
+            server_manager = new ServerManager();
 
             LoadUI();
+
+            ActualitzaPropietarisDesDeServidor();
 
             UpdateLatLon();
         }
@@ -145,46 +136,66 @@ namespace WindowsFormsApp4
             // Starting Window
             main_win = new UI_Window("main_window", this);
             {
-                UI_Button b = new UI_Button("afegeix_propietari", new Point(15, 15), 193, 28, "Afegeix Propietari");
-                b.GetElement().Click += new System.EventHandler(this.AfegeixPropietari);
-                b.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                main_win.AddElement(b);
-
-                UI_Text t = new UI_Text("propietaris_text", new Point(15, 50), 193, 40, "Propietaris: ");
+                UI_Text t = new UI_Text("propietaris_text", new Point(15, 15), 193, 40, "Propietari: ");
                 t.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(t);
 
-                UI_Panel p = new UI_Panel("propietaris_panel", new Point(15, 58), 193, 400);
-                p.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                main_win.AddElement(p);
+                UI_Panel nom_propietari_panel = new UI_Panel("nom_propietari_panel", new Point(18, 34), 165, 23);
+                nom_propietari_panel.SetColor(Color.Cornsilk);
+                main_win.AddElement(nom_propietari_panel);
+
+                UI_Button open_propietari_search_button = new UI_Button("open_propietari_search_button", new Point(190, 33), 26, 25, "...");
+                open_propietari_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioPropietari);
+                main_win.AddElement(open_propietari_search_button);
+
+                UI_Text propietari_nom_text = new UI_Text("propietari_nom_text", new Point(4, 5), 200, 30, "No hi ha propietari seleccionat");
+                nom_propietari_panel.AddElement(propietari_nom_text);
             }
             ui_manager.AddUIWindow(main_win);
 
-            // Finestra per a afegir un propietari
-            afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
+            seleccio_propietari_win = new UI_Window("seleccio_propietari_win", this);
             {
-                UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
-                afegir_propietari_win.AddElement(p2);
-                p2.GetElement().BringToFront();
-                {
-                    UI_Text t2 = new UI_Text("nom_propietaris_text", new Point(5, 10), 20, 40, "Nom: ");
-                    p2.AddElement(t2);
+                UI_Panel seleccio_propietari_panel = new UI_Panel("seleccio_propietari_panel", new Point(250, 30), 280, 250);
+                seleccio_propietari_panel.SetColor(Color.Cornsilk);
+                seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                seleccio_propietari_win.AddElement(seleccio_propietari_panel);
 
-                    UI_TextInput ti = new UI_TextInput("nom_propietari_text_input", new Point(40, 7), 300, 30);
-                    p2.AddElement(ti);
+                UI_Panel seleccio_propietari_noms_panel = new UI_Panel("seleccio_propietari_noms_panel", new Point(15, 40), 250, 200);
+                seleccio_propietari_noms_panel.SetColor(Color.Cornsilk);
+                seleccio_propietari_noms_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                seleccio_propietari_panel.AddElement(seleccio_propietari_noms_panel);
 
-                    UI_Button b2 = new UI_Button("afegir_propietari_button", new Point(40, 30), 100, 25, "Afegir Propietari");
-                    b2.GetElement().Click += new System.EventHandler(this.AfegirPropietari);
-                    p2.AddElement(b2);
-
-                    UI_Button afegir_propietari_exit_button = new UI_Button("afegir_propietari_exit_button", new Point(375, 5), 19, 19, "X");
-                    afegir_propietari_exit_button.GetElement().Click += new System.EventHandler(this.TancarAfegeixPropietari);
-                    p2.AddElement(afegir_propietari_exit_button);
-
-                }
+                UI_TextInput seleccio_propietari_text_input = new UI_TextInput("seleccio_propietari_text_input", new Point(15, 15), 250, 30);
+                seleccio_propietari_panel.AddElement(seleccio_propietari_text_input);
             }
-            afegir_propietari_win.SetEnabled(false);
-            ui_manager.AddUIWindow(afegir_propietari_win);
+            ui_manager.AddUIWindow(seleccio_propietari_win);
+            seleccio_propietari_win.SetEnabled(false);
+
+            // Finestra per a afegir un propietari
+            //afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
+            //{
+            //    UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
+            //    afegir_propietari_win.AddElement(p2);
+            //    p2.GetElement().BringToFront();
+            //    {
+            //        UI_Text t2 = new UI_Text("nom_propietaris_text", new Point(5, 10), 20, 40, "Nom: ");
+            //        p2.AddElement(t2);
+
+            //        UI_TextInput ti = new UI_TextInput("nom_propietari_text_input", new Point(40, 7), 300, 30);
+            //        p2.AddElement(ti);
+
+            //        UI_Button b2 = new UI_Button("afegir_propietari_button", new Point(40, 30), 100, 25, "Afegir Propietari");
+            //        b2.GetElement().Click += new System.EventHandler(this.AfegirPropietari);
+            //        p2.AddElement(b2);
+
+            //        UI_Button afegir_propietari_exit_button = new UI_Button("afegir_propietari_exit_button", new Point(375, 5), 19, 19, "X");
+            //        afegir_propietari_exit_button.GetElement().Click += new System.EventHandler(this.TancarAfegeixPropietari);
+            //        p2.AddElement(afegir_propietari_exit_button);
+
+            //    }
+            //}
+            //afegir_propietari_win.SetEnabled(false);
+            //ui_manager.AddUIWindow(afegir_propietari_win);
 
             // Finestra del propietari
             propietari_info_win = new UI_Window("propietari_info_win", this);
@@ -274,6 +285,7 @@ namespace WindowsFormsApp4
         UI_Window afegir_propietari_win = null;
         UI_Window main_win = null;
         UI_Window map_win = null;
+        UI_Window seleccio_propietari_win = null;
 
         // Necessary Elements
         UI_TextInput text_input_lat = null;
@@ -285,7 +297,7 @@ namespace WindowsFormsApp4
         public PointsManager point_manager = null;
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
-        private System.Windows.Forms.Button button1;
+        public ServerManager server_manager = null;
     }
 }
 

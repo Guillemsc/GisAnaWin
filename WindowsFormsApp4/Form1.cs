@@ -38,6 +38,37 @@ namespace WindowsFormsApp4
         }
         // --------------
 
+        // -------------------------
+        // Botons ------------------
+
+        private void ObreFinestraSeleccioPropietari(object sender, EventArgs e)
+        {
+            seleccio_propietari_win.SetEnabled(!seleccio_propietari_win.GetEnabled());
+
+            if(seleccio_propietari_win.GetEnabled())
+                ActualitzaLlistaPropietari("");
+        }
+
+        // -------------------------
+        // -------------------------
+
+        // -------------------------
+        // Servidor ----------------
+
+        public void ActualitzaPropietarisDesDeServidor()
+        {
+            List<tblProveedores> proveedors = server_manager.GetProveedors();
+
+            propietaris_manager.EliminaPropietaris();
+
+            for (int i = 0; i < proveedors.Count; i++)
+            {
+                propietaris_manager.AfegirPropietari(proveedors[i]);
+            }
+        }
+
+        // -------------------------
+
         // Click a un marcador per a eliminar-lo
         public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
         {
@@ -98,51 +129,71 @@ namespace WindowsFormsApp4
             ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(false);
         }
 
-        // Afegeix un nou propietari
-        private void AfegirPropietari(object sender, EventArgs e)
+        public void ActualitzaLlistaPropietari(string search)
         {
-            MaskedTextBox mt = ui_manager.GetElement("nom_propietari_text_input").GetElement() as MaskedTextBox;
+            List<tblProveedores> proveedors = propietaris_manager.GetPropietaris();
 
-            if (mt != null)
+            UI_Panel p = ui_manager.GetElement("seleccio_propietari_noms_panel") as UI_Panel;
+
+            p.ClearPanel();
+
+            int acumulation = 0;
+            for(int i = 0; i < proveedors.Count; i++)
             {
-                if (mt.Text != "" && mt.Text.Length > 2)
-                {
-                    Propietari pro = new Propietari(mt.Text);
-                    propietaris_manager.AfegirPropietari(pro);
+                tblProveedores proveedor_actual = proveedors[i];
 
-                    ActualitzaUIPropietari();
-
-                    afegir_propietari_win.SetEnabled(false);
-                }
+                UI_Text t = new UI_Text(proveedor_actual.idProveedor, new Point(5, 10 + acumulation), 20, 40, "- " + proveedor_actual.Nombre);
+                //t.GetElement().Click += new EventHandler(PropietariClick);
+                p.AddElement(t);
+                acumulation += 18;
             }
         }
+
+        // Afegeix un nou propietari
+        //private void AfegirPropietari(object sender, EventArgs e)
+        //{
+        //    MaskedTextBox mt = ui_manager.GetElement("nom_propietari_text_input").GetElement() as MaskedTextBox;
+
+        //    if (mt != null)
+        //    {
+        //        if (mt.Text != "" && mt.Text.Length > 2)
+        //        {
+        //            Propietari pro = new Propietari(mt.Text);
+        //            propietaris_manager.AfegirPropietari(pro);
+
+        //            ActualitzaUIPropietari();
+
+        //            afegir_propietari_win.SetEnabled(false);
+        //        }
+        //    }
+        //}
 
         // Click a un text dels propietaris
-        private void PropietariClick(object sender, EventArgs e)
-        {
-            Label b = sender as Label;
-            Propietari p = propietaris_manager.GetPropietariPerNom(b.Name);
+        //private void PropietariClick(object sender, EventArgs e)
+        //{
+        //    Label b = sender as Label;
+        //    Propietari p = propietaris_manager.GetPropietariPerNom(b.Name);
 
-            if (p != null)
-            {
-                if (propietaris_manager.propietari_actual != null)
-                    propietaris_manager.propietari_actual.ClearDraw();
+        //    if (p != null)
+        //    {
+        //        if (propietaris_manager.propietari_actual != null)
+        //            propietaris_manager.propietari_actual.ClearDraw();
 
-                propietaris_manager.propietari_actual = p;
+        //        propietaris_manager.propietari_actual = p;
 
-                main_win.SetEnabled(false);
-                propietari_info_win.SetEnabled(true);
+        //        main_win.SetEnabled(false);
+        //        propietari_info_win.SetEnabled(true);
 
-                UI_Text t = ui_manager.GetElement("nom_propietari") as UI_Text;
-                t.SetText(propietaris_manager.propietari_actual.GetNom());
+        //        UI_Text t = ui_manager.GetElement("nom_propietari") as UI_Text;
+        //        t.SetText(propietaris_manager.propietari_actual.GetNom());
 
-                ActualitzaUIFinca();
+        //        ActualitzaUIFinca();
 
-                ui_manager.GetElement("crea_parcela").SetEnabled(false);
+        //        ui_manager.GetElement("crea_parcela").SetEnabled(false);
 
-                propietaris_manager.propietari_actual.Draw();
-            }
-        }
+        //        propietaris_manager.propietari_actual.Draw();
+        //    }
+        //}
 
         // Canvia de propietari
         public void CanviaPropietari(object sender, EventArgs e)
@@ -287,24 +338,24 @@ namespace WindowsFormsApp4
         }
 
         // Actualitza la UI que mostra tots els propietaris
-        public void ActualitzaUIPropietari()
-        {
-            UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
+        //public void ActualitzaUIPropietari()
+        //{
+        //    UI_Panel p = ui_manager.GetElement("propietaris_panel") as UI_Panel;
 
-            if (p != null)
-            {
-                p.ClearPanel();
+        //    if (p != null)
+        //    {
+        //        p.ClearPanel();
 
-                int acumulation = 0;
-                for (int i = 0; i < propietaris_manager.GetPropietaris().Count; i++)
-                {
-                    UI_Text t = new UI_Text(propietaris_manager.GetPropietaris()[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.GetPropietaris()[i].GetNom());
-                    t.GetElement().Click += new EventHandler(PropietariClick);
-                    p.AddElement(t);
-                    acumulation += 18;
-                }
-            }
-        }
+        //        int acumulation = 0;
+        //        for (int i = 0; i < propietaris_manager.GetPropietaris().Count; i++)
+        //        {
+        //            UI_Text t = new UI_Text(propietaris_manager.GetPropietaris()[i].GetNom(), new Point(5, 10 + acumulation), 20, 40, "- " + propietaris_manager.GetPropietaris()[i].GetNom());
+        //            t.GetElement().Click += new EventHandler(PropietariClick);
+        //            p.AddElement(t);
+        //            acumulation += 18;
+        //        }
+        //    }
+        //}
 
         // Actualitza la UI que mostra les finques i les parceles
         public void ActualitzaUIFinca()
@@ -483,19 +534,7 @@ namespace WindowsFormsApp4
                 }
             }
 
-
             return false;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DataClasses1DataContext dt = new DataClasses1DataContext();
-                      
-            foreach (var prov in dt.tblProveedores)
-            {
-                Console.WriteLine(prov.Nombre);
-            }
-            
         }
     }
 }

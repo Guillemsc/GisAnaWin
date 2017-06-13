@@ -90,6 +90,7 @@
     <Compile Include="Managers\IDManager.cs" />
     <Compile Include="Managers\PointsManager.cs" />
     <Compile Include="Managers\PropietarisManager.cs" />
+    <Compile Include="Managers\ServerManager.cs" />
     <Compile Include="Managers\UIManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,33 +10,22 @@ namespace WindowsFormsApp4
 {
     public class PropietarisManager
     {
-        public List<Propietari> GetPropietaris()
+        public List<tblProveedores> GetPropietaris()
         {
             return propietaris;
         }
 
-        public void AfegirPropietari(Propietari propietari)
+        public void AfegirPropietari(tblProveedores propietari)
         {
             propietaris.Add(propietari);
         }
 
-        public Propietari GetPropietariPerNom(string nom)
+        public void EliminaPropietaris()
         {
-            Propietari ret = null;
-
-            for (int i = 0; i < propietaris.Count; i++)
-            {
-                if (propietaris[i].GetNom() == nom)
-                {
-                    ret = propietaris[i];
-                    break;
-                }
-            }
-
-            return ret;
+            propietaris.Clear();
         }
 
-        List<Propietari> propietaris = new List<Propietari>();
+        List<tblProveedores> propietaris = new List<tblProveedores>();
         public List<Label> propietaris_texts = new List<Label>();
 
         public Propietari propietari_actual = null;

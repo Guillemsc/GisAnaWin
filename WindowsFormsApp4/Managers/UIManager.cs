@@ -109,17 +109,22 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public bool GetEnabled() { return enabled;}
+
         public void SetEnabled(bool set)
         {
             for (int i = 0; i < elements.Count; i++)
             {
                 elements[i].SetEnabled(set);
             }
+
+            enabled = set;
         }
 
         string _name;
         public List<UI_Element> elements = new List<UI_Element>();
         Control _control = null;
+        bool enabled = true;
     }
 
     public class UI_Element
@@ -147,6 +152,12 @@ namespace WindowsFormsApp4
         {
             if (_element != null)
                 _element.BringToFront();
+        }
+
+        public void SendToBack()
+        {
+            if (_element != null)
+                _element.SendToBack();
         }
 
         public void SetDock(DockStyle dock)
