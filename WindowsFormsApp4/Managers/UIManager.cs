@@ -307,4 +307,72 @@ namespace WindowsFormsApp4
             l.Text = text;
         }
     }
+
+    public class UI_ComboBox : UI_Element
+    {
+        public UI_ComboBox(string name, Point pos, int w, int h) : base (name, "combo")
+        {
+            ComboBox cb = new ComboBox();
+            {
+                cb.Name = name;
+                cb.Location = pos;
+                cb.Width = w;
+                cb.Height = h;
+                cb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cb.Sorted = true;
+
+                SetElement(cb);
+            }
+        }
+
+        public void SetDrowDownVisibleItems(int set)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.IntegralHeight = false;
+            cb.MaxDropDownItems = set;
+        }
+
+        public bool IsSelected()
+        {
+            ComboBox cb = GetElement() as ComboBox;
+
+            if (cb.SelectedIndex > -1)
+                return true;
+
+            return false;
+        }
+
+        public object GetSelected()
+        {
+            object ret = null;
+
+            if (IsSelected())
+            {
+                ComboBox cb = GetElement() as ComboBox;
+
+                ret = cb.Items[cb.SelectedIndex];
+            }
+
+            return ret;
+        }
+
+        public void CleanSelection()
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.SelectedIndex = -1;
+            cb.SelectedItem = null;
+        }
+
+        public void AddElement(object one_object)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.Items.Add(one_object);
+        }
+
+        public void Clear()
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.Items.Clear();
+        }
+    }
 }

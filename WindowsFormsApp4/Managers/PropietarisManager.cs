@@ -63,6 +63,7 @@ namespace WindowsFormsApp4
         public List<Label> propietaris_texts = new List<Label>();
 
         public Propietari propietari_actual = null;
+        public Finca      finca_actual = null;
 
         public bool can_point = false;
     }
@@ -74,9 +75,10 @@ namespace WindowsFormsApp4
             _tbl = proveedor;
         }
 
-        //public string GetNom()
-        //{
-        //}
+        public override string ToString()
+        {
+            return _tbl.Nombre;
+        }
 
         public void AfegirFinca(Finca finca)
         {
@@ -99,13 +101,13 @@ namespace WindowsFormsApp4
             }
         }
 
-        public Finca GetFincaPerID(int id)
+        public Finca GetFincaPerID(string id)
         {
             Finca ret = null;
 
             for (int i = 0; i < finques.Count; i++)
             {
-                if (finques[i].GetID() == id)
+                if (finques[i].GetTbl().idFinca.ToString() == id)
                 {
                     ret = finques[i];
                     break;
@@ -142,7 +144,6 @@ namespace WindowsFormsApp4
         public tblProveedores GetTbl() { return _tbl; }
 
         public List<Finca> finques = new List<Finca>();
-        public Finca finca_actual = null;
         public tblProveedores _tbl = null;
     }
 }

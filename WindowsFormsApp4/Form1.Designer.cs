@@ -73,6 +73,7 @@ namespace WindowsFormsApp4
             this.Text = "Finques Maps Test";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         //#endregion
@@ -93,6 +94,8 @@ namespace WindowsFormsApp4
             LoadUI();
 
             ActualitzaPropietarisDesDeServidor();
+
+            ActualitzaFinquesDesDeServidor();
 
             UpdateLatLon();
         }
@@ -187,19 +190,19 @@ namespace WindowsFormsApp4
             // Finestra seleccio propietari
             seleccio_propietari_win = new UI_Window("seleccio_propietari_win", this);
             {
-                UI_Panel seleccio_propietari_panel = new UI_Panel("seleccio_propietari_panel", new Point(250, 30), 280, 250);
+                UI_Panel seleccio_propietari_panel = new UI_Panel("seleccio_propietari_panel", new Point(250, 20), 350, 50);
                 seleccio_propietari_panel.SetColor(Color.Cornsilk);
-                seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_propietari_win.AddElement(seleccio_propietari_panel);
 
-                UI_Panel seleccio_propietari_noms_panel = new UI_Panel("seleccio_propietari_noms_panel", new Point(15, 40), 250, 200);
-                seleccio_propietari_noms_panel.SetColor(Color.Cornsilk);
-                seleccio_propietari_noms_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                seleccio_propietari_panel.AddElement(seleccio_propietari_noms_panel);
+                UI_ComboBox seleccio_propietari_noms_combobox = new UI_ComboBox("seleccio_propietari_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_propietari_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_propietari_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_propietari_panel.AddElement(seleccio_propietari_noms_combobox);
 
-                UI_TextInput seleccio_propietari_text_input = new UI_TextInput("seleccio_propietari_text_input", new Point(15, 15), 250, 30);
-                seleccio_propietari_panel.AddElement(seleccio_propietari_text_input);
-                seleccio_propietari_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
+                UI_Button seleccio_propietari_guarda_button = new UI_Button("seleccio_propietari_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_propietari_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioPropietariGuarda);
+                seleccio_propietari_panel.AddElement(seleccio_propietari_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_propietari_win);
             seleccio_propietari_win.SetEnabled(false);
@@ -207,19 +210,19 @@ namespace WindowsFormsApp4
             // Finestra seleccio finca
             seleccio_finca_win = new UI_Window("seleccio_finca_win", this);
             {
-                UI_Panel seleccio_finca_panel = new UI_Panel("seleccio_finca_panel", new Point(250, 95), 280, 250);
+                UI_Panel seleccio_finca_panel = new UI_Panel("seleccio_finca_panel", new Point(250, 80), 350, 50);
                 seleccio_finca_panel.SetColor(Color.Cornsilk);
-                seleccio_finca_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                seleccio_finca_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_finca_win.AddElement(seleccio_finca_panel);
 
-                UI_Panel seleccio_finca_noms_panel = new UI_Panel("seleccio_finca_noms_panel", new Point(15, 40), 250, 200);
-                seleccio_finca_noms_panel.SetColor(Color.Cornsilk);
-                seleccio_finca_noms_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                seleccio_finca_panel.AddElement(seleccio_finca_noms_panel);
+                UI_ComboBox seleccio_finca_noms_combobox = new UI_ComboBox("seleccio_finca_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_finca_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_finca_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_finca_panel.AddElement(seleccio_finca_noms_combobox);
 
-                UI_TextInput seleccio_finca_text_input = new UI_TextInput("seleccio_finca_text_input", new Point(15, 15), 250, 30);
-                seleccio_finca_panel.AddElement(seleccio_finca_text_input);
-                seleccio_finca_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
+                UI_Button seleccio_finca_guarda_button = new UI_Button("seleccio_propietari_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_finca_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioFincaGuarda);
+                seleccio_finca_panel.AddElement(seleccio_finca_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_finca_win);
             seleccio_finca_win.SetEnabled(false);
@@ -239,7 +242,7 @@ namespace WindowsFormsApp4
 
                 UI_TextInput seleccio_varietat_text_input = new UI_TextInput("seleccio_varietat_text_input", new Point(15, 15), 250, 30);
                 seleccio_varietat_panel.AddElement(seleccio_varietat_text_input);
-                seleccio_varietat_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
+                //seleccio_varietat_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
             }
             ui_manager.AddUIWindow(seleccio_varietat_win);
             seleccio_varietat_win.SetEnabled(false);
@@ -271,82 +274,82 @@ namespace WindowsFormsApp4
             //ui_manager.AddUIWindow(afegir_propietari_win);
 
             // Finestra del propietari
-            propietari_info_win = new UI_Window("propietari_info_win", this);
-            {
-                UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
-                propietari_info_win.AddElement(t3);
+            //propietari_info_win = new UI_Window("propietari_info_win", this);
+            //{
+            //    UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
+            //    propietari_info_win.AddElement(t3);
 
-                UI_Button b3 = new UI_Button("afegeix_finca", new Point(15, 30), 193, 28, "Afegeix Finca");
-                b3.GetElement().Click += new System.EventHandler(this.AfegeixFinca);
-                propietari_info_win.AddElement(b3);
+            //    UI_Button b3 = new UI_Button("afegeix_finca", new Point(15, 30), 193, 28, "Afegeix Finca");
+            //    b3.GetElement().Click += new System.EventHandler(this.AfegeixFinca);
+            //    propietari_info_win.AddElement(b3);
 
-                UI_Text t4 = new UI_Text("finca_text", new Point(15, 60), 193, 40, "Finques: ");
-                propietari_info_win.AddElement(t4);
+            //    UI_Text t4 = new UI_Text("finca_text", new Point(15, 60), 193, 40, "Finques: ");
+            //    propietari_info_win.AddElement(t4);
 
-                UI_Panel p3 = new UI_Panel("finques_panel", new Point(15, 80), 193, 200);
-                p3.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top);
-                propietari_info_win.AddElement(p3);
+            //    UI_Panel p3 = new UI_Panel("finques_panel", new Point(15, 80), 193, 200);
+            //    p3.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top);
+            //    propietari_info_win.AddElement(p3);
 
-                UI_Button b4 = new UI_Button("crea_parcela", new Point(15, 300), 193, 28, "Crea Parcela");
-                b4.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-                b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
-                propietari_info_win.AddElement(b4);
-                b4.SetEnabled(false);
+            //    UI_Button b4 = new UI_Button("crea_parcela", new Point(15, 300), 193, 28, "Crea Parcela");
+            //    b4.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            //    b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+            //    propietari_info_win.AddElement(b4);
+            //    b4.SetEnabled(false);
 
-                UI_Button elimina_parcela_button = new UI_Button("elimina_parcela_button", new Point(15, 300), 193, 28, "Elimina Parcela");
-                elimina_parcela_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-                elimina_parcela_button.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
-                propietari_info_win.AddElement(elimina_parcela_button);
-                elimina_parcela_button.SetEnabled(false);
+            //    UI_Button elimina_parcela_button = new UI_Button("elimina_parcela_button", new Point(15, 300), 193, 28, "Elimina Parcela");
+            //    elimina_parcela_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            //    elimina_parcela_button.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
+            //    propietari_info_win.AddElement(elimina_parcela_button);
+            //    elimina_parcela_button.SetEnabled(false);
 
-                UI_Button b5 = new UI_Button("canvia_propietari", new Point(15, 360), 193, 28, "Canvia de Propietari");
-                b5.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-                b5.GetElement().Click += new System.EventHandler(this.CanviaPropietari);
-                propietari_info_win.AddElement(b5);
-            }
-            ui_manager.AddUIWindow(propietari_info_win);
-            propietari_info_win.SetEnabled(false);
+            //    UI_Button b5 = new UI_Button("canvia_propietari", new Point(15, 360), 193, 28, "Canvia de Propietari");
+            //    b5.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+            //    b5.GetElement().Click += new System.EventHandler(this.CanviaPropietari);
+            //    propietari_info_win.AddElement(b5);
+            //}
+            //ui_manager.AddUIWindow(propietari_info_win);
+            //propietari_info_win.SetEnabled(false);
 
             // Finestra per a afegir una finca
-            afegir_finca_win = new UI_Window("afegir_finca_win", this);
-            {
-                UI_Panel p4 = new UI_Panel("finca_panel", new Point(230, 13), 500, 60);
-                afegir_finca_win.AddElement(p4);
-                p4.GetElement().BringToFront();
-                {
-                    UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
-                    p4.AddElement(tex);
+            //afegir_finca_win = new UI_Window("afegir_finca_win", this);
+            //{
+            //    UI_Panel p4 = new UI_Panel("finca_panel", new Point(230, 13), 500, 60);
+            //    afegir_finca_win.AddElement(p4);
+            //    p4.GetElement().BringToFront();
+            //    {
+            //        UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
+            //        p4.AddElement(tex);
 
-                    UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(80, 7), 300, 80);
-                    p4.AddElement(ti2);
+            //        UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(80, 7), 300, 80);
+            //        p4.AddElement(ti2);
 
-                    UI_Button b6 = new UI_Button("afegir_finca_button", new Point(80, 30), 130, 25, "Afegir Finca");
-                    b6.GetElement().Click += new System.EventHandler(this.AfegirFinca);
-                    p4.AddElement(b6);
-                }
-            }
-            ui_manager.AddUIWindow(afegir_finca_win);
-            afegir_finca_win.SetEnabled(false);
+            //        UI_Button b6 = new UI_Button("afegir_finca_button", new Point(80, 30), 130, 25, "Afegir Finca");
+            //        b6.GetElement().Click += new System.EventHandler(this.AfegirFinca);
+            //        p4.AddElement(b6);
+            //    }
+            //}
+            //ui_manager.AddUIWindow(afegir_finca_win);
+            //afegir_finca_win.SetEnabled(false);
 
-            opcions_finca_win = new UI_Window("opcions_finca_win", this);
-            {
-                UI_Panel opcions_finca_panel = new UI_Panel("opcions_finca_panel", new Point(230, 13), 500, 60);
-                opcions_finca_win.AddElement(opcions_finca_panel);
-                opcions_finca_panel.GetElement().BringToFront();
-                {
-                    UI_Text opcions_nom_finca_text = new UI_Text("opcions_nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
-                    opcions_finca_panel.AddElement(opcions_nom_finca_text);
+            //opcions_finca_win = new UI_Window("opcions_finca_win", this);
+            //{
+            //    UI_Panel opcions_finca_panel = new UI_Panel("opcions_finca_panel", new Point(230, 13), 500, 60);
+            //    opcions_finca_win.AddElement(opcions_finca_panel);
+            //    opcions_finca_panel.GetElement().BringToFront();
+            //    {
+            //        UI_Text opcions_nom_finca_text = new UI_Text("opcions_nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
+            //        opcions_finca_panel.AddElement(opcions_nom_finca_text);
 
-                    UI_TextInput opcions_nom_finca_text_input = new UI_TextInput("opcions_nom_finca_text_input", new Point(80, 7), 300, 80);
-                    opcions_finca_panel.AddElement(opcions_nom_finca_text_input);
+            //        UI_TextInput opcions_nom_finca_text_input = new UI_TextInput("opcions_nom_finca_text_input", new Point(80, 7), 300, 80);
+            //        opcions_finca_panel.AddElement(opcions_nom_finca_text_input);
 
-                    UI_Button actualitza_finca = new UI_Button("actualitza_finca", new Point(80, 30), 130, 25, "Actualitza Finca");
-                    actualitza_finca.GetElement().Click += new System.EventHandler(this.ActualitzaFinca);
-                    opcions_finca_panel.AddElement(actualitza_finca);
-                }
-            }
-            ui_manager.AddUIWindow(opcions_finca_win);
-            opcions_finca_win.SetEnabled(false);
+            //        UI_Button actualitza_finca = new UI_Button("actualitza_finca", new Point(80, 30), 130, 25, "Actualitza Finca");
+            //        actualitza_finca.GetElement().Click += new System.EventHandler(this.ActualitzaFinca);
+            //        opcions_finca_panel.AddElement(actualitza_finca);
+            //    }
+            //}
+            //ui_manager.AddUIWindow(opcions_finca_win);
+            //opcions_finca_win.SetEnabled(false);
 
             gmap.SendToBack();
         }

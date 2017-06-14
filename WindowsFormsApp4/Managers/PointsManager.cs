@@ -85,6 +85,11 @@ namespace WindowsFormsApp4
             _tbl = finca;
         }
 
+        public override string ToString()
+        {
+            return _tbl.Nom1;
+        }
+
         public void AfegeixParcela(Parcela parcela)
         {
             parceles.Add(parcela);
