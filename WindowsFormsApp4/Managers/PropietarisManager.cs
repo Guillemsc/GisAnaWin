@@ -25,6 +25,21 @@ namespace WindowsFormsApp4
             propietaris.Clear();
         }
 
+        public List<Finca> GetFinques()
+        {
+            return finques;
+        }
+
+        public void AfegirFinca(Finca finca)
+        {
+            finques.Add(finca);
+        }
+
+        public void EliminaFinques()
+        {
+            finques.Clear();
+        }
+
         public Propietari TrobaPropietariPerID(string id)
         {
             Propietari ret = null;
@@ -43,6 +58,8 @@ namespace WindowsFormsApp4
         }
 
         List<Propietari> propietaris = new List<Propietari>();
+        List<Finca>      finques = new List<Finca>();
+
         public List<Label> propietaris_texts = new List<Label>();
 
         public Propietari propietari_actual = null;

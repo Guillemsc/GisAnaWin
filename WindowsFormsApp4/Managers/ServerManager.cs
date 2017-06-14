@@ -25,6 +25,16 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblFinques> GetFinques()
+        {
+            List<tblFinques> ret = new List<tblFinques>();
+
+            foreach (var prov in servidor.tblFinques)
+                ret.Add(prov);
+
+            return ret;    
+        }
+
         private DataClasses1DataContext servidor = null;
     }
 }

@@ -79,11 +79,10 @@ namespace WindowsFormsApp4
 
     public class Finca
     {
-        public Finca(GMapOverlay overlay, string nom, int id)
+        public Finca(GMapOverlay overlay, tblFinques finca)
         {
             _overlay = overlay;
-            _nom = nom;
-            _id = id;
+            _tbl = finca;
         }
 
         public void AfegeixParcela(Parcela parcela)
@@ -119,6 +118,8 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public tblFinques GetTbl() { return _tbl; }
+
         public void Draw()
         {
             for (int i = 0; i < parceles.Count; i++)
@@ -145,16 +146,11 @@ namespace WindowsFormsApp4
             }
         }
 
-        public string GetNom() { return _nom; }
-        public void SetNom(string nom) { _nom = nom; }
-        public int GetID() { return _id; }
-
         public List<Parcela> parceles = new List<Parcela>();
-        string _nom;
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         public Parcela parcela_actual = null;
-        private int _id = 0;
+        private tblFinques _tbl = null;
     }
 
     public class Parcela

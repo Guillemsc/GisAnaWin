@@ -39,6 +39,9 @@ namespace WindowsFormsApp4
             seleccio_finca_win.SetEnabled(!seleccio_finca_win.GetEnabled());
             seleccio_propietari_win.SetEnabled(false);
             seleccio_varietat_win.SetEnabled(false);
+
+            if (seleccio_finca_win.GetEnabled())
+                ActualitzaLlistaFinques("");
         }
 
         private void ObreFinestraSeleccioVarietat(object sender, EventArgs e)
@@ -53,8 +56,6 @@ namespace WindowsFormsApp4
             MaskedTextBox tb = sender as MaskedTextBox;
             ActualitzaLlistaPropietari(tb.Text);
         }
-
-
 
         public void PropietariClick(object sender, EventArgs e)
         {
@@ -92,6 +93,19 @@ namespace WindowsFormsApp4
             }
         }
 
+        public void ActualitzaFinquesDesDeServidor()
+        {
+            List<tblFinques> finques = server_manager.GetFinques();
+
+            propietaris_manager.EliminaFinques();
+
+            for(int i = 0; i < finques.Count; i++)
+            {
+                Finca f = new Finca(point_manager.overlay_finca, finques[i]);
+                propietaris_manager.AfegirFinca(f);
+            }
+        }
+
         // -------------------------
 
 
@@ -107,6 +121,8 @@ namespace WindowsFormsApp4
 
         // -------------------------
 
+        // -------------------------
+        // GMap --------------------
 
         // Click a un marcador per a eliminar-lo
         public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
@@ -156,6 +172,21 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Actualitza la latitud i la longitud quan es mou la posicio del mapa
+        public void UpdateLatLon()
+        {
+            if (text_input_lat != null && text_input_lon != null)
+            {
+                string lat_s = Math.Round(gmap.Position.Lat, 6).ToString();
+                string lon_s = Math.Round(gmap.Position.Lng, 6).ToString();
+
+                text_input_lat.SetText(lat_s.Replace(',', '.'));
+                text_input_lon.SetText(lon_s.Replace(',', '.'));
+            }
+        }
+
+        // -------------------------
+
         // Actualitza la llista de propietaris en la UI
         public void ActualitzaLlistaPropietari(string search)
         {
@@ -182,6 +213,28 @@ namespace WindowsFormsApp4
                     acumulation += 18;
                 }
             }
+        }
+
+        public void ActualitzaLlistaFinques(string search)
+        {
+            UI_Panel p = ui_manager.GetElement("seleccio_finca_noms_panel") as UI_Panel;
+
+            p.ClearPanel();
+
+            string text = EliminaAccents(search.ToLower().Replace(" ", ""));
+
+            List<Finca> finques;
+
+            if (propietaris_manager.propietari_actual == null)
+            {
+                finques = propietaris_manager.GetFinques();
+            }
+            else
+            {
+
+            }
+
+
         }
 
         // Afegeix un nou propietari
@@ -257,120 +310,120 @@ namespace WindowsFormsApp4
         }
 
         // Afegeix una nova finca o modifica una actual
-        public void AfegirFinca(object sender, EventArgs e)
-        {
-            afegir_finca_win.SetEnabled(false);
+        //public void AfegirFinca(object sender, EventArgs e)
+        //{
+        //    afegir_finca_win.SetEnabled(false);
 
-            MaskedTextBox mt = ui_manager.GetElement("nom_finca_text_input").GetElement() as MaskedTextBox;
+        //    MaskedTextBox mt = ui_manager.GetElement("nom_finca_text_input").GetElement() as MaskedTextBox;
 
-            if (mt.Text != "")
-            {
-                Finca f = new Finca(point_manager.overlay_finca, mt.Text, id_manager.GetNewID("finca"));
-                propietaris_manager.propietari_actual.AfegirFinca(f);
+        //    if (mt.Text != "")
+        //    {
+        //        Finca f = new Finca(point_manager.overlay_finca, mt.Text, id_manager.GetNewID("finca"));
+        //        propietaris_manager.propietari_actual.AfegirFinca(f);
 
-                propietaris_manager.propietari_actual.finca_actual = f;
+        //        propietaris_manager.propietari_actual.finca_actual = f;
 
-                propietaris_manager.can_point = true;
+        //        propietaris_manager.can_point = true;
 
-                ActualitzaUIFinca();
-            }
-        }
+        //        ActualitzaUIFinca();
+        //    }
+        //}
 
-        public void ActualitzaFinca(object sender, EventArgs e)
-        {
-            MaskedTextBox mt = ui_manager.GetElement("opcions_nom_finca_text_input").GetElement() as MaskedTextBox;
+        //public void ActualitzaFinca(object sender, EventArgs e)
+        //{
+        //    MaskedTextBox mt = ui_manager.GetElement("opcions_nom_finca_text_input").GetElement() as MaskedTextBox;
 
-            propietaris_manager.propietari_actual.finca_actual.SetNom(mt.Text);
+        //    propietaris_manager.propietari_actual.finca_actual.SetNom(mt.Text);
 
-            opcions_finca_win.SetEnabled(false);
+        //    opcions_finca_win.SetEnabled(false);
 
-            ActualitzaUIFinca();
-        }
+        //    ActualitzaUIFinca();
+        //}
 
         // Selecciona una finca
-        public void FinquesClick(object sender, EventArgs e)
-        {
-            Label l = sender as Label;
-            Finca f = propietaris_manager.propietari_actual.GetFincaPerID(Int32.Parse(l.Name));
+        //public void FinquesClick(object sender, EventArgs e)
+        //{
+        //    Label l = sender as Label;
+        //    Finca f = propietaris_manager.propietari_actual.GetFincaPerID(Int32.Parse(l.Name));
 
-            if (f != null)
-            {
-                propietaris_manager.propietari_actual.finca_actual = f;
+        //    if (f != null)
+        //    {
+        //        propietaris_manager.propietari_actual.finca_actual = f;
 
-                propietaris_manager.can_point = true;
+        //        propietaris_manager.can_point = true;
 
-                ActualitzaUIFinca();
+        //        ActualitzaUIFinca();
 
-                // Obre finestra per actualitzar finca
-                opcions_finca_win.SetEnabled(true);
-                afegir_finca_win.SetEnabled(false);
+        //        // Obre finestra per actualitzar finca
+        //        opcions_finca_win.SetEnabled(true);
+        //        afegir_finca_win.SetEnabled(false);
 
-                MaskedTextBox mt = ui_manager.GetElement("opcions_nom_finca_text_input").GetElement() as MaskedTextBox;
-                mt.Text = propietaris_manager.propietari_actual.finca_actual.GetNom();
-            }
-        }
+        //        MaskedTextBox mt = ui_manager.GetElement("opcions_nom_finca_text_input").GetElement() as MaskedTextBox;
+        //        mt.Text = propietaris_manager.propietari_actual.finca_actual.GetNom();
+        //    }
+        //}
 
         // Selecciona una finca i obre les opcions
-        public void FinquesDobleClick(object sender, EventArgs e)
-        {
-            Label l = sender as Label;
-            Finca f = propietaris_manager.propietari_actual.GetFincaPerID(Int32.Parse(l.Name));
+        //public void FinquesDobleClick(object sender, EventArgs e)
+        //{
+        //    Label l = sender as Label;
+        //    Finca f = propietaris_manager.propietari_actual.GetFincaPerID(Int32.Parse(l.Name));
 
-            if (f != null)
-            {
-                propietaris_manager.propietari_actual.finca_actual = f;
+        //    if (f != null)
+        //    {
+        //        propietaris_manager.propietari_actual.finca_actual = f;
 
-                propietaris_manager.can_point = true;
+        //        propietaris_manager.can_point = true;
 
-                ActualitzaUIFinca();
-            }
+        //        ActualitzaUIFinca();
+        //    }
 
-            afegir_finca_win.SetEnabled(true);
-        }
+        //    afegir_finca_win.SetEnabled(true);
+        //}
 
         // Selecciona una parcela
-        public void ParcelaClick(object sender, EventArgs e)
-        {
-            Label l = sender as Label;
+        //public void ParcelaClick(object sender, EventArgs e)
+        //{
+        //    Label l = sender as Label;
 
-            Finca f = TrobaFincaPerParcelaID(Int32.Parse(l.Name));
+        //    Finca f = TrobaFincaPerParcelaID(Int32.Parse(l.Name));
 
-            if (f != null)
-            {
-                propietaris_manager.propietari_actual.finca_actual = f;
+        //    if (f != null)
+        //    {
+        //        propietaris_manager.propietari_actual.finca_actual = f;
 
-                Parcela p = TrobaParcelaAFincaActual(Int32.Parse(l.Name));
+        //        Parcela p = TrobaParcelaAFincaActual(Int32.Parse(l.Name));
 
-                if (p != null)
-                {
-                    propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
-                    ActualitzaUIFinca();
+        //        if (p != null)
+        //        {
+        //            propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
+        //            ActualitzaUIFinca();
 
-                    gmap.Position = propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetCenterPos();
-                    UpdateLatLon();
-                }
-            }
-            //Parcela p = propietaris_manager.propietari_actual.finca_actual
-        }
+        //            gmap.Position = propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetCenterPos();
+        //            UpdateLatLon();
+        //        }
+        //    }
+        //    //Parcela p = propietaris_manager.propietari_actual.finca_actual
+        //}
 
         // Afegeix una parcela si hi ha 3> punts en pantalla
-        public void AfegeixParcela(object sender, EventArgs e)
-        {
-            if (point_manager.GetTmpMarcadors().Count >= 3)
-            {
-                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
-                propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
+        //public void AfegeixParcela(object sender, EventArgs e)
+        //{
+        //    if (point_manager.GetTmpMarcadors().Count >= 3)
+        //    {
+        //        Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
+        //        propietaris_manager.propietari_actual.finca_actual.AfegeixParcela(p);
 
-                propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
-                p.SetText(propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetDescripcio());
+        //        propietaris_manager.propietari_actual.finca_actual.parcela_actual = p;
+        //        p.SetText(propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetDescripcio());
 
-                point_manager.NetejaTmpMarcadors();
+        //        point_manager.NetejaTmpMarcadors();
 
-                ActualitzaUIFinca();
+        //        ActualitzaUIFinca();
 
-                ui_manager.GetElement("crea_parcela").SetEnabled(false);
-            }
-        }
+        //        ui_manager.GetElement("crea_parcela").SetEnabled(false);
+        //    }
+        //}
 
         // Actualitza la UI que mostra tots els propietaris
         //public void ActualitzaUIPropietari()
@@ -393,57 +446,57 @@ namespace WindowsFormsApp4
         //}
 
         // Actualitza la UI que mostra les finques i les parceles
-        public void ActualitzaUIFinca()
-        {
-            UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
-            int scroll_value = 0;
+        //public void ActualitzaUIFinca()
+        //{
+        //    UI_Panel pan = ui_manager.GetElement("finques_panel") as UI_Panel;
+        //    int scroll_value = 0;
 
-            if (pan != null)
-            {
-                Panel p = pan.GetElement() as Panel;
-                scroll_value = p.VerticalScroll.Value;
+        //    if (pan != null)
+        //    {
+        //        Panel p = pan.GetElement() as Panel;
+        //        scroll_value = p.VerticalScroll.Value;
 
-                pan.ClearPanel();
+        //        pan.ClearPanel();
 
-                // Finques
-                int acumulation = 0;
-                for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
-                {
-                    Finca curr_finca = propietaris_manager.propietari_actual.finques[i];
+        //        // Finques
+        //        int acumulation = 0;
+        //        for (int i = 0; i < propietaris_manager.propietari_actual.finques.Count(); i++)
+        //        {
+        //            Finca curr_finca = propietaris_manager.propietari_actual.finques[i];
 
-                    UI_Text t2 = new UI_Text(curr_finca.GetID().ToString(), new Point(5, 0 + acumulation), 20, 40, "- " + curr_finca.GetNom());
-                    t2.GetElement().Click += new EventHandler(FinquesClick);
-                    t2.GetElement().DoubleClick += new EventHandler(FinquesDobleClick);
-                    pan.AddElement(t2);
-                    acumulation += 18;
+        //            UI_Text t2 = new UI_Text(curr_finca.GetID().ToString(), new Point(5, 0 + acumulation), 20, 40, "- " + curr_finca.GetNom());
+        //            t2.GetElement().Click += new EventHandler(FinquesClick);
+        //            t2.GetElement().DoubleClick += new EventHandler(FinquesDobleClick);
+        //            pan.AddElement(t2);
+        //            acumulation += 18;
 
-                    // Finca seleccionada
-                    if (curr_finca == propietaris_manager.propietari_actual.finca_actual)
-                    {
-                        t2.SetColor(Color.Crimson, Color.White);
-                    }
+        //            // Finca seleccionada
+        //            if (curr_finca == propietaris_manager.propietari_actual.finca_actual)
+        //            {
+        //                t2.SetColor(Color.Crimson, Color.White);
+        //            }
 
-                    // Parceles
-                    for (int y = 0; y < curr_finca.parceles.Count(); y++)
-                    {
-                        Parcela curr_parcela = curr_finca.parceles[y];
+        //            // Parceles
+        //            for (int y = 0; y < curr_finca.parceles.Count(); y++)
+        //            {
+        //                Parcela curr_parcela = curr_finca.parceles[y];
 
-                        UI_Text t3 = new UI_Text(curr_parcela.GetID().ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y + 1).ToString());
-                        t3.GetElement().Click += new EventHandler(ParcelaClick);
-                        pan.AddElement(t3);
-                        acumulation += 18;
+        //                UI_Text t3 = new UI_Text(curr_parcela.GetID().ToString(), new Point(20, 0 + acumulation), 20, 40, "o Parcela:" + (y + 1).ToString());
+        //                t3.GetElement().Click += new EventHandler(ParcelaClick);
+        //                pan.AddElement(t3);
+        //                acumulation += 18;
 
-                        // Parcela seleccionada
-                        if (curr_parcela == propietaris_manager.propietari_actual.finca_actual.parcela_actual)
-                        {
-                            t3.SetColor(Color.Crimson, Color.White);
-                        }
-                    }
-                }
+        //                // Parcela seleccionada
+        //                if (curr_parcela == propietaris_manager.propietari_actual.finca_actual.parcela_actual)
+        //                {
+        //                    t3.SetColor(Color.Crimson, Color.White);
+        //                }
+        //            }
+        //        }
 
-                p.VerticalScroll.Value = scroll_value;
-            }
-        }
+        //        p.VerticalScroll.Value = scroll_value;
+        //    }
+        //}
 
         // Busca una coordenada amb latitud i longitud
         public void SearchLatLon(object sender, EventArgs e)
@@ -491,19 +544,6 @@ namespace WindowsFormsApp4
                     gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
                     b.SetText("Canvia a Satel.lit");
                 }
-            }
-        }
-
-        // Actualitza la latitud i la longitud quan es mou la posicio del mapa
-        public void UpdateLatLon()
-        {
-            if (text_input_lat != null && text_input_lon != null)
-            {
-                string lat_s = Math.Round(gmap.Position.Lat, 6).ToString();
-                string lon_s = Math.Round(gmap.Position.Lng, 6).ToString();
-
-                text_input_lat.SetText(lat_s.Replace(',', '.'));
-                text_input_lon.SetText(lon_s.Replace(',', '.'));
             }
         }
 
