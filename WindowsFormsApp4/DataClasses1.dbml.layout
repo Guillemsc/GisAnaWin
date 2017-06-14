@@ -38,28 +38,28 @@
         <elementListCompartment Id="21532850-27a2-4762-a789-c5df0f6ebc0b" absoluteBounds="2.765, 7.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 2.47195556640625); (3.5 : 2.47195556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 2.47195556640625); (3.5 : 2.47195556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/tblFinques/tblFinques_tblParceles" />
       <nodes>
         <classShapeMoniker Id="56fff3ed-b87e-4401-96e9-9c2ba5a1a799" />
         <classShapeMoniker Id="7cc4d16c-f165-492e-b46c-1e99577a803c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 4.3189111328125); (4.5 : 4.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.5 : 4.3189111328125); (4.5 : 4.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/tblParceles/tblParceles_tblTipoUva" />
       <nodes>
         <classShapeMoniker Id="7cc4d16c-f165-492e-b46c-1e99577a803c" />
         <classShapeMoniker Id="d6cb3bc8-26d5-401b-8dd4-622d28b802bf" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.5 : 3.42668584960937); (3.0937475 : 3.42668584960937); (3.0937475 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.5 : 3.42668584960937); (3.0937475 : 3.42668584960937); (3.0937475 : 6.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/tblParceles/tblParceles_tblAnaliticaFincaParcela" />
       <nodes>
         <classShapeMoniker Id="7cc4d16c-f165-492e-b46c-1e99577a803c" />
         <classShapeMoniker Id="9bd34be5-9d44-4cde-b4df-6c3969889d1f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.5 : 5.3477197265625); (1.5 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 5.3477197265625); (1.5 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/tblFinques/tblFinques_tblPartesFinca" />
       <nodes>
         <classShapeMoniker Id="56fff3ed-b87e-4401-96e9-9c2ba5a1a799" />

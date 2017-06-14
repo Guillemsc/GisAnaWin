@@ -27,9 +27,25 @@ namespace WindowsFormsApp4
         private void ObreFinestraSeleccioPropietari(object sender, EventArgs e)
         {
             seleccio_propietari_win.SetEnabled(!seleccio_propietari_win.GetEnabled());
+            seleccio_finca_win.SetEnabled(false);
+            seleccio_varietat_win.SetEnabled(false);
 
-            if(seleccio_propietari_win.GetEnabled())
+            if (seleccio_propietari_win.GetEnabled())
                 ActualitzaLlistaPropietari("");
+        }
+
+        private void ObreFinestraSeleccioFinca(object sender, EventArgs e)
+        {
+            seleccio_finca_win.SetEnabled(!seleccio_finca_win.GetEnabled());
+            seleccio_propietari_win.SetEnabled(false);
+            seleccio_varietat_win.SetEnabled(false);
+        }
+
+        private void ObreFinestraSeleccioVarietat(object sender, EventArgs e)
+        {
+            seleccio_varietat_win.SetEnabled(!seleccio_varietat_win.GetEnabled());
+            seleccio_propietari_win.SetEnabled(false);
+            seleccio_finca_win.SetEnabled(false);
         }
 
         public void SeleccioPropietariTextInputChanged(object sender, EventArgs e)
@@ -37,6 +53,8 @@ namespace WindowsFormsApp4
             MaskedTextBox tb = sender as MaskedTextBox;
             ActualitzaLlistaPropietari(tb.Text);
         }
+
+
 
         public void PropietariClick(object sender, EventArgs e)
         {
