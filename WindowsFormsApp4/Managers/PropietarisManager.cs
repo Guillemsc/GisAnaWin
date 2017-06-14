@@ -10,12 +10,12 @@ namespace WindowsFormsApp4
 {
     public class PropietarisManager
     {
-        public List<tblProveedores> GetPropietaris()
+        public List<Propietari> GetPropietaris()
         {
             return propietaris;
         }
 
-        public void AfegirPropietari(tblProveedores propietari)
+        public void AfegirPropietari(Propietari propietari)
         {
             propietaris.Add(propietari);
         }
@@ -25,7 +25,24 @@ namespace WindowsFormsApp4
             propietaris.Clear();
         }
 
-        List<tblProveedores> propietaris = new List<tblProveedores>();
+        public Propietari TrobaPropietariPerID(string id)
+        {
+            Propietari ret = null;
+
+            for(int i = 0; i < propietaris.Count; i++)
+            {
+                if(propietaris[i].GetTbl().idProveedor == id)
+                {
+                    ret = propietaris[i];
+                    break;
+                }
+
+            }
+
+            return ret;
+        }
+
+        List<Propietari> propietaris = new List<Propietari>();
         public List<Label> propietaris_texts = new List<Label>();
 
         public Propietari propietari_actual = null;
@@ -35,15 +52,14 @@ namespace WindowsFormsApp4
 
     public class Propietari
     {
-        public Propietari(string nom)
+        public Propietari(tblProveedores proveedor)
         {
-            _nom = nom;
+            _tbl = proveedor;
         }
 
-        public string GetNom()
-        {
-            return _nom;
-        }
+        //public string GetNom()
+        //{
+        //}
 
         public void AfegirFinca(Finca finca)
         {
@@ -105,8 +121,11 @@ namespace WindowsFormsApp4
                 }
             }
         }
-        private string _nom;
+
+        public tblProveedores GetTbl() { return _tbl; }
+
         public List<Finca> finques = new List<Finca>();
         public Finca finca_actual = null;
+        public tblProveedores _tbl = null;
     }
 }

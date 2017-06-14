@@ -21,23 +21,6 @@ namespace WindowsFormsApp4
             InitializeComponent();
         }
 
-        // Debug -------
-        private void crea_Click(object sender, EventArgs e)
-        {
-            if (point_manager.GetTmpMarcadors().Count > 2)
-            {
-                Parcela p = new Parcela(point_manager.GetTmpMarcadors(), point_manager.overlay_parcela, id_manager.GetNewID("parcela"));
-                point_manager.AfegeixTmpParcela(p);
-            }
-        }
-
-        private void neteja_Click(object sender, EventArgs e)
-        {
-            point_manager.NetejaTmpMarcadors();
-            point_manager.NetejaTmpParceles();
-        }
-        // --------------
-
         // -------------------------
         // Botons ------------------
 
@@ -49,8 +32,31 @@ namespace WindowsFormsApp4
                 ActualitzaLlistaPropietari("");
         }
 
+        public void SeleccioPropietariTextInputChanged(object sender, EventArgs e)
+        {
+            MaskedTextBox tb = sender as MaskedTextBox;
+            ActualitzaLlistaPropietari(tb.Text);
+        }
+
+        public void PropietariClick(object sender, EventArgs e)
+        {
+            Label l = sender as Label;
+
+            Propietari p = propietaris_manager.TrobaPropietariPerID(l.Name);
+
+            if(p != null)
+            {
+                propietaris_manager.propietari_actual = p;
+
+                seleccio_propietari_win.SetEnabled(false);
+
+                UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
+                t.SetText(p.GetTbl().Nombre);
+            }
+        }
+
         // -------------------------
-        // -------------------------
+
 
         // -------------------------
         // Servidor ----------------
@@ -63,11 +69,26 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < proveedors.Count; i++)
             {
-                propietaris_manager.AfegirPropietari(proveedors[i]);
+                Propietari p = new Propietari(proveedors[i]);
+                propietaris_manager.AfegirPropietari(p);
             }
         }
 
         // -------------------------
+
+
+        // -------------------------
+        // Utils -------------------
+
+        public string EliminaAccents(string txt)
+        {
+            byte[] tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(txt);
+            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+            return asciiStr;
+        }
+
+        // -------------------------
+
 
         // Click a un marcador per a eliminar-lo
         public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
@@ -117,35 +138,31 @@ namespace WindowsFormsApp4
             }
         }
 
-        // Obra la finestra per a crear un nou propietari
-        private void AfegeixPropietari(object sender, EventArgs e)
-        {
-            ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(true);
-        }
-
-        // Tanca la finestra per a crear un nou propietari
-        private void TancarAfegeixPropietari(object sender, EventArgs e)
-        {
-            ui_manager.GetUIWindow("afegir_propietari_window").SetEnabled(false);
-        }
-
+        // Actualitza la llista de propietaris en la UI
         public void ActualitzaLlistaPropietari(string search)
         {
-            List<tblProveedores> proveedors = propietaris_manager.GetPropietaris();
+            List<Propietari> proveedors = propietaris_manager.GetPropietaris();
 
             UI_Panel p = ui_manager.GetElement("seleccio_propietari_noms_panel") as UI_Panel;
 
             p.ClearPanel();
 
+            string text = EliminaAccents(search.ToLower().Replace(" ", ""));
+
             int acumulation = 0;
             for(int i = 0; i < proveedors.Count; i++)
             {
-                tblProveedores proveedor_actual = proveedors[i];
+                tblProveedores proveedor_actual = proveedors[i].GetTbl();
 
-                UI_Text t = new UI_Text(proveedor_actual.idProveedor, new Point(5, 10 + acumulation), 20, 40, "- " + proveedor_actual.Nombre);
-                //t.GetElement().Click += new EventHandler(PropietariClick);
-                p.AddElement(t);
-                acumulation += 18;
+                string nom = EliminaAccents(proveedor_actual.Nombre.ToLower().Replace(" ", "").Replace(",", ""));
+
+                if (nom.Contains(text))
+                {
+                    UI_Text t = new UI_Text(proveedor_actual.idProveedor, new Point(5, 10 + acumulation), 20, 40, "- " + proveedor_actual.Nombre);
+                    t.GetElement().Click += new EventHandler(PropietariClick);
+                    p.AddElement(t);
+                    acumulation += 18;
+                }
             }
         }
 

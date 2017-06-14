@@ -73,7 +73,6 @@ namespace WindowsFormsApp4
             this.Text = "Finques Maps Test";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         //#endregion
@@ -167,6 +166,7 @@ namespace WindowsFormsApp4
 
                 UI_TextInput seleccio_propietari_text_input = new UI_TextInput("seleccio_propietari_text_input", new Point(15, 15), 250, 30);
                 seleccio_propietari_panel.AddElement(seleccio_propietari_text_input);
+                seleccio_propietari_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
             }
             ui_manager.AddUIWindow(seleccio_propietari_win);
             seleccio_propietari_win.SetEnabled(false);
