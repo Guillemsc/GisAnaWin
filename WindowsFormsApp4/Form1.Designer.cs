@@ -197,9 +197,26 @@ namespace WindowsFormsApp4
                 UI_Text llista_finques_text = new UI_Text("llista_finques_text", new Point(15, 230), 200, 30, "Parceles:");
                 main_win.AddElement(llista_finques_text);
 
-                UI_Panel llista_finques_panel = new UI_Panel("llista_finques_panel", new Point(15, 250), 200, 70);
+                UI_Panel llista_finques_panel = new UI_Panel("llista_finques_panel", new Point(15, 250), 200, 180);
                 llista_finques_panel.SetColor(Color.Cornsilk);
+                llista_finques_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(llista_finques_panel);
+
+
+                editor_parceles_panel = new UI_Panel("editor_parceles_panel", new Point(229, 0), 600, 30);
+                editor_parceles_panel.SetColor(Color.Cornsilk);
+                editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
+                main_win.AddElement(editor_parceles_panel);
+                {
+                    editor_parceles_crea_button = new UI_Button("editor_parceles_crea_button", new Point(5, 3), 100, 25, "Crea parcela");
+                    editor_parceles_crea_button.GetElement().Click += new System.EventHandler(this.CreaParcela);
+                    editor_parceles_panel.AddElement(editor_parceles_crea_button);
+
+                    editor_parceles_elimina_button = new UI_Button("editor_parceles_elimina_button", new Point(110, 3), 100, 25, "Elimina parcela");
+                    editor_parceles_elimina_button.GetElement().Click += new System.EventHandler(this.EliminaParcela);
+                    editor_parceles_panel.AddElement(editor_parceles_elimina_button);
+                }
+                editor_parceles_panel.SetEnabled(false);
             }
             ui_manager.AddUIWindow(main_win);
 
@@ -371,9 +388,6 @@ namespace WindowsFormsApp4
         }
 
         // Windows
-        UI_Window opcions_finca_win = null;
-        UI_Window afegir_finca_win = null;
-        UI_Window propietari_info_win = null;
         UI_Window main_win = null;
         UI_Window map_win = null;
         UI_Window seleccio_propietari_win = null;
@@ -383,6 +397,10 @@ namespace WindowsFormsApp4
         // Necessary Elements
         UI_TextInput text_input_lat = null;
         UI_TextInput text_input_lon = null;
+
+        UI_Panel editor_parceles_panel = null;
+        UI_Button editor_parceles_crea_button = null;
+        UI_Button editor_parceles_elimina_button = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

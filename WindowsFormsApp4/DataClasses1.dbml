@@ -132,6 +132,18 @@
       <Column Name="EstatSanitari" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
       <Column Name="Observaciones" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
       <Association Name="tblParceles_tblAnaliticaFincaParcela" Member="tblParceles" ThisKey="CodigoEmpresa,idParcela,idFinca" OtherKey="CodigoEmpresa,idParcela,idFinca" Type="tblParceles" IsForeignKey="true" />
+      <Association Name="tblCoordenadesFincaParcela_tblAnaliticaFincaParcela" Member="tblCoordenadesFincaParcela" ThisKey="idParcela" OtherKey="idParcela" Type="tblCoordenadesFincaParcela" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCoordenadesFincaParcela" Member="tblCoordenadesFincaParcela">
+    <Type Name="tblCoordenadesFincaParcela">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idFinca" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParcela" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPuntCor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="latitud" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longitud" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tblCoordenadesFincaParcela_tblAnaliticaFincaParcela" Member="tblAnaliticaFincaParcela" ThisKey="idParcela" OtherKey="idParcela" Type="tblAnaliticaFincaParcela" />
     </Type>
   </Table>
 </Database>

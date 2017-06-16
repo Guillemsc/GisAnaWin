@@ -112,54 +112,7 @@ namespace WindowsFormsApp4
             return _tbl.Nombre;
         }
 
-        public void AfegirFinca(Finca finca)
-        {
-            finques.Add(finca);
-        }
-
-        public Finca GetFincaPerID(string id)
-        {
-            Finca ret = null;
-
-            for (int i = 0; i < finques.Count; i++)
-            {
-                if (finques[i].GetTbl().idFinca.ToString() == id)
-                {
-                    ret = finques[i];
-                    break;
-                }
-            }
-
-            return ret;
-        }
-
-        public Finca GetFincaPerIndex(int index)
-        {
-            Finca ret = null;
-
-            if (index < finques.Count())
-            {
-                ret = finques[index];
-            }
-
-            return ret;
-        }
-
-        public void EliminarFinca(Finca finca)
-        {
-            for (int i = 0; i < finques.Count; i++)
-            {
-                if (finques[i] == finca)
-                {
-                    finques.Remove(finca);
-                    break;
-                }
-            }
-        }
-
         public tblProveedores GetTbl() { return _tbl; }
-
-        public List<Finca> finques = new List<Finca>();
         public Finca finca_actual = null;
 
         public tblProveedores _tbl = null;

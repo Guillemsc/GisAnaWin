@@ -48,6 +48,9 @@ namespace WindowsFormsApp4
     partial void InserttblAnaliticaFincaParcela(tblAnaliticaFincaParcela instance);
     partial void UpdatetblAnaliticaFincaParcela(tblAnaliticaFincaParcela instance);
     partial void DeletetblAnaliticaFincaParcela(tblAnaliticaFincaParcela instance);
+    partial void InserttblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
+    partial void UpdatetblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
+    partial void DeletetblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -125,6 +128,14 @@ namespace WindowsFormsApp4
 			get
 			{
 				return this.GetTable<tblAnaliticaFincaParcela>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblCoordenadesFincaParcela> tblCoordenadesFincaParcela
+		{
+			get
+			{
+				return this.GetTable<tblCoordenadesFincaParcela>();
 			}
 		}
 	}
@@ -2740,6 +2751,8 @@ namespace WindowsFormsApp4
 		
 		private EntityRef<tblParceles> _tblParceles;
 		
+		private EntityRef<tblCoordenadesFincaParcela> _tblCoordenadesFincaParcela;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2775,6 +2788,7 @@ namespace WindowsFormsApp4
 		public tblAnaliticaFincaParcela()
 		{
 			this._tblParceles = default(EntityRef<tblParceles>);
+			this._tblCoordenadesFincaParcela = default(EntityRef<tblCoordenadesFincaParcela>);
 			OnCreated();
 		}
 		
@@ -2877,7 +2891,7 @@ namespace WindowsFormsApp4
 			{
 				if ((this._idParcela != value))
 				{
-					if (this._tblParceles.HasLoadedOrAssignedValue)
+					if ((this._tblParceles.HasLoadedOrAssignedValue || this._tblCoordenadesFincaParcela.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -3088,6 +3102,40 @@ namespace WindowsFormsApp4
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCoordenadesFincaParcela_tblAnaliticaFincaParcela", Storage="_tblCoordenadesFincaParcela", ThisKey="idParcela", OtherKey="idParcela", IsForeignKey=true)]
+		public tblCoordenadesFincaParcela tblCoordenadesFincaParcela
+		{
+			get
+			{
+				return this._tblCoordenadesFincaParcela.Entity;
+			}
+			set
+			{
+				tblCoordenadesFincaParcela previousValue = this._tblCoordenadesFincaParcela.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCoordenadesFincaParcela.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCoordenadesFincaParcela.Entity = null;
+						previousValue.tblAnaliticaFincaParcela.Remove(this);
+					}
+					this._tblCoordenadesFincaParcela.Entity = value;
+					if ((value != null))
+					{
+						value.tblAnaliticaFincaParcela.Add(this);
+						this._idParcela = value.idParcela;
+					}
+					else
+					{
+						this._idParcela = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblCoordenadesFincaParcela");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3106,6 +3154,216 @@ namespace WindowsFormsApp4
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCoordenadesFincaParcela")]
+	public partial class tblCoordenadesFincaParcela : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _CodigoEmpresa;
+		
+		private int _idFinca;
+		
+		private int _idParcela;
+		
+		private int _idPuntCor;
+		
+		private System.Nullable<double> _latitud;
+		
+		private System.Nullable<double> _longitud;
+		
+		private EntitySet<tblAnaliticaFincaParcela> _tblAnaliticaFincaParcela;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoEmpresaChanging(string value);
+    partial void OnCodigoEmpresaChanged();
+    partial void OnidFincaChanging(int value);
+    partial void OnidFincaChanged();
+    partial void OnidParcelaChanging(int value);
+    partial void OnidParcelaChanged();
+    partial void OnidPuntCorChanging(int value);
+    partial void OnidPuntCorChanged();
+    partial void OnlatitudChanging(System.Nullable<double> value);
+    partial void OnlatitudChanged();
+    partial void OnlongitudChanging(System.Nullable<double> value);
+    partial void OnlongitudChanged();
+    #endregion
+		
+		public tblCoordenadesFincaParcela()
+		{
+			this._tblAnaliticaFincaParcela = new EntitySet<tblAnaliticaFincaParcela>(new Action<tblAnaliticaFincaParcela>(this.attach_tblAnaliticaFincaParcela), new Action<tblAnaliticaFincaParcela>(this.detach_tblAnaliticaFincaParcela));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpresa
+		{
+			get
+			{
+				return this._CodigoEmpresa;
+			}
+			set
+			{
+				if ((this._CodigoEmpresa != value))
+				{
+					this.OnCodigoEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoEmpresa = value;
+					this.SendPropertyChanged("CodigoEmpresa");
+					this.OnCodigoEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFinca", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idFinca
+		{
+			get
+			{
+				return this._idFinca;
+			}
+			set
+			{
+				if ((this._idFinca != value))
+				{
+					this.OnidFincaChanging(value);
+					this.SendPropertyChanging();
+					this._idFinca = value;
+					this.SendPropertyChanged("idFinca");
+					this.OnidFincaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idParcela", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idParcela
+		{
+			get
+			{
+				return this._idParcela;
+			}
+			set
+			{
+				if ((this._idParcela != value))
+				{
+					this.OnidParcelaChanging(value);
+					this.SendPropertyChanging();
+					this._idParcela = value;
+					this.SendPropertyChanged("idParcela");
+					this.OnidParcelaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPuntCor", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idPuntCor
+		{
+			get
+			{
+				return this._idPuntCor;
+			}
+			set
+			{
+				if ((this._idPuntCor != value))
+				{
+					this.OnidPuntCorChanging(value);
+					this.SendPropertyChanging();
+					this._idPuntCor = value;
+					this.SendPropertyChanged("idPuntCor");
+					this.OnidPuntCorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_latitud", DbType="Float")]
+		public System.Nullable<double> latitud
+		{
+			get
+			{
+				return this._latitud;
+			}
+			set
+			{
+				if ((this._latitud != value))
+				{
+					this.OnlatitudChanging(value);
+					this.SendPropertyChanging();
+					this._latitud = value;
+					this.SendPropertyChanged("latitud");
+					this.OnlatitudChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longitud", DbType="Float")]
+		public System.Nullable<double> longitud
+		{
+			get
+			{
+				return this._longitud;
+			}
+			set
+			{
+				if ((this._longitud != value))
+				{
+					this.OnlongitudChanging(value);
+					this.SendPropertyChanging();
+					this._longitud = value;
+					this.SendPropertyChanged("longitud");
+					this.OnlongitudChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCoordenadesFincaParcela_tblAnaliticaFincaParcela", Storage="_tblAnaliticaFincaParcela", ThisKey="idParcela", OtherKey="idParcela")]
+		public EntitySet<tblAnaliticaFincaParcela> tblAnaliticaFincaParcela
+		{
+			get
+			{
+				return this._tblAnaliticaFincaParcela;
+			}
+			set
+			{
+				this._tblAnaliticaFincaParcela.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblAnaliticaFincaParcela(tblAnaliticaFincaParcela entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCoordenadesFincaParcela = this;
+		}
+		
+		private void detach_tblAnaliticaFincaParcela(tblAnaliticaFincaParcela entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCoordenadesFincaParcela = null;
 		}
 	}
 }

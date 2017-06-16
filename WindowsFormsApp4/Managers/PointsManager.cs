@@ -16,6 +16,7 @@ namespace WindowsFormsApp4
         public PointsManager(GMapControl gmap)
         {
             gmap.Overlays.Add(overlay_markers);
+            gmap.Overlays.Add(overlay_finca);
             gmap.Overlays.Add(overlay_parcela);
         }
 
@@ -142,7 +143,11 @@ namespace WindowsFormsApp4
         public void ClearDraw()
         {
             if (_overlay != null)
+            {
                 _overlay.Polygons.Remove(polygon);
+                _overlay.Markers.Remove(text_marker);
+            }
+
         }
 
         public void Draw()
@@ -151,6 +156,25 @@ namespace WindowsFormsApp4
             {
                 _overlay.Polygons.Add(polygon);
             }
+
+            if(_overlay != null && !_overlay.Markers.Contains(text_marker))
+            {
+                _overlay.Markers.Add(text_marker);
+            }
+        }
+
+        public void ClearPoints()
+        {
+            ClearDraw();
+            polygon = null;
+            text_marker = null;
+        }
+
+        public bool HasPoints()
+        {
+            if (polygon != null)
+                return true;
+            return false;
         }
 
         public PointLatLng GetCenterPos()
@@ -188,11 +212,24 @@ namespace WindowsFormsApp4
 
         public tblParceles GetTbl() { return _tbl; }
 
+        public void AddCoordenatesTlb(tblCoordenadesFincaParcela coor)
+        {
+            _coordenates_tbl.Add(coor);
+        }
+
+        public void ClearCoordenatesTlb()
+        {
+            _coordenates_tbl.Clear();
+        }
+
+        public List<tblCoordenadesFincaParcela> GetCoordenatesTbl() { return _coordenates_tbl; }
+
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
         GMapMarker text_marker = null;
         PointLatLng center_pos;
         tblParceles _tbl = null;
+        List<tblCoordenadesFincaParcela> _coordenates_tbl = new List<tblCoordenadesFincaParcela>();
     }
 
     public class Marcador

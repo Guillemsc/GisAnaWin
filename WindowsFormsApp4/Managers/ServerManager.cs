@@ -55,6 +55,32 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public tblCoordenadesFincaParcela AddCoordenades(int id_parcela, double lat, double lon, string codigo_empresa, int id_finca, int id_punt_cor)
+        {
+            tblCoordenadesFincaParcela ret = new tblCoordenadesFincaParcela();
+
+            ret.idParcela = id_parcela;
+            ret.latitud = lat;
+            ret.longitud = lon;
+            ret.CodigoEmpresa = codigo_empresa;
+            ret.idFinca = id_finca;
+            ret.idPuntCor = id_punt_cor;
+
+            servidor.tblCoordenadesFincaParcela.InsertOnSubmit(ret);
+
+            return ret;
+        }
+
+        public void DeleteCoordenades(tblCoordenadesFincaParcela coordenates)
+        {
+            servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);
+        }
+
+        public void SubmitChanges()
+        {
+            servidor.SubmitChanges();
+        }
+
         private DataClasses1DataContext servidor = null;
     }
 }
