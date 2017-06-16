@@ -69,8 +69,6 @@ namespace WindowsFormsApp4
         public GMapOverlay overlay_parcela = new GMapOverlay("parceles");
         public GMapOverlay overlay_finca = new GMapOverlay("finca");
 
-        Finca finca = null;
-
         List<Marcador> tmp_marcadors = new List<Marcador>();
         List<Parcela> tmp_parceles = new List<Parcela>();
 
@@ -90,68 +88,8 @@ namespace WindowsFormsApp4
             return _tbl.Nom1;
         }
 
-        public void AfegeixParcela(Parcela parcela)
-        {
-            parceles.Add(parcela);
-        }
-
-        public void ClearDraw()
-        {
-            for (int i = 0; i < parceles.Count; i++)
-            {
-                parceles[i].ClearDraw();
-
-                if (_overlay != null)
-                    _overlay.Polygons.Remove(polygon);
-
-            }
-        }
-
-        public Parcela GetParcelaPerID(int id)
-        {
-            Parcela ret = null;
-
-            for (int i = 0; i < parceles.Count; i++)
-            {
-                if (parceles[i].GetID() == id)
-                {
-                    ret = parceles[i];
-                    break;
-                }
-            }
-
-            return ret;
-        }
-
         public tblFinques GetTbl() { return _tbl; }
 
-        public void Draw()
-        {
-            for (int i = 0; i < parceles.Count; i++)
-            {
-                parceles[i].Draw();
-            }
-
-            if (_overlay != null && !_overlay.Polygons.Contains(polygon))
-            {
-                _overlay.Polygons.Add(polygon);
-            }
-        }
-
-        public void EliminaParcela(Parcela parcela)
-        {
-            for (int i = 0; i < parceles.Count; i++)
-            {
-                if (parceles[i] == parcela)
-                {
-                    parceles[i].ClearDraw();
-                    parceles.Remove(parcela);
-                    break;
-                }
-            }
-        }
-
-        public List<Parcela> parceles = new List<Parcela>();
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         public Parcela parcela_actual = null;
@@ -160,10 +98,29 @@ namespace WindowsFormsApp4
 
     public class Parcela
     {
-        public Parcela(List<Marcador> marcadors, GMapOverlay overlay, int id, string descripcio = "")
+        public Parcela(GMapOverlay overlay, tblParceles parcela)
         {
-            _descripcio = descripcio;
-            _id = id;
+            _overlay = overlay;
+            _tbl = parcela;
+        }
+
+        public override string ToString()
+        {
+            return _tbl.Nom;
+        }
+
+        public void SetColor(Brush fons, Pen linea)
+        {
+            if (polygon != null)
+            {
+                polygon.Fill = fons;
+                polygon.Stroke = linea;
+            }
+        }
+
+        public void AddMarcadors(List<Marcador> marcadors)
+        {
+            ClearDraw();
 
             List<PointLatLng> points = new List<PointLatLng>();
 
@@ -172,29 +129,14 @@ namespace WindowsFormsApp4
                 points.Add(marcadors[i].GetPos());
             }
 
-            polygon = new GMapPolygon(points, _descripcio);
+            polygon = new GMapPolygon(points, _tbl.Nom);
 
             center_pos = (CalculateCenterOfPolygon(points));
             text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
             text_marker.ToolTipMode = MarkerTooltipMode.Always;
-            overlay.Markers.Add(text_marker);
+            _overlay.Markers.Add(text_marker);
 
-            _overlay = overlay;
             Draw();
-        }
-
-        public string GetDescripcio() { return _descripcio; }
-        public int GetID() { return _id; }
-        public void SetDescripcio(string descripcio)
-        {
-            _descripcio = descripcio;
-            polygon.Name = descripcio;
-        }
-
-        public void SetColor(Brush fons, Pen linea)
-        {
-            polygon.Fill = fons;
-            polygon.Stroke = linea;
         }
 
         public void ClearDraw()
@@ -214,11 +156,6 @@ namespace WindowsFormsApp4
         public PointLatLng GetCenterPos()
         {
             return center_pos;
-        }
-
-        public void Add()
-        {
-            _overlay.Polygons.Add(polygon);
         }
 
         public void SetText(string text)
@@ -249,12 +186,13 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        private string _descripcio;
+        public tblParceles GetTbl() { return _tbl; }
+
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
-        private int _id = 0;
         GMapMarker text_marker = null;
         PointLatLng center_pos;
+        tblParceles _tbl = null;
     }
 
     public class Marcador

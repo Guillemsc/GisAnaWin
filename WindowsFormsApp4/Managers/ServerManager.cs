@@ -35,6 +35,26 @@ namespace WindowsFormsApp4
             return ret;    
         }
 
+        public List<tblParceles> GetParceles()
+        {
+            List<tblParceles> ret = new List<tblParceles>();
+
+            foreach (var prov in servidor.tblParceles)
+                ret.Add(prov);
+
+            return ret;
+        }
+
+        public List<tblTipoUva> GetVarietats()
+        {
+            List<tblTipoUva> ret = new List<tblTipoUva>();
+
+            foreach (var prov in servidor.tblTipoUva)
+                ret.Add(prov);
+
+            return ret;
+        }
+
         private DataClasses1DataContext servidor = null;
     }
 }

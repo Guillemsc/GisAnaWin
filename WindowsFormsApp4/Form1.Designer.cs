@@ -94,8 +94,11 @@ namespace WindowsFormsApp4
             LoadUI();
 
             ActualitzaPropietarisDesDeServidor();
-
             ActualitzaFinquesDesDeServidor();
+            ActualitzaParcelesDesDeServidor();
+            ActualitzaVarietatsDesDeServidor();
+
+            ActualitzaLlistaParceles();
 
             UpdateLatLon();
         }
@@ -170,20 +173,33 @@ namespace WindowsFormsApp4
                 nom_finca_panel.AddElement(finca_nom_text);
 
 
-                UI_Text varietat_text = new UI_Text("varietat_text", new Point(15, 140), 193, 40, "Varietat: ");
+                UI_Text varietat_text = new UI_Text("varietat_text", new Point(15, 135), 193, 40, "Varietat: ");
                 varietat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(varietat_text);
 
-                UI_Panel nom_varietat_panel = new UI_Panel("nom_varietat_panel", new Point(18, 159), 165, 23);
+                UI_Panel nom_varietat_panel = new UI_Panel("nom_varietat_panel", new Point(18, 154), 165, 23);
                 nom_varietat_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_varietat_panel);
 
-                UI_Button open_varietat_search_button = new UI_Button("open_varietat_search_button", new Point(190, 158), 26, 25, "...");
+                UI_Button open_varietat_search_button = new UI_Button("open_varietat_search_button", new Point(190, 153), 26, 25, "...");
                 open_varietat_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioVarietat);
                 main_win.AddElement(open_varietat_search_button);
 
                 UI_Text varietat_nom_text = new UI_Text("varietat_nom_text", new Point(4, 5), 200, 30, "No hi ha varietat seleccionada");
                 nom_varietat_panel.AddElement(varietat_nom_text);
+
+
+                UI_Button neteja_seleccions = new UI_Button("neteja_seleccions", new Point(16, 200), 200, 23, "Neteja");
+                neteja_seleccions.GetElement().Click += new System.EventHandler(this.NetejaSeleccions);
+                main_win.AddElement(neteja_seleccions);
+
+
+                UI_Text llista_finques_text = new UI_Text("llista_finques_text", new Point(15, 230), 200, 30, "Parceles:");
+                main_win.AddElement(llista_finques_text);
+
+                UI_Panel llista_finques_panel = new UI_Panel("llista_finques_panel", new Point(15, 250), 200, 70);
+                llista_finques_panel.SetColor(Color.Cornsilk);
+                main_win.AddElement(llista_finques_panel);
             }
             ui_manager.AddUIWindow(main_win);
 
@@ -230,19 +246,19 @@ namespace WindowsFormsApp4
             // Finestra seleccio varietat
             seleccio_varietat_win = new UI_Window("seleccio_varietat_win", this);
             {
-                UI_Panel seleccio_varietat_panel = new UI_Panel("seleccio_varietat_panel", new Point(250, 160), 280, 250);
+                UI_Panel seleccio_varietat_panel = new UI_Panel("seleccio_varietat_panel", new Point(250, 145), 350, 50);
                 seleccio_varietat_panel.SetColor(Color.Cornsilk);
-                seleccio_varietat_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                seleccio_varietat_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_varietat_win.AddElement(seleccio_varietat_panel);
 
-                UI_Panel seleccio_varietat_noms_panel = new UI_Panel("seleccio_varietat_noms_panel", new Point(15, 40), 250, 200);
-                seleccio_varietat_noms_panel.SetColor(Color.Cornsilk);
-                seleccio_varietat_noms_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                seleccio_varietat_panel.AddElement(seleccio_varietat_noms_panel);
+                UI_ComboBox seleccio_varietat_noms_combobox = new UI_ComboBox("seleccio_varietat_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_varietat_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_varietat_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_varietat_panel.AddElement(seleccio_varietat_noms_combobox);
 
-                UI_TextInput seleccio_varietat_text_input = new UI_TextInput("seleccio_varietat_text_input", new Point(15, 15), 250, 30);
-                seleccio_varietat_panel.AddElement(seleccio_varietat_text_input);
-                //seleccio_varietat_text_input.GetElement().TextChanged += new System.EventHandler(this.SeleccioPropietariTextInputChanged);
+                UI_Button seleccio_varietat_guarda_button = new UI_Button("seleccio_varietat_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_varietat_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioVarietatGuarda);
+                seleccio_varietat_panel.AddElement(seleccio_varietat_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_varietat_win);
             seleccio_varietat_win.SetEnabled(false);

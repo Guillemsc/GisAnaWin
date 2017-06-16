@@ -40,13 +40,43 @@ namespace WindowsFormsApp4
             finques.Clear();
         }
 
+        public List<Parcela> GetParceles()
+        {
+            return parceles;
+        }
+
+        public void AfegirParcela(Parcela par)
+        {
+            parceles.Add(par);
+        }
+
+        public void EliminaParceles()
+        {
+            parceles.Clear();
+        }
+
+        public List<Varietat> GetVarietats()
+        {
+            return varietats;
+        }
+
+        public void AfegirVarietat(Varietat varietat)
+        {
+            varietats.Add(varietat);
+        }
+
+        public void EliminaVarietats()
+        {
+            varietats.Clear();
+        }
+
         public Propietari TrobaPropietariPerID(string id)
         {
             Propietari ret = null;
 
-            for(int i = 0; i < propietaris.Count; i++)
+            for (int i = 0; i < propietaris.Count; i++)
             {
-                if(propietaris[i].GetTbl().idProveedor == id)
+                if (propietaris[i].GetTbl().idProveedor == id)
                 {
                     ret = propietaris[i];
                     break;
@@ -58,12 +88,14 @@ namespace WindowsFormsApp4
         }
 
         List<Propietari> propietaris = new List<Propietari>();
-        List<Finca>      finques = new List<Finca>();
-
-        public List<Label> propietaris_texts = new List<Label>();
+        List<Finca> finques = new List<Finca>();
+        List<Parcela> parceles = new List<Parcela>();
+        List<Varietat> varietats = new List<Varietat>();
 
         public Propietari propietari_actual = null;
-        public Finca      finca_actual = null;
+        public Varietat varietat_actual = null;
+
+        public List<Label> propietaris_texts = new List<Label>();
 
         public bool can_point = false;
     }
@@ -83,22 +115,6 @@ namespace WindowsFormsApp4
         public void AfegirFinca(Finca finca)
         {
             finques.Add(finca);
-        }
-
-        public void ClearDraw()
-        {
-            for (int i = 0; i < finques.Count(); i++)
-            {
-                finques[i].ClearDraw();
-            }
-        }
-
-        public void Draw()
-        {
-            for (int i = 0; i < finques.Count(); i++)
-            {
-                finques[i].Draw();
-            }
         }
 
         public Finca GetFincaPerID(string id)
@@ -144,6 +160,25 @@ namespace WindowsFormsApp4
         public tblProveedores GetTbl() { return _tbl; }
 
         public List<Finca> finques = new List<Finca>();
+        public Finca finca_actual = null;
+
         public tblProveedores _tbl = null;
+    }
+
+    public class Varietat    
+    {
+        public Varietat(tblTipoUva varietat)
+        {
+            _tbl = varietat;
+        }
+
+        public override string ToString()
+        {
+            return _tbl.Nombre;
+        }
+
+        public tblTipoUva GetTbl() { return _tbl; }
+
+        private tblTipoUva _tbl;
     }
 }
