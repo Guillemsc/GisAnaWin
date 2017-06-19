@@ -215,6 +215,10 @@ namespace WindowsFormsApp4
                     editor_parceles_elimina_button = new UI_Button("editor_parceles_elimina_button", new Point(110, 3), 100, 25, "Elimina parcela");
                     editor_parceles_elimina_button.GetElement().Click += new System.EventHandler(this.EliminaParcela);
                     editor_parceles_panel.AddElement(editor_parceles_elimina_button);
+
+                    editor_parceles_guarda_button = new UI_Button("editor_parceles_guarda_button", new Point(220, 3), 100, 25, "Guarda canvis");
+                    editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
+                    editor_parceles_panel.AddElement(editor_parceles_guarda_button);
                 }
                 editor_parceles_panel.SetEnabled(false);
             }
@@ -401,6 +405,7 @@ namespace WindowsFormsApp4
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;
         UI_Button editor_parceles_elimina_button = null;
+        UI_Button editor_parceles_guarda_button = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

@@ -192,8 +192,9 @@ namespace WindowsFormsApp4
 
                 editor_parceles_panel.SetEnabled(true);
                 editor_parceles_crea_button.SetEnabled(false);
+                editor_parceles_guarda_button.SetEnabled(true);
 
-                if(propietaris_manager.propietari_actual.finca_actual.parcela_actual.HasPoints())
+                if (propietaris_manager.propietari_actual.finca_actual.parcela_actual.HasPoints())
                     editor_parceles_elimina_button.SetEnabled(true);
                 else
                     editor_parceles_elimina_button.SetEnabled(false);
@@ -204,7 +205,7 @@ namespace WindowsFormsApp4
 
         public void CreaParcela(object sender, EventArgs e)
         {
-            propietaris_manager.propietari_actual.finca_actual.parcela_actual.AddMarcadors(point_manager.GetTmpMarcadors());
+            List<tblCoordenadesFincaParcela> coor_list = new List<tblCoordenadesFincaParcela>();
 
             for(int i = 0; i < point_manager.GetTmpMarcadors().Count; i++)
             {
@@ -215,7 +216,10 @@ namespace WindowsFormsApp4
                 int finca_di = propietaris_manager.propietari_actual.finca_actual.GetTbl().idFinca;
 
                 tblCoordenadesFincaParcela coor = server_manager.AddCoordenades(parcela_id, lat, lon, codigo_empresa, finca_di, i);
+                coor_list.Add(coor);
             }
+
+            propietaris_manager.propietari_actual.finca_actual.parcela_actual.AddCoordenades(coor_list);
 
             point_manager.NetejaTmpMarcadors();
 
@@ -226,8 +230,20 @@ namespace WindowsFormsApp4
 
         public void EliminaParcela(object sender, EventArgs e)
         {
+            List<tblCoordenadesFincaParcela> c = propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetCoordenades();
+
+            for(int i = 0; i < c.Count; i++)
+            {
+                server_manager.DeleteCoordenades(c[i]);
+            }
+
             propietaris_manager.propietari_actual.finca_actual.parcela_actual.ClearPoints();
             editor_parceles_elimina_button.SetEnabled(false);
+        }
+
+        public void GuardaCanvis(object sender, EventArgs e)
+        {
+            server_manager.SubmitChanges();
         }
 
         // -------------------------
@@ -272,6 +288,27 @@ namespace WindowsFormsApp4
             {
                 Parcela p = new Parcela(point_manager.overlay_parcela, parceles[i]);
                 propietaris_manager.AfegirParcela(p);
+            }
+
+            ActualitzaCoordenadesDesDeServidor(propietaris_manager.GetParceles());
+        }
+
+        public void ActualitzaCoordenadesDesDeServidor(List<Parcela> parceles)
+        {
+            List<tblCoordenadesFincaParcela> coordenades = server_manager.GetCoordenades();
+
+            propietaris_manager.EliminaCoordenades();
+
+            for (int i = 0; i < coordenades.Count; i++)
+            {
+                propietaris_manager.AfegirCoordenada(coordenades[i]);
+            }
+
+            for(int z = 0; z < parceles.Count; z++)
+            {
+                Parcela p_actual = parceles[z];
+                List<tblCoordenadesFincaParcela> c = GetCoordenadesPerParcela(p_actual);
+                p_actual.AddCoordenades(c);
             }
         }
 
@@ -435,6 +472,23 @@ namespace WindowsFormsApp4
                 {
                     ret = parcela_actual;
                     break;
+                }
+            }
+
+            return ret;
+        }
+
+        public List<tblCoordenadesFincaParcela> GetCoordenadesPerParcela(Parcela pa)
+        {
+            List<tblCoordenadesFincaParcela> ret = new List<tblCoordenadesFincaParcela>();
+
+            List<tblCoordenadesFincaParcela> coordenades = propietaris_manager.GetCoordenades();
+
+            for(int i = 0; i<coordenades.Count; i++)
+            {
+                if(coordenades[i].idParcela == pa.GetTbl().idParcela)
+                {
+                    ret.Add(coordenades[i]);
                 }
             }
 

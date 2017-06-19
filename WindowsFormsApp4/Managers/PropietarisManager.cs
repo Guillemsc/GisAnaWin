@@ -70,6 +70,21 @@ namespace WindowsFormsApp4
             varietats.Clear();
         }
 
+        public List<tblCoordenadesFincaParcela> GetCoordenades()
+        {
+            return coordenades;
+        }
+
+        public void AfegirCoordenada(tblCoordenadesFincaParcela coor)
+        {
+            coordenades.Add(coor);
+        }
+
+        public void EliminaCoordenades()
+        {
+            coordenades.Clear();
+        }
+             
         public Propietari TrobaPropietariPerID(string id)
         {
             Propietari ret = null;
@@ -81,7 +96,6 @@ namespace WindowsFormsApp4
                     ret = propietaris[i];
                     break;
                 }
-
             }
 
             return ret;
@@ -91,6 +105,7 @@ namespace WindowsFormsApp4
         List<Finca> finques = new List<Finca>();
         List<Parcela> parceles = new List<Parcela>();
         List<Varietat> varietats = new List<Varietat>();
+        List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 
         public Propietari propietari_actual = null;
         public Varietat varietat_actual = null;

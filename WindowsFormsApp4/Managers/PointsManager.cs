@@ -119,15 +119,21 @@ namespace WindowsFormsApp4
             }
         }
 
-        public void AddMarcadors(List<Marcador> marcadors)
+        public void AddCoordenades(List<tblCoordenadesFincaParcela> marcadors)
         {
+            if (marcadors.Count() <= 0)
+                return;
+
             ClearDraw();
 
             List<PointLatLng> points = new List<PointLatLng>();
 
             for (int i = 0; i < marcadors.Count; i++)
             {
-                points.Add(marcadors[i].GetPos());
+                AddCoordenatesTlb(marcadors[i]);
+
+                PointLatLng point = new PointLatLng((double)marcadors[i].latitud, (double)marcadors[i].longitud);
+                points.Add(point);
             }
 
             polygon = new GMapPolygon(points, _tbl.Nom);
@@ -168,6 +174,7 @@ namespace WindowsFormsApp4
             ClearDraw();
             polygon = null;
             text_marker = null;
+            ClearCoordenatesTlb();
         }
 
         public bool HasPoints()
@@ -212,7 +219,7 @@ namespace WindowsFormsApp4
 
         public tblParceles GetTbl() { return _tbl; }
 
-        public void AddCoordenatesTlb(tblCoordenadesFincaParcela coor)
+        private void AddCoordenatesTlb(tblCoordenadesFincaParcela coor)
         {
             _coordenates_tbl.Add(coor);
         }
@@ -220,6 +227,11 @@ namespace WindowsFormsApp4
         public void ClearCoordenatesTlb()
         {
             _coordenates_tbl.Clear();
+        }
+
+        public List<tblCoordenadesFincaParcela> GetCoordenades()
+        {
+            return _coordenates_tbl;
         }
 
         public List<tblCoordenadesFincaParcela> GetCoordenatesTbl() { return _coordenates_tbl; }

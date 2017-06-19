@@ -45,6 +45,16 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblCoordenadesFincaParcela> GetCoordenades()
+        {
+            List<tblCoordenadesFincaParcela> ret = new List<tblCoordenadesFincaParcela>();
+
+            foreach (var prov in servidor.tblCoordenadesFincaParcela)
+                ret.Add(prov);
+
+            return ret;
+        }
+
         public List<tblTipoUva> GetVarietats()
         {
             List<tblTipoUva> ret = new List<tblTipoUva>();
