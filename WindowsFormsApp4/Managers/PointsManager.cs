@@ -137,6 +137,7 @@ namespace WindowsFormsApp4
             }
 
             polygon = new GMapPolygon(points, _tbl.Nom);
+            polygon.IsHitTestVisible = true;
 
             center_pos = (CalculateCenterOfPolygon(points));
             text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
@@ -235,6 +236,11 @@ namespace WindowsFormsApp4
         }
 
         public List<tblCoordenadesFincaParcela> GetCoordenatesTbl() { return _coordenates_tbl; }
+
+        public GMapPolygon GetPolygon()
+        {
+            return polygon;
+        }
 
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;

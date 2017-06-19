@@ -195,7 +195,10 @@ namespace WindowsFormsApp4
                 editor_parceles_guarda_button.SetEnabled(true);
 
                 if (propietaris_manager.propietari_actual.finca_actual.parcela_actual.HasPoints())
+                {
                     editor_parceles_elimina_button.SetEnabled(true);
+                    gmap.Position = propietaris_manager.propietari_actual.finca_actual.parcela_actual.GetCenterPos();
+                }
                 else
                     editor_parceles_elimina_button.SetEnabled(false);
 
@@ -226,6 +229,8 @@ namespace WindowsFormsApp4
             editor_parceles_crea_button.SetEnabled(false);
 
             editor_parceles_elimina_button.SetEnabled(true);
+
+            propietaris_manager.can_point = false;
         }
 
         public void EliminaParcela(object sender, EventArgs e)
@@ -239,6 +244,8 @@ namespace WindowsFormsApp4
 
             propietaris_manager.propietari_actual.finca_actual.parcela_actual.ClearPoints();
             editor_parceles_elimina_button.SetEnabled(false);
+
+            propietaris_manager.can_point = true;
         }
 
         public void GuardaCanvis(object sender, EventArgs e)
@@ -495,6 +502,24 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public Parcela GetParcelaPolygon(GMapPolygon item)
+        {
+            Parcela ret = null;
+
+            List<Parcela> parceles = propietaris_manager.GetParceles();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if(parceles[i].GetPolygon() == item)
+                {
+                    ret = parceles[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
         // -------------------------
 
         // -------------------------
@@ -546,6 +571,77 @@ namespace WindowsFormsApp4
                         editor_parceles_crea_button.SetEnabled(false);
                 }
             }
+        }
+
+        private void gmap_PoligonEnter(GMapPolygon item)
+        {
+            propietaris_manager.curr_list_box = null;
+
+            Parcela p = GetParcelaPolygon(item);
+
+            if(p != null)
+            {
+                string nom = GetParcelaFinca(p).GetTbl().Nom1;
+                string propietari = GetParcelaPropietari(p).GetTbl().Nombre;
+                string varietat = GetVarietatParcela(p).GetTbl().Nombre;
+                string vitivin = p.GetTbl().idParcelaVinicola;
+                string any_plant = p.GetTbl().AnyPlantacio.ToString();
+                string n_plantes = p.GetTbl().NumPlantes.ToString();
+                string ha = p.GetTbl().Ha.ToString();
+                string poligon = p.GetTbl().Poligon.Replace(" ", "");
+                string parcela = p.GetTbl().Parcela.Replace(" ", "");
+
+                GPoint gpos = gmap.FromLatLngToLocal(p.GetCenterPos());
+                Point pos = new Point((int)gpos.X, (int)gpos.Y);
+
+                propietaris_manager.curr_list_box = new ListBox();
+                propietaris_manager.curr_list_box.Location = pos;
+                propietaris_manager.curr_list_box.Width = 190;
+                propietaris_manager.curr_list_box.Height = 110;
+                propietaris_manager.curr_list_box.Show();
+
+                propietaris_manager.curr_list_box.Items.Add("Finca: " + nom);
+                propietaris_manager.curr_list_box.Items.Add("Propietari: " + propietari);
+                propietaris_manager.curr_list_box.Items.Add("Varietat: " + varietat);
+                propietaris_manager.curr_list_box.Items.Add("Parcela vitivinicola: " + vitivin);
+                propietaris_manager.curr_list_box.Items.Add("Any: " + any_plant);
+                propietaris_manager.curr_list_box.Items.Add("Nº Plant: " + n_plantes);
+                propietaris_manager.curr_list_box.Items.Add("Ha: " + ha);
+                propietaris_manager.curr_list_box.Items.Add(poligon + "/" + parcela);
+
+                this.Controls.Add(propietaris_manager.curr_list_box);
+                propietaris_manager.curr_list_box.BringToFront();
+
+                propietaris_manager.can_point_back = propietaris_manager.can_point;
+                propietaris_manager.can_point = false;
+            }
+        }
+
+        private void gmap_PoligonOut(GMapPolygon item)
+        {
+            propietaris_manager.curr_list_box.Hide();
+            this.Controls.Remove(propietaris_manager.curr_list_box);
+            propietaris_manager.curr_list_box = null;
+
+            propietaris_manager.can_point = propietaris_manager.can_point_back;
+        }
+
+        private void gmap_PoligonClick(GMapPolygon item, MouseEventArgs e)
+        {
+            Parcela par = GetParcelaPolygon(item);
+            Finca fin = GetParcelaFinca(par);
+            Propietari prop = GetParcelaPropietari(par);
+
+            propietaris_manager.propietari_actual = prop;
+            propietaris_manager.propietari_actual.finca_actual = fin;
+
+            UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
+            t.SetText(prop.GetTbl().Nombre);
+
+            UI_Text t2 = ui_manager.GetElement("finca_nom_text") as UI_Text;
+            t2.SetText(fin.GetTbl().Nom1);
+
+            ActualitzaLlistaParceles();
         }
 
         // Actualitza la latitud i la longitud quan es mou la posicio del mapa

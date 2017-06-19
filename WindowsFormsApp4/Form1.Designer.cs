@@ -60,6 +60,9 @@ namespace WindowsFormsApp4
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 13D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
+            this.gmap.OnPolygonEnter += new GMap.NET.WindowsForms.PolygonEnter(this.gmap_PoligonEnter);
+            this.gmap.OnPolygonLeave += new GMap.NET.WindowsForms.PolygonLeave(this.gmap_PoligonOut);
+            this.gmap.OnPolygonClick += new GMap.NET.WindowsForms.PolygonClick(this.gmap_PoligonClick);
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
             this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
@@ -284,109 +287,7 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_varietat_win);
             seleccio_varietat_win.SetEnabled(false);
 
-            // Finestra per a afegir un propietari
-            //afegir_propietari_win = new UI_Window("afegir_propietari_window", this);
-            //{
-            //    UI_Panel p2 = new UI_Panel("afegir_propietaris_panel", new Point(230, 13), 400, 60);
-            //    afegir_propietari_win.AddElement(p2);
-            //    p2.GetElement().BringToFront();
-            //    {
-            //        UI_Text t2 = new UI_Text("nom_propietaris_text", new Point(5, 10), 20, 40, "Nom: ");
-            //        p2.AddElement(t2);
 
-            //        UI_TextInput ti = new UI_TextInput("nom_propietari_text_input", new Point(40, 7), 300, 30);
-            //        p2.AddElement(ti);
-
-            //        UI_Button b2 = new UI_Button("afegir_propietari_button", new Point(40, 30), 100, 25, "Afegir Propietari");
-            //        b2.GetElement().Click += new System.EventHandler(this.AfegirPropietari);
-            //        p2.AddElement(b2);
-
-            //        UI_Button afegir_propietari_exit_button = new UI_Button("afegir_propietari_exit_button", new Point(375, 5), 19, 19, "X");
-            //        afegir_propietari_exit_button.GetElement().Click += new System.EventHandler(this.TancarAfegeixPropietari);
-            //        p2.AddElement(afegir_propietari_exit_button);
-
-            //    }
-            //}
-            //afegir_propietari_win.SetEnabled(false);
-            //ui_manager.AddUIWindow(afegir_propietari_win);
-
-            // Finestra del propietari
-            //propietari_info_win = new UI_Window("propietari_info_win", this);
-            //{
-            //    UI_Text t3 = new UI_Text("nom_propietari", new Point(5, 10), 20, 100);
-            //    propietari_info_win.AddElement(t3);
-
-            //    UI_Button b3 = new UI_Button("afegeix_finca", new Point(15, 30), 193, 28, "Afegeix Finca");
-            //    b3.GetElement().Click += new System.EventHandler(this.AfegeixFinca);
-            //    propietari_info_win.AddElement(b3);
-
-            //    UI_Text t4 = new UI_Text("finca_text", new Point(15, 60), 193, 40, "Finques: ");
-            //    propietari_info_win.AddElement(t4);
-
-            //    UI_Panel p3 = new UI_Panel("finques_panel", new Point(15, 80), 193, 200);
-            //    p3.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top);
-            //    propietari_info_win.AddElement(p3);
-
-            //    UI_Button b4 = new UI_Button("crea_parcela", new Point(15, 300), 193, 28, "Crea Parcela");
-            //    b4.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-            //    b4.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
-            //    propietari_info_win.AddElement(b4);
-            //    b4.SetEnabled(false);
-
-            //    UI_Button elimina_parcela_button = new UI_Button("elimina_parcela_button", new Point(15, 300), 193, 28, "Elimina Parcela");
-            //    elimina_parcela_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-            //    elimina_parcela_button.GetElement().Click += new System.EventHandler(this.AfegeixParcela);
-            //    propietari_info_win.AddElement(elimina_parcela_button);
-            //    elimina_parcela_button.SetEnabled(false);
-
-            //    UI_Button b5 = new UI_Button("canvia_propietari", new Point(15, 360), 193, 28, "Canvia de Propietari");
-            //    b5.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-            //    b5.GetElement().Click += new System.EventHandler(this.CanviaPropietari);
-            //    propietari_info_win.AddElement(b5);
-            //}
-            //ui_manager.AddUIWindow(propietari_info_win);
-            //propietari_info_win.SetEnabled(false);
-
-            // Finestra per a afegir una finca
-            //afegir_finca_win = new UI_Window("afegir_finca_win", this);
-            //{
-            //    UI_Panel p4 = new UI_Panel("finca_panel", new Point(230, 13), 500, 60);
-            //    afegir_finca_win.AddElement(p4);
-            //    p4.GetElement().BringToFront();
-            //    {
-            //        UI_Text tex = new UI_Text("nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
-            //        p4.AddElement(tex);
-
-            //        UI_TextInput ti2 = new UI_TextInput("nom_finca_text_input", new Point(80, 7), 300, 80);
-            //        p4.AddElement(ti2);
-
-            //        UI_Button b6 = new UI_Button("afegir_finca_button", new Point(80, 30), 130, 25, "Afegir Finca");
-            //        b6.GetElement().Click += new System.EventHandler(this.AfegirFinca);
-            //        p4.AddElement(b6);
-            //    }
-            //}
-            //ui_manager.AddUIWindow(afegir_finca_win);
-            //afegir_finca_win.SetEnabled(false);
-
-            //opcions_finca_win = new UI_Window("opcions_finca_win", this);
-            //{
-            //    UI_Panel opcions_finca_panel = new UI_Panel("opcions_finca_panel", new Point(230, 13), 500, 60);
-            //    opcions_finca_win.AddElement(opcions_finca_panel);
-            //    opcions_finca_panel.GetElement().BringToFront();
-            //    {
-            //        UI_Text opcions_nom_finca_text = new UI_Text("opcions_nom_finca_text", new Point(5, 10), 20, 40, "Nom finca:");
-            //        opcions_finca_panel.AddElement(opcions_nom_finca_text);
-
-            //        UI_TextInput opcions_nom_finca_text_input = new UI_TextInput("opcions_nom_finca_text_input", new Point(80, 7), 300, 80);
-            //        opcions_finca_panel.AddElement(opcions_nom_finca_text_input);
-
-            //        UI_Button actualitza_finca = new UI_Button("actualitza_finca", new Point(80, 30), 130, 25, "Actualitza Finca");
-            //        actualitza_finca.GetElement().Click += new System.EventHandler(this.ActualitzaFinca);
-            //        opcions_finca_panel.AddElement(actualitza_finca);
-            //    }
-            //}
-            //ui_manager.AddUIWindow(opcions_finca_win);
-            //opcions_finca_win.SetEnabled(false);
 
             gmap.SendToBack();
         }

@@ -25,8 +25,9 @@ namespace WindowsFormsApp4
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AnaWinCellerBatea")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
-		
-		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
+
+        private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
+
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();

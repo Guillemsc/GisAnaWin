@@ -112,7 +112,9 @@ namespace WindowsFormsApp4
 
         public List<Label> propietaris_texts = new List<Label>();
 
+        public bool can_point_back = false;
         public bool can_point = false;
+        public ListBox curr_list_box = null;
     }
 
     public class Propietari
