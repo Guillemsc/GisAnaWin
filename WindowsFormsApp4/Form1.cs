@@ -619,6 +619,7 @@ namespace WindowsFormsApp4
 
             propietaris_manager.propietari_actual = prop;
             propietaris_manager.propietari_actual.finca_actual = fin;
+            propietaris_manager.propietari_actual.finca_actual.parcela_actual = par;
 
             propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
