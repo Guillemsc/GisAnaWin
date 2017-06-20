@@ -15,54 +15,6 @@ namespace WindowsFormsApp4
             _control = control;
         }
 
-        public UI_Window GetUIWindow(string name)
-        {
-            UI_Window ret = null;
-
-            for (int i = 0; i < windows.Count; i++)
-            {
-                if (windows[i].GetName() == name)
-                {
-                    ret = windows[i];
-                    break;
-                }
-            }
-
-            return ret;
-        }
-
-        public UI_Element GetElement(string name)
-        {
-            UI_Element ret = null;
-
-            for (int i = 0; i < windows.Count; i++)
-            {
-                UI_Window curr_win = windows[i];
-
-                for (int y = 0; y < curr_win.elements.Count(); y++)
-                {
-                    if (curr_win.elements[y].GetName() == name)
-                    {
-                        ret = curr_win.elements[y];
-                        break;
-                    }
-
-                    if (curr_win.elements[y].GetTyp() == "panel")
-                    {
-                        UI_Panel panel = curr_win.elements[y] as UI_Panel;
-
-                        for (int z = 0; z < panel.elements.Count(); z++)
-                        {
-                            if (panel.elements[z].GetName() == name)
-                                return panel.elements[z];
-                        }
-                    }
-                }
-            }
-
-            return ret;
-        }
-
         public void AddUIWindow(UI_Window window)
         {
             windows.Add(window);
@@ -74,13 +26,10 @@ namespace WindowsFormsApp4
 
     public class UI_Window
     {
-        public UI_Window(string name, Control control)
+        public UI_Window(Control control)
         {
-            _name = name;
             _control = control;
         }
-
-        public string GetName() { return _name; }
 
         public void AddElement(UI_Element element)
         {
@@ -91,22 +40,6 @@ namespace WindowsFormsApp4
         public void RemoveElement(UI_Element element)
         {
             _control.Controls.Remove(element.GetElement());
-        }
-
-        public UI_Element GetElement(string name)
-        {
-            UI_Element ret = null;
-
-            for (int i = 0; i < elements.Count; i++)
-            {
-                if (elements[i].GetName() == name)
-                {
-                    ret = elements[i];
-                    break;
-                }
-            }
-
-            return ret;
         }
 
         public bool GetEnabled() { return enabled;}
@@ -121,7 +54,6 @@ namespace WindowsFormsApp4
             enabled = set;
         }
 
-        string _name;
         public List<UI_Element> elements = new List<UI_Element>();
         Control _control = null;
         bool enabled = true;
@@ -129,9 +61,8 @@ namespace WindowsFormsApp4
 
     public class UI_Element
     {
-        public UI_Element(string name, string type)
+        public UI_Element(string type)
         {
-            _name = name;
             _type = type;
         }
 
@@ -171,18 +102,15 @@ namespace WindowsFormsApp4
             _element.TabIndex = layer;
         }
 
-        public string GetName() { return _name; }
-
         public string GetTyp() { return _type; }
 
-        string _name;
         Control _element = null;
         string _type;
     }
 
     public class UI_Button : UI_Element
     {
-        public UI_Button(string name, Point pos, int w, int h, string text) : base(name, "button")
+        public UI_Button(Point pos, int w, int h, string text, string name = "") : base("button")
         {
             Button b = new Button();
             b.Name = name;
@@ -203,7 +131,7 @@ namespace WindowsFormsApp4
 
     public class UI_Panel : UI_Element
     {
-        public UI_Panel(string name, Point pos, int w, int h) : base(name, "panel")
+        public UI_Panel(Point pos, int w, int h, string name = "") : base("panel")
         {
             Panel p = new Panel();
             p.Name = name;
@@ -253,7 +181,7 @@ namespace WindowsFormsApp4
 
     public class UI_Text : UI_Element
     {
-        public UI_Text(string name, Point pos, int w, int h, string text = "") : base(name, "text")
+        public UI_Text(Point pos, int w, int h, string text = "", string name = "") : base("text")
         {
             Label l = new Label();
             l.Name = name;
@@ -282,7 +210,7 @@ namespace WindowsFormsApp4
 
     public class UI_TextInput : UI_Element
     {
-        public UI_TextInput(string name, Point pos, int w, int h, string text = "") : base(name, "text_input")
+        public UI_TextInput(Point pos, int w, int h, string text = "", string name = "") : base("text_input")
         {
             MaskedTextBox mt = new MaskedTextBox();
             mt.Name = name;
@@ -310,7 +238,7 @@ namespace WindowsFormsApp4
 
     public class UI_ComboBox : UI_Element
     {
-        public UI_ComboBox(string name, Point pos, int w, int h) : base (name, "combo")
+        public UI_ComboBox(Point pos, int w, int h, string name = "") : base ("combo")
         {
             ComboBox cb = new ComboBox();
             {

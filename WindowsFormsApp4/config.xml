@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Configuracion>
+  <ServidorPrograma>
+    <Id>AnaWinCellerBatea</Id>
+    <Server>(local)</Server>
+    <DataBase>AnaWinCellerBatea</DataBase>
+    <User>anawin</User>
+    <Password/>
+  </ServidorPrograma>
+</Configuracion>

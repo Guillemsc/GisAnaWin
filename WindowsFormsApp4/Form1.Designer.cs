@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Xml.Linq;
+using System.Configuration;
 
 namespace WindowsFormsApp4
 {
@@ -83,19 +85,38 @@ namespace WindowsFormsApp4
 
         override protected void OnLoad(EventArgs e)
         {
+            // Server config ---------------------
+            XDocument xdoc = XDocument.Load(AppDomain.CurrentDomain.BaseDirectory + "Config" + Environment.UserName + ".xml");
+            XElement connection = xdoc.Element("Configuracion").Element("ServidorPrograma");
+
+            string id = connection.Element("Id").Value;
+            string server = connection.Element("Server").Value;
+            string data_base = connection.Element("DataBase").Value;
+            string user = connection.Element("User").Value;
+            string pass = connection.Element("Password").Value;
+
+            UpdateConnectionConfig(server, data_base, user, pass);
+            // -----------------------------------
+
+            // Gmap ------------------------------
             gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
+            // -----------------------------------
 
+            // Managers --------------------------
             point_manager = new PointsManager(gmap);
             propietaris_manager = new PropietarisManager();
             ui_manager = new UIManager(this);
             id_manager = new IDManager();
             server_manager = new ServerManager();
+            // -----------------------------------
 
+            // UI --------------------------------
             LoadUI();
 
+            // Carrega info ----------------------
             ActualitzaPropietarisDesDeServidor();
             ActualitzaFinquesDesDeServidor();
             ActualitzaParcelesDesDeServidor();
@@ -104,6 +125,8 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParceles();
 
             UpdateLatLon();
+            // -----------------------------------
+
         }
 
         public void LoadUI()
@@ -111,30 +134,30 @@ namespace WindowsFormsApp4
             // UI
 
             // General Map UI Input
-            map_win = new UI_Window("map_win", this);
+            map_win = new UI_Window(this);
             {
-                text_input_lat = new UI_TextInput("cordenates_lat", new Point(8, 480), 100, 50);
+                text_input_lat = new UI_TextInput(new Point(8, 480), 100, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
 
-                text_input_lon = new UI_TextInput("cordenates_lon", new Point(115, 480), 100, 50);
+                text_input_lon = new UI_TextInput(new Point(115, 480), 100, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
-                UI_Button search_button = new UI_Button("search_button", new Point(7, 450), 50, 23, "Cerca");
+                search_button = new UI_Button(new Point(7, 450), 50, 23, "Cerca");
                 search_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button.GetElement().Click += new System.EventHandler(this.SearchLatLon);
                 map_win.AddElement(search_button);
 
-                UI_Text lat_text = new UI_Text("lat_text", new Point(8, 505), 193, 40, "Lat");
+                lat_text = new UI_Text(new Point(8, 505), 193, 40, "Lat");
                 lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lat_text);
 
-                UI_Text lon_text = new UI_Text("lon_text", new Point(115, 505), 193, 40, "Lon");
+                lon_text = new UI_Text(new Point(115, 505), 193, 40, "Lon");
                 lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lon_text);
 
-                UI_Button mapsat_button = new UI_Button("mapsat_button", new Point(690, 500), 100, 23, "Canvia a satel.lit");
+                mapsat_button = new UI_Button(new Point(690, 500), 100, 23, "Canvia a satel.lit");
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
@@ -142,84 +165,84 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(map_win);
 
             // Starting Window
-            main_win = new UI_Window("main_window", this);
+            main_win = new UI_Window(this);
             {
-                UI_Text propietaris_text = new UI_Text("propietaris_text", new Point(15, 15), 193, 40, "Propietari: ");
+                propietaris_text = new UI_Text(new Point(15, 15), 193, 40, "Propietari: ");
                 propietaris_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(propietaris_text);
 
-                UI_Panel nom_propietari_panel = new UI_Panel("nom_propietari_panel", new Point(18, 34), 165, 23);
+                nom_propietari_panel = new UI_Panel(new Point(18, 34), 165, 23);
                 nom_propietari_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_propietari_panel);
 
-                UI_Button open_propietari_search_button = new UI_Button("open_propietari_search_button", new Point(190, 33), 26, 25, "...");
+                open_propietari_search_button = new UI_Button(new Point(190, 33), 26, 25, "...");
                 open_propietari_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioPropietari);
                 main_win.AddElement(open_propietari_search_button);
 
-                UI_Text propietari_nom_text = new UI_Text("propietari_nom_text", new Point(4, 5), 200, 30, "No hi ha propietari seleccionat");
+                propietari_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha propietari seleccionat");
                 nom_propietari_panel.AddElement(propietari_nom_text);
 
 
-                UI_Text finques_text = new UI_Text("finques_text", new Point(15, 75), 193, 40, "Finca: ");
+                finques_text = new UI_Text(new Point(15, 75), 193, 40, "Finca: ");
                 finques_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(finques_text);
 
-                UI_Panel nom_finca_panel = new UI_Panel("nom_finca_panel", new Point(18, 94), 165, 23);
+                nom_finca_panel = new UI_Panel(new Point(18, 94), 165, 23);
                 nom_finca_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_finca_panel);
 
-                UI_Button open_finca_search_button = new UI_Button("open_finca_search_button", new Point(190, 93), 26, 25, "...");
+                open_finca_search_button = new UI_Button(new Point(190, 93), 26, 25, "...");
                 open_finca_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioFinca);
                 main_win.AddElement(open_finca_search_button);
 
-                UI_Text finca_nom_text = new UI_Text("finca_nom_text", new Point(4, 5), 200, 30, "No hi ha finca seleccionada");
+                finca_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha finca seleccionada");
                 nom_finca_panel.AddElement(finca_nom_text);
 
 
-                UI_Text varietat_text = new UI_Text("varietat_text", new Point(15, 135), 193, 40, "Varietat: ");
+                varietat_text = new UI_Text(new Point(15, 135), 193, 40, "Varietat: ");
                 varietat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(varietat_text);
 
-                UI_Panel nom_varietat_panel = new UI_Panel("nom_varietat_panel", new Point(18, 154), 165, 23);
+                nom_varietat_panel = new UI_Panel(new Point(18, 154), 165, 23);
                 nom_varietat_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_varietat_panel);
 
-                UI_Button open_varietat_search_button = new UI_Button("open_varietat_search_button", new Point(190, 153), 26, 25, "...");
+                open_varietat_search_button = new UI_Button(new Point(190, 153), 26, 25, "...");
                 open_varietat_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioVarietat);
                 main_win.AddElement(open_varietat_search_button);
 
-                UI_Text varietat_nom_text = new UI_Text("varietat_nom_text", new Point(4, 5), 200, 30, "No hi ha varietat seleccionada");
+                varietat_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha varietat seleccionada");
                 nom_varietat_panel.AddElement(varietat_nom_text);
 
 
-                UI_Button neteja_seleccions = new UI_Button("neteja_seleccions", new Point(16, 200), 200, 23, "Neteja");
+                neteja_seleccions = new UI_Button(new Point(16, 200), 200, 23, "Neteja");
                 neteja_seleccions.GetElement().Click += new System.EventHandler(this.NetejaSeleccions);
                 main_win.AddElement(neteja_seleccions);
 
 
-                UI_Text llista_finques_text = new UI_Text("llista_finques_text", new Point(15, 230), 200, 30, "Parceles:");
+                llista_finques_text = new UI_Text(new Point(15, 230), 200, 30, "Parceles:");
                 main_win.AddElement(llista_finques_text);
 
-                UI_Panel llista_finques_panel = new UI_Panel("llista_finques_panel", new Point(15, 250), 200, 180);
+                llista_finques_panel = new UI_Panel(new Point(15, 250), 200, 180);
                 llista_finques_panel.SetColor(Color.Cornsilk);
                 llista_finques_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(llista_finques_panel);
 
 
-                editor_parceles_panel = new UI_Panel("editor_parceles_panel", new Point(229, 0), 600, 30);
+                editor_parceles_panel = new UI_Panel(new Point(229, 0), 600, 30);
                 editor_parceles_panel.SetColor(Color.Cornsilk);
                 editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
                 main_win.AddElement(editor_parceles_panel);
                 {
-                    editor_parceles_crea_button = new UI_Button("editor_parceles_crea_button", new Point(5, 3), 100, 25, "Crea parcela");
+                    editor_parceles_crea_button = new UI_Button(new Point(5, 3), 100, 25, "Crea parcela");
                     editor_parceles_crea_button.GetElement().Click += new System.EventHandler(this.CreaParcela);
                     editor_parceles_panel.AddElement(editor_parceles_crea_button);
 
-                    editor_parceles_elimina_button = new UI_Button("editor_parceles_elimina_button", new Point(110, 3), 100, 25, "Elimina parcela");
+                    editor_parceles_elimina_button = new UI_Button(new Point(110, 3), 100, 25, "Elimina parcela");
                     editor_parceles_elimina_button.GetElement().Click += new System.EventHandler(this.EliminaParcela);
                     editor_parceles_panel.AddElement(editor_parceles_elimina_button);
 
-                    editor_parceles_guarda_button = new UI_Button("editor_parceles_guarda_button", new Point(220, 3), 100, 25, "Guarda canvis");
+                    editor_parceles_guarda_button = new UI_Button(new Point(220, 3), 100, 25, "Guarda canvis");
                     editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
                     editor_parceles_panel.AddElement(editor_parceles_guarda_button);
                 }
@@ -228,19 +251,19 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(main_win);
 
             // Finestra seleccio propietari
-            seleccio_propietari_win = new UI_Window("seleccio_propietari_win", this);
+            seleccio_propietari_win = new UI_Window(this);
             {
-                UI_Panel seleccio_propietari_panel = new UI_Panel("seleccio_propietari_panel", new Point(250, 20), 350, 50);
+                seleccio_propietari_panel = new UI_Panel(new Point(250, 20), 350, 50);
                 seleccio_propietari_panel.SetColor(Color.Cornsilk);
                 seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_propietari_win.AddElement(seleccio_propietari_panel);
 
-                UI_ComboBox seleccio_propietari_noms_combobox = new UI_ComboBox("seleccio_propietari_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_propietari_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
                 seleccio_propietari_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_propietari_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_propietari_panel.AddElement(seleccio_propietari_noms_combobox);
 
-                UI_Button seleccio_propietari_guarda_button = new UI_Button("seleccio_propietari_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_propietari_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
                 seleccio_propietari_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioPropietariGuarda);
                 seleccio_propietari_panel.AddElement(seleccio_propietari_guarda_button);
             }
@@ -248,19 +271,19 @@ namespace WindowsFormsApp4
             seleccio_propietari_win.SetEnabled(false);
 
             // Finestra seleccio finca
-            seleccio_finca_win = new UI_Window("seleccio_finca_win", this);
+            seleccio_finca_win = new UI_Window(this);
             {
-                UI_Panel seleccio_finca_panel = new UI_Panel("seleccio_finca_panel", new Point(250, 80), 350, 50);
+                seleccio_finca_panel = new UI_Panel(new Point(250, 80), 350, 50);
                 seleccio_finca_panel.SetColor(Color.Cornsilk);
                 seleccio_finca_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_finca_win.AddElement(seleccio_finca_panel);
 
-                UI_ComboBox seleccio_finca_noms_combobox = new UI_ComboBox("seleccio_finca_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_finca_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
                 seleccio_finca_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_finca_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_finca_panel.AddElement(seleccio_finca_noms_combobox);
 
-                UI_Button seleccio_finca_guarda_button = new UI_Button("seleccio_propietari_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_finca_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
                 seleccio_finca_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioFincaGuarda);
                 seleccio_finca_panel.AddElement(seleccio_finca_guarda_button);
             }
@@ -268,19 +291,19 @@ namespace WindowsFormsApp4
             seleccio_finca_win.SetEnabled(false);
 
             // Finestra seleccio varietat
-            seleccio_varietat_win = new UI_Window("seleccio_varietat_win", this);
+            seleccio_varietat_win = new UI_Window(this);
             {
-                UI_Panel seleccio_varietat_panel = new UI_Panel("seleccio_varietat_panel", new Point(250, 145), 350, 50);
+                seleccio_varietat_panel = new UI_Panel(new Point(250, 145), 350, 50);
                 seleccio_varietat_panel.SetColor(Color.Cornsilk);
                 seleccio_varietat_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_varietat_win.AddElement(seleccio_varietat_panel);
 
-                UI_ComboBox seleccio_varietat_noms_combobox = new UI_ComboBox("seleccio_varietat_noms_combobox", new Point(15, 15), 250, 100);
+                seleccio_varietat_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
                 seleccio_varietat_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_varietat_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_varietat_panel.AddElement(seleccio_varietat_noms_combobox);
 
-                UI_Button seleccio_varietat_guarda_button = new UI_Button("seleccio_varietat_guarda_button", new Point(270, 14), 70, 23, "Selecciona");
+                seleccio_varietat_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
                 seleccio_varietat_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioVarietatGuarda);
                 seleccio_varietat_panel.AddElement(seleccio_varietat_guarda_button);
             }
@@ -292,6 +315,18 @@ namespace WindowsFormsApp4
             gmap.SendToBack();
         }
 
+        private void UpdateConnectionConfig(string server, string database, string user, string pass)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+
+            string ds = "Data Source = " + server + "; Initial Catalog = " + database + "; User ID = " + user + ";" + "password=" + pass;
+            connectionStringsSection.ConnectionStrings["WindowsFormsApp4.Properties.Settings.AnaWinCellerBateaConnectionString"].ConnectionString = ds;
+
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
+        }
+
         // Windows
         UI_Window main_win = null;
         UI_Window map_win = null;
@@ -299,14 +334,44 @@ namespace WindowsFormsApp4
         UI_Window seleccio_finca_win = null;
         UI_Window seleccio_varietat_win = null;
 
-        // Necessary Elements
+        // Elements
         UI_TextInput text_input_lat = null;
         UI_TextInput text_input_lon = null;
+        UI_Button search_button = null;
+        UI_Text lat_text = null;
+        UI_Text lon_text = null;
+        UI_Button mapsat_button = null;
+        UI_Text propietaris_text = null;
+        UI_Panel nom_propietari_panel = null;
+        UI_Button open_propietari_search_button = null;
+        UI_Text propietari_nom_text = null;
+        UI_Text finques_text = null;
+        UI_Panel nom_finca_panel = null;
+        UI_Button open_finca_search_button = null;
+        UI_Text finca_nom_text = null;
+        UI_Text varietat_text = null;
+        UI_Panel nom_varietat_panel = null;
+        UI_Button open_varietat_search_button = null;
+        UI_Text varietat_nom_text = null;
+        UI_Button neteja_seleccions = null;
+        UI_Text llista_finques_text = null;
+        UI_Panel llista_finques_panel = null;
 
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;
         UI_Button editor_parceles_elimina_button = null;
         UI_Button editor_parceles_guarda_button = null;
+
+        UI_Panel seleccio_propietari_panel = null;
+        UI_ComboBox seleccio_propietari_noms_combobox = null;
+        UI_Button seleccio_propietari_guarda_button = null;
+        UI_Panel seleccio_finca_panel = null;
+        UI_ComboBox seleccio_finca_noms_combobox = null;
+        UI_Button seleccio_finca_guarda_button = null;
+
+        UI_Panel seleccio_varietat_panel = null;
+        UI_ComboBox seleccio_varietat_noms_combobox = null;
+        UI_Button seleccio_varietat_guarda_button = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

@@ -69,18 +69,15 @@ namespace WindowsFormsApp4
 
         public void SeleccioPropietariGuarda(object sender, EventArgs e)
         {
-            UI_ComboBox cb = ui_manager.GetElement("seleccio_propietari_noms_combobox") as UI_ComboBox;
-
-            if(cb.IsSelected())
+            if (seleccio_propietari_noms_combobox.IsSelected())
             {
-                Propietari sele = cb.GetSelected() as Propietari;
+                Propietari sele = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
 
                 propietaris_manager.propietari_actual = sele;
 
-                UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
-                t.SetText(sele.GetTbl().Nombre);
+                propietari_nom_text.SetText(sele.GetTbl().Nombre);
 
-                cb.CleanSelection();
+                seleccio_propietari_noms_combobox.CleanSelection();
 
                 seleccio_propietari_win.SetEnabled(false);
             }
@@ -88,11 +85,9 @@ namespace WindowsFormsApp4
 
         public void SeleccioFincaGuarda(object sender, EventArgs e)
         {
-            UI_ComboBox cb = ui_manager.GetElement("seleccio_finca_noms_combobox") as UI_ComboBox;
-
-            if (cb.IsSelected())
+            if (seleccio_finca_noms_combobox.IsSelected())
             {
-                Finca sele = cb.GetSelected() as Finca;
+                Finca sele = seleccio_finca_noms_combobox.GetSelected() as Finca;
 
                 Propietari prop = TrobaPropietariPerFinca(sele);
 
@@ -101,15 +96,13 @@ namespace WindowsFormsApp4
                     propietaris_manager.propietari_actual = prop;
                     propietaris_manager.propietari_actual.finca_actual = sele;
 
-                    UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
-                    t.SetText(prop.GetTbl().Nombre);
+                    propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
-                    UI_Text t2 = ui_manager.GetElement("finca_nom_text") as UI_Text;
-                    t2.SetText(sele.GetTbl().Nom1);
+                    finca_nom_text.SetText(sele.GetTbl().Nom1);
 
                     ActualitzaLlistaParceles();
 
-                    cb.CleanSelection();
+                    seleccio_finca_noms_combobox.CleanSelection();
 
                     seleccio_finca_win.SetEnabled(false);
                 }
@@ -118,20 +111,17 @@ namespace WindowsFormsApp4
 
         public void SeleccioVarietatGuarda(object sender, EventArgs e)
         {
-            UI_ComboBox cb = ui_manager.GetElement("seleccio_varietat_noms_combobox") as UI_ComboBox;
-
-            if(cb.IsSelected())
+            if(seleccio_varietat_noms_combobox.IsSelected())
             {
-                Varietat sele = cb.GetSelected() as Varietat;
+                Varietat sele = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
 
                 propietaris_manager.varietat_actual = sele;
 
-                UI_Text t = ui_manager.GetElement("varietat_nom_text") as UI_Text;
-                t.SetText(sele.GetTbl().Nombre);
+                varietat_nom_text.SetText(sele.GetTbl().Nombre);
 
                 ActualitzaLlistaParceles();
 
-                cb.CleanSelection();
+                seleccio_varietat_noms_combobox.CleanSelection();
 
                 seleccio_varietat_win.SetEnabled(false);
             }
@@ -146,14 +136,11 @@ namespace WindowsFormsApp4
             }
             propietaris_manager.varietat_actual = null;
 
-            UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
-            t.SetText("No hi ha propietari seleccionat");
+            propietari_nom_text.SetText("No hi ha propietari seleccionat");
 
-            UI_Text t1 = ui_manager.GetElement("finca_nom_text") as UI_Text;
-            t1.SetText("No hi ha finca seleccionada");
+            finca_nom_text.SetText("No hi ha finca seleccionada");
 
-            UI_Text t2 = ui_manager.GetElement("varietat_nom_text") as UI_Text;
-            t2.SetText("No hi ha varietat seleccionada");
+            varietat_nom_text.SetText("No hi ha varietat seleccionada");
 
             seleccio_finca_win.SetEnabled(false);
             seleccio_varietat_win.SetEnabled(false);
@@ -182,11 +169,9 @@ namespace WindowsFormsApp4
                 propietaris_manager.propietari_actual.finca_actual = finca;
                 propietaris_manager.propietari_actual.finca_actual.parcela_actual = parcela;
 
-                UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
-                t.SetText(propietari.GetTbl().Nombre);
+                propietari_nom_text.SetText(propietari.GetTbl().Nombre);
 
-                UI_Text t2 = ui_manager.GetElement("finca_nom_text") as UI_Text;
-                t2.SetText(finca.GetTbl().Nom1);
+                finca_nom_text.SetText(finca.GetTbl().Nom1);
 
                 propietaris_manager.can_point = true;
 
@@ -635,11 +620,9 @@ namespace WindowsFormsApp4
             propietaris_manager.propietari_actual = prop;
             propietaris_manager.propietari_actual.finca_actual = fin;
 
-            UI_Text t = ui_manager.GetElement("propietari_nom_text") as UI_Text;
-            t.SetText(prop.GetTbl().Nombre);
+            propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
-            UI_Text t2 = ui_manager.GetElement("finca_nom_text") as UI_Text;
-            t2.SetText(fin.GetTbl().Nom1);
+            finca_nom_text.SetText(fin.GetTbl().Nom1);
 
             ActualitzaLlistaParceles();
         }
@@ -664,25 +647,21 @@ namespace WindowsFormsApp4
         {
             List<Propietari> proveedors = propietaris_manager.GetPropietaris();
 
-            UI_ComboBox p = ui_manager.GetElement("seleccio_propietari_noms_combobox") as UI_ComboBox;
+            seleccio_propietari_noms_combobox.CleanSelection();
 
-            p.CleanSelection();
-
-            p.Clear();
+            seleccio_propietari_noms_combobox.Clear();
 
             for (int i = 0; i < proveedors.Count; i++)
             {
-                p.AddElement(proveedors[i]);
+                seleccio_propietari_noms_combobox.AddElement(proveedors[i]);
             }
         }
 
         public void ActualitzaLlistaFinques()
         {
-            UI_ComboBox p = ui_manager.GetElement("seleccio_finca_noms_combobox") as UI_ComboBox;
+            seleccio_finca_noms_combobox.CleanSelection();
 
-            p.CleanSelection();
-
-            p.Clear();
+            seleccio_finca_noms_combobox.Clear();
 
             if (propietaris_manager.propietari_actual == null)
             {
@@ -690,7 +669,7 @@ namespace WindowsFormsApp4
 
                 for (int i = 0; i < finques.Count; i++)
                 {
-                    p.AddElement(finques[i]);
+                    seleccio_finca_noms_combobox.AddElement(finques[i]);
                 }
             }
             else
@@ -703,18 +682,16 @@ namespace WindowsFormsApp4
                     string id2 = finques[i].GetTbl().idProveedor.ToString().Replace(" ", "");
 
                     if(id1 == id2)
-                        p.AddElement(finques[i]);
+                        seleccio_finca_noms_combobox.AddElement(finques[i]);
                 }
             }
         }
 
         public void ActualitzaLlistaVarietats()
         {
-            UI_ComboBox p = ui_manager.GetElement("seleccio_varietat_noms_combobox") as UI_ComboBox;
+            seleccio_varietat_noms_combobox.CleanSelection();
 
-            p.CleanSelection();
-
-            p.Clear();
+            seleccio_varietat_noms_combobox.Clear();
 
             List<Varietat> varietats = propietaris_manager.GetVarietats();
 
@@ -722,7 +699,7 @@ namespace WindowsFormsApp4
             {
                 for(int i = 0; i < varietats.Count; i++)
                 {
-                    p.AddElement(varietats[i]);
+                    seleccio_varietat_noms_combobox.AddElement(varietats[i]);
                 }
             }
             else
@@ -731,7 +708,7 @@ namespace WindowsFormsApp4
                 {
                     if(PropietariTeVarietat(propietaris_manager.propietari_actual, varietats[i]))
                     {
-                        p.AddElement(varietats[i]);
+                        seleccio_varietat_noms_combobox.AddElement(varietats[i]);
                     }
                 }
             }
@@ -739,9 +716,7 @@ namespace WindowsFormsApp4
 
         public void ActualitzaLlistaParceles()
         {
-            UI_Panel p = ui_manager.GetElement("llista_finques_panel") as UI_Panel;
-
-            p.ClearPanel();
+            llista_finques_panel.ClearPanel();
 
             List<Parcela> parceles = new List<Parcela>();
 
@@ -751,8 +726,8 @@ namespace WindowsFormsApp4
             {
                 if(propietaris_manager.propietari_actual.finca_actual == null)
                 {
-                    UI_Text t = new UI_Text("", new Point(5, 5), 100, 30, "No hi ha finca ni varietat seleccionats");
-                    p.AddElement(t);
+                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finca ni varietat seleccionats");
+                    llista_finques_panel.AddElement(t);
                     return;
                 }
             }
@@ -771,18 +746,18 @@ namespace WindowsFormsApp4
                             continue;
                     }
 
-                    UI_Text t = new UI_Text(parceles[i].GetTbl().idParcela.ToString(), new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre);
+                    UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre, parceles[i].GetTbl().idParcela.ToString());
                     t.GetElement().Click += new System.EventHandler(this.ParcelaClick);
                     t.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
-                    p.AddElement(t);
+                    llista_finques_panel.AddElement(t);
                     acumulator += 18;
                 }
                 return;
             } 
             else
             {
-                UI_Text t = new UI_Text("", new Point(5, 5), 100, 30, "No hi ha finca ni varietat seleccionats");
-                p.AddElement(t);
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finca ni varietat seleccionats");
+                llista_finques_panel.AddElement(t);
                 return;
             }
 
@@ -790,8 +765,8 @@ namespace WindowsFormsApp4
 
             if (parceles.Count == 0)
             {
-                UI_Text t = new UI_Text("", new Point(5, 5), 100, 30, "No hi ha finques");
-                p.AddElement(t);
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
+                llista_finques_panel.AddElement(t);
                 return;
             }
 
@@ -806,14 +781,14 @@ namespace WindowsFormsApp4
                         continue;
                 }
 
-                UI_Text t = new UI_Text(parceles[i].GetTbl().idParcela.ToString(), new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre);
+                UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre, parceles[i].GetTbl().idParcela.ToString());
                 t.GetElement().Click += new System.EventHandler(this.ParcelaClick);
                 t.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
 
                 if (propietaris_manager.propietari_actual.finca_actual.parcela_actual == parceles[i])
                     t.SetColor(Color.AliceBlue, Color.Black);
 
-                p.AddElement(t);
+                llista_finques_panel.AddElement(t);
                 acumulator += 18;
             }
         }
@@ -821,8 +796,8 @@ namespace WindowsFormsApp4
         // Busca una coordenada amb latitud i longitud
         public void SearchLatLon(object sender, EventArgs e)
         {
-            UI_TextInput lat = ui_manager.GetElement("cordenates_lat") as UI_TextInput;
-            UI_TextInput lon = ui_manager.GetElement("cordenates_lon") as UI_TextInput;
+            UI_TextInput lat = text_input_lat;
+            UI_TextInput lon = text_input_lon;
 
             if (lat == null || lon == null)
                 return;
@@ -850,19 +825,17 @@ namespace WindowsFormsApp4
         // Canvia el mapa a satelit o mapa normal
         public void SwitchMapSat(object sender, EventArgs e)
         {
-            UI_Button b = ui_manager.GetElement("mapsat_button") as UI_Button;
-
-            if (b != null)
+            if (mapsat_button != null)
             {
                 if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
                 {
                     gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
-                    b.SetText("Canvia a Mapa");
+                    mapsat_button.SetText("Canvia a Mapa");
                 }
                 else
                 {
                     gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-                    b.SetText("Canvia a Satel.lit");
+                    mapsat_button.SetText("Canvia a Satel.lit");
                 }
             }
         }
