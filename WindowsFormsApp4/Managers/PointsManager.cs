@@ -109,15 +109,6 @@ namespace WindowsFormsApp4
             return _tbl.Nom;
         }
 
-        public void SetColor(Brush fons, Pen linea)
-        {
-            if (polygon != null)
-            {
-                polygon.Fill = fons;
-                polygon.Stroke = linea;
-            }
-        }
-
         public void AddCoordenades(List<tblCoordenadesFincaParcela> marcadors)
         {
             if (marcadors.Count() <= 0)
@@ -239,6 +230,15 @@ namespace WindowsFormsApp4
         public GMapPolygon GetPolygon()
         {
             return polygon;
+        }
+
+        public void SetColor(Color lines, Color fill)
+        {
+            if(polygon != null)
+            {
+                polygon.Stroke = new Pen(lines, 3);
+                polygon.Fill = new SolidBrush(Color.FromArgb(100, fill));
+            }
         }
 
         GMapPolygon polygon = null;

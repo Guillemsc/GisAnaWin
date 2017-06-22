@@ -73,6 +73,7 @@ namespace WindowsFormsApp4
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
+            this.MinimumSize = new System.Drawing.Size(690, 431);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
@@ -119,8 +120,8 @@ namespace WindowsFormsApp4
             // Carrega info ----------------------
             ActualitzaPropietarisDesDeServidor();
             ActualitzaFinquesDesDeServidor();
-            ActualitzaParcelesDesDeServidor();
             ActualitzaVarietatsDesDeServidor();
+            ActualitzaParcelesDesDeServidor();
 
             ActualitzaLlistaParceles();
 
@@ -161,6 +162,10 @@ namespace WindowsFormsApp4
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
+
+                editor_parceles_ultim_guardat = new UI_Text(new Point(520, 505), 100, 25, "");
+                editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                map_win.AddElement(editor_parceles_ultim_guardat);
             }
             ui_manager.AddUIWindow(map_win);
 
@@ -228,7 +233,7 @@ namespace WindowsFormsApp4
                 llista_finques_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(llista_finques_panel);
 
-
+                // Editor parceles
                 editor_parceles_panel = new UI_Panel(new Point(229, 0), 600, 30);
                 editor_parceles_panel.SetColor(Color.Cornsilk);
                 editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
@@ -246,8 +251,9 @@ namespace WindowsFormsApp4
                     editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
                     editor_parceles_panel.AddElement(editor_parceles_guarda_button);
 
-                    editor_parceles_ultim_guardat = new UI_Text(new Point(330, 9), 100, 25, "");
-                    editor_parceles_panel.AddElement(editor_parceles_ultim_guardat);
+                    editor_parceles_opcions = new UI_Button(new Point(330, 3), 100, 25, "Opcions parcela");
+                    editor_parceles_opcions.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
+                    editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
                 editor_parceles_panel.SetEnabled(false);
             }
@@ -313,6 +319,20 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_varietat_win);
             seleccio_varietat_win.SetEnabled(false);
 
+            // Finestra opcions parcela
+            finestra_opcions_parcela = new UI_Window(this);
+            {
+                finestra_opcions_parcela_panel = new UI_Panel(new Point(240, 400), 230, 120);
+                finestra_opcions_parcela_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
+                finestra_opcions_parcela_panel.SetColor(Color.Cornsilk);
+                {
+
+                }
+                finestra_opcions_parcela.AddElement(finestra_opcions_parcela_panel);
+            }
+            ui_manager.AddUIWindow(finestra_opcions_parcela);
+            finestra_opcions_parcela.SetEnabled(true);
+
             gmap.SendToBack();
         }
 
@@ -334,7 +354,7 @@ namespace WindowsFormsApp4
         UI_Window seleccio_propietari_win = null;
         UI_Window seleccio_finca_win = null;
         UI_Window seleccio_varietat_win = null;
-        UI_Window guarda_finalitzat_win = null;
+        UI_Window finestra_opcions_parcela = null;
 
         // Elements
         UI_TextInput text_input_lat = null;
@@ -364,6 +384,7 @@ namespace WindowsFormsApp4
         UI_Button editor_parceles_elimina_button = null;
         UI_Button editor_parceles_guarda_button = null;
         UI_Text editor_parceles_ultim_guardat = null;
+        UI_Button editor_parceles_opcions = null;
 
         UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;
@@ -376,7 +397,7 @@ namespace WindowsFormsApp4
         UI_ComboBox seleccio_varietat_noms_combobox = null;
         UI_Button seleccio_varietat_guarda_button = null;
 
-        UI_Panel guarda_finalitzat_panel = null;
+        UI_Panel finestra_opcions_parcela_panel = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

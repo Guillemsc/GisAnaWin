@@ -208,7 +208,11 @@ namespace WindowsFormsApp4
                 coor_list.Add(coor);
             }
 
+            Varietat v = GetVarietatPerParcela(propietaris_manager.parcela_actual);
+
             propietaris_manager.parcela_actual.AddCoordenades(coor_list);
+
+            propietaris_manager.parcela_actual.SetColor(v.color, v.color);
 
             point_manager.NetejaTmpMarcadors();
 
@@ -232,6 +236,13 @@ namespace WindowsFormsApp4
             editor_parceles_elimina_button.SetEnabled(false);
 
             propietaris_manager.can_point = true;
+
+            // Delete info box
+            if (propietaris_manager.curr_list_box != null)
+            {
+                propietaris_manager.curr_list_box.Hide();
+                propietaris_manager.curr_list_box = null;
+            }
         }
 
         public void GuardaCanvis(object sender, EventArgs e)
@@ -304,7 +315,11 @@ namespace WindowsFormsApp4
             {
                 Parcela p_actual = parceles[z];
                 List<tblCoordenadesFincaParcela> c = GetCoordenadesPerParcela(p_actual);
+                Varietat v = GetVarietatPerParcela(p_actual);
                 p_actual.AddCoordenades(c);
+
+                if(v != null)
+                    p_actual.SetColor(v.color, v.color);
             }
         }
 
@@ -318,6 +333,7 @@ namespace WindowsFormsApp4
             {
                 Varietat v = new Varietat(varietats[i]);
                 propietaris_manager.AfegirVarietat(v);
+
             }
         }
 
@@ -653,19 +669,22 @@ namespace WindowsFormsApp4
 
         private void gmap_PoligonClick(GMapPolygon item, MouseEventArgs e)
         {
-            Parcela par = GetParcelaPolygon(item);
-            Finca fin = GetFincaPerParcela(par);
-            Propietari prop = GetPropietariPerParcela(par);
+            if (e.Button == MouseButtons.Left)
+            {
+                Parcela par = GetParcelaPolygon(item);
+                Finca fin = GetFincaPerParcela(par);
+                Propietari prop = GetPropietariPerParcela(par);
 
-            propietaris_manager.propietari_actual = prop;
-            propietaris_manager.finca_actual = fin;
-            propietaris_manager.parcela_actual = par;
+                propietaris_manager.propietari_actual = prop;
+                propietaris_manager.finca_actual = fin;
+                propietaris_manager.parcela_actual = par;
 
-            propietari_nom_text.SetText(prop.GetTbl().Nombre);
+                propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
-            finca_nom_text.SetText(fin.GetTbl().Nom1);
+                finca_nom_text.SetText(fin.GetTbl().Nom1);
 
-            ActualitzaLlistaParceles();
+                ActualitzaLlistaParceles();
+            }
         }
 
         // Actualitza la latitud i la longitud, quan es mou la posició en el mapa
@@ -960,89 +979,6 @@ namespace WindowsFormsApp4
                     break;
 
             }
-
-            // Propietari
-            //if (propietaris_manager.propietari_actual != null)
-            //{
-            //    if(propietaris_manager.propietari_actual.finca_actual != null)
-            //    {
-            //        // Propietari - finca - varietat
-            //        if (propietaris_manager.varietat_actual != null)
-            //        {
-    
-            //        }
-            //        // Propietari - finca
-            //        else
-            //        {
-            //            parceles = GetParcelesFinca(propietaris_manager.propietari_actual.finca_actual);
-
-            //            if (parceles.Count == 0)
-            //            {
-            //                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
-            //                llista_finques_panel.AddElement(t);
-            //                return;
-            //            }
-
-            //            acumulator = 5;
-            //            for (int i = 0; i < parceles.Count; i++)
-            //            {
-            //                Varietat varietat = GetVarietatParcela(parceles[i]);
-
-            //                if (propietaris_manager.varietat_actual != null)
-            //                {
-            //                    if (varietat != propietaris_manager.varietat_actual)
-            //                        continue;
-            //                }
-
-            //                UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre, parceles[i].GetTbl().idParcela.ToString());
-            //                t.GetElement().Click += new System.EventHandler(this.ParcelaClick);
-            //                t.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
-
-            //                if (propietaris_manager.propietari_actual.finca_actual.parcela_actual == parceles[i])
-            //                    t.SetColor(Color.AliceBlue, Color.Black);
-
-            //                llista_finques_panel.AddElement(t);
-            //                acumulator += 18;
-            //            }
-            //        }
-            //    }
-            //    // Propietari - varietat
-            //    else if(propietaris_manager.varietat_actual != null)
-            //    {
-
-            //    }
-            //}
-            //// Varietat
-            //else if(propietaris_manager.varietat_actual != null)
-            //{
-            //    parceles = propietaris_manager.GetParceles();
-
-            //    acumulator = 5;
-            //    for (int i = 0; i < parceles.Count; i++)
-            //    {
-            //        Varietat varietat = GetVarietatParcela(parceles[i]);
-
-            //        if (propietaris_manager.varietat_actual != null)
-            //        {
-            //            if (varietat == null || varietat != propietaris_manager.varietat_actual)
-            //                continue;
-            //        }
-
-            //        UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (i + 1) + ": " + varietat.GetTbl().Nombre, parceles[i].GetTbl().idParcela.ToString());
-            //        t.GetElement().Click += new System.EventHandler(this.ParcelaClick);
-            //        t.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
-            //        llista_finques_panel.AddElement(t);
-            //        acumulator += 18;
-            //    }
-            //    return;
-            //} 
-            //else
-            //{
-            //    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finca ni varietat seleccionats");
-            //    llista_finques_panel.AddElement(t);
-            //    return;
-            //}
-
         }
 
         // Busca una coordenada amb latitud i longitud
