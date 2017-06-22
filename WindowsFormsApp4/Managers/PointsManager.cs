@@ -93,7 +93,6 @@ namespace WindowsFormsApp4
 
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
-        public Parcela parcela_actual = null;
         private tblFinques _tbl = null;
     }
 

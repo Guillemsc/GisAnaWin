@@ -245,6 +245,9 @@ namespace WindowsFormsApp4
                     editor_parceles_guarda_button = new UI_Button(new Point(220, 3), 100, 25, "Guarda canvis");
                     editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
                     editor_parceles_panel.AddElement(editor_parceles_guarda_button);
+
+                    editor_parceles_ultim_guardat = new UI_Text(new Point(330, 9), 100, 25, "");
+                    editor_parceles_panel.AddElement(editor_parceles_ultim_guardat);
                 }
                 editor_parceles_panel.SetEnabled(false);
             }
@@ -310,8 +313,6 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_varietat_win);
             seleccio_varietat_win.SetEnabled(false);
 
-
-
             gmap.SendToBack();
         }
 
@@ -333,6 +334,7 @@ namespace WindowsFormsApp4
         UI_Window seleccio_propietari_win = null;
         UI_Window seleccio_finca_win = null;
         UI_Window seleccio_varietat_win = null;
+        UI_Window guarda_finalitzat_win = null;
 
         // Elements
         UI_TextInput text_input_lat = null;
@@ -361,6 +363,7 @@ namespace WindowsFormsApp4
         UI_Button editor_parceles_crea_button = null;
         UI_Button editor_parceles_elimina_button = null;
         UI_Button editor_parceles_guarda_button = null;
+        UI_Text editor_parceles_ultim_guardat = null;
 
         UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;
@@ -372,6 +375,8 @@ namespace WindowsFormsApp4
         UI_Panel seleccio_varietat_panel = null;
         UI_ComboBox seleccio_varietat_noms_combobox = null;
         UI_Button seleccio_varietat_guarda_button = null;
+
+        UI_Panel guarda_finalitzat_panel = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

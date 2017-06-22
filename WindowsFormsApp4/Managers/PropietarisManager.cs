@@ -108,6 +108,8 @@ namespace WindowsFormsApp4
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 
         public Propietari propietari_actual = null;
+        public Finca finca_actual = null;
+        public Parcela parcela_actual = null;
         public Varietat varietat_actual = null;
 
         public List<Label> propietaris_texts = new List<Label>();
@@ -130,7 +132,6 @@ namespace WindowsFormsApp4
         }
 
         public tblProveedores GetTbl() { return _tbl; }
-        public Finca finca_actual = null;
 
         public tblProveedores _tbl = null;
     }
