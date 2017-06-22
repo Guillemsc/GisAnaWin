@@ -73,7 +73,7 @@ namespace WindowsFormsApp4
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.MinimumSize = new System.Drawing.Size(690, 431);
+            this.MinimumSize = new System.Drawing.Size(750, 500);
             this.Controls.Add(this.gmap);
             this.Name = "Form1";
             this.Text = "Finques Maps Test";
