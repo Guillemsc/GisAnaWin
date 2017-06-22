@@ -116,6 +116,8 @@ namespace WindowsFormsApp4
 
             // UI --------------------------------
             LoadUI();
+            text_input_nom.SetText("Batea, España");
+            // -----------------------------------
 
             // Carrega info ----------------------
             ActualitzaPropietarisDesDeServidor();
@@ -137,26 +139,35 @@ namespace WindowsFormsApp4
             // General Map UI Input
             map_win = new UI_Window(this);
             {
-                text_input_lat = new UI_TextInput(new Point(8, 480), 100, 50);
+                text_input_lat = new UI_TextInput(new Point(8, 485), 100, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
 
-                text_input_lon = new UI_TextInput(new Point(115, 480), 100, 50);
+                text_input_lon = new UI_TextInput(new Point(115, 485), 100, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
-                search_button = new UI_Button(new Point(7, 450), 50, 23, "Cerca");
-                search_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                search_button.GetElement().Click += new System.EventHandler(this.SearchLatLon);
-                map_win.AddElement(search_button);
+                search_button_coor = new UI_Button(new Point(7, 460), 209, 23, "Cerca coordenades");
+                search_button_coor.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                search_button_coor.GetElement().Click += new System.EventHandler(this.SearchLatLon);
+                map_win.AddElement(search_button_coor);
 
-                lat_text = new UI_Text(new Point(8, 505), 193, 40, "Lat");
+                lat_text = new UI_Text(new Point(8, 510), 193, 40, "Lat");
                 lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lat_text);
 
-                lon_text = new UI_Text(new Point(115, 505), 193, 40, "Lon");
+                lon_text = new UI_Text(new Point(115, 510), 193, 40, "Lon");
                 lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lon_text);
+
+                search_button_name = new UI_Button(new Point(7, 403), 210, 23, "Cerca nom");
+                search_button_name.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                search_button_name.GetElement().Click += new System.EventHandler(this.SearchName);
+                map_win.AddElement(search_button_name);
+
+                text_input_nom = new UI_TextInput(new Point(8, 428), 208, 50);
+                text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                map_win.AddElement(text_input_nom);
 
                 mapsat_button = new UI_Button(new Point(690, 500), 100, 23, "Canvia a satel.lit");
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
@@ -225,13 +236,13 @@ namespace WindowsFormsApp4
                 main_win.AddElement(neteja_seleccions);
 
 
-                llista_finques_text = new UI_Text(new Point(15, 230), 200, 30, "Parceles:");
-                main_win.AddElement(llista_finques_text);
+                llista_parceles_text = new UI_Text(new Point(15, 230), 200, 30, "Parceles:");
+                main_win.AddElement(llista_parceles_text);
 
-                llista_finques_panel = new UI_Panel(new Point(15, 250), 200, 180);
-                llista_finques_panel.SetColor(Color.Cornsilk);
-                llista_finques_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                main_win.AddElement(llista_finques_panel);
+                llista_parceles_panel = new UI_Panel(new Point(15, 250), 200, 145);
+                llista_parceles_panel.SetColor(Color.Cornsilk);
+                llista_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                main_win.AddElement(llista_parceles_panel);
 
                 // Editor parceles
                 editor_parceles_panel = new UI_Panel(new Point(229, 0), 600, 30);
@@ -359,10 +370,13 @@ namespace WindowsFormsApp4
         // Elements
         UI_TextInput text_input_lat = null;
         UI_TextInput text_input_lon = null;
-        UI_Button search_button = null;
+        UI_Button search_button_coor = null;
         UI_Text lat_text = null;
         UI_Text lon_text = null;
+        UI_Button search_button_name = null;
+        UI_TextInput text_input_nom = null;
         UI_Button mapsat_button = null;
+
         UI_Text propietaris_text = null;
         UI_Panel nom_propietari_panel = null;
         UI_Button open_propietari_search_button = null;
@@ -376,8 +390,8 @@ namespace WindowsFormsApp4
         UI_Button open_varietat_search_button = null;
         UI_Text varietat_nom_text = null;
         UI_Button neteja_seleccions = null;
-        UI_Text llista_finques_text = null;
-        UI_Panel llista_finques_panel = null;
+        UI_Text llista_parceles_text = null;
+        UI_Panel llista_parceles_panel = null;
 
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;

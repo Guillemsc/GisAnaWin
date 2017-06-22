@@ -776,7 +776,7 @@ namespace WindowsFormsApp4
 
         public void ActualitzaLlistaParceles()
         {
-            llista_finques_panel.ClearPanel();
+            llista_parceles_panel.ClearPanel();
 
             List<Parcela> parceles = new List<Parcela>();
 
@@ -821,7 +821,7 @@ namespace WindowsFormsApp4
                         if (parceles.Count == 0)
                         {
                             UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             return;
                         }
 
@@ -839,7 +839,7 @@ namespace WindowsFormsApp4
                             if (propietaris_manager.parcela_actual == parceles[i])
                                 t.SetColor(Color.AliceBlue, Color.Black);
 
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             acumulator += 18;
                         }
 
@@ -853,7 +853,7 @@ namespace WindowsFormsApp4
                         if (parceles.Count == 0)
                         {
                             UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             return;
                         }
 
@@ -872,7 +872,7 @@ namespace WindowsFormsApp4
                             if (propietaris_manager.parcela_actual == parceles[i])
                                 t.SetColor(Color.AliceBlue, Color.Black);
 
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             acumulator += 18;
                         }
                     }
@@ -885,7 +885,7 @@ namespace WindowsFormsApp4
                         if (parceles.Count == 0)
                         {
                             UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             return;
                         }
 
@@ -910,7 +910,7 @@ namespace WindowsFormsApp4
                             if (propietaris_manager.parcela_actual == parceles[i])
                                 t.SetColor(Color.AliceBlue, Color.Black);
 
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             acumulator += 18;
                         }
                     }
@@ -924,7 +924,7 @@ namespace WindowsFormsApp4
                         if (parceles.Count == 0)
                         {
                             UI_Text t = new UI_Text(new Point(5, 5), 100, 30, "No hi ha finques");
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             return;
                         }
 
@@ -948,7 +948,7 @@ namespace WindowsFormsApp4
                             if (propietaris_manager.parcela_actual == parceles[i])
                                 t.SetColor(Color.AliceBlue, Color.Black);
 
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             acumulator += 18;
                         }
                     }
@@ -972,7 +972,7 @@ namespace WindowsFormsApp4
                             if (propietaris_manager.parcela_actual == parceles[i])
                                 t.SetColor(Color.AliceBlue, Color.Black);
 
-                            llista_finques_panel.AddElement(t);
+                            llista_parceles_panel.AddElement(t);
                             acumulator += 18;
                         }
                     }
@@ -1008,6 +1008,16 @@ namespace WindowsFormsApp4
 
             if (is_lat && is_lon)
                 gmap.Position = new PointLatLng(num_lat, num_lon);
+        }
+
+        public void SearchName(object sender, EventArgs e)
+        {
+            string search = text_input_nom.GetText();
+
+            if (search != "")
+            {
+                gmap.SetPositionByKeywords(search);
+            }
         }
 
         // Canvia el mapa a satelit o mapa normal
