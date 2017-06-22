@@ -113,6 +113,7 @@
       <Column Name="idFinca" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="Estat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tblPartesFinca_tblLineasPartesFinca" Member="tblLineasPartesFinca" ThisKey="CodigoEmpresa,idParte" OtherKey="CodigoEmpresa,idParte" Type="tblLineasPartesFinca" Cardinality="One" />
       <Association Name="tblFinques_tblPartesFinca" Member="tblFinques" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblFinques" IsForeignKey="true" />
     </Type>
   </Table>
@@ -144,6 +145,32 @@
       <Column Name="latitud" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="longitud" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="tblCoordenadesFincaParcela_tblAnaliticaFincaParcela" Member="tblAnaliticaFincaParcela" ThisKey="idParcela" OtherKey="idParcela" Type="tblAnaliticaFincaParcela" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblLineasPartesFinca" Member="tblLineasPartesFinca">
+    <Type Name="tblLineasPartesFinca">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParte" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idLinea" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idParcela" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idFamiliaCoste" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Unidades" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Observaciones" Type="System.String" DbType="NChar(250)" CanBeNull="true" />
+      <Association Name="tblPartesFinca_tblLineasPartesFinca" Member="tblPartesFinca" ThisKey="CodigoEmpresa,idParte" OtherKey="CodigoEmpresa,idParte" Type="tblPartesFinca" IsForeignKey="true" />
+      <Association Name="tblFamiliesCost_tblLineasPartesFinca" Member="tblFamiliesCost" ThisKey="CodigoEmpresa,idFamiliaCoste" OtherKey="CodigoEmpresa,idCost" Type="tblFamiliesCost" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFamiliesCost" Member="tblFamiliesCost">
+    <Type Name="tblFamiliesCost">
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCost" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descripcio" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="PreuUnitari" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="UnidadMesura" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="tblFamiliesCost_tblLineasPartesFinca" Member="tblLineasPartesFinca" ThisKey="CodigoEmpresa,idCost" OtherKey="CodigoEmpresa,idFamiliaCoste" Type="tblLineasPartesFinca" />
     </Type>
   </Table>
 </Database>
