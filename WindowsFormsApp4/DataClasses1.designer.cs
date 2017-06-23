@@ -39,9 +39,6 @@ namespace WindowsFormsApp4
     partial void InserttblProveedores(tblProveedores instance);
     partial void UpdatetblProveedores(tblProveedores instance);
     partial void DeletetblProveedores(tblProveedores instance);
-    partial void InserttblTipoUva(tblTipoUva instance);
-    partial void UpdatetblTipoUva(tblTipoUva instance);
-    partial void DeletetblTipoUva(tblTipoUva instance);
     partial void InserttblPartesFinca(tblPartesFinca instance);
     partial void UpdatetblPartesFinca(tblPartesFinca instance);
     partial void DeletetblPartesFinca(tblPartesFinca instance);
@@ -57,6 +54,12 @@ namespace WindowsFormsApp4
     partial void InserttblFamiliesCost(tblFamiliesCost instance);
     partial void UpdatetblFamiliesCost(tblFamiliesCost instance);
     partial void DeletetblFamiliesCost(tblFamiliesCost instance);
+    partial void InserttblTipoUva(tblTipoUva instance);
+    partial void UpdatetblTipoUva(tblTipoUva instance);
+    partial void DeletetblTipoUva(tblTipoUva instance);
+    partial void InserttblColorProducto(tblColorProducto instance);
+    partial void UpdatetblColorProducto(tblColorProducto instance);
+    partial void DeletetblColorProducto(tblColorProducto instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -113,14 +116,6 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		public System.Data.Linq.Table<tblTipoUva> tblTipoUva
-		{
-			get
-			{
-				return this.GetTable<tblTipoUva>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblPartesFinca> tblPartesFinca
 		{
 			get
@@ -158,6 +153,22 @@ namespace WindowsFormsApp4
 			get
 			{
 				return this.GetTable<tblFamiliesCost>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblTipoUva> tblTipoUva
+		{
+			get
+			{
+				return this.GetTable<tblTipoUva>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblColorProducto> tblColorProducto
+		{
+			get
+			{
+				return this.GetTable<tblColorProducto>();
 			}
 		}
 	}
@@ -198,11 +209,11 @@ namespace WindowsFormsApp4
 		
 		private string _Parcela;
 		
-		private EntitySet<tblTipoUva> _tblTipoUva;
-		
 		private EntitySet<tblAnaliticaFincaParcela> _tblAnaliticaFincaParcela;
 		
 		private EntityRef<tblFinques> _tblFinques;
+		
+		private EntityRef<tblTipoUva> _tblTipoUva;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -242,9 +253,9 @@ namespace WindowsFormsApp4
 		
 		public tblParceles()
 		{
-			this._tblTipoUva = new EntitySet<tblTipoUva>(new Action<tblTipoUva>(this.attach_tblTipoUva), new Action<tblTipoUva>(this.detach_tblTipoUva));
 			this._tblAnaliticaFincaParcela = new EntitySet<tblAnaliticaFincaParcela>(new Action<tblAnaliticaFincaParcela>(this.attach_tblAnaliticaFincaParcela), new Action<tblAnaliticaFincaParcela>(this.detach_tblAnaliticaFincaParcela));
 			this._tblFinques = default(EntityRef<tblFinques>);
+			this._tblTipoUva = default(EntityRef<tblTipoUva>);
 			OnCreated();
 		}
 		
@@ -327,6 +338,10 @@ namespace WindowsFormsApp4
 			{
 				if ((this._idVarietat != value))
 				{
+					if (this._tblTipoUva.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnidVarietatChanging(value);
 					this.SendPropertyChanging();
 					this._idVarietat = value;
@@ -556,19 +571,6 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParceles_tblTipoUva", Storage="_tblTipoUva", ThisKey="idVarietat", OtherKey="idTipoUva")]
-		public EntitySet<tblTipoUva> tblTipoUva
-		{
-			get
-			{
-				return this._tblTipoUva;
-			}
-			set
-			{
-				this._tblTipoUva.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParceles_tblAnaliticaFincaParcela", Storage="_tblAnaliticaFincaParcela", ThisKey="CodigoEmpresa,idParcela,idFinca", OtherKey="CodigoEmpresa,idParcela,idFinca")]
 		public EntitySet<tblAnaliticaFincaParcela> tblAnaliticaFincaParcela
 		{
@@ -618,6 +620,40 @@ namespace WindowsFormsApp4
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTipoUva_tblParceles", Storage="_tblTipoUva", ThisKey="idVarietat", OtherKey="idTipoUva", IsForeignKey=true)]
+		public tblTipoUva tblTipoUva
+		{
+			get
+			{
+				return this._tblTipoUva.Entity;
+			}
+			set
+			{
+				tblTipoUva previousValue = this._tblTipoUva.Entity;
+				if (((previousValue != value) 
+							|| (this._tblTipoUva.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblTipoUva.Entity = null;
+						previousValue.tblParceles.Remove(this);
+					}
+					this._tblTipoUva.Entity = value;
+					if ((value != null))
+					{
+						value.tblParceles.Add(this);
+						this._idVarietat = value.idTipoUva;
+					}
+					else
+					{
+						this._idVarietat = default(int);
+					}
+					this.SendPropertyChanged("tblTipoUva");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -636,18 +672,6 @@ namespace WindowsFormsApp4
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_tblTipoUva(tblTipoUva entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblParceles = this;
-		}
-		
-		private void detach_tblTipoUva(tblTipoUva entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblParceles = null;
 		}
 		
 		private void attach_tblAnaliticaFincaParcela(tblAnaliticaFincaParcela entity)
@@ -2311,205 +2335,6 @@ namespace WindowsFormsApp4
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblTipoUva")]
-	public partial class tblTipoUva : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idTipoUva;
-		
-		private string _Nombre;
-		
-		private System.Nullable<int> _idColor;
-		
-		private string _Codi_RVC;
-		
-		private System.Nullable<decimal> _Importe;
-		
-		private EntityRef<tblParceles> _tblParceles;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidTipoUvaChanging(int value);
-    partial void OnidTipoUvaChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnidColorChanging(System.Nullable<int> value);
-    partial void OnidColorChanged();
-    partial void OnCodi_RVCChanging(string value);
-    partial void OnCodi_RVCChanged();
-    partial void OnImporteChanging(System.Nullable<decimal> value);
-    partial void OnImporteChanged();
-    #endregion
-		
-		public tblTipoUva()
-		{
-			this._tblParceles = default(EntityRef<tblParceles>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTipoUva", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int idTipoUva
-		{
-			get
-			{
-				return this._idTipoUva;
-			}
-			set
-			{
-				if ((this._idTipoUva != value))
-				{
-					if (this._tblParceles.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidTipoUvaChanging(value);
-					this.SendPropertyChanging();
-					this._idTipoUva = value;
-					this.SendPropertyChanged("idTipoUva");
-					this.OnidTipoUvaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idColor", DbType="Int")]
-		public System.Nullable<int> idColor
-		{
-			get
-			{
-				return this._idColor;
-			}
-			set
-			{
-				if ((this._idColor != value))
-				{
-					this.OnidColorChanging(value);
-					this.SendPropertyChanging();
-					this._idColor = value;
-					this.SendPropertyChanged("idColor");
-					this.OnidColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codi_RVC", DbType="NChar(10)")]
-		public string Codi_RVC
-		{
-			get
-			{
-				return this._Codi_RVC;
-			}
-			set
-			{
-				if ((this._Codi_RVC != value))
-				{
-					this.OnCodi_RVCChanging(value);
-					this.SendPropertyChanging();
-					this._Codi_RVC = value;
-					this.SendPropertyChanged("Codi_RVC");
-					this.OnCodi_RVCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Importe", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Importe
-		{
-			get
-			{
-				return this._Importe;
-			}
-			set
-			{
-				if ((this._Importe != value))
-				{
-					this.OnImporteChanging(value);
-					this.SendPropertyChanging();
-					this._Importe = value;
-					this.SendPropertyChanged("Importe");
-					this.OnImporteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblParceles_tblTipoUva", Storage="_tblParceles", ThisKey="idTipoUva", OtherKey="idVarietat", IsForeignKey=true)]
-		public tblParceles tblParceles
-		{
-			get
-			{
-				return this._tblParceles.Entity;
-			}
-			set
-			{
-				tblParceles previousValue = this._tblParceles.Entity;
-				if (((previousValue != value) 
-							|| (this._tblParceles.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblParceles.Entity = null;
-						previousValue.tblTipoUva.Remove(this);
-					}
-					this._tblParceles.Entity = value;
-					if ((value != null))
-					{
-						value.tblTipoUva.Add(this);
-						this._idTipoUva = value.idVarietat;
-					}
-					else
-					{
-						this._idTipoUva = default(int);
-					}
-					this.SendPropertyChanged("tblParceles");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPartesFinca")]
 	public partial class tblPartesFinca : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3972,6 +3797,395 @@ namespace WindowsFormsApp4
 		{
 			this.SendPropertyChanging();
 			entity.tblFamiliesCost = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblTipoUva")]
+	public partial class tblTipoUva : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idTipoUva;
+		
+		private string _Nombre;
+		
+		private System.Nullable<int> _idColor;
+		
+		private string _Codi_RVC;
+		
+		private System.Nullable<decimal> _Importe;
+		
+		private System.Nullable<int> _ColorRGB;
+		
+		private EntitySet<tblParceles> _tblParceles;
+		
+		private EntityRef<tblColorProducto> _tblColorProducto;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidTipoUvaChanging(int value);
+    partial void OnidTipoUvaChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnidColorChanging(System.Nullable<int> value);
+    partial void OnidColorChanged();
+    partial void OnCodi_RVCChanging(string value);
+    partial void OnCodi_RVCChanged();
+    partial void OnImporteChanging(System.Nullable<decimal> value);
+    partial void OnImporteChanged();
+    partial void OnColorRGBChanging(System.Nullable<int> value);
+    partial void OnColorRGBChanged();
+    #endregion
+		
+		public tblTipoUva()
+		{
+			this._tblParceles = new EntitySet<tblParceles>(new Action<tblParceles>(this.attach_tblParceles), new Action<tblParceles>(this.detach_tblParceles));
+			this._tblColorProducto = default(EntityRef<tblColorProducto>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idTipoUva", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idTipoUva
+		{
+			get
+			{
+				return this._idTipoUva;
+			}
+			set
+			{
+				if ((this._idTipoUva != value))
+				{
+					this.OnidTipoUvaChanging(value);
+					this.SendPropertyChanging();
+					this._idTipoUva = value;
+					this.SendPropertyChanged("idTipoUva");
+					this.OnidTipoUvaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(50)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idColor", DbType="Int")]
+		public System.Nullable<int> idColor
+		{
+			get
+			{
+				return this._idColor;
+			}
+			set
+			{
+				if ((this._idColor != value))
+				{
+					if (this._tblColorProducto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidColorChanging(value);
+					this.SendPropertyChanging();
+					this._idColor = value;
+					this.SendPropertyChanged("idColor");
+					this.OnidColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Codi_RVC", DbType="NChar(10)")]
+		public string Codi_RVC
+		{
+			get
+			{
+				return this._Codi_RVC;
+			}
+			set
+			{
+				if ((this._Codi_RVC != value))
+				{
+					this.OnCodi_RVCChanging(value);
+					this.SendPropertyChanging();
+					this._Codi_RVC = value;
+					this.SendPropertyChanged("Codi_RVC");
+					this.OnCodi_RVCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Importe", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Importe
+		{
+			get
+			{
+				return this._Importe;
+			}
+			set
+			{
+				if ((this._Importe != value))
+				{
+					this.OnImporteChanging(value);
+					this.SendPropertyChanging();
+					this._Importe = value;
+					this.SendPropertyChanged("Importe");
+					this.OnImporteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorRGB", DbType="Int")]
+		public System.Nullable<int> ColorRGB
+		{
+			get
+			{
+				return this._ColorRGB;
+			}
+			set
+			{
+				if ((this._ColorRGB != value))
+				{
+					this.OnColorRGBChanging(value);
+					this.SendPropertyChanging();
+					this._ColorRGB = value;
+					this.SendPropertyChanged("ColorRGB");
+					this.OnColorRGBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblTipoUva_tblParceles", Storage="_tblParceles", ThisKey="idTipoUva", OtherKey="idVarietat")]
+		public EntitySet<tblParceles> tblParceles
+		{
+			get
+			{
+				return this._tblParceles;
+			}
+			set
+			{
+				this._tblParceles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblColorProducto_tblTipoUva", Storage="_tblColorProducto", ThisKey="idColor", OtherKey="idColor", IsForeignKey=true)]
+		public tblColorProducto tblColorProducto
+		{
+			get
+			{
+				return this._tblColorProducto.Entity;
+			}
+			set
+			{
+				tblColorProducto previousValue = this._tblColorProducto.Entity;
+				if (((previousValue != value) 
+							|| (this._tblColorProducto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblColorProducto.Entity = null;
+						previousValue.tblTipoUva.Remove(this);
+					}
+					this._tblColorProducto.Entity = value;
+					if ((value != null))
+					{
+						value.tblTipoUva.Add(this);
+						this._idColor = value.idColor;
+					}
+					else
+					{
+						this._idColor = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblColorProducto");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblParceles(tblParceles entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblTipoUva = this;
+		}
+		
+		private void detach_tblParceles(tblParceles entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblTipoUva = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblColorProducto")]
+	public partial class tblColorProducto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idColor;
+		
+		private string _Color;
+		
+		private System.Nullable<int> _CodigoColor;
+		
+		private EntitySet<tblTipoUva> _tblTipoUva;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidColorChanging(int value);
+    partial void OnidColorChanged();
+    partial void OnColorChanging(string value);
+    partial void OnColorChanged();
+    partial void OnCodigoColorChanging(System.Nullable<int> value);
+    partial void OnCodigoColorChanged();
+    #endregion
+		
+		public tblColorProducto()
+		{
+			this._tblTipoUva = new EntitySet<tblTipoUva>(new Action<tblTipoUva>(this.attach_tblTipoUva), new Action<tblTipoUva>(this.detach_tblTipoUva));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idColor", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idColor
+		{
+			get
+			{
+				return this._idColor;
+			}
+			set
+			{
+				if ((this._idColor != value))
+				{
+					this.OnidColorChanging(value);
+					this.SendPropertyChanging();
+					this._idColor = value;
+					this.SendPropertyChanged("idColor");
+					this.OnidColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", DbType="NChar(150)")]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this.OnColorChanging(value);
+					this.SendPropertyChanging();
+					this._Color = value;
+					this.SendPropertyChanged("Color");
+					this.OnColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoColor", DbType="Int")]
+		public System.Nullable<int> CodigoColor
+		{
+			get
+			{
+				return this._CodigoColor;
+			}
+			set
+			{
+				if ((this._CodigoColor != value))
+				{
+					this.OnCodigoColorChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoColor = value;
+					this.SendPropertyChanged("CodigoColor");
+					this.OnCodigoColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblColorProducto_tblTipoUva", Storage="_tblTipoUva", ThisKey="idColor", OtherKey="idColor")]
+		public EntitySet<tblTipoUva> tblTipoUva
+		{
+			get
+			{
+				return this._tblTipoUva;
+			}
+			set
+			{
+				this._tblTipoUva.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblTipoUva(tblTipoUva entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblColorProducto = this;
+		}
+		
+		private void detach_tblTipoUva(tblTipoUva entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblColorProducto = null;
 		}
 	}
 }

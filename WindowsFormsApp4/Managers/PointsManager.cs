@@ -91,9 +91,20 @@ namespace WindowsFormsApp4
 
         public tblFinques GetTbl() { return _tbl; }
 
+        public void AddParte(tblPartesFinca parte)
+        {
+            partes.Add(parte);
+        }
+
+        public List<tblPartesFinca> GetPartes()
+        {
+            return partes;
+        }
+
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         private tblFinques _tbl = null;
+        private List<tblPartesFinca> partes = new List<tblPartesFinca>();
     }
 
     public class Parcela
@@ -241,12 +252,23 @@ namespace WindowsFormsApp4
             }
         }
 
+        public void AddLineaParte(tblLineasPartesFinca lpartes)
+        {
+            lineas_parte.Add(lpartes);
+        }
+
+        public List<tblLineasPartesFinca> GetLineasParte()
+        {
+            return lineas_parte;
+        }
+
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
         GMapMarker text_marker = null;
         PointLatLng center_pos;
         tblParceles _tbl = null;
         List<tblCoordenadesFincaParcela> _coordenates_tbl = new List<tblCoordenadesFincaParcela>();
+        List<tblLineasPartesFinca> lineas_parte = new List<tblLineasPartesFinca>();
     }
 
     public class Marcador

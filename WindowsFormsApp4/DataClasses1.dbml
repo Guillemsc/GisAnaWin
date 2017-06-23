@@ -17,9 +17,9 @@
       <Column Name="Ha" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Poligon" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
       <Column Name="Parcela" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
-      <Association Name="tblParceles_tblTipoUva" Member="tblTipoUva" ThisKey="idVarietat" OtherKey="idTipoUva" Type="tblTipoUva" />
       <Association Name="tblParceles_tblAnaliticaFincaParcela" Member="tblAnaliticaFincaParcela" ThisKey="CodigoEmpresa,idParcela,idFinca" OtherKey="CodigoEmpresa,idParcela,idFinca" Type="tblAnaliticaFincaParcela" />
       <Association Name="tblFinques_tblParceles" Member="tblFinques" ThisKey="CodigoEmpresa,idFinca" OtherKey="CodigoEmpresa,idFinca" Type="tblFinques" IsForeignKey="true" />
+      <Association Name="tblTipoUva_tblParceles" Member="tblTipoUva" ThisKey="idVarietat" OtherKey="idTipoUva" Type="tblTipoUva" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblFinques" Member="tblFinques">
@@ -95,16 +95,6 @@
       <Column Name="ExentSiNo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblTipoUva" Member="tblTipoUva">
-    <Type Name="tblTipoUva">
-      <Column Name="idTipoUva" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="idColor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Codi_RVC" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="Importe" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Association Name="tblParceles_tblTipoUva" Member="tblParceles" ThisKey="idTipoUva" OtherKey="idVarietat" Type="tblParceles" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblPartesFinca" Member="tblPartesFinca">
     <Type Name="tblPartesFinca">
       <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -171,6 +161,26 @@
       <Column Name="PreuUnitari" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="UnidadMesura" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="tblFamiliesCost_tblLineasPartesFinca" Member="tblLineasPartesFinca" ThisKey="CodigoEmpresa,idCost" OtherKey="CodigoEmpresa,idFamiliaCoste" Type="tblLineasPartesFinca" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblTipoUva" Member="tblTipoUva">
+    <Type Name="tblTipoUva">
+      <Column Name="idTipoUva" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idColor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Codi_RVC" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Importe" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ColorRGB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblTipoUva_tblParceles" Member="tblParceles" ThisKey="idTipoUva" OtherKey="idVarietat" Type="tblParceles" />
+      <Association Name="tblColorProducto_tblTipoUva" Member="tblColorProducto" ThisKey="idColor" OtherKey="idColor" Type="tblColorProducto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblColorProducto" Member="tblColorProducto">
+    <Type Name="tblColorProducto">
+      <Column Name="idColor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Color" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
+      <Column Name="CodigoColor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblColorProducto_tblTipoUva" Member="tblTipoUva" ThisKey="idColor" OtherKey="idColor" Type="tblTipoUva" />
     </Type>
   </Table>
 </Database>

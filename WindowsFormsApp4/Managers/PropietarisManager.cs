@@ -158,6 +158,9 @@ namespace WindowsFormsApp4
         public Varietat(tblTipoUva varietat)
         {
             _tbl = varietat;
+
+            if(_tbl.ColorRGB != null)
+                color = Color.FromArgb((int)_tbl.ColorRGB);
         }
 
         public override string ToString()

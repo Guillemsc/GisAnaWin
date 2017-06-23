@@ -75,6 +75,26 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblPartesFinca> GetPartesFinca()
+        {
+            List<tblPartesFinca> ret = new List<tblPartesFinca>();
+
+            foreach (var prov in servidor.tblPartesFinca)
+                ret.Add(prov);
+
+            return ret;
+        }
+
+        public List<tblLineasPartesFinca> GetLineasPartesFinca()
+        {
+            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
+
+            foreach (var prov in  servidor.tblLineasPartesFinca)
+                ret.Add(prov);
+
+            return ret;
+        }
+
         public tblCoordenadesFincaParcela AddCoordenades(int id_parcela, double lat, double lon, string codigo_empresa, int id_finca, int id_punt_cor)
         {
             tblCoordenadesFincaParcela ret = new tblCoordenadesFincaParcela();
