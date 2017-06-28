@@ -379,14 +379,26 @@ namespace WindowsFormsApp4
         public void ActualitzaVarietatsDesDeServidor()
         {
             List<tblTipoUva> varietats = server_manager.GetVarietats();
+            List<tblColorProducto> colors = server_manager.GetColorsProducte();
 
             propietaris_manager.EliminaVarietats();
 
             for(int i = 0; i < varietats.Count; i++)
             {
-                Varietat v = new Varietat(varietats[i]);
-                propietaris_manager.AfegirVarietat(v);
+                tblTipoUva varietat_actual = varietats[i];
+                tblColorProducto color_actual = null;
 
+                for(int y = 0; y < colors.Count; y++)
+                {
+                    if(colors[y].idColor == varietat_actual.idColor)
+                    {
+                        color_actual = colors[y];
+                        break;
+                    }
+                }
+
+                Varietat v = new Varietat(varietat_actual, color_actual);
+                propietaris_manager.AfegirVarietat(v);
             }
         }
 
@@ -394,7 +406,7 @@ namespace WindowsFormsApp4
         {
             List<tblFamiliesCost> treballs = server_manager.GetTreballs();
 
-            for(int i = 0; i<treballs.Count(); i++)
+            for(int i = 0; i < treballs.Count(); i++)
             {
                 Treball t = new Treball(treballs[i]);
                 propietaris_manager.AfegirTreball(t);
@@ -861,7 +873,7 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = new List<Parcela>();
 
-            if (propietaris_manager.propietari_actual != null || propietaris_manager.finca_actual != null || propietaris_manager.varietat_actual != null)
+            if (propietaris_manager.propietari_actual != null || propietaris_manager.finca_actual != null || propietaris_manager.varietat_actual != null || propietaris_manager.treball_actual != null)
             {
                 for (int i = 0; i < propietaris_manager.GetParceles().Count;)
                 {
@@ -905,7 +917,23 @@ namespace WindowsFormsApp4
                     // Treballs
                     if(propietaris_manager.treball_actual != null)
                     {
-                        //if(propietaris_manager.treball_actual.GetTbl().idCost != parcela_actual.GetTbl().)
+                        List<tblLineasPartesFinca> partes = parcela_actual.GetLineasParte();
+
+                        int count = 0;
+                        for(int p = 0; i < partes.Count; p++)
+                        {
+                            if (propietaris_manager.treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
+                            {
+                                count++;
+                                break;
+                            }
+                        }
+
+                        if(count == 0)
+                        {
+                            ++i;
+                            continue;
+                        }
                     }
 
                     // Add

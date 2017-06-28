@@ -19,8 +19,11 @@ namespace WindowsFormsApp4
         {
             List<tblProveedores> ret = new List<tblProveedores>();
 
-            foreach (var prov in servidor.tblProveedores)
-                ret.Add(prov);
+            if (servidor.tblProveedores.Count() > 0)
+            {
+                foreach (var prov in servidor.tblProveedores)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -29,8 +32,11 @@ namespace WindowsFormsApp4
         {
             List<tblFinques> ret = new List<tblFinques>();
 
-            foreach (var prov in servidor.tblFinques)
-                ret.Add(prov);
+            if (servidor.tblFinques.Count() > 0)
+            {
+                foreach (var prov in servidor.tblFinques)
+                    ret.Add(prov);
+            }
 
             return ret;    
         }
@@ -39,8 +45,11 @@ namespace WindowsFormsApp4
         {
             List<tblParceles> ret = new List<tblParceles>();
 
-            foreach (var prov in servidor.tblParceles)
-                ret.Add(prov);
+            if (servidor.tblParceles.Count() > 0)
+            {
+                foreach (var prov in servidor.tblParceles)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -49,8 +58,11 @@ namespace WindowsFormsApp4
         {
             List<tblCoordenadesFincaParcela> ret = new List<tblCoordenadesFincaParcela>();
 
-            foreach (var prov in servidor.tblCoordenadesFincaParcela)
-                ret.Add(prov);
+            if (servidor.tblCoordenadesFincaParcela.Count() > 0)
+            {
+                foreach (var prov in servidor.tblCoordenadesFincaParcela)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -59,8 +71,11 @@ namespace WindowsFormsApp4
         {
             List<tblTipoUva> ret = new List<tblTipoUva>();
 
-            foreach (var prov in servidor.tblTipoUva)
-                ret.Add(prov);
+            if (servidor.tblTipoUva.Count() > 0)
+            {
+                foreach (var prov in servidor.tblTipoUva)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -69,8 +84,11 @@ namespace WindowsFormsApp4
         {
             List<tblFamiliesCost> ret = new List<tblFamiliesCost>();
 
-            foreach (var prov in servidor.tblFamiliesCost)
-                ret.Add(prov);
+            if (servidor.tblFamiliesCost.Count() > 0)
+            {
+                foreach (var prov in servidor.tblFamiliesCost)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -79,8 +97,11 @@ namespace WindowsFormsApp4
         {
             List<tblPartesFinca> ret = new List<tblPartesFinca>();
 
-            foreach (var prov in servidor.tblPartesFinca)
-                ret.Add(prov);
+            if (servidor.tblPartesFinca.Count() > 0)
+            {
+                foreach (var prov in servidor.tblPartesFinca)
+                    ret.Add(prov);
+            }
 
             return ret;
         }
@@ -89,8 +110,24 @@ namespace WindowsFormsApp4
         {
             List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
 
-            foreach (var prov in  servidor.tblLineasPartesFinca)
-                ret.Add(prov);
+            if (servidor.tblLineasPartesFinca.Count() > 0)
+            {
+                foreach (var prov in servidor.tblLineasPartesFinca)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
+        public List<tblColorProducto> GetColorsProducte()
+        {
+            List<tblColorProducto> ret = new List<tblColorProducto>();
+
+            if(servidor.tblColorProducto.Count() > 0)
+            {
+                foreach (var prov in servidor.tblColorProducto)
+                    ret.Add(prov);
+            }
 
             return ret;
         }

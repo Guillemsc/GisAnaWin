@@ -155,23 +155,32 @@ namespace WindowsFormsApp4
 
     public class Varietat    
     {
-        public Varietat(tblTipoUva varietat)
+        public Varietat(tblTipoUva varietat, tblColorProducto color_prod)
         {
             _tbl = varietat;
 
             if(_tbl.ColorRGB != null)
                 color = Color.FromArgb((int)_tbl.ColorRGB);
+
+            if (color_prod != null)
+                color_producto = color_prod;
         }
 
         public override string ToString()
         {
-            return _tbl.Nombre;
+            string name = _tbl.Nombre;
+
+            if (color_producto != null)
+                name += (" ( " + color_producto.Color.Replace(" ", "").ToLower() + ")");
+
+            return name;
         }
 
         public tblTipoUva GetTbl() { return _tbl; }
 
         private tblTipoUva _tbl;
         public Color color = Color.Blue;
+        private tblColorProducto color_producto = null;
     }
 
     public class Treball

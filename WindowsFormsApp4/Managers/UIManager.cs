@@ -303,4 +303,57 @@ namespace WindowsFormsApp4
             cb.Items.Clear();
         }
     }
+
+    public class UI_ListBox : UI_Element
+    {
+        public UI_ListBox(Point pos, int w, int h, string name = "") : base("list_box")
+        {
+            ListBox lb = new ListBox();
+            lb.Name = name;
+            lb.Location = pos;
+            lb.Width = w;
+            lb.Height = h;
+
+            SetElement(lb);
+        }
+
+        public void AddText(Control element)
+        {
+            ListBox lb = GetElement() as ListBox;
+
+            lb.Items.Add(element);
+        }
+
+        public void DeleteElement(Control element)
+        {
+            ListBox lb = GetElement() as ListBox;
+
+            lb.Items.Remove(element);
+        }
+
+        public void Clear()
+        {
+            ListBox lb = GetElement() as ListBox;
+
+            lb.Items.Clear();
+        }
+
+        public Control GetSelected()
+        {
+            Control ret = null;
+
+            ListBox lb = GetElement() as ListBox;
+
+            if (lb.SelectedIndex >= 0)
+                ret = (Control)lb.SelectedItem;
+            
+            return ret;
+        }
+
+        public void ClearSelection()
+        {
+            ListBox lb = GetElement() as ListBox;
+            lb.ClearSelected();
+        }
+    }
 }
