@@ -226,6 +226,7 @@ namespace WindowsFormsApp4
                 {
                     editor_parceles_elimina_button.SetEnabled(true);
                     gmap.Position = propietaris_manager.parcela_actual.GetCenterPos();
+                    gmap.Zoom = 18;
                 }
                 else
                     editor_parceles_elimina_button.SetEnabled(false);
