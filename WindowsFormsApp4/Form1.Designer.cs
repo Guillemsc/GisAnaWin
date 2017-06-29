@@ -143,33 +143,33 @@ namespace WindowsFormsApp4
             // General Map UI Input
             map_win = new UI_Window(this);
             {
-                text_input_lat = new UI_TextInput(new Point(8, 485), 100, 50);
+                text_input_lat = new UI_TextInput(new Point(16, 485), 92, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
 
-                text_input_lon = new UI_TextInput(new Point(115, 485), 100, 50);
+                text_input_lon = new UI_TextInput(new Point(123, 485), 92, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
-                search_button_coor = new UI_Button(new Point(7, 460), 209, 23, "Cerca coordenades");
+                search_button_coor = new UI_Button(new Point(15, 460), 201, 23, "Cerca coordenades");
                 search_button_coor.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_coor.GetElement().Click += new System.EventHandler(this.SearchLatLon);
                 map_win.AddElement(search_button_coor);
 
-                lat_text = new UI_Text(new Point(8, 510), 193, 40, "Lat");
+                lat_text = new UI_Text(new Point(16, 510), 193, 40, "Lat");
                 lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lat_text);
 
-                lon_text = new UI_Text(new Point(115, 510), 193, 40, "Lon");
+                lon_text = new UI_Text(new Point(123, 510), 193, 40, "Lon");
                 lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lon_text);
 
-                search_button_name = new UI_Button(new Point(7, 403), 210, 23, "Cerca nom");
+                search_button_name = new UI_Button(new Point(15, 403), 201, 23, "Cerca nom");
                 search_button_name.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_name.GetElement().Click += new System.EventHandler(this.SearchName);
                 map_win.AddElement(search_button_name);
 
-                text_input_nom = new UI_TextInput(new Point(8, 428), 208, 50);
+                text_input_nom = new UI_TextInput(new Point(16, 428), 200, 50);
                 text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_nom);
 
@@ -187,7 +187,7 @@ namespace WindowsFormsApp4
             // Starting Window
             main_win = new UI_Window(this);
             {
-                // Propietaris
+                // Propietaris - Finques
                 propietaris_text = new UI_Text(new Point(15, 15), 193, 40, "Propietari: ");
                 propietaris_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(propietaris_text);
@@ -203,66 +203,91 @@ namespace WindowsFormsApp4
                 propietari_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha propietari seleccionat");
                 nom_propietari_panel.AddElement(propietari_nom_text);
 
-                // Finques
-                finques_text = new UI_Text(new Point(15, 75), 193, 40, "Finca: ");
+                finques_text = new UI_Text(new Point(15, 65), 193, 40, "Finca: ");
                 finques_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(finques_text);
 
-                nom_finca_panel = new UI_Panel(new Point(18, 94), 165, 23);
+                nom_finca_panel = new UI_Panel(new Point(18, 84), 165, 23);
                 nom_finca_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_finca_panel);
 
-                open_finca_search_button = new UI_Button(new Point(190, 93), 26, 25, "...");
+                open_finca_search_button = new UI_Button(new Point(190, 83), 26, 25, "...");
                 open_finca_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioFinca);
                 main_win.AddElement(open_finca_search_button);
 
                 finca_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha finca seleccionada");
                 nom_finca_panel.AddElement(finca_nom_text);
 
+                propietari_finca_cerca = new UI_Button(new Point(18, 110), 46, 20, "Cerca");
+                propietari_finca_cerca.GetElement().Click += new System.EventHandler(this.CercaPropietariFinca);
+                main_win.AddElement(propietari_finca_cerca);
+                propietari_finca_neteja = new UI_Button(new Point(70, 110), 46, 20, "Neteja");
+                propietari_finca_neteja.GetElement().Click += new System.EventHandler(this.NetejaPropietariFinca);
+                main_win.AddElement(propietari_finca_neteja);
+
+                divisor_propietari_finca = new UI_Panel(new Point(18, 135), 195, 1);
+                divisor_propietari_finca.SetColor(Color.Black);
+                main_win.AddElement(divisor_propietari_finca);
+
                 // Varietat
-                varietat_text = new UI_Text(new Point(15, 135), 193, 40, "Varietat: ");
+                varietat_text = new UI_Text(new Point(15, 145), 193, 40, "Varietat: ");
                 varietat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(varietat_text);
 
-                nom_varietat_panel = new UI_Panel(new Point(18, 154), 165, 23);
+                nom_varietat_panel = new UI_Panel(new Point(18, 164), 165, 23);
                 nom_varietat_panel.SetColor(Color.Cornsilk);
                 main_win.AddElement(nom_varietat_panel);
 
-                open_varietat_search_button = new UI_Button(new Point(190, 153), 26, 25, "...");
+                open_varietat_search_button = new UI_Button(new Point(190, 163), 26, 25, "...");
                 open_varietat_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioVarietat);
                 main_win.AddElement(open_varietat_search_button);
 
                 varietat_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha varietat seleccionada");
                 nom_varietat_panel.AddElement(varietat_nom_text);
 
+                varietat_cerca = new UI_Button(new Point(18, 190), 46, 20, "Cerca");
+                varietat_cerca.GetElement().Click += new System.EventHandler(this.CercaVarietat);
+                main_win.AddElement(varietat_cerca);
+                varietat_neteja = new UI_Button(new Point(70, 190), 46, 20, "Neteja");
+                varietat_neteja.GetElement().Click += new System.EventHandler(this.NetejaVarietat);
+                main_win.AddElement(varietat_neteja);
+
+                divisor_varietat = new UI_Panel(new Point(18, 215), 195, 1);
+                divisor_varietat.SetColor(Color.Black);
+                main_win.AddElement(divisor_varietat);
+
                 // Treballs
-                treballs_text = new UI_Text(new Point(15, 195), 100, 40, "Treballs: ");
+                treballs_text = new UI_Text(new Point(15, 225), 100, 40, "Treballs: ");
                 main_win.AddElement(treballs_text);
 
-                nom_treball_panel = new UI_Panel(new Point(18, 215), 165, 23);
+                nom_treball_panel = new UI_Panel(new Point(18, 245), 165, 23);
                 nom_treball_panel.SetColor(Color.Cornsilk);
 
-                open_treball_search_button = new UI_Button(new Point(190, 215), 26, 25, "...");
+                open_treball_search_button = new UI_Button(new Point(190, 245), 26, 25, "...");
                 open_treball_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioTreball);
                 main_win.AddElement(open_treball_search_button);
 
                 treball_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha treball seleccionat");
                 nom_treball_panel.AddElement(treball_nom_text);
-
                 main_win.AddElement(nom_treball_panel);
 
+                treball_cerca = new UI_Button(new Point(18, 270), 46, 20, "Cerca");
+                treball_cerca.GetElement().Click += new System.EventHandler(this.CercaTreball);
+                main_win.AddElement(treball_cerca);
+                treball_neteja = new UI_Button(new Point(70, 270), 46, 20, "Neteja");
+                treball_neteja.GetElement().Click += new System.EventHandler(this.NetejaTreball);
+                main_win.AddElement(treball_neteja);
+
+                divisor_treball = new UI_Panel(new Point(18, 295), 195, 1);
+                divisor_treball.SetColor(Color.Black);
+                main_win.AddElement(divisor_treball);
 
                 // Parceles
-                neteja_seleccions = new UI_Button(new Point(16, 245), 200, 23, "Neteja");
-                neteja_seleccions.GetElement().Click += new System.EventHandler(this.NetejaSeleccions);
-                main_win.AddElement(neteja_seleccions);
-
-                llista_parceles_text = new UI_Text(new Point(15, 275), 200, 30, "Parceles:");
+                llista_parceles_text = new UI_Text(new Point(15, 305), 200, 30, "Parceles:");
                 main_win.AddElement(llista_parceles_text);
 
-                llista_parceles_llista = new UI_ListBox(new Point(15, 295), 200, 100);
+                llista_parceles_llista = new UI_ListBox(new Point(15, 325), 200, 80);
                 llista_parceles_llista.GetElement().Click += new System.EventHandler(this.ParcelaClick);
-                //llista_parceles_llista.SetColor(Color.Cornsilk);
                 llista_parceles_llista.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(llista_parceles_llista);
 
@@ -373,17 +398,8 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_treball_win);
             seleccio_treball_win.SetEnabled(false);
 
-            // Finestra opcions parcela
-            finestra_opcions_parcela = new UI_Window(this);
-            {
-                finestra_opcions_parcela_panel = new UI_Panel(new Point(240, 400), 230, 120);
-                finestra_opcions_parcela_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
-                finestra_opcions_parcela_panel.SetColor(Color.Cornsilk);
-                finestra_opcions_parcela.AddElement(finestra_opcions_parcela_panel);
-            }
-            ui_manager.AddUIWindow(finestra_opcions_parcela);
-            finestra_opcions_parcela.SetEnabled(true);
 
+            // Always on bottom
             gmap.SendToBack();
         }
 
@@ -406,7 +422,6 @@ namespace WindowsFormsApp4
         UI_Window seleccio_finca_win = null;
         UI_Window seleccio_varietat_win = null;
         UI_Window seleccio_treball_win = null;
-        UI_Window finestra_opcions_parcela = null;
 
         // Elements
         UI_TextInput text_input_lat = null;
@@ -434,9 +449,17 @@ namespace WindowsFormsApp4
         UI_Panel nom_treball_panel = null;
         UI_Button open_treball_search_button = null;
         UI_Text treball_nom_text = null;
-        UI_Button neteja_seleccions = null;
         UI_Text llista_parceles_text = null;
         UI_ListBox llista_parceles_llista = null;
+        UI_Button propietari_finca_cerca = null;
+        UI_Button propietari_finca_neteja = null;
+        UI_Panel divisor_propietari_finca = null;
+        UI_Button varietat_cerca = null;
+        UI_Button varietat_neteja = null;
+        UI_Panel divisor_varietat = null;
+        UI_Button treball_cerca = null;
+        UI_Button treball_neteja = null;
+        UI_Panel divisor_treball = null;
 
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;
@@ -461,9 +484,6 @@ namespace WindowsFormsApp4
         UI_ComboBox seleccio_treball_noms_combobox = null;
         UI_Button seleccio_treball_guarda_button = null;
 
-
-
-        UI_Panel finestra_opcions_parcela_panel = null;
 
         // Managers
         public GMap.NET.WindowsForms.GMapControl gmap = null;

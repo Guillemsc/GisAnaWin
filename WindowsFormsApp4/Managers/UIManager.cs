@@ -381,6 +381,13 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public int Count()
+        {
+            ListBox lb = GetElement() as ListBox;
+
+            return lb.Items.Count;
+        }
+
         public void ClearSelection()
         {
             ListBox lb = GetElement() as ListBox;

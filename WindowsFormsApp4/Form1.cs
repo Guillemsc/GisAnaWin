@@ -82,6 +82,68 @@ namespace WindowsFormsApp4
             }
         }
 
+        private void CercaPropietariFinca(object sender, EventArgs e)
+        {
+            ActualitzaLlistaParceles();
+        }
+
+        private void NetejaPropietariFinca(object sender, EventArgs e)
+        {
+            propietaris_manager.finca_actual = null;
+            propietaris_manager.propietari_actual = null;
+
+            propietari_nom_text.SetText("No hi ha propietari seleccionat");
+
+            finca_nom_text.SetText("No hi ha finca seleccionada");
+
+            seleccio_finca_win.SetEnabled(false);
+            seleccio_varietat_win.SetEnabled(false);
+            seleccio_propietari_win.SetEnabled(false);
+            seleccio_treball_win.SetEnabled(false);
+
+            editor_parceles_panel.SetEnabled(false);
+
+            propietaris_manager.can_point = false;
+        }
+
+        private void CercaVarietat(object sender, EventArgs e)
+        {
+            ActualitzaLlistaParceles();
+        }
+
+        private void NetejaVarietat(object sender, EventArgs e)
+        {
+            propietaris_manager.varietat_actual = null;
+
+            varietat_nom_text.SetText("No hi ha varietat seleccionada");
+
+            seleccio_finca_win.SetEnabled(false);
+            seleccio_varietat_win.SetEnabled(false);
+            seleccio_propietari_win.SetEnabled(false);
+            seleccio_treball_win.SetEnabled(false);
+
+            editor_parceles_panel.SetEnabled(false);
+
+            propietaris_manager.can_point = false;
+        }
+
+        private void CercaTreball(object sender, EventArgs e)
+        {
+            ActualitzaLlistaParceles();
+        }
+
+        private void NetejaTreball(object sender, EventArgs e)
+        {
+            propietaris_manager.treball_actual = null;
+
+            treball_nom_text.SetText("No hi ha treball seleccionat");
+
+            seleccio_finca_win.SetEnabled(false);
+            seleccio_varietat_win.SetEnabled(false);
+            seleccio_propietari_win.SetEnabled(false);
+            seleccio_treball_win.SetEnabled(false);
+        }
+
         public void SeleccioPropietariGuarda(object sender, EventArgs e)
         {
             if (seleccio_propietari_noms_combobox.IsSelected())
@@ -92,12 +154,6 @@ namespace WindowsFormsApp4
 
                 propietari_nom_text.SetText(sele.GetTbl().Nombre);
                 finca_nom_text.SetText("No hi ha finca seleccionada");
-
-                seleccio_propietari_noms_combobox.CleanSelection();
-
-                seleccio_propietari_win.SetEnabled(false);
-
-                ActualitzaLlistaParceles();
             }
         }
 
@@ -117,12 +173,6 @@ namespace WindowsFormsApp4
                     propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
                     finca_nom_text.SetText(sele.GetTbl().Nom1);
-
-                    ActualitzaLlistaParceles();
-
-                    seleccio_finca_noms_combobox.CleanSelection();
-
-                    seleccio_finca_win.SetEnabled(false);
                 }
             }
         }
@@ -136,8 +186,6 @@ namespace WindowsFormsApp4
                 propietaris_manager.varietat_actual = sele;
 
                 varietat_nom_text.SetText(sele.GetTbl().Nombre);
-
-                ActualitzaLlistaParceles();
 
                 seleccio_varietat_noms_combobox.CleanSelection();
 
@@ -161,34 +209,6 @@ namespace WindowsFormsApp4
 
                 seleccio_treball_win.SetEnabled(false);
             }
-        }
-
-        public void NetejaSeleccions(object sender, EventArgs e)
-        {
-            propietaris_manager.varietat_actual = null;
-            propietaris_manager.parcela_actual = null;
-            propietaris_manager.finca_actual = null;
-            propietaris_manager.propietari_actual = null;
-            propietaris_manager.treball_actual = null;
-
-            propietari_nom_text.SetText("No hi ha propietari seleccionat");
-
-            finca_nom_text.SetText("No hi ha finca seleccionada");
-
-            varietat_nom_text.SetText("No hi ha varietat seleccionada");
-
-            treball_nom_text.SetText("No hi ha treball seleccionat");
-
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
-
-            editor_parceles_panel.SetEnabled(false);
-
-            propietaris_manager.can_point = false;
-
-            ActualitzaLlistaParceles();
         }
 
         public void ParcelaClick(object sender, EventArgs e)
@@ -230,8 +250,6 @@ namespace WindowsFormsApp4
                 }
                 else
                     editor_parceles_elimina_button.SetEnabled(false);
-
-                //ActualitzaLlistaParceles();
             }
         }
 
@@ -698,11 +716,16 @@ namespace WindowsFormsApp4
 
         private void gmap_PoligonEnter(GMapPolygon item)
         {
-            propietaris_manager.curr_list_box = null;
+            if (propietaris_manager.curr_list_box != null)
+            {
+                propietaris_manager.curr_list_box.Hide();
+                this.Controls.Remove(propietaris_manager.curr_list_box);
+                propietaris_manager.curr_list_box = null;
+            }
 
             Parcela p = GetParcelaPolygon(item);
 
-            if(p != null)
+            if (p != null)
             {
                 string nom = GetFincaPerParcela(p).GetTbl().Nom1;
                 string propietari = GetPropietariPerParcela(p).GetTbl().Nombre;
@@ -742,11 +765,14 @@ namespace WindowsFormsApp4
 
         private void gmap_PoligonOut(GMapPolygon item)
         {
-            propietaris_manager.curr_list_box.Hide();
-            this.Controls.Remove(propietaris_manager.curr_list_box);
-            propietaris_manager.curr_list_box = null;
+            if (propietaris_manager.curr_list_box != null)
+            {
+                propietaris_manager.curr_list_box.Hide();
+                this.Controls.Remove(propietaris_manager.curr_list_box);
+                propietaris_manager.curr_list_box = null;
 
-            propietaris_manager.can_point = propietaris_manager.can_point_back;
+                propietaris_manager.can_point = propietaris_manager.can_point_back;
+            }
         }
 
         private void gmap_PoligonClick(GMapPolygon item, MouseEventArgs e)
@@ -921,12 +947,12 @@ namespace WindowsFormsApp4
                     }
 
                     // Treballs
-                    if(propietaris_manager.treball_actual != null)
+                    if (propietaris_manager.treball_actual != null)
                     {
                         List<tblLineasPartesFinca> partes = parcela_actual.GetLineasParte();
 
                         int count = 0;
-                        for(int p = 0; i < partes.Count; p++)
+                        for (int p = 0; i < partes.Count; p++)
                         {
                             if (propietaris_manager.treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
                             {
@@ -935,7 +961,7 @@ namespace WindowsFormsApp4
                             }
                         }
 
-                        if(count == 0)
+                        if (count == 0)
                         {
                             ++i;
                             continue;
@@ -958,15 +984,21 @@ namespace WindowsFormsApp4
                 {
                     UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (y + 1) + ": " + varietat.GetTbl().Nombre + ". ID: " + parceles[y].GetTbl().idParcela.ToString(), parceles[y].GetTbl().idParcela.ToString());
 
-                    if (propietaris_manager.parcela_actual == parceles[y])
-                        t.SetColor(Color.AliceBlue, Color.Black);
-
                     llista_parceles_llista.AddElement(t);
                     ListBox l = llista_parceles_llista.GetElement() as ListBox;
                     l.DisplayMember = "Text";
 
+                    if (propietaris_manager.parcela_actual == parceles[y])
+                        l.SelectedIndex = l.Items.Count - 1;
+
                     acumulator += 18;
                 }
+            }
+
+            if (llista_parceles_llista.Count() == 0 || !llista_parceles_llista.IsSelected())
+            {
+                editor_parceles_panel.SetEnabled(false);
+                propietaris_manager.can_point = false;
             }
         }
     
