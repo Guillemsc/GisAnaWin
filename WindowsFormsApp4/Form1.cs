@@ -999,6 +999,7 @@ namespace WindowsFormsApp4
             {
                 editor_parceles_panel.SetEnabled(false);
                 propietaris_manager.can_point = false;
+                llista_parceles_llista.CleanSelection();
             }
         }
     

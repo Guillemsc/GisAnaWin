@@ -388,6 +388,13 @@ namespace WindowsFormsApp4
             return lb.Items.Count;
         }
 
+        public void CleanSelection()
+        {
+            ListBox lb = GetElement() as ListBox;
+            lb.SelectedItem = null;
+            lb.SelectedIndex = -1;
+        }
+
         public void ClearSelection()
         {
             ListBox lb = GetElement() as ListBox;
