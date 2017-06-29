@@ -193,7 +193,12 @@ namespace WindowsFormsApp4
 
         public void ParcelaClick(object sender, EventArgs e)
         {
-            Label l = sender as Label;
+            Label l = null;
+
+            if (llista_parceles_llista.IsSelected())
+            {
+                l = llista_parceles_llista.GetSelected() as Label;
+            }
 
             if(l != null)
             {
@@ -225,7 +230,7 @@ namespace WindowsFormsApp4
                 else
                     editor_parceles_elimina_button.SetEnabled(false);
 
-                ActualitzaLlistaParceles();
+                //ActualitzaLlistaParceles();
             }
         }
 
@@ -869,7 +874,7 @@ namespace WindowsFormsApp4
 
         public void ActualitzaLlistaParceles()
         {
-            llista_parceles_panel.ClearPanel();
+            llista_parceles_llista.Clear();
 
             List<Parcela> parceles = new List<Parcela>();
 
@@ -951,13 +956,14 @@ namespace WindowsFormsApp4
                 if (varietat != null)
                 {
                     UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (y + 1) + ": " + varietat.GetTbl().Nombre + ". ID: " + parceles[y].GetTbl().idParcela.ToString(), parceles[y].GetTbl().idParcela.ToString());
-                    t.GetElement().Click += new System.EventHandler(this.ParcelaClick);
-                    t.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
 
                     if (propietaris_manager.parcela_actual == parceles[y])
                         t.SetColor(Color.AliceBlue, Color.Black);
 
-                    llista_parceles_panel.AddElement(t);
+                    llista_parceles_llista.AddElement(t);
+                    ListBox l = llista_parceles_llista.GetElement() as ListBox;
+                    l.DisplayMember = "Text";
+
                     acumulator += 18;
                 }
             }

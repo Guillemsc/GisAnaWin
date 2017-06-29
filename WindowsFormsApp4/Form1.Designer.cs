@@ -260,10 +260,11 @@ namespace WindowsFormsApp4
                 llista_parceles_text = new UI_Text(new Point(15, 275), 200, 30, "Parceles:");
                 main_win.AddElement(llista_parceles_text);
 
-                llista_parceles_panel = new UI_Panel(new Point(15, 295), 200, 100);
-                llista_parceles_panel.SetColor(Color.Cornsilk);
-                llista_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
-                main_win.AddElement(llista_parceles_panel);
+                llista_parceles_llista = new UI_ListBox(new Point(15, 295), 200, 100);
+                llista_parceles_llista.GetElement().Click += new System.EventHandler(this.ParcelaClick);
+                //llista_parceles_llista.SetColor(Color.Cornsilk);
+                llista_parceles_llista.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                main_win.AddElement(llista_parceles_llista);
 
                 // Editor parceles
                 editor_parceles_panel = new UI_Panel(new Point(229, 0), 600, 30);
@@ -435,7 +436,7 @@ namespace WindowsFormsApp4
         UI_Text treball_nom_text = null;
         UI_Button neteja_seleccions = null;
         UI_Text llista_parceles_text = null;
-        UI_Panel llista_parceles_panel = null;
+        UI_ListBox llista_parceles_llista = null;
 
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;

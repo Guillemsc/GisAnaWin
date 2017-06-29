@@ -194,6 +194,13 @@ namespace WindowsFormsApp4
             SetElement(l);
         }
 
+        public override string ToString()
+        {
+            Label l = GetElement() as Label;
+
+            return l.Text;
+        }
+
         public void SetText(string text)
         {
             Label l = GetElement() as Label;
@@ -205,6 +212,12 @@ namespace WindowsFormsApp4
             Label l = GetElement() as Label;
             l.BackColor = back_color;
             l.ForeColor = fore_color;
+        }
+
+        public string GetText()
+        {
+            Label l = GetElement() as Label;
+            return l.Text;
         }
     }
 
@@ -317,11 +330,17 @@ namespace WindowsFormsApp4
             SetElement(lb);
         }
 
-        public void AddText(Control element)
+        public void AddElement(UI_Element element)
         {
             ListBox lb = GetElement() as ListBox;
 
-            lb.Items.Add(element);
+            lb.Items.Add(element.GetElement());
+        }
+
+        public void AddText(string text)
+        {
+            ListBox lb = GetElement() as ListBox;
+            lb.Items.Add(text);
         }
 
         public void DeleteElement(Control element)
@@ -347,6 +366,18 @@ namespace WindowsFormsApp4
             if (lb.SelectedIndex >= 0)
                 ret = (Control)lb.SelectedItem;
             
+            return ret;
+        }
+
+        public bool IsSelected()
+        {
+            bool ret = false;
+
+            ListBox lb = GetElement() as ListBox;
+
+            if (lb.SelectedIndex >= 0)
+                ret = true;
+
             return ret;
         }
 
