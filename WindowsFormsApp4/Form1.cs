@@ -154,6 +154,8 @@ namespace WindowsFormsApp4
 
                 propietari_nom_text.SetText(sele.GetTbl().Nombre);
                 finca_nom_text.SetText("No hi ha finca seleccionada");
+
+                seleccio_propietari_win.SetEnabled(false);
             }
         }
 
@@ -173,6 +175,8 @@ namespace WindowsFormsApp4
                     propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
                     finca_nom_text.SetText(sele.GetTbl().Nom1);
+
+                    seleccio_finca_win.SetEnabled(false);
                 }
             }
         }

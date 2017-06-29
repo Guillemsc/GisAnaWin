@@ -102,7 +102,7 @@ namespace WindowsFormsApp4
             // -----------------------------------
 
             // Gmap ------------------------------
-            gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
@@ -173,7 +173,7 @@ namespace WindowsFormsApp4
                 text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_nom);
 
-                mapsat_button = new UI_Button(new Point(690, 500), 100, 23, "Canvia a satel.lit");
+                mapsat_button = new UI_Button(new Point(690, 500), 100, 23, "Canvia a Mapa");
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
