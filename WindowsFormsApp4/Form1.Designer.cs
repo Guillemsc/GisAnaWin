@@ -455,6 +455,14 @@ namespace WindowsFormsApp4
 
                 propietaris_manager.finca_actual = f;
 
+                Propietari p = GetPropietariPerFinca(f);
+
+                propietaris_manager.propietari_actual = p;
+
+                propietari_nom_text.SetText(propietaris_manager.propietari_actual.GetTbl().Nombre);
+
+                finca_nom_text.SetText(propietaris_manager.finca_actual.GetTbl().Nom1);
+
                 ActualitzaLlistaParceles();
             }
         }
@@ -543,7 +551,6 @@ namespace WindowsFormsApp4
         public ServerManager server_manager = null;
 
         // Starting args
-        string propietari_id = "";
         string finca_id = "";
     }
 }

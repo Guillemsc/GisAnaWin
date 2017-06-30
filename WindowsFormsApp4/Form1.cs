@@ -1043,7 +1043,7 @@ namespace WindowsFormsApp4
 
                 if (varietat != null)
                 {
-                    UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, "- Parcela " + (y + 1) + ": " + varietat.GetTbl().Nombre + ". ID: " + parceles[y].GetTbl().idParcela.ToString(), parceles[y].GetTbl().idParcela.ToString());
+                    UI_Text t = new UI_Text(new Point(5, acumulator), 100, 30, (y + 1) + ": "+ parceles[y].GetTbl().idParcelaVinicola + ": " + varietat.GetTbl().Nombre + ". Ha: " + parceles[y].GetTbl().Ha.ToString(), parceles[y].GetTbl().idParcela.ToString());
 
                     llista_parceles_llista.AddElement(t);
                     ListBox l = llista_parceles_llista.GetElement() as ListBox;
