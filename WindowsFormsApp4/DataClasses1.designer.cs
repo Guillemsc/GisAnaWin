@@ -48,9 +48,6 @@ namespace WindowsFormsApp4
     partial void InserttblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
     partial void UpdatetblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
     partial void DeletetblCoordenadesFincaParcela(tblCoordenadesFincaParcela instance);
-    partial void InserttblLineasPartesFinca(tblLineasPartesFinca instance);
-    partial void UpdatetblLineasPartesFinca(tblLineasPartesFinca instance);
-    partial void DeletetblLineasPartesFinca(tblLineasPartesFinca instance);
     partial void InserttblFamiliesCost(tblFamiliesCost instance);
     partial void UpdatetblFamiliesCost(tblFamiliesCost instance);
     partial void DeletetblFamiliesCost(tblFamiliesCost instance);
@@ -60,6 +57,9 @@ namespace WindowsFormsApp4
     partial void InserttblColorProducto(tblColorProducto instance);
     partial void UpdatetblColorProducto(tblColorProducto instance);
     partial void DeletetblColorProducto(tblColorProducto instance);
+    partial void InserttblLineasPartesFinca(tblLineasPartesFinca instance);
+    partial void UpdatetblLineasPartesFinca(tblLineasPartesFinca instance);
+    partial void DeletetblLineasPartesFinca(tblLineasPartesFinca instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -140,14 +140,6 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		public System.Data.Linq.Table<tblLineasPartesFinca> tblLineasPartesFinca
-		{
-			get
-			{
-				return this.GetTable<tblLineasPartesFinca>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblFamiliesCost> tblFamiliesCost
 		{
 			get
@@ -169,6 +161,14 @@ namespace WindowsFormsApp4
 			get
 			{
 				return this.GetTable<tblColorProducto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblLineasPartesFinca> tblLineasPartesFinca
+		{
+			get
+			{
+				return this.GetTable<tblLineasPartesFinca>();
 			}
 		}
 	}
@@ -2353,9 +2353,9 @@ namespace WindowsFormsApp4
 		
 		private string _Estat;
 		
-		private EntityRef<tblLineasPartesFinca> _tblLineasPartesFinca;
-		
 		private EntityRef<tblFinques> _tblFinques;
+		
+		private EntityRef<tblLineasPartesFinca> _tblLineasPartesFinca;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -2377,8 +2377,8 @@ namespace WindowsFormsApp4
 		
 		public tblPartesFinca()
 		{
-			this._tblLineasPartesFinca = default(EntityRef<tblLineasPartesFinca>);
 			this._tblFinques = default(EntityRef<tblFinques>);
+			this._tblLineasPartesFinca = default(EntityRef<tblLineasPartesFinca>);
 			OnCreated();
 		}
 		
@@ -2393,7 +2393,7 @@ namespace WindowsFormsApp4
 			{
 				if ((this._CodigoEmpresa != value))
 				{
-					if (this._tblFinques.HasLoadedOrAssignedValue)
+					if ((this._tblFinques.HasLoadedOrAssignedValue || this._tblLineasPartesFinca.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2417,6 +2417,10 @@ namespace WindowsFormsApp4
 			{
 				if ((this._idParte != value))
 				{
+					if (this._tblLineasPartesFinca.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnidParteChanging(value);
 					this.SendPropertyChanging();
 					this._idParte = value;
@@ -2510,35 +2514,6 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPartesFinca_tblLineasPartesFinca", Storage="_tblLineasPartesFinca", ThisKey="CodigoEmpresa,idParte", OtherKey="CodigoEmpresa,idParte", IsUnique=true, IsForeignKey=false)]
-		public tblLineasPartesFinca tblLineasPartesFinca
-		{
-			get
-			{
-				return this._tblLineasPartesFinca.Entity;
-			}
-			set
-			{
-				tblLineasPartesFinca previousValue = this._tblLineasPartesFinca.Entity;
-				if (((previousValue != value) 
-							|| (this._tblLineasPartesFinca.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblLineasPartesFinca.Entity = null;
-						previousValue.tblPartesFinca = null;
-					}
-					this._tblLineasPartesFinca.Entity = value;
-					if ((value != null))
-					{
-						value.tblPartesFinca = this;
-					}
-					this.SendPropertyChanged("tblLineasPartesFinca");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblFinques_tblPartesFinca", Storage="_tblFinques", ThisKey="CodigoEmpresa,idFinca", OtherKey="CodigoEmpresa,idFinca", IsForeignKey=true)]
 		public tblFinques tblFinques
 		{
@@ -2571,6 +2546,42 @@ namespace WindowsFormsApp4
 						this._idFinca = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblFinques");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLineasPartesFinca_tblPartesFinca", Storage="_tblLineasPartesFinca", ThisKey="CodigoEmpresa,idParte", OtherKey="CodigoEmpresa,idParte", IsForeignKey=true)]
+		public tblLineasPartesFinca tblLineasPartesFinca
+		{
+			get
+			{
+				return this._tblLineasPartesFinca.Entity;
+			}
+			set
+			{
+				tblLineasPartesFinca previousValue = this._tblLineasPartesFinca.Entity;
+				if (((previousValue != value) 
+							|| (this._tblLineasPartesFinca.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblLineasPartesFinca.Entity = null;
+						previousValue.tblPartesFinca = null;
+					}
+					this._tblLineasPartesFinca.Entity = value;
+					if ((value != null))
+					{
+						value.tblPartesFinca = this;
+						this._CodigoEmpresa = value.CodigoEmpresa;
+						this._idParte = value.idParte;
+					}
+					else
+					{
+						this._CodigoEmpresa = default(string);
+						this._idParte = default(int);
+					}
+					this.SendPropertyChanged("tblLineasPartesFinca");
 				}
 			}
 		}
@@ -3246,374 +3257,6 @@ namespace WindowsFormsApp4
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblLineasPartesFinca")]
-	public partial class tblLineasPartesFinca : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _CodigoEmpresa;
-		
-		private int _idParte;
-		
-		private int _idLinea;
-		
-		private System.Nullable<int> _idParcela;
-		
-		private System.Nullable<int> _idFamiliaCoste;
-		
-		private string _Descripcion;
-		
-		private System.Nullable<decimal> _Unidades;
-		
-		private System.Nullable<decimal> _Precio;
-		
-		private System.Nullable<decimal> _Total;
-		
-		private string _Observaciones;
-		
-		private EntityRef<tblPartesFinca> _tblPartesFinca;
-		
-		private EntityRef<tblFamiliesCost> _tblFamiliesCost;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCodigoEmpresaChanging(string value);
-    partial void OnCodigoEmpresaChanged();
-    partial void OnidParteChanging(int value);
-    partial void OnidParteChanged();
-    partial void OnidLineaChanging(int value);
-    partial void OnidLineaChanged();
-    partial void OnidParcelaChanging(System.Nullable<int> value);
-    partial void OnidParcelaChanged();
-    partial void OnidFamiliaCosteChanging(System.Nullable<int> value);
-    partial void OnidFamiliaCosteChanged();
-    partial void OnDescripcionChanging(string value);
-    partial void OnDescripcionChanged();
-    partial void OnUnidadesChanging(System.Nullable<decimal> value);
-    partial void OnUnidadesChanged();
-    partial void OnPrecioChanging(System.Nullable<decimal> value);
-    partial void OnPrecioChanged();
-    partial void OnTotalChanging(System.Nullable<decimal> value);
-    partial void OnTotalChanged();
-    partial void OnObservacionesChanging(string value);
-    partial void OnObservacionesChanged();
-    #endregion
-		
-		public tblLineasPartesFinca()
-		{
-			this._tblPartesFinca = default(EntityRef<tblPartesFinca>);
-			this._tblFamiliesCost = default(EntityRef<tblFamiliesCost>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string CodigoEmpresa
-		{
-			get
-			{
-				return this._CodigoEmpresa;
-			}
-			set
-			{
-				if ((this._CodigoEmpresa != value))
-				{
-					if ((this._tblPartesFinca.HasLoadedOrAssignedValue || this._tblFamiliesCost.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCodigoEmpresaChanging(value);
-					this.SendPropertyChanging();
-					this._CodigoEmpresa = value;
-					this.SendPropertyChanged("CodigoEmpresa");
-					this.OnCodigoEmpresaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idParte", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int idParte
-		{
-			get
-			{
-				return this._idParte;
-			}
-			set
-			{
-				if ((this._idParte != value))
-				{
-					if (this._tblPartesFinca.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidParteChanging(value);
-					this.SendPropertyChanging();
-					this._idParte = value;
-					this.SendPropertyChanged("idParte");
-					this.OnidParteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idLinea", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int idLinea
-		{
-			get
-			{
-				return this._idLinea;
-			}
-			set
-			{
-				if ((this._idLinea != value))
-				{
-					this.OnidLineaChanging(value);
-					this.SendPropertyChanging();
-					this._idLinea = value;
-					this.SendPropertyChanged("idLinea");
-					this.OnidLineaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idParcela", DbType="Int")]
-		public System.Nullable<int> idParcela
-		{
-			get
-			{
-				return this._idParcela;
-			}
-			set
-			{
-				if ((this._idParcela != value))
-				{
-					this.OnidParcelaChanging(value);
-					this.SendPropertyChanging();
-					this._idParcela = value;
-					this.SendPropertyChanged("idParcela");
-					this.OnidParcelaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFamiliaCoste", DbType="Int")]
-		public System.Nullable<int> idFamiliaCoste
-		{
-			get
-			{
-				return this._idFamiliaCoste;
-			}
-			set
-			{
-				if ((this._idFamiliaCoste != value))
-				{
-					if (this._tblFamiliesCost.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidFamiliaCosteChanging(value);
-					this.SendPropertyChanging();
-					this._idFamiliaCoste = value;
-					this.SendPropertyChanged("idFamiliaCoste");
-					this.OnidFamiliaCosteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250)")]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this.OnDescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._Descripcion = value;
-					this.SendPropertyChanged("Descripcion");
-					this.OnDescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Unidades
-		{
-			get
-			{
-				return this._Unidades;
-			}
-			set
-			{
-				if ((this._Unidades != value))
-				{
-					this.OnUnidadesChanging(value);
-					this.SendPropertyChanging();
-					this._Unidades = value;
-					this.SendPropertyChanged("Unidades");
-					this.OnUnidadesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Precio
-		{
-			get
-			{
-				return this._Precio;
-			}
-			set
-			{
-				if ((this._Precio != value))
-				{
-					this.OnPrecioChanging(value);
-					this.SendPropertyChanging();
-					this._Precio = value;
-					this.SendPropertyChanged("Precio");
-					this.OnPrecioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Observaciones", DbType="NChar(250)")]
-		public string Observaciones
-		{
-			get
-			{
-				return this._Observaciones;
-			}
-			set
-			{
-				if ((this._Observaciones != value))
-				{
-					this.OnObservacionesChanging(value);
-					this.SendPropertyChanging();
-					this._Observaciones = value;
-					this.SendPropertyChanged("Observaciones");
-					this.OnObservacionesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblPartesFinca_tblLineasPartesFinca", Storage="_tblPartesFinca", ThisKey="CodigoEmpresa,idParte", OtherKey="CodigoEmpresa,idParte", IsForeignKey=true)]
-		public tblPartesFinca tblPartesFinca
-		{
-			get
-			{
-				return this._tblPartesFinca.Entity;
-			}
-			set
-			{
-				tblPartesFinca previousValue = this._tblPartesFinca.Entity;
-				if (((previousValue != value) 
-							|| (this._tblPartesFinca.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblPartesFinca.Entity = null;
-						previousValue.tblLineasPartesFinca = null;
-					}
-					this._tblPartesFinca.Entity = value;
-					if ((value != null))
-					{
-						value.tblLineasPartesFinca = this;
-						this._CodigoEmpresa = value.CodigoEmpresa;
-						this._idParte = value.idParte;
-					}
-					else
-					{
-						this._CodigoEmpresa = default(string);
-						this._idParte = default(int);
-					}
-					this.SendPropertyChanged("tblPartesFinca");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblFamiliesCost_tblLineasPartesFinca", Storage="_tblFamiliesCost", ThisKey="CodigoEmpresa,idFamiliaCoste", OtherKey="CodigoEmpresa,idCost", IsForeignKey=true)]
-		public tblFamiliesCost tblFamiliesCost
-		{
-			get
-			{
-				return this._tblFamiliesCost.Entity;
-			}
-			set
-			{
-				tblFamiliesCost previousValue = this._tblFamiliesCost.Entity;
-				if (((previousValue != value) 
-							|| (this._tblFamiliesCost.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblFamiliesCost.Entity = null;
-						previousValue.tblLineasPartesFinca.Remove(this);
-					}
-					this._tblFamiliesCost.Entity = value;
-					if ((value != null))
-					{
-						value.tblLineasPartesFinca.Add(this);
-						this._CodigoEmpresa = value.CodigoEmpresa;
-						this._idFamiliaCoste = value.idCost;
-					}
-					else
-					{
-						this._CodigoEmpresa = default(string);
-						this._idFamiliaCoste = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblFamiliesCost");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblFamiliesCost")]
 	public partial class tblFamiliesCost : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3754,7 +3397,7 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblFamiliesCost_tblLineasPartesFinca", Storage="_tblLineasPartesFinca", ThisKey="CodigoEmpresa,idCost", OtherKey="CodigoEmpresa,idFamiliaCoste")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblFamiliesCost_tblLineasPartesFinca", Storage="_tblLineasPartesFinca", ThisKey="CodigoEmpresa,idCost", OtherKey="CodigoEmpresa,idFamiliaCost")]
 		public EntitySet<tblLineasPartesFinca> tblLineasPartesFinca
 		{
 			get
@@ -4186,6 +3829,363 @@ namespace WindowsFormsApp4
 		{
 			this.SendPropertyChanging();
 			entity.tblColorProducto = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblLineasPartesFinca")]
+	public partial class tblLineasPartesFinca : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _CodigoEmpresa;
+		
+		private int _idParte;
+		
+		private int _idLinea;
+		
+		private System.Nullable<int> _idParcela;
+		
+		private int _idFamiliaCost;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<decimal> _Unidades;
+		
+		private System.Nullable<decimal> _Precio;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private string _Observaciones;
+		
+		private EntityRef<tblPartesFinca> _tblPartesFinca;
+		
+		private EntityRef<tblFamiliesCost> _tblFamiliesCost;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoEmpresaChanging(string value);
+    partial void OnCodigoEmpresaChanged();
+    partial void OnidParteChanging(int value);
+    partial void OnidParteChanged();
+    partial void OnidLineaChanging(int value);
+    partial void OnidLineaChanged();
+    partial void OnidParcelaChanging(System.Nullable<int> value);
+    partial void OnidParcelaChanged();
+    partial void OnidFamiliaCostChanging(int value);
+    partial void OnidFamiliaCostChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnUnidadesChanging(System.Nullable<decimal> value);
+    partial void OnUnidadesChanged();
+    partial void OnPrecioChanging(System.Nullable<decimal> value);
+    partial void OnPrecioChanged();
+    partial void OnTotalChanging(System.Nullable<decimal> value);
+    partial void OnTotalChanged();
+    partial void OnObservacionesChanging(string value);
+    partial void OnObservacionesChanged();
+    #endregion
+		
+		public tblLineasPartesFinca()
+		{
+			this._tblPartesFinca = default(EntityRef<tblPartesFinca>);
+			this._tblFamiliesCost = default(EntityRef<tblFamiliesCost>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpresa
+		{
+			get
+			{
+				return this._CodigoEmpresa;
+			}
+			set
+			{
+				if ((this._CodigoEmpresa != value))
+				{
+					if (this._tblFamiliesCost.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodigoEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoEmpresa = value;
+					this.SendPropertyChanged("CodigoEmpresa");
+					this.OnCodigoEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idParte", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idParte
+		{
+			get
+			{
+				return this._idParte;
+			}
+			set
+			{
+				if ((this._idParte != value))
+				{
+					this.OnidParteChanging(value);
+					this.SendPropertyChanging();
+					this._idParte = value;
+					this.SendPropertyChanged("idParte");
+					this.OnidParteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idLinea", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int idLinea
+		{
+			get
+			{
+				return this._idLinea;
+			}
+			set
+			{
+				if ((this._idLinea != value))
+				{
+					this.OnidLineaChanging(value);
+					this.SendPropertyChanging();
+					this._idLinea = value;
+					this.SendPropertyChanged("idLinea");
+					this.OnidLineaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idParcela", DbType="Int")]
+		public System.Nullable<int> idParcela
+		{
+			get
+			{
+				return this._idParcela;
+			}
+			set
+			{
+				if ((this._idParcela != value))
+				{
+					this.OnidParcelaChanging(value);
+					this.SendPropertyChanging();
+					this._idParcela = value;
+					this.SendPropertyChanged("idParcela");
+					this.OnidParcelaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idFamiliaCost", DbType="Int NOT NULL")]
+		public int idFamiliaCost
+		{
+			get
+			{
+				return this._idFamiliaCost;
+			}
+			set
+			{
+				if ((this._idFamiliaCost != value))
+				{
+					if (this._tblFamiliesCost.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidFamiliaCostChanging(value);
+					this.SendPropertyChanging();
+					this._idFamiliaCost = value;
+					this.SendPropertyChanged("idFamiliaCost");
+					this.OnidFamiliaCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unidades", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Unidades
+		{
+			get
+			{
+				return this._Unidades;
+			}
+			set
+			{
+				if ((this._Unidades != value))
+				{
+					this.OnUnidadesChanging(value);
+					this.SendPropertyChanging();
+					this._Unidades = value;
+					this.SendPropertyChanged("Unidades");
+					this.OnUnidadesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Precio
+		{
+			get
+			{
+				return this._Precio;
+			}
+			set
+			{
+				if ((this._Precio != value))
+				{
+					this.OnPrecioChanging(value);
+					this.SendPropertyChanging();
+					this._Precio = value;
+					this.SendPropertyChanged("Precio");
+					this.OnPrecioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Observaciones", DbType="NChar(250)")]
+		public string Observaciones
+		{
+			get
+			{
+				return this._Observaciones;
+			}
+			set
+			{
+				if ((this._Observaciones != value))
+				{
+					this.OnObservacionesChanging(value);
+					this.SendPropertyChanging();
+					this._Observaciones = value;
+					this.SendPropertyChanged("Observaciones");
+					this.OnObservacionesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblLineasPartesFinca_tblPartesFinca", Storage="_tblPartesFinca", ThisKey="CodigoEmpresa,idParte", OtherKey="CodigoEmpresa,idParte", IsUnique=true, IsForeignKey=false)]
+		public tblPartesFinca tblPartesFinca
+		{
+			get
+			{
+				return this._tblPartesFinca.Entity;
+			}
+			set
+			{
+				tblPartesFinca previousValue = this._tblPartesFinca.Entity;
+				if (((previousValue != value) 
+							|| (this._tblPartesFinca.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblPartesFinca.Entity = null;
+						previousValue.tblLineasPartesFinca = null;
+					}
+					this._tblPartesFinca.Entity = value;
+					if ((value != null))
+					{
+						value.tblLineasPartesFinca = this;
+					}
+					this.SendPropertyChanged("tblPartesFinca");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblFamiliesCost_tblLineasPartesFinca", Storage="_tblFamiliesCost", ThisKey="CodigoEmpresa,idFamiliaCost", OtherKey="CodigoEmpresa,idCost", IsForeignKey=true)]
+		public tblFamiliesCost tblFamiliesCost
+		{
+			get
+			{
+				return this._tblFamiliesCost.Entity;
+			}
+			set
+			{
+				tblFamiliesCost previousValue = this._tblFamiliesCost.Entity;
+				if (((previousValue != value) 
+							|| (this._tblFamiliesCost.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblFamiliesCost.Entity = null;
+						previousValue.tblLineasPartesFinca.Remove(this);
+					}
+					this._tblFamiliesCost.Entity = value;
+					if ((value != null))
+					{
+						value.tblLineasPartesFinca.Add(this);
+						this._CodigoEmpresa = value.CodigoEmpresa;
+						this._idFamiliaCost = value.idCost;
+					}
+					else
+					{
+						this._CodigoEmpresa = default(string);
+						this._idFamiliaCost = default(int);
+					}
+					this.SendPropertyChanged("tblFamiliesCost");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

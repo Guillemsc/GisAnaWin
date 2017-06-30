@@ -101,10 +101,21 @@ namespace WindowsFormsApp4
             return partes;
         }
 
+        public void AddPartesLinea(tblLineasPartesFinca parte)
+        {
+            partes_linea.Add(parte);
+        }
+
+        public List<tblLineasPartesFinca> GetPartesLinea()
+        {
+            return partes_linea;
+        }
+
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         private tblFinques _tbl = null;
         private List<tblPartesFinca> partes = new List<tblPartesFinca>();
+        private List<tblLineasPartesFinca> partes_linea = new List<tblLineasPartesFinca>();
     }
 
     public class Parcela

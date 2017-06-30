@@ -27,8 +27,20 @@ namespace WindowsFormsApp4
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        private void InitializeComponent(string[] args)
         {
+            for(int i = 0; i < args.Length; i++)
+            {
+                string curr_string = args[i];
+
+                switch(i)
+                {
+                    case 0:
+                        finca_id = curr_string;
+                        break;
+                }
+            }
+
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
             this.SuspendLayout();
             // 
@@ -132,6 +144,8 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParceles();
 
             UpdateLatLon();
+
+            LoadArgs();
             // -----------------------------------
 
         }
@@ -433,6 +447,18 @@ namespace WindowsFormsApp4
             ConfigurationManager.RefreshSection("connectionStrings");
         }
 
+        private void LoadArgs()
+        {
+            if(finca_id != "")
+            {
+                Finca f = GetFincaPerId(finca_id);
+
+                propietaris_manager.finca_actual = f;
+
+                ActualitzaLlistaParceles();
+            }
+        }
+
         // Windows
         UI_Window main_win = null;
         UI_Window map_win = null;
@@ -515,6 +541,10 @@ namespace WindowsFormsApp4
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        // Starting args
+        string propietari_id = "";
+        string finca_id = "";
     }
 }
 
