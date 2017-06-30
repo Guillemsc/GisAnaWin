@@ -316,6 +316,13 @@ namespace WindowsFormsApp4
 
             var src = DateTime.Now;
             editor_parceles_ultim_guardat.SetText("Guardat correctament: " + src.Hour + ":" + src.Minute + ":" + src.Second);
+
+            guarda_canvis_win.SetEnabled(true);
+        }
+
+        public void ConfirmaGuardaCanvis(object sender, EventArgs e)
+        {
+            guarda_canvis_win.SetEnabled(false);
         }
 
         // -------------------------

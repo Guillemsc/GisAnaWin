@@ -219,6 +219,12 @@ namespace WindowsFormsApp4
             Label l = GetElement() as Label;
             return l.Text;
         }
+
+        public void SetTextSize(int size)
+        {
+            Label l = GetElement() as Label;
+            l.Font = new Font(l.Font.Name, size);
+        }
     }
 
     public class UI_TextInput : UI_Element

@@ -76,8 +76,8 @@ namespace WindowsFormsApp4
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
             this.Controls.Add(this.gmap);
-            this.MinimumSize = new System.Drawing.Size(750, 500);
-            this.Name = "Form1";
+            this.MinimumSize = new System.Drawing.Size(750, 531);
+            this.Name = "Finques Maps Test";
             this.Text = "Finques Maps Test";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -398,6 +398,24 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_treball_win);
             seleccio_treball_win.SetEnabled(false);
 
+            guarda_canvis_win = new UI_Window(this);
+            {
+                guarda_canvis_panel = new UI_Panel(new Point(400, 220), 230, 70);
+                guarda_canvis_panel.SetColor(Color.Cornsilk);
+                guarda_canvis_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.None);
+                guarda_canvis_panel.GetElement().Dock = System.Windows.Forms.DockStyle.None;
+                guarda_canvis_win.AddElement(guarda_canvis_panel);
+
+                guarda_canvis_text = new UI_Text(new Point(5, 7), 25, 100, "Canvis guardats correctament");
+                guarda_canvis_text.SetTextSize(12);
+                guarda_canvis_panel.AddElement(guarda_canvis_text);
+
+                guarda_canvis_button = new UI_Button(new Point(58, 35), 120, 30, "D'acord");
+                guarda_canvis_button.GetElement().Click += new System.EventHandler(this.ConfirmaGuardaCanvis);
+                guarda_canvis_panel.AddElement(guarda_canvis_button);
+            }
+            ui_manager.AddUIWindow(guarda_canvis_win);
+            guarda_canvis_win.SetEnabled(false);
 
             // Always on bottom
             gmap.SendToBack();
@@ -422,6 +440,7 @@ namespace WindowsFormsApp4
         UI_Window seleccio_finca_win = null;
         UI_Window seleccio_varietat_win = null;
         UI_Window seleccio_treball_win = null;
+        UI_Window guarda_canvis_win = null;
 
         // Elements
         UI_TextInput text_input_lat = null;
@@ -483,6 +502,10 @@ namespace WindowsFormsApp4
         UI_Panel seleccio_treball_panel = null;
         UI_ComboBox seleccio_treball_noms_combobox = null;
         UI_Button seleccio_treball_guarda_button = null;
+
+        UI_Panel guarda_canvis_panel = null;
+        UI_Text guarda_canvis_text = null;
+        UI_Button guarda_canvis_button = null;
 
 
         // Managers
