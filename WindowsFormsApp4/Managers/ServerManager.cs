@@ -106,13 +106,13 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        public List<tblLineasPartesFinca> GetLineasPartesFinca()
+        public List<tblLineasPartesFinca1> GetLineasPartesFinca()
         {
-            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
+            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
 
-            if (servidor.tblLineasPartesFinca.Count() > 0)
+            if (servidor.tblLineasPartesFinca1.Count() > 0)
             {
-                foreach (var prov in servidor.tblLineasPartesFinca)
+                foreach (var prov in servidor.tblLineasPartesFinca1)
                     ret.Add(prov);
             }
 

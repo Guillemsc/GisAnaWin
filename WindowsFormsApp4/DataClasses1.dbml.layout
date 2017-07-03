@@ -91,30 +91,30 @@
         <elementListCompartment Id="c8446553-862a-40eb-90f6-8ceeaea5289e" absoluteBounds="3.3900000000000006, 11.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.09375 : 10.625); (5.09375 : 6.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.09375 : 10.625); (5.09375 : 6.5881982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataClasses1DataContext/tblColorProducto/tblColorProducto_tblTipoUva" />
       <nodes>
         <classShapeMoniker Id="4ff396cb-f379-4d64-b4d6-29bd1c848ef9" />
         <classShapeMoniker Id="cf128579-3ed9-4e05-9f8b-b0909f24a234" />
       </nodes>
     </associationConnector>
-    <classShape Id="fc5a1a6d-881f-4cde-9c14-f8ecf4ce19dc" absoluteBounds="0.5, 8.625, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/DataClasses1DataContext/tblLineasPartesFinca" />
+    <classShape Id="cae298a8-8b44-4452-bf84-fea3dec3ac6f" absoluteBounds="0.5, 8.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/DataClasses1DataContext/tblLineasPartesFinca1" />
       <nestedChildShapes>
-        <elementListCompartment Id="1bf19328-13a8-4416-99c1-b52ac08d15b4" absoluteBounds="0.51500000000000012, 9.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7d2d27d4-28dd-47d5-a557-14f3f1fc3eb8" absoluteBounds="0.51499999999999968, 9.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(1.5 : 12); (1.5 : 11.3574039713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DataClasses1DataContext/tblFamiliesCost/tblFamiliesCost_tblLineasPartesFinca" />
+      <AssociationMoniker Name="/DataClasses1DataContext/tblFamiliesCost/tblFamiliesCost_tblLineasPartesFinca1" />
       <nodes>
         <classShapeMoniker Id="9cbe2259-7064-47bd-a4a5-f6745d9bef1b" />
-        <classShapeMoniker Id="fc5a1a6d-881f-4cde-9c14-f8ecf4ce19dc" />
+        <classShapeMoniker Id="cae298a8-8b44-4452-bf84-fea3dec3ac6f" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(1.5 : 8.625); (1.5 : 7.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DataClasses1DataContext/tblLineasPartesFinca/tblLineasPartesFinca_tblPartesFinca" />
+      <AssociationMoniker Name="/DataClasses1DataContext/tblLineasPartesFinca1/tblLineasPartesFinca1_tblPartesFinca" />
       <nodes>
-        <classShapeMoniker Id="fc5a1a6d-881f-4cde-9c14-f8ecf4ce19dc" />
+        <classShapeMoniker Id="cae298a8-8b44-4452-bf84-fea3dec3ac6f" />
         <classShapeMoniker Id="3b3b4e4f-494c-4cf6-bdb4-5b4279a69ba0" />
       </nodes>
     </associationConnector>

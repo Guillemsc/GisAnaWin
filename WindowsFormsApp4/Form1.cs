@@ -21,8 +21,9 @@ namespace WindowsFormsApp4
             InitializeComponent(args);
         }
 
-        // -------------------------
-        // Botons ------------------
+        // -----------------------------------------------------------------------------
+        // Botons ----------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
 
         private void ObreFinestraSeleccioPropietari(object sender, EventArgs e)
         {
@@ -323,11 +324,13 @@ namespace WindowsFormsApp4
             guarda_canvis_win.SetEnabled(false);
         }
 
-        // -------------------------
+        // ---------------------------------------------------------------------- Botons
+        // -----------------------------------------------------------------------------
 
 
-        // -------------------------
-        // Servidor ----------------
+        // -----------------------------------------------------------------------------
+        // Servidor --------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
 
         public void ActualitzaPropietarisDesDeServidor()
         {
@@ -349,7 +352,7 @@ namespace WindowsFormsApp4
         {
             List<tblFinques> finques = server_manager.GetFinques();
             List<tblPartesFinca> partes = server_manager.GetPartesFinca();
-            List<tblLineasPartesFinca> partes_linea = server_manager.GetLineasPartesFinca();
+            List<tblLineasPartesFinca1> partes_linea = server_manager.GetLineasPartesFinca();
 
             propietaris_manager.EliminaFinques();
 
@@ -384,14 +387,14 @@ namespace WindowsFormsApp4
         {
             List<tblParceles> parceles = server_manager.GetParceles();
             List<tblFinques> finques = server_manager.GetFinques();
+            List<tblLineasPartesFinca1> partes_lineas = server_manager.GetLineasPartesFinca();
+
             propietaris_manager.EliminaParceles();
 
             for (int i = 0; i < parceles.Count; i++)
             {
                 Parcela p = new Parcela(point_manager.overlay_parcela, parceles[i]);
                 propietaris_manager.AfegirParcela(p);
-
-                List<tblLineasPartesFinca> partes_lineas = server_manager.GetLineasPartesFinca();
 
                 for (int y = 0; y < partes_lineas.Count; y++)
                 {
@@ -400,10 +403,10 @@ namespace WindowsFormsApp4
                 }
             }
 
-            ActualitzaCoordenadesDesDeServidor(propietaris_manager.GetParceles());
-
             Console.WriteLine("Actualitzat Parceles Des De Servidor");
             Console.WriteLine("----------------------------------");
+
+            ActualitzaCoordenadesDesDeServidor(propietaris_manager.GetParceles());
         }
 
         public void ActualitzaCoordenadesDesDeServidor(List<Parcela> parceles)
@@ -420,8 +423,11 @@ namespace WindowsFormsApp4
             for(int z = 0; z < parceles.Count; z++)
             {
                 Parcela p_actual = parceles[z];
+
                 List<tblCoordenadesFincaParcela> c = GetCoordenadesPerParcela(p_actual);
+
                 Varietat v = GetVarietatPerParcela(p_actual);
+
                 p_actual.AddCoordenades(c);
 
                 if(v != null)
@@ -475,11 +481,13 @@ namespace WindowsFormsApp4
             Console.WriteLine("----------------------------------");
         }
 
-        // -------------------------
+        // -------------------------------------------------------------------- Servidor
+        // -----------------------------------------------------------------------------
 
 
-        // -------------------------
-        // Utils -------------------
+        // -----------------------------------------------------------------------------
+        // Utils -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
 
         public string EliminaAccents(string txt)
         {
@@ -670,7 +678,7 @@ namespace WindowsFormsApp4
 
             List<tblCoordenadesFincaParcela> coordenades = propietaris_manager.GetCoordenades();
 
-            for(int i = 0; i<coordenades.Count; i++)
+            for(int i = 0; i < coordenades.Count; i++)
             {
                 if(coordenades[i].idParcela == pa.GetTbl().idParcela)
                 {
@@ -716,10 +724,12 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        // -------------------------
+        // ----------------------------------------------------------------------- Utils
+        // -----------------------------------------------------------------------------
 
-        // -------------------------
-        // GMap --------------------
+        // -----------------------------------------------------------------------------
+        // Gmap ------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
 
         // Click a un marcador per a eliminar-lo
         public void gmap_MarkerClick(GMapMarker item, MouseEventArgs e)
@@ -849,6 +859,70 @@ namespace WindowsFormsApp4
                 ActualitzaLlistaParceles();
             }
         }
+
+        // Canvia el mapa a satelit o mapa normal
+        public void SwitchMapSat(object sender, EventArgs e)
+        {
+            if (mapsat_button != null)
+            {
+                if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
+                {
+                    gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+                    mapsat_button.SetText("Canvia a Mapa");
+                }
+                else
+                {
+                    gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+                    mapsat_button.SetText("Canvia a Satel.lit");
+                }
+            }
+        }
+
+        public void SearchName(object sender, EventArgs e)
+        {
+            string search = text_input_nom.GetText();
+
+            if (search != "")
+            {
+                gmap.SetPositionByKeywords(search);
+            }
+        }
+
+        // Busca una coordenada amb latitud i longitud
+        public void SearchLatLon(object sender, EventArgs e)
+        {
+            UI_TextInput lat = text_input_lat;
+            UI_TextInput lon = text_input_lon;
+
+            if (lat == null || lon == null)
+                return;
+
+            double num_lat = 0;
+            bool is_lat = false;
+            double num_lon = 0;
+            bool is_lon = false;
+
+            if (double.TryParse(lat.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lat))
+            {
+                if (num_lat <= 360)
+                    is_lat = true;
+            }
+            if (double.TryParse(lon.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lon))
+            {
+                if (num_lon <= 360)
+                    is_lon = true;
+            }
+
+            if (is_lat && is_lon)
+                gmap.Position = new PointLatLng(num_lat, num_lon);
+        }
+
+        // ------------------------------------------------------------------------ Gmap
+        // -----------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------
+        // Actualitza ------------------------------------------------------------------
+        // -----------------------------------------------------------------------------
 
         // Actualitza la latitud i la longitud, quan es mou la posició en el mapa
         public void UpdateLatLon()
@@ -1011,11 +1085,11 @@ namespace WindowsFormsApp4
 
                         if (f != null)
                         {
-                            List<tblLineasPartesFinca> partes = f.GetPartesLinea();
+                            List<tblLineasPartesFinca1> partes = f.GetPartesLinea();
 
                             for (int p = 0; p < partes.Count; p++)
                             {
-                                if (propietaris_manager.treball_actual.GetTbl().idCost == partes[p].idFamiliaCost)
+                                if (propietaris_manager.treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
                                 {
                                     count++;
                                     break;
@@ -1063,63 +1137,8 @@ namespace WindowsFormsApp4
                 llista_parceles_llista.CleanSelection();
             }
         }
-    
 
-        // Busca una coordenada amb latitud i longitud
-        public void SearchLatLon(object sender, EventArgs e)
-        {
-            UI_TextInput lat = text_input_lat;
-            UI_TextInput lon = text_input_lon;
-
-            if (lat == null || lon == null)
-                return;
-
-            double num_lat = 0;
-            bool is_lat = false;
-            double num_lon = 0;
-            bool is_lon = false;
-
-            if (double.TryParse(lat.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lat))
-            {
-                if (num_lat <= 360)
-                    is_lat = true;
-            }
-            if (double.TryParse(lon.GetText(), System.Globalization.NumberStyles.AllowDecimalPoint, System.Globalization.CultureInfo.InvariantCulture, out num_lon))
-            {
-                if (num_lon <= 360)
-                    is_lon = true;
-            }
-
-            if (is_lat && is_lon)
-                gmap.Position = new PointLatLng(num_lat, num_lon);
-        }
-
-        public void SearchName(object sender, EventArgs e)
-        {
-            string search = text_input_nom.GetText();
-
-            if (search != "")
-            {
-                gmap.SetPositionByKeywords(search);
-            }
-        }
-
-        // Canvia el mapa a satelit o mapa normal
-        public void SwitchMapSat(object sender, EventArgs e)
-        {
-            if (mapsat_button != null)
-            {
-                if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
-                {
-                    gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
-                    mapsat_button.SetText("Canvia a Mapa");
-                }
-                else
-                {
-                    gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-                    mapsat_button.SetText("Canvia a Satel.lit");
-                }
-            }
-        }
+        // ------------------------------------------------------------------ Actualitza
+        // -----------------------------------------------------------------------------
     }
 }

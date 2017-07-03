@@ -3,8 +3,6 @@ using System.Drawing;
 using System.Xml.Linq;
 using System.Configuration;
 
-//(Color)ColorConverter.ConvertFromString("#FFDFD991");
-
 namespace WindowsFormsApp4
 {
     partial class Form1
@@ -96,8 +94,7 @@ namespace WindowsFormsApp4
 
         }
 
-        //#endregion
-
+        // Load
         override protected void OnLoad(EventArgs e)
         {
             // Server config ---------------------
@@ -453,17 +450,20 @@ namespace WindowsFormsApp4
             {
                 Finca f = GetFincaPerId(finca_id);
 
-                propietaris_manager.finca_actual = f;
+                if (f != null)
+                {
+                    propietaris_manager.finca_actual = f;
 
-                Propietari p = GetPropietariPerFinca(f);
+                    Propietari p = GetPropietariPerFinca(f);
 
-                propietaris_manager.propietari_actual = p;
+                    propietaris_manager.propietari_actual = p;
 
-                propietari_nom_text.SetText(propietaris_manager.propietari_actual.GetTbl().Nombre);
+                    propietari_nom_text.SetText(propietaris_manager.propietari_actual.GetTbl().Nombre);
 
-                finca_nom_text.SetText(propietaris_manager.finca_actual.GetTbl().Nom1);
+                    finca_nom_text.SetText(propietaris_manager.finca_actual.GetTbl().Nom1);
 
-                ActualitzaLlistaParceles();
+                    ActualitzaLlistaParceles();
+                }
             }
         }
 

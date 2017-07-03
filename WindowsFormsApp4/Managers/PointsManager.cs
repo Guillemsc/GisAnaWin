@@ -101,12 +101,12 @@ namespace WindowsFormsApp4
             return partes;
         }
 
-        public void AddPartesLinea(tblLineasPartesFinca parte)
+        public void AddPartesLinea(tblLineasPartesFinca1 parte)
         {
             partes_linea.Add(parte);
         }
 
-        public List<tblLineasPartesFinca> GetPartesLinea()
+        public List<tblLineasPartesFinca1> GetPartesLinea()
         {
             return partes_linea;
         }
@@ -115,7 +115,7 @@ namespace WindowsFormsApp4
         GMapPolygon polygon = null;
         private tblFinques _tbl = null;
         private List<tblPartesFinca> partes = new List<tblPartesFinca>();
-        private List<tblLineasPartesFinca> partes_linea = new List<tblLineasPartesFinca>();
+        private List<tblLineasPartesFinca1> partes_linea = new List<tblLineasPartesFinca1>();
     }
 
     public class Parcela
@@ -263,12 +263,12 @@ namespace WindowsFormsApp4
             }
         }
 
-        public void AddLineaParte(tblLineasPartesFinca lpartes)
+        public void AddLineaParte(tblLineasPartesFinca1 lpartes)
         {
             lineas_parte.Add(lpartes);
         }
 
-        public List<tblLineasPartesFinca> GetLineasParte()
+        public List<tblLineasPartesFinca1> GetLineasParte()
         {
             return lineas_parte;
         }
@@ -279,7 +279,7 @@ namespace WindowsFormsApp4
         PointLatLng center_pos;
         tblParceles _tbl = null;
         List<tblCoordenadesFincaParcela> _coordenates_tbl = new List<tblCoordenadesFincaParcela>();
-        List<tblLineasPartesFinca> lineas_parte = new List<tblLineasPartesFinca>();
+        List<tblLineasPartesFinca1> lineas_parte = new List<tblLineasPartesFinca1>();
     }
 
     public class Marcador
