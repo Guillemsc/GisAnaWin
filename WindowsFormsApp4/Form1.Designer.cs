@@ -87,8 +87,8 @@ namespace WindowsFormsApp4
             this.ClientSize = new System.Drawing.Size(800, 531);
             this.Controls.Add(this.gmap);
             this.MinimumSize = new System.Drawing.Size(750, 531);
-            this.Name = "Finques Maps Test";
-            this.Text = "Finques Maps Test";
+            this.Name = "Gis AnaWin";
+            this.Text = "Gis AnaWin";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +108,8 @@ namespace WindowsFormsApp4
             string pass = connection.Element("Password").Value;
 
             UpdateConnectionConfig(server, data_base, user, pass);
+
+            this.Text += (" (" + data_base + ")");
             // -----------------------------------
 
             // Gmap ------------------------------
