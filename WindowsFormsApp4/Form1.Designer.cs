@@ -135,7 +135,6 @@ namespace WindowsFormsApp4
             ActualitzaFinquesDesDeServidor();
             ActualitzaVarietatsDesDeServidor();
             ActualitzaTreballsDesDeServidor();
-
             ActualitzaParcelesDesDeServidor();
 
             ActualitzaLlistaParceles();

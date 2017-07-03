@@ -952,6 +952,8 @@ namespace WindowsFormsApp4
             {
                 seleccio_propietari_noms_combobox.AddElement(proveedors[i]);
             }
+
+            seleccio_propietari_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaFinques()
@@ -982,6 +984,8 @@ namespace WindowsFormsApp4
                         seleccio_finca_noms_combobox.AddElement(finques[i]);
                 }
             }
+
+            seleccio_finca_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaVarietats()
@@ -1009,6 +1013,8 @@ namespace WindowsFormsApp4
                     }
                 }
             }
+
+            seleccio_varietat_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaTreballs()
@@ -1026,6 +1032,8 @@ namespace WindowsFormsApp4
                     seleccio_treball_noms_combobox.AddElement(treballs[i]);
                 }
             }
+
+            seleccio_treball_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaParceles()

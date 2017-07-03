@@ -321,6 +321,13 @@ namespace WindowsFormsApp4
             ComboBox cb = GetElement() as ComboBox;
             cb.Items.Clear();
         }
+
+        public void OpenDropDown()
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.DroppedDown = true;
+            cb.Focus();
+        }
     }
 
     public class UI_ListBox : UI_Element
