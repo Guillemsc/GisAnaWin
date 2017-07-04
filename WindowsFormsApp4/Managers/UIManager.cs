@@ -127,6 +127,12 @@ namespace WindowsFormsApp4
             Button b = GetElement() as Button;
             b.Text = text;
         }
+
+        public void SetColor(Color back)
+        {
+            Button b = GetElement() as Button;
+            b.BackColor = back;
+        }
     }
 
     public class UI_Panel : UI_Element

@@ -311,6 +311,8 @@ namespace WindowsFormsApp4
                 propietaris_manager.curr_list_box.Hide();
                 propietaris_manager.curr_list_box = null;
             }
+
+            ActualitzaLlistaParcelesSeleccionades();
         }
 
         public void GuardaCanvis(object sender, EventArgs e)
@@ -855,6 +857,18 @@ namespace WindowsFormsApp4
                 propietaris_manager.propietari_actual = prop;
                 propietaris_manager.finca_actual = fin;
                 propietaris_manager.parcela_actual = par;
+
+                editor_parceles_panel.SetEnabled(true);
+                if (propietaris_manager.parcela_actual.HasPoints())
+                {
+                    editor_parceles_elimina_button.SetEnabled(true);
+                    propietaris_manager.can_point = false;
+                }
+                else
+                {
+                    editor_parceles_elimina_button.SetEnabled(false);
+                    propietaris_manager.can_point = true;
+                }
 
                 // Seleccio parceles
                 if (!propietaris_manager.ParcelesSeleccionadesConte(par))

@@ -308,37 +308,51 @@ namespace WindowsFormsApp4
 
                 // Editor parceles
                 editor_parceles_panel = new UI_Panel(new Point(229, 0), 440, 30);
-                editor_parceles_panel.SetColor(Color.Cornsilk);
                 editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(editor_parceles_panel);
                 {
                     editor_parceles_crea_button = new UI_Button(new Point(5, 3), 100, 25, "Crea parcela");
+                    editor_parceles_crea_button.SetColor(Color.Cornsilk);
                     editor_parceles_crea_button.GetElement().Click += new System.EventHandler(this.CreaParcela);
                     editor_parceles_panel.AddElement(editor_parceles_crea_button);
 
                     editor_parceles_elimina_button = new UI_Button(new Point(110, 3), 100, 25, "Elimina parcela");
+                    editor_parceles_elimina_button.SetColor(Color.Cornsilk);
                     editor_parceles_elimina_button.GetElement().Click += new System.EventHandler(this.EliminaParcela);
                     editor_parceles_panel.AddElement(editor_parceles_elimina_button);
 
                     editor_parceles_guarda_button = new UI_Button(new Point(220, 3), 100, 25, "Guarda canvis");
+                    editor_parceles_guarda_button.SetColor(Color.Cornsilk);
                     editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
                     editor_parceles_panel.AddElement(editor_parceles_guarda_button);
 
                     editor_parceles_opcions = new UI_Button(new Point(330, 3), 100, 25, "Opcions parcela");
+                    editor_parceles_guarda_button.SetColor(Color.Cornsilk);
                     editor_parceles_opcions.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
                     editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
                 editor_parceles_panel.SetEnabled(false);
 
                 // Parceles seleccionades
-                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 130);
-                parceles_seleccionades_panel.SetColor(Color.Cornsilk);
+                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 250);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
-                    parceles_selecionades_text = new UI_Text(new Point(5, 7), 100, 30, "Parceles seleccionades");
+                    crea_parte_button = new UI_Button(new Point(5, 5), 120, 30, "Crea Parte");
+                    crea_parte_button.SetColor(Color.Cornsilk);
+                    parceles_seleccionades_panel.AddElement(crea_parte_button);
+
+                    llistat_partes_button = new UI_Button(new Point(5, 35), 120, 30, "Llistat Partes");
+                    llistat_partes_button.SetColor(Color.Cornsilk);
+                    parceles_seleccionades_panel.AddElement(llistat_partes_button);
+
+                    visualitza_partes_button = new UI_Button(new Point(5, 65), 120, 30, "Visualitza Partes");
+                    visualitza_partes_button.SetColor(Color.Cornsilk);
+                    parceles_seleccionades_panel.AddElement(visualitza_partes_button);
+
+                    parceles_selecionades_text = new UI_Text(new Point(5, 100), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 30), 130, 110);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 120), 130, 100);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
@@ -540,6 +554,9 @@ namespace WindowsFormsApp4
         UI_Text editor_parceles_ultim_guardat = null;
         UI_Button editor_parceles_opcions = null;
 
+        UI_Button crea_parte_button = null;
+        UI_Button llistat_partes_button = null;
+        UI_Button visualitza_partes_button = null;
         UI_Panel parceles_seleccionades_panel = null;
         UI_Text parceles_selecionades_text = null;
         UI_ListBox parceles_seleccionades_listbox = null;
