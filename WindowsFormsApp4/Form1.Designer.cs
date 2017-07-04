@@ -72,7 +72,7 @@ namespace WindowsFormsApp4
             this.gmap.ShowTileGridLines = false;
             this.gmap.Size = new System.Drawing.Size(580, 551);
             this.gmap.TabIndex = 0;
-            this.gmap.Zoom = 13D;
+            this.gmap.Zoom = 14D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
             this.gmap.OnPolygonClick += new GMap.NET.WindowsForms.PolygonClick(this.gmap_PoligonClick);
             this.gmap.OnPolygonEnter += new GMap.NET.WindowsForms.PolygonEnter(this.gmap_PoligonEnter);

@@ -154,9 +154,28 @@ namespace WindowsFormsApp4
             center_pos = (CalculateCenterOfPolygon(points));
             text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
             text_marker.ToolTipMode = MarkerTooltipMode.Always;
-            _overlay.Markers.Add(text_marker);
 
             Draw();
+        }
+
+        public void HighlightMarker()
+        {
+            _overlay.Markers.Remove(text_marker);
+            if (_overlay != null && !_overlay.Markers.Contains(text_marker))
+            {
+                text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.red_pushpin);
+                _overlay.Markers.Add(text_marker);
+            }
+        }
+
+        public void DeHighlightMarker()
+        {
+            _overlay.Markers.Remove(text_marker);
+            if (_overlay != null && !_overlay.Markers.Contains(text_marker))
+            {
+                text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
+                _overlay.Markers.Add(text_marker);
+            }
         }
 
         public void ClearDraw()
@@ -260,6 +279,9 @@ namespace WindowsFormsApp4
             {
                 polygon.Stroke = new Pen(lines, 3);
                 polygon.Fill = new SolidBrush(Color.FromArgb(100, fill));
+
+                _lines = lines;
+                _fill = fill;
             }
         }
 
@@ -267,7 +289,7 @@ namespace WindowsFormsApp4
         {
             if (polygon != null)
             {
-                polygon.Stroke = new Pen(polygon.Stroke.Color, 10);
+                polygon.Stroke = new Pen(Color.Red, 6);
             }
         }
 
@@ -275,7 +297,8 @@ namespace WindowsFormsApp4
         {
             if (polygon != null)
             {
-                polygon.Stroke = new Pen(polygon.Stroke.Color, 3);
+                polygon.Stroke = new Pen(_lines, 3);
+                polygon.Fill = new SolidBrush(Color.FromArgb(100, _fill));
             }
         }
 
@@ -296,6 +319,8 @@ namespace WindowsFormsApp4
         tblParceles _tbl = null;
         List<tblCoordenadesFincaParcela> _coordenates_tbl = new List<tblCoordenadesFincaParcela>();
         List<tblLineasPartesFinca1> lineas_parte = new List<tblLineasPartesFinca1>();
+        Color _lines = Color.Blue;
+        Color _fill = Color.Blue;
     }
 
     public class Marcador

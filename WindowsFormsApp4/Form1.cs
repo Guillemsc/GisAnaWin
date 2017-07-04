@@ -227,34 +227,7 @@ namespace WindowsFormsApp4
             {
                 Parcela parcela = GetParcelaPerParcelaID(l.Name);
 
-                Finca finca = GetFincaPerParcela(parcela);
-
-                Propietari propietari = GetPropietariPerFinca(finca);
-
-                propietaris_manager.propietari_actual = propietari;
-                propietaris_manager.finca_actual = finca;
-                propietaris_manager.parcela_actual = parcela;
-
-                propietari_nom_text.SetText(propietari.GetTbl().Nombre);
-
-                finca_nom_text.SetText(finca.GetTbl().Nom1);
-
-                editor_parceles_panel.SetEnabled(true);
-                editor_parceles_crea_button.SetEnabled(false);
-                editor_parceles_guarda_button.SetEnabled(true);
-
-                if (propietaris_manager.parcela_actual.HasPoints())
-                {
-                    editor_parceles_elimina_button.SetEnabled(true);
-                    gmap.Position = propietaris_manager.parcela_actual.GetCenterPos();
-                    gmap.Zoom = 18;
-                    propietaris_manager.can_point = false;
-                }
-                else
-                {
-                    editor_parceles_elimina_button.SetEnabled(false);
-                    propietaris_manager.can_point = true;
-                }
+                SeleccionaParcelaActual(parcela, true, true);
             }
         }
 
@@ -301,6 +274,7 @@ namespace WindowsFormsApp4
             }
 
             propietaris_manager.parcela_actual.ClearPoints();
+            propietaris_manager.parcela_actual = null;
             editor_parceles_elimina_button.SetEnabled(false);
 
             propietaris_manager.can_point = true;
@@ -851,24 +825,8 @@ namespace WindowsFormsApp4
             if (e.Button == MouseButtons.Left)
             {
                 Parcela par = GetParcelaPolygon(item);
-                Finca fin = GetFincaPerParcela(par);
-                Propietari prop = GetPropietariPerParcela(par);
 
-                propietaris_manager.propietari_actual = prop;
-                propietaris_manager.finca_actual = fin;
-                propietaris_manager.parcela_actual = par;
-
-                editor_parceles_panel.SetEnabled(true);
-                if (propietaris_manager.parcela_actual.HasPoints())
-                {
-                    editor_parceles_elimina_button.SetEnabled(true);
-                    propietaris_manager.can_point = false;
-                }
-                else
-                {
-                    editor_parceles_elimina_button.SetEnabled(false);
-                    propietaris_manager.can_point = true;
-                }
+                SeleccionaParcelaActual(par, false, false);
 
                 // Seleccio parceles
                 if (!propietaris_manager.ParcelesSeleccionadesConte(par))
@@ -882,14 +840,8 @@ namespace WindowsFormsApp4
                     par.DeHiglight();
                 }
 
-                propietari_nom_text.SetText(prop.GetTbl().Nombre);
-
-                finca_nom_text.SetText(fin.GetTbl().Nom1);
-
-                editor_parceles_elimina_button.SetEnabled(true);
-                propietaris_manager.can_point = false;
-
                 ActualitzaLlistaParcelesSeleccionades();
+
                 ActualitzaLlistaParceles();
             }
         }
@@ -1076,7 +1028,6 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = new List<Parcela>();
 
-
             if (propietaris_manager.propietari_actual != null || propietaris_manager.finca_actual != null || propietaris_manager.varietat_actual != null || propietaris_manager.treball_actual != null)
             {
                 for (int i = 0; i < propietaris_manager.GetParceles().Count;)
@@ -1202,6 +1153,49 @@ namespace WindowsFormsApp4
             else
             {
                 parceles_seleccionades_panel.SetEnabled(false);
+            }
+        }
+
+        public void SeleccionaParcelaActual(Parcela parcela, bool zoom = false, bool center = false)
+        {
+            if(propietaris_manager.parcela_actual != null)
+                propietaris_manager.parcela_actual.DeHighlightMarker();
+
+            propietaris_manager.parcela_actual = parcela;
+            propietaris_manager.parcela_actual.HighlightMarker();
+
+            editor_parceles_panel.SetEnabled(true);
+            if (propietaris_manager.parcela_actual.HasPoints())
+            {
+                editor_parceles_elimina_button.SetEnabled(true);
+                editor_parceles_crea_button.SetEnabled(false);
+
+                if (center)
+                    gmap.Position = propietaris_manager.parcela_actual.GetCenterPos();
+
+                if(zoom)
+                    gmap.Zoom = 18;
+
+                propietaris_manager.can_point = false;
+            }
+            else
+            {
+                editor_parceles_elimina_button.SetEnabled(false);
+                editor_parceles_crea_button.SetEnabled(true);
+                propietaris_manager.can_point = true;
+            }
+
+            Finca finca = GetFincaPerParcela(parcela);
+            Propietari propietari = GetPropietariPerFinca(finca);
+
+            if (finca != null && propietari != null)
+            {
+                propietaris_manager.finca_actual = finca;
+                propietaris_manager.parcela_actual = parcela;
+                propietaris_manager.propietari_actual = propietari;
+
+                propietari_nom_text.SetText(propietari.GetTbl().Nombre);
+                finca_nom_text.SetText(finca.GetTbl().Nom1);
             }
         }
 
