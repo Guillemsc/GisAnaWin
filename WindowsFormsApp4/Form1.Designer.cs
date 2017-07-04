@@ -86,12 +86,15 @@ namespace WindowsFormsApp4
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
             this.Controls.Add(this.gmap);
-            this.MinimumSize = new System.Drawing.Size(750, 531);
+            this.MinimumSize = new System.Drawing.Size(815, 546);
             this.Name = "Gis AnaWin";
             this.Text = "Gis AnaWin";
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            #region Windows Form Designer generated code
+
+            #endregion
         }
 
         // Load
@@ -304,9 +307,9 @@ namespace WindowsFormsApp4
                 main_win.AddElement(llista_parceles_llista);
 
                 // Editor parceles
-                editor_parceles_panel = new UI_Panel(new Point(229, 0), 600, 30);
+                editor_parceles_panel = new UI_Panel(new Point(229, 0), 440, 30);
                 editor_parceles_panel.SetColor(Color.Cornsilk);
-                editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
+                editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(editor_parceles_panel);
                 {
                     editor_parceles_crea_button = new UI_Button(new Point(5, 3), 100, 25, "Crea parcela");
@@ -326,6 +329,22 @@ namespace WindowsFormsApp4
                     editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
                 editor_parceles_panel.SetEnabled(false);
+
+                // Parceles seleccionades
+                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 130);
+                parceles_seleccionades_panel.SetColor(Color.Cornsilk);
+                parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                {
+                    parceles_selecionades_text = new UI_Text(new Point(5, 7), 100, 30, "Parceles seleccionades");
+                    parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
+
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 30), 130, 110);
+                    parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                    parceles_seleccionades_listbox.SetAutoSize(true);
+                    parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
+                }
+                main_win.AddElement(parceles_seleccionades_panel);
+                parceles_seleccionades_panel.SetEnabled(false);
             }
             ui_manager.AddUIWindow(main_win);
 
@@ -405,7 +424,6 @@ namespace WindowsFormsApp4
                 seleccio_treball_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
                 seleccio_treball_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioTreballGuarda);
                 seleccio_treball_panel.AddElement(seleccio_treball_guarda_button);
-
             }
             ui_manager.AddUIWindow(seleccio_treball_win);
             seleccio_treball_win.SetEnabled(false);
@@ -521,6 +539,10 @@ namespace WindowsFormsApp4
         UI_Button editor_parceles_guarda_button = null;
         UI_Text editor_parceles_ultim_guardat = null;
         UI_Button editor_parceles_opcions = null;
+
+        UI_Panel parceles_seleccionades_panel = null;
+        UI_Text parceles_selecionades_text = null;
+        UI_ListBox parceles_seleccionades_listbox = null;
 
         UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;

@@ -239,8 +239,6 @@ namespace WindowsFormsApp4
 
                 finca_nom_text.SetText(finca.GetTbl().Nom1);
 
-                propietaris_manager.can_point = true;
-
                 editor_parceles_panel.SetEnabled(true);
                 editor_parceles_crea_button.SetEnabled(false);
                 editor_parceles_guarda_button.SetEnabled(true);
@@ -250,9 +248,13 @@ namespace WindowsFormsApp4
                     editor_parceles_elimina_button.SetEnabled(true);
                     gmap.Position = propietaris_manager.parcela_actual.GetCenterPos();
                     gmap.Zoom = 18;
+                    propietaris_manager.can_point = false;
                 }
                 else
+                {
                     editor_parceles_elimina_button.SetEnabled(false);
+                    propietaris_manager.can_point = true;
+                }
             }
         }
 
@@ -289,6 +291,8 @@ namespace WindowsFormsApp4
 
         public void EliminaParcela(object sender, EventArgs e)
         {
+            propietaris_manager.DeleteParcelaSeleccionada(propietaris_manager.parcela_actual);
+
             List<tblCoordenadesFincaParcela> c = propietaris_manager.parcela_actual.GetCoordenades();
 
             for(int i = 0; i < c.Count; i++)
@@ -852,10 +856,26 @@ namespace WindowsFormsApp4
                 propietaris_manager.finca_actual = fin;
                 propietaris_manager.parcela_actual = par;
 
+                // Seleccio parceles
+                if (!propietaris_manager.ParcelesSeleccionadesConte(par))
+                {
+                    propietaris_manager.AddParcelaSeleccionada(par);
+                    par.Highlight();
+                }
+                else
+                {
+                    propietaris_manager.DeleteParcelaSeleccionada(par);
+                    par.DeHiglight();
+                }
+
                 propietari_nom_text.SetText(prop.GetTbl().Nombre);
 
                 finca_nom_text.SetText(fin.GetTbl().Nom1);
 
+                editor_parceles_elimina_button.SetEnabled(true);
+                propietaris_manager.can_point = false;
+
+                ActualitzaLlistaParcelesSeleccionades();
                 ActualitzaLlistaParceles();
             }
         }
@@ -882,7 +902,7 @@ namespace WindowsFormsApp4
         {
             string search = text_input_nom.GetText();
 
-            if (search != "")
+            if (search.Replace(" ", "") != "")
             {
                 gmap.SetPositionByKeywords(search);
             }
@@ -1143,6 +1163,31 @@ namespace WindowsFormsApp4
                 editor_parceles_panel.SetEnabled(false);
                 propietaris_manager.can_point = false;
                 llista_parceles_llista.CleanSelection();
+            }
+        }
+
+        public void ActualitzaLlistaParcelesSeleccionades()
+        {
+            List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+
+            if(parceles.Count > 0)
+            {
+                parceles_seleccionades_panel.SetEnabled(true);
+
+                parceles_seleccionades_listbox.Clear();
+                for(int i = 0; i< parceles.Count; i++)
+                {
+                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, parceles[i].GetTbl().idParcelaVinicola, parceles[i].GetTbl().idParcela.ToString());
+
+                    parceles_seleccionades_listbox.AddElement(t);
+                    ListBox l = parceles_seleccionades_listbox.GetElement() as ListBox;
+                    l.DisplayMember = "Text";
+
+                }
+            }
+            else
+            {
+                parceles_seleccionades_panel.SetEnabled(false);
             }
         }
 

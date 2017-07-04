@@ -263,6 +263,22 @@ namespace WindowsFormsApp4
             }
         }
 
+        public void Highlight()
+        {
+            if (polygon != null)
+            {
+                polygon.Stroke = new Pen(polygon.Stroke.Color, 10);
+            }
+        }
+
+        public void DeHiglight()
+        {
+            if (polygon != null)
+            {
+                polygon.Stroke = new Pen(polygon.Stroke.Color, 3);
+            }
+        }
+
         public void AddLineaParte(tblLineasPartesFinca1 lpartes)
         {
             lineas_parte.Add(lpartes);

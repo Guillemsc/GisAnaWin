@@ -116,6 +116,31 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<Parcela> GetParcelesSeleccionades() { return parceles_seleccionades; }
+
+        public void AddParcelaSeleccionada(Parcela parcela)
+        {
+            if(!parceles_seleccionades.Contains(parcela))
+                parceles_seleccionades.Add(parcela);
+        }
+
+        public void DeleteParcelaSeleccionada(Parcela parcela)
+        {
+            parceles_seleccionades.Remove(parcela);
+        }
+
+        public void ClearParcelesSeleccionades() { parceles_seleccionades.Clear(); }
+
+        public bool ParcelesSeleccionadesConte(Parcela parcela)
+        {
+            bool ret = false;
+
+            if (parceles_seleccionades.Contains(parcela))
+                ret = true;
+            
+            return ret;
+        }
+
         List<Propietari> propietaris = new List<Propietari>();
         List<Finca> finques = new List<Finca>();
         List<Parcela> parceles = new List<Parcela>();
@@ -129,7 +154,7 @@ namespace WindowsFormsApp4
         public Varietat varietat_actual = null;
         public Treball treball_actual = null;
 
-        public List<Label> propietaris_texts = new List<Label>();
+        List<Parcela> parceles_seleccionades = new List<Parcela>();
 
         public bool can_point_back = false;
         public bool can_point = false;

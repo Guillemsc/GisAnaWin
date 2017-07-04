@@ -413,5 +413,11 @@ namespace WindowsFormsApp4
             ListBox lb = GetElement() as ListBox;
             lb.ClearSelected();
         }
+
+        public void SetAutoSize(bool set)
+        {
+            ListBox lb = GetElement() as ListBox;
+            lb.IntegralHeight = set;
+        }
     }
 }
