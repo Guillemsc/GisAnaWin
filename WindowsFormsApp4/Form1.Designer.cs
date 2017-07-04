@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Xml.Linq;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
@@ -147,6 +148,11 @@ namespace WindowsFormsApp4
             UpdateLatLon();
 
             LoadArgs();
+            // -----------------------------------
+
+            // Forms -----------------------------
+            crea_parte_form = new Form2(propietaris_manager, point_manager, server_manager, ui_manager);
+            crea_parte_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -499,6 +505,9 @@ namespace WindowsFormsApp4
                 }
             }
         }
+
+        // Forms
+        Form2 crea_parte_form = null;
 
         // Windows
         UI_Window main_win = null;

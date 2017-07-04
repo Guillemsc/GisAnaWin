@@ -42,7 +42,7 @@ namespace WindowsFormsApp4
             _control.Controls.Remove(element.GetElement());
         }
 
-        public bool GetEnabled() { return enabled;}
+        public bool GetEnabled() { return enabled; }
 
         public void SetEnabled(bool set)
         {
@@ -237,33 +237,33 @@ namespace WindowsFormsApp4
     {
         public UI_TextInput(Point pos, int w, int h, string text = "", string name = "") : base("text_input")
         {
-            MaskedTextBox mt = new MaskedTextBox();
-            mt.Name = name;
-            mt.Location = pos;
-            mt.Width = w;
-            mt.Height = h;
-            mt.Text = text;
-            mt.AutoSize = true;
+            RichTextBox rt = new RichTextBox();
+            rt.Name = name;
+            rt.Location = pos;
+            rt.Width = w;
+            rt.Height = h;
+            rt.Text = text;
+            rt.AutoSize = true;
 
-            SetElement(mt);
+            SetElement(rt);
         }
 
         public string GetText()
         {
-            MaskedTextBox l = GetElement() as MaskedTextBox;
+            RichTextBox l = GetElement() as RichTextBox;
             return l.Text;
         }
 
         public void SetText(string text)
         {
-            MaskedTextBox l = GetElement() as MaskedTextBox;
+            RichTextBox l = GetElement() as RichTextBox;
             l.Text = text;
         }
     }
 
     public class UI_ComboBox : UI_Element
     {
-        public UI_ComboBox(Point pos, int w, int h, string name = "") : base ("combo")
+        public UI_ComboBox(Point pos, int w, int h, string name = "") : base("combo")
         {
             ComboBox cb = new ComboBox();
             {
@@ -384,7 +384,7 @@ namespace WindowsFormsApp4
 
             if (lb.SelectedIndex >= 0)
                 ret = (Control)lb.SelectedItem;
-            
+
             return ret;
         }
 
@@ -424,6 +424,52 @@ namespace WindowsFormsApp4
         {
             ListBox lb = GetElement() as ListBox;
             lb.IntegralHeight = set;
+        }
+    }
+
+    public class UI_DateSelect : UI_Element
+    {
+        public UI_DateSelect(Point pos, int w, int h, string name = "") : base("date_select")
+        {
+            DateTimePicker d = new DateTimePicker();
+            d.Name = name;
+            d.Location = pos;
+            d.Width = w;
+            d.Height = h;
+
+            SetElement(d);
+        }
+
+        public string GetDate()
+        {
+            DateTimePicker d = GetElement() as DateTimePicker;
+            return d.Value.Date.ToShortDateString();
+        }
+    }
+
+    public class UI_Grid : UI_Element
+    {
+        public UI_Grid(Point pos, int w, int h, string name = "") : base("data_grid")
+        {
+            DataGridView d = new DataGridView();
+            d.Name = name;
+            d.Location = pos;
+            d.Width = w;
+            d.Height = h;
+
+            SetElement(d);
+        }
+
+        public void AddColumn(string text)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Columns.Add(text, text);
+        }
+
+        public void AddRow(params object[] text)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Rows.Add(text);
         }
     }
 }
