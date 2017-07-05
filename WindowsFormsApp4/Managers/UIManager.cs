@@ -261,6 +261,34 @@ namespace WindowsFormsApp4
         }
     }
 
+    public class UI_MaskedTextInput : UI_Element
+    {
+        public UI_MaskedTextInput(Point pos, int w, int h, string text = "", string name = "") : base("masked_text_input")
+        {
+            MaskedTextBox rt = new MaskedTextBox();
+            rt.Name = name;
+            rt.Location = pos;
+            rt.Width = w;
+            rt.Height = h;
+            rt.Text = text;
+            rt.AutoSize = true;
+
+            SetElement(rt);
+        }
+
+        public string GetText()
+        {
+            MaskedTextBox l = GetElement() as MaskedTextBox;
+            return l.Text;
+        }
+
+        public void SetText(string text)
+        {
+            MaskedTextBox l = GetElement() as MaskedTextBox;
+            l.Text = text;
+        }
+    }
+
     public class UI_ComboBox : UI_Element
     {
         public UI_ComboBox(Point pos, int w, int h, string name = "") : base("combo")
@@ -440,10 +468,16 @@ namespace WindowsFormsApp4
             SetElement(d);
         }
 
-        public string GetDate()
+        public string GetDateString()
         {
             DateTimePicker d = GetElement() as DateTimePicker;
             return d.Value.Date.ToShortDateString();
+        }
+
+        public DateTime GetDate()
+        {
+            DateTimePicker d = GetElement() as DateTimePicker;
+            return d.Value;
         }
     }
 
@@ -456,20 +490,78 @@ namespace WindowsFormsApp4
             d.Location = pos;
             d.Width = w;
             d.Height = h;
+            d.AllowDrop = false;
+            d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            d.AllowUserToAddRows = false;
 
             SetElement(d);
         }
 
-        public void AddColumn(string text)
+        public void AddColumn(string text, int width)
         {
             DataGridView d = GetElement() as DataGridView;
             d.Columns.Add(text, text);
+            d.Columns[d.Columns.Count - 1].Width = width;
         }
 
         public void AddRow(params object[] text)
         {
             DataGridView d = GetElement() as DataGridView;
             d.Rows.Add(text);
+        }
+
+        public void SetAllowDrop(bool set)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.AllowDrop = set;
+        }
+
+        public void Clear()
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Rows.Clear();
+        }
+
+        public string[] GetSelectedRow()
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            string[] ret = new string[d.SelectedRows[0].Cells.Count];
+
+            if(IsSelected())
+            {
+                for(int i = 0; i < d.SelectedRows[0].Cells.Count; i++)
+                {
+                    ret[i] = d.SelectedRows[0].Cells[i].Value as string;
+                }
+            }
+
+            return ret;
+        }
+
+        public int GetSelectedRowIndex()
+        {
+            DataGridView d = GetElement() as DataGridView;
+            return d.CurrentCell.RowIndex;
+        }
+
+        public void DeleteRow(int index)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Rows.RemoveAt(index);
+        }
+
+        public bool IsSelected()
+        {
+            bool ret = false;
+            DataGridView d = GetElement() as DataGridView;
+
+            if (d.CurrentCell != null && d.CurrentCell.RowIndex >= 0 && d.CurrentCell.RowIndex < d.Rows.Count)
+            {
+                ret = true;
+            }
+
+            return ret;
         }
     }
 }

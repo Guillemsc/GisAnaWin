@@ -36,8 +36,8 @@ namespace WindowsFormsApp4
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 349);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "Llista partes";
+            this.Text = "Llista partes";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -51,19 +51,11 @@ namespace WindowsFormsApp4
             point_manager = _points_manager;
             server_manager = _server_manager;
             ui_manager = _ui_manager;
-
-            OnLoad();
             // -----------------------------------
 
             // UI --------------------------------
             LoadUI();
             // -----------------------------------
-        }
-
-
-        public void OnLoad()
-        {
-
         }
 
         public void LoadUI()
@@ -85,15 +77,20 @@ namespace WindowsFormsApp4
                 descripcio_text = new UI_Text(new Point(20, 70), 100, 30, "Descripció:");
                 main_window.AddElement(descripcio_text);
 
-                descripcio_text_input = new UI_TextInput(new Point(22, 90), 470, 70);
+                descripcio_text_input = new UI_TextInput(new Point(22, 90), 421, 70);
                 main_window.AddElement(descripcio_text_input);
 
-                grid = new UI_Grid(new Point(22, 190), 470, 100);
-                grid.AddColumn("sddsf"); grid.AddColumn("sddsf");
-                grid.AddRow("yolos", "asdasd");
+                add_treball_button = new UI_Button(new Point(463, 90), 30, 30, "+");
+                add_treball_button.GetElement().Click += new System.EventHandler(this.AfegeigParte);
+                main_window.AddElement(add_treball_button);
+
+                remove_treball_button = new UI_Button(new Point(463, 130), 30, 30, "-");
+                remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                main_window.AddElement(remove_treball_button);
+
+                grid = new UI_Grid(new Point(22, 180), 470, 150);
+                grid.AddColumn("Treball", 50); grid.AddColumn("Data", 170); grid.AddColumn("Descripció", 200);
                 main_window.AddElement(grid);
-
-
             }
         }
 
@@ -107,6 +104,8 @@ namespace WindowsFormsApp4
         UI_Text descripcio_text = null;
         UI_TextInput descripcio_text_input = null;
         UI_Grid grid = null;
+        UI_Button add_treball_button = null;
+        UI_Button remove_treball_button = null;
 
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;

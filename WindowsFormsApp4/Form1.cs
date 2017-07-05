@@ -304,6 +304,11 @@ namespace WindowsFormsApp4
             guarda_canvis_win.SetEnabled(false);
         }
 
+        public void ObreFormPartes(object sender, EventArgs e)
+        {
+            crea_parte_form.ShowDialog();
+        }
+
         // ---------------------------------------------------------------------- Botons
         // -----------------------------------------------------------------------------
 
@@ -800,6 +805,8 @@ namespace WindowsFormsApp4
                 propietaris_manager.curr_list_box.Items.Add("Ha: " + ha);
                 propietaris_manager.curr_list_box.Items.Add(poligon + "/" + parcela);
 
+                propietaris_manager.curr_list_box.Enabled = false;
+
                 this.Controls.Add(propietaris_manager.curr_list_box);
                 propietaris_manager.curr_list_box.BringToFront();
 
@@ -877,8 +884,8 @@ namespace WindowsFormsApp4
         // Busca una coordenada amb latitud i longitud
         public void SearchLatLon(object sender, EventArgs e)
         {
-            UI_TextInput lat = text_input_lat;
-            UI_TextInput lon = text_input_lon;
+            UI_MaskedTextInput lat = text_input_lat;
+            UI_MaskedTextInput lon = text_input_lon;
 
             if (lat == null || lon == null)
                 return;

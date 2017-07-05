@@ -148,6 +148,16 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public void AddParteFinca(tblPartesFinca parte)
+        {
+            servidor.tblPartesFinca.InsertOnSubmit(parte);
+        }
+
+        public void AddLineaParteFinca(tblLineasPartesFinca1 parte_linea)
+        {
+            servidor.tblLineasPartesFinca1.InsertOnSubmit(parte_linea);
+        }
+
         public void DeleteCoordenades(tblCoordenadesFincaParcela coordenates)
         {
             servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);

@@ -4,6 +4,38 @@ using System.Xml.Linq;
 using System.Configuration;
 using System.Collections.Generic;
 
+
+// ---------------------------------------------------------------------- Botons
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Servidor --------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// -------------------------------------------------------------------- Servidor
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Utils -----------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------- Utils
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Gmap ------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------ Gmap
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Actualitza ------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// ------------------------------------------------------------------ Actualitza
+// -----------------------------------------------------------------------------
+
 namespace WindowsFormsApp4
 {
     partial class Form1
@@ -164,11 +196,11 @@ namespace WindowsFormsApp4
             // General Map UI Input
             map_win = new UI_Window(this);
             {
-                text_input_lat = new UI_TextInput(new Point(16, 485), 92, 50);
+                text_input_lat = new UI_MaskedTextInput(new Point(16, 485), 92, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
 
-                text_input_lon = new UI_TextInput(new Point(123, 485), 92, 50);
+                text_input_lon = new UI_MaskedTextInput(new Point(123, 485), 92, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
@@ -190,7 +222,7 @@ namespace WindowsFormsApp4
                 search_button_name.GetElement().Click += new System.EventHandler(this.SearchName);
                 map_win.AddElement(search_button_name);
 
-                text_input_nom = new UI_TextInput(new Point(16, 428), 200, 50);
+                text_input_nom = new UI_MaskedTextInput(new Point(16, 428), 200, 50);
                 text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_nom);
 
@@ -340,25 +372,18 @@ namespace WindowsFormsApp4
                 editor_parceles_panel.SetEnabled(false);
 
                 // Parceles seleccionades
-                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 250);
+                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 200);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
-                    crea_parte_button = new UI_Button(new Point(5, 5), 120, 30, "Crea Parte");
-                    crea_parte_button.SetColor(Color.Cornsilk);
-                    parceles_seleccionades_panel.AddElement(crea_parte_button);
-
-                    llistat_partes_button = new UI_Button(new Point(5, 35), 120, 30, "Llistat Partes");
+                    llistat_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Llista partes");
                     llistat_partes_button.SetColor(Color.Cornsilk);
+                    llistat_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
                     parceles_seleccionades_panel.AddElement(llistat_partes_button);
 
-                    visualitza_partes_button = new UI_Button(new Point(5, 65), 120, 30, "Visualitza Partes");
-                    visualitza_partes_button.SetColor(Color.Cornsilk);
-                    parceles_seleccionades_panel.AddElement(visualitza_partes_button);
-
-                    parceles_selecionades_text = new UI_Text(new Point(5, 100), 100, 30, "Parceles seleccionades:");
+                    parceles_selecionades_text = new UI_Text(new Point(5, 50), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 120), 130, 100);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 70), 130, 100);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
@@ -519,13 +544,13 @@ namespace WindowsFormsApp4
         UI_Window guarda_canvis_win = null;
 
         // Elements
-        UI_TextInput text_input_lat = null;
-        UI_TextInput text_input_lon = null;
+        UI_MaskedTextInput text_input_lat = null;
+        UI_MaskedTextInput text_input_lon = null;
         UI_Button search_button_coor = null;
         UI_Text lat_text = null;
         UI_Text lon_text = null;
         UI_Button search_button_name = null;
-        UI_TextInput text_input_nom = null;
+        UI_MaskedTextInput text_input_nom = null;
         UI_Button mapsat_button = null;
 
         UI_Text propietaris_text = null;
@@ -563,9 +588,7 @@ namespace WindowsFormsApp4
         UI_Text editor_parceles_ultim_guardat = null;
         UI_Button editor_parceles_opcions = null;
 
-        UI_Button crea_parte_button = null;
         UI_Button llistat_partes_button = null;
-        UI_Button visualitza_partes_button = null;
         UI_Panel parceles_seleccionades_panel = null;
         UI_Text parceles_selecionades_text = null;
         UI_ListBox parceles_seleccionades_listbox = null;
