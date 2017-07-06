@@ -375,7 +375,7 @@ namespace WindowsFormsApp4
                 parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 200);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
-                    llistat_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Llista partes");
+                    llistat_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Afegir partes");
                     llistat_partes_button.SetColor(Color.Cornsilk);
                     llistat_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
                     parceles_seleccionades_panel.AddElement(llistat_partes_button);

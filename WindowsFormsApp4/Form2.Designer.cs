@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
@@ -35,9 +36,9 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 349);
-            this.Name = "Llista partes";
-            this.Text = "Llista partes";
+            this.ClientSize = new System.Drawing.Size(514, 389);
+            this.Name = "Afegir Partes";
+            this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -89,8 +90,12 @@ namespace WindowsFormsApp4
                 main_window.AddElement(remove_treball_button);
 
                 grid = new UI_Grid(new Point(22, 180), 470, 150);
-                grid.AddColumn("Treball", 50); grid.AddColumn("Data", 170); grid.AddColumn("Descripció", 200);
+                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300);
                 main_window.AddElement(grid);
+
+                accepta_button = new UI_Button(new Point(393, 345), 100, 30, "Acceptar");
+                accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                main_window.AddElement(accepta_button);
             }
         }
 
@@ -106,11 +111,14 @@ namespace WindowsFormsApp4
         UI_Grid grid = null;
         UI_Button add_treball_button = null;
         UI_Button remove_treball_button = null;
+        UI_Button accepta_button = null;
 
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        List<tblLineasPartesFinca1> partes_linea_per_afegir = new List<tblLineasPartesFinca1>();
     }
 }
