@@ -1183,7 +1183,7 @@ namespace WindowsFormsApp4
 
                 for (int y = 0; y < partes.Count; y++)
                 {
-                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[y].idParte.ToString(), partes[y].idParte.ToString());
+                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[y].idLinea.ToString(), partes[y].idLinea.ToString());
 
                     partes_seleccionats_listbox.AddElement(t);
                     ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;

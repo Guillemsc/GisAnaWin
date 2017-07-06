@@ -103,7 +103,9 @@ namespace WindowsFormsApp4
 
                     for (int l = 0; l < partes_linea_per_afegir.Count; l++)
                     {
-                        tblLineasPartesFinca1 linea = partes_linea_per_afegir[l];
+                        tblLineasPartesFinca1 linea = new tblLineasPartesFinca1();
+                        linea.Descripcion = partes_linea_per_afegir[l].Descripcion;
+                        linea.idFamiliaCoste = partes_linea_per_afegir[l].idFamiliaCoste;
 
                         for (int p = 0; p < parceles.Count; p++)
                         {
@@ -181,7 +183,9 @@ namespace WindowsFormsApp4
                         ret = partes[y].idParte;
                 }
             }
-  
+
+            ret++;
+
             return ret;
         }
 
@@ -201,6 +205,8 @@ namespace WindowsFormsApp4
                         ret = partes_l[y].idLinea;
                 }
             }
+
+            ret++;
 
             return ret;
         }
