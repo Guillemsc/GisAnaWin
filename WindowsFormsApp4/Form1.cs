@@ -309,6 +309,11 @@ namespace WindowsFormsApp4
             crea_parte_form.ShowDialog();
         }
 
+        public void CreaParteTanca(object sender, FormClosedEventArgs e)
+        {
+            ActualitzaLlistaPartes();
+        }
+
         // ---------------------------------------------------------------------- Botons
         // -----------------------------------------------------------------------------
 
@@ -850,6 +855,8 @@ namespace WindowsFormsApp4
                 ActualitzaLlistaParcelesSeleccionades();
 
                 ActualitzaLlistaParceles();
+
+                ActualitzaLlistaPartes();
             }
         }
 
@@ -1163,6 +1170,29 @@ namespace WindowsFormsApp4
             }
         }
 
+
+        public void ActualitzaLlistaPartes()
+        {
+            partes_seleccionats_listbox.Clear();
+
+            List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                List<tblLineasPartesFinca1> partes = parceles[i].GetLineasParte();
+
+                for (int y = 0; y < partes.Count; y++)
+                {
+                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[y].idParte.ToString(), partes[y].idParte.ToString());
+
+                    partes_seleccionats_listbox.AddElement(t);
+                    ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
+                    l.DisplayMember = "Text";
+                }
+
+            }
+        }
+
         public void SeleccionaParcelaActual(Parcela parcela, bool zoom = false, bool center = false)
         {
             if(propietaris_manager.parcela_actual != null)
@@ -1205,6 +1235,7 @@ namespace WindowsFormsApp4
                 finca_nom_text.SetText(finca.GetTbl().Nom1);
             }
         }
+
 
         // ------------------------------------------------------------------ Actualitza
         // -----------------------------------------------------------------------------

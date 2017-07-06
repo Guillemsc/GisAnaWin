@@ -184,6 +184,7 @@ namespace WindowsFormsApp4
 
             // Forms -----------------------------
             crea_parte_form = new Form2(propietaris_manager, point_manager, server_manager, ui_manager);
+            crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
             crea_parte_form.ShowDialog();
             // -----------------------------------
 
@@ -371,8 +372,8 @@ namespace WindowsFormsApp4
                 }
                 editor_parceles_panel.SetEnabled(false);
 
-                // Parceles seleccionades
-                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 200);
+                // Parceles/Partes seleccionades
+                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
                     llistat_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Afegir partes");
@@ -383,10 +384,18 @@ namespace WindowsFormsApp4
                     parceles_selecionades_text = new UI_Text(new Point(5, 50), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 70), 130, 100);
-                    parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 70), 130, 180);
+                    parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
+
+                    partes_seleccionats_text = new UI_Text(new Point(5, 260), 100, 30, "Partes:");
+                    parceles_seleccionades_panel.AddElement(partes_seleccionats_text);
+
+                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 280), 130, 180);
+                    partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                    partes_seleccionats_listbox.SetAutoSize(true);
+                    parceles_seleccionades_panel.AddElement(partes_seleccionats_listbox);
                 }
                 main_win.AddElement(parceles_seleccionades_panel);
                 parceles_seleccionades_panel.SetEnabled(false);
@@ -533,6 +542,7 @@ namespace WindowsFormsApp4
 
         // Forms
         Form2 crea_parte_form = null;
+        
 
         // Windows
         UI_Window main_win = null;
@@ -592,6 +602,8 @@ namespace WindowsFormsApp4
         UI_Panel parceles_seleccionades_panel = null;
         UI_Text parceles_selecionades_text = null;
         UI_ListBox parceles_seleccionades_listbox = null;
+        UI_Text partes_seleccionats_text = null;
+        UI_ListBox partes_seleccionats_listbox = null;
 
         UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;
