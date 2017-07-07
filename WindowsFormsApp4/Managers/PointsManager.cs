@@ -106,6 +106,16 @@ namespace WindowsFormsApp4
             partes_linea.Add(parte);
         }
 
+        public bool EliminaPartesLinea(tblLineasPartesFinca1 parte)
+        {
+            return partes_linea.Remove(parte);
+        }
+
+        public bool EliminaPartes(tblPartesFinca parte)
+        {
+            return partes.Remove(parte);
+        }
+
         public List<tblLineasPartesFinca1> GetPartesLinea()
         {
             return partes_linea;
@@ -305,6 +315,11 @@ namespace WindowsFormsApp4
         public void AddLineaParte(tblLineasPartesFinca1 lpartes)
         {
             lineas_parte.Add(lpartes);
+        }
+
+        public bool EliminaLineaParte(tblLineasPartesFinca1 lpartes)
+        {
+            return lineas_parte.Remove(lpartes);
         }
 
         public List<tblLineasPartesFinca1> GetLineasParte()

@@ -186,6 +186,8 @@ namespace WindowsFormsApp4
             crea_parte_form = new Form2(propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
             crea_parte_form.ShowDialog();
+
+            info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
         }
@@ -372,7 +374,7 @@ namespace WindowsFormsApp4
                 }
                 editor_parceles_panel.SetEnabled(false);
 
-                // Parceles/Partes seleccionades
+                // Parceles / Partes seleccionades
                 parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
@@ -381,20 +383,27 @@ namespace WindowsFormsApp4
                     llistat_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
                     parceles_seleccionades_panel.AddElement(llistat_partes_button);
 
-                    parceles_selecionades_text = new UI_Text(new Point(5, 50), 100, 30, "Parceles seleccionades:");
+                    elimina_parte_button = new UI_Button(new Point(5, 37), 120, 30, "Elimina parte");
+                    elimina_parte_button.SetColor(Color.Cornsilk);
+                    elimina_parte_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                    parceles_seleccionades_panel.AddElement(elimina_parte_button);
+
+                    parceles_selecionades_text = new UI_Text(new Point(5, 80), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 70), 130, 180);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 100), 130, 180);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
 
-                    partes_seleccionats_text = new UI_Text(new Point(5, 260), 100, 30, "Partes:");
+                    partes_seleccionats_text = new UI_Text(new Point(5, 290), 100, 30, "Partes:");
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_text);
 
-                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 280), 130, 180);
+                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 310), 130, 180);
                     partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     partes_seleccionats_listbox.SetAutoSize(true);
+                    partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickLineaParte);
+                    partes_seleccionats_listbox.GetElement().DoubleClick += new System.EventHandler(ObreFormInfoPartes);
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_listbox);
                 }
                 main_win.AddElement(parceles_seleccionades_panel);
@@ -482,6 +491,7 @@ namespace WindowsFormsApp4
             ui_manager.AddUIWindow(seleccio_treball_win);
             seleccio_treball_win.SetEnabled(false);
 
+            // Finestra confirmacio canvis guardats
             guarda_canvis_win = new UI_Window(this);
             {
                 guarda_canvis_panel = new UI_Panel(new Point(400, 220), 230, 70);
@@ -542,8 +552,8 @@ namespace WindowsFormsApp4
 
         // Forms
         Form2 crea_parte_form = null;
+        Form3 info_parte_form = null;
         
-
         // Windows
         UI_Window main_win = null;
         UI_Window map_win = null;
@@ -604,6 +614,7 @@ namespace WindowsFormsApp4
         UI_ListBox parceles_seleccionades_listbox = null;
         UI_Text partes_seleccionats_text = null;
         UI_ListBox partes_seleccionats_listbox = null;
+        UI_Button elimina_parte_button = null;
 
         UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;

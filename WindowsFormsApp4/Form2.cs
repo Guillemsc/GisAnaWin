@@ -87,26 +87,21 @@ namespace WindowsFormsApp4
                         finques.Add(finca);
                 }
 
-                tblPartesFinca parte = new tblPartesFinca();
-                parte.Fecha = data_dataselect.GetDate();
-
                 for (int f = 0; f < finques.Count; f++)
                 {
                     Finca finca_actual = finques[f];
 
+                    tblPartesFinca parte = new tblPartesFinca();
+                    parte.Fecha = data_dataselect.GetDate();
                     parte.CodigoEmpresa = finca_actual.GetTbl().CodigoEmpresa;
                     parte.idFinca = finca_actual.GetTbl().idFinca;
                     parte.idParte = GetPartesNewId();
 
                     finca_actual.AddParte(parte);
-                    //server_manager.AddParteFinca(parte);
+                    server_manager.AddParteFinca(parte);
 
                     for (int l = 0; l < partes_linea_per_afegir.Count; l++)
                     {
-                        tblLineasPartesFinca1 linea = new tblLineasPartesFinca1();
-                        linea.Descripcion = partes_linea_per_afegir[l].Descripcion;
-                        linea.idFamiliaCoste = partes_linea_per_afegir[l].idFamiliaCoste;
-
                         for (int p = 0; p < parceles.Count; p++)
                         {
                             Parcela parcela_actual = parceles[p];
@@ -114,20 +109,23 @@ namespace WindowsFormsApp4
                             if (parcela_actual.GetTbl().idFinca != finca_actual.GetTbl().idFinca)
                                 continue;
 
+                            tblLineasPartesFinca1 linea = new tblLineasPartesFinca1();
+                            linea.Descripcion = partes_linea_per_afegir[l].Descripcion;
+                            linea.idFamiliaCoste = partes_linea_per_afegir[l].idFamiliaCoste;
                             linea.CodigoEmpresa = parcela_actual.GetTbl().CodigoEmpresa;
                             linea.idParcela = parcela_actual.GetTbl().idParcela;
                             linea.idLinea = GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
 
                             parcela_actual.AddLineaParte(linea);
-                            //server_manager.AddLineaParteFinca(linea);
+                            server_manager.AddLineaParteFinca(linea);
 
                             finca_actual.AddPartesLinea(linea);
                         }
                     }
                 }
 
-                //server_manager.SubmitChanges();
+                server_manager.SubmitChanges();
             }
 
             this.Close();

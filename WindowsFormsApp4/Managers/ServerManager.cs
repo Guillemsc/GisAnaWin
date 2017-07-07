@@ -163,10 +163,21 @@ namespace WindowsFormsApp4
             servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);
         }
 
+        public void DeleteParteFinca(tblPartesFinca parte)
+        {
+            servidor.tblPartesFinca.DeleteOnSubmit(parte);
+        }
+
+        public void DeleteLineaParteFinca(tblLineasPartesFinca1 parte_linea)
+        {
+            servidor.tblLineasPartesFinca1.DeleteOnSubmit(parte_linea);
+        }
+
         public void SubmitChanges()
         {
             servidor.SubmitChanges();
         }
+
 
         private DataClasses1DataContext servidor = null;
     }

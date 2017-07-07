@@ -153,6 +153,7 @@ namespace WindowsFormsApp4
         public Parcela parcela_actual = null;
         public Varietat varietat_actual = null;
         public Treball treball_actual = null;
+        public tblPartesFinca parte_actual = null;
 
         List<Parcela> parceles_seleccionades = new List<Parcela>();
 

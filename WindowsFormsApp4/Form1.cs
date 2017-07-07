@@ -289,6 +289,72 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParcelesSeleccionades();
         }
 
+        public void ClickLineaParte(object sender, EventArgs e)
+        {
+            if (!partes_seleccionats_listbox.IsSelected())
+                return;
+
+            Label l = partes_seleccionats_listbox.GetSelected() as Label;
+
+            tblPartesFinca lp = GetPartePerParteId(int.Parse(l.Text));
+
+            if(lp != null)
+            {
+                propietaris_manager.parte_actual = lp;
+            }
+        }
+
+        public void EliminaParte(object sender, EventArgs e)
+        {
+            if(propietaris_manager.parte_actual == null)
+                return;
+
+            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblLineasPartesFinca1> lineas = GetPartesLineaPerParte(propietaris_manager.parte_actual);
+
+            // Neteja finques
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca f_actual = finques[i];
+
+                if (f_actual.GetTbl().idFinca == propietaris_manager.parte_actual.idFinca)
+                {
+                    f_actual.EliminaPartes(propietaris_manager.parte_actual);
+
+                    for (int l = 0; l < lineas.Count; l++)
+                    {
+                        if (propietaris_manager.parte_actual.idParte == lineas[l].idParte)
+                            f_actual.EliminaPartesLinea(lineas[l]);
+                    }
+                }
+            }
+
+            List<Parcela> parceles = propietaris_manager.GetParceles();
+
+            // Neteja parceles
+            for (int y = 0; y < parceles.Count; y++)
+            {
+                Parcela p_actual = parceles[y];
+
+                for (int l = 0; l < lineas.Count; l++)
+                {
+                    if(lineas[l].idParcela == p_actual.GetTbl().idParcela)
+                        p_actual.EliminaLineaParte(lineas[l]);
+                }
+            }
+
+            ActualitzaLlistaPartes();
+
+            server_manager.DeleteParteFinca(propietaris_manager.parte_actual);
+
+            for (int l = 0; l < lineas.Count; l++)
+            {
+                server_manager.DeleteLineaParteFinca(lineas[l]);
+            }
+
+            server_manager.SubmitChanges();
+        }
+
         public void GuardaCanvis(object sender, EventArgs e)
         {
             server_manager.SubmitChanges();
@@ -312,6 +378,11 @@ namespace WindowsFormsApp4
         public void CreaParteTanca(object sender, FormClosedEventArgs e)
         {
             ActualitzaLlistaPartes();
+        }
+
+        public void ObreFormInfoPartes(object sender, EventArgs e)
+        {
+            info_parte_form.ShowDialog();
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -712,6 +783,70 @@ namespace WindowsFormsApp4
             }
 
             return ret;
+        }
+
+        public tblPartesFinca GetPartePerParteId(int id)
+        {
+            List<Finca> finques = propietaris_manager.GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca f_actual = finques[i];
+
+                List<tblPartesFinca> partes = f_actual.GetPartes();
+
+                for (int y = 0; y < partes.Count; y++)
+                {
+                    if (partes[y].idParte == id)
+                        return partes[y];
+                }
+            }
+
+            return null;
+        }
+
+        public List<tblLineasPartesFinca1> GetPartesLineaPerParte(tblPartesFinca parte)
+        {
+            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+
+            List<Finca> finques = propietaris_manager.GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca f_actual = finques[i];
+
+                List<tblLineasPartesFinca1> lineas = f_actual.GetPartesLinea();
+
+                for(int y = 0; y < lineas.Count; y++)
+                {
+                    if(lineas[y].idParte == parte.idParte)
+                    {
+                        ret.Add(lineas[y]);
+                    }
+                }
+            }
+
+                return ret;
+        }
+
+        public tblLineasPartesFinca1 GetLineaPartePerLineaID(int id)
+        {
+            List<Finca> finques = propietaris_manager.GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca f_actual = finques[i];
+
+                List<tblLineasPartesFinca1> lineas = f_actual.GetPartesLinea();
+
+                for(int y = 0; y < lineas.Count; y++)
+                {
+                    if (lineas[y].idLinea == id)
+                        return lineas[y];
+                }
+            }
+
+            return null;
         }
 
         // ----------------------------------------------------------------------- Utils
@@ -1177,13 +1312,23 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
 
+            List<Finca> finques = new List<Finca>();
+
             for (int i = 0; i < parceles.Count; i++)
             {
-                List<tblLineasPartesFinca1> partes = parceles[i].GetLineasParte();
+                Finca f = GetFincaPerParcela(parceles[i]);
 
-                for (int y = 0; y < partes.Count; y++)
+                if (!finques.Contains(f))
+                    finques.Add(f);
+            }
+
+            for (int y = 0; y < finques.Count; y++)
+            {
+                List<tblPartesFinca> partes = finques[y].GetPartes();
+
+                for (int z = 0; z < partes.Count; z++)
                 {
-                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[y].idLinea.ToString(), partes[y].idLinea.ToString());
+                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[z].idParte.ToString(), partes[z].idParte.ToString());
 
                     partes_seleccionats_listbox.AddElement(t);
                     ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
