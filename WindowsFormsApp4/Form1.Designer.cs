@@ -150,7 +150,7 @@ namespace WindowsFormsApp4
 
             // Gmap ------------------------------
             gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
             // -----------------------------------
