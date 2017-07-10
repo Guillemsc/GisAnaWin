@@ -44,6 +44,8 @@ namespace WindowsFormsApp4
 
         public bool GetEnabled() { return enabled; }
 
+        public bool GetVisible() { return visible; }
+
         public void SetEnabled(bool set)
         {
             for (int i = 0; i < elements.Count; i++)
@@ -54,9 +56,20 @@ namespace WindowsFormsApp4
             enabled = set;
         }
 
+        public void SetVisible(bool set)
+        {
+            for (int i = 0; i < elements.Count; i++)
+            {
+                elements[i].SetVisible(set);
+            }
+
+            visible = set;
+        }
+
         public List<UI_Element> elements = new List<UI_Element>();
         Control _control = null;
         bool enabled = true;
+        bool visible = true;
     }
 
     public class UI_Element
@@ -73,7 +86,7 @@ namespace WindowsFormsApp4
 
         public Control GetElement() { return _element; }
 
-        public void SetEnabled(bool set)
+        public void SetVisible(bool set)
         {
             if (_element != null)
                 _element.Visible = set;
@@ -100,6 +113,11 @@ namespace WindowsFormsApp4
         public void Layer(int layer)
         {
             _element.TabIndex = layer;
+        }
+
+        public void SetEnabled(bool set)
+        {
+            _element.Enabled = set;
         }
 
         public string GetTyp() { return _type; }

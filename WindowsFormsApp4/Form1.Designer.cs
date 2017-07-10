@@ -185,9 +185,9 @@ namespace WindowsFormsApp4
             // Forms -----------------------------
             crea_parte_form = new Form2(propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
-            crea_parte_form.ShowDialog();
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
+            info_parte_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -372,7 +372,7 @@ namespace WindowsFormsApp4
                     editor_parceles_opcions.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
                     editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
-                editor_parceles_panel.SetEnabled(false);
+                editor_parceles_panel.SetVisible(false);
 
                 // Parceles / Partes seleccionades
                 parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
@@ -402,12 +402,12 @@ namespace WindowsFormsApp4
                     partes_seleccionats_listbox = new UI_ListBox(new Point(0, 310), 130, 180);
                     partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     partes_seleccionats_listbox.SetAutoSize(true);
-                    partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickLineaParte);
+                    partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickParte);
                     partes_seleccionats_listbox.GetElement().DoubleClick += new System.EventHandler(ObreFormInfoPartes);
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_listbox);
                 }
                 main_win.AddElement(parceles_seleccionades_panel);
-                parceles_seleccionades_panel.SetEnabled(false);
+                parceles_seleccionades_panel.SetVisible(false);
             }
             ui_manager.AddUIWindow(main_win);
 
@@ -429,7 +429,7 @@ namespace WindowsFormsApp4
                 seleccio_propietari_panel.AddElement(seleccio_propietari_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_propietari_win);
-            seleccio_propietari_win.SetEnabled(false);
+            seleccio_propietari_win.SetVisible(false);
 
             // Finestra seleccio finca
             seleccio_finca_win = new UI_Window(this);
@@ -449,7 +449,7 @@ namespace WindowsFormsApp4
                 seleccio_finca_panel.AddElement(seleccio_finca_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_finca_win);
-            seleccio_finca_win.SetEnabled(false);
+            seleccio_finca_win.SetVisible(false);
 
             // Finestra seleccio varietat
             seleccio_varietat_win = new UI_Window(this);
@@ -469,7 +469,7 @@ namespace WindowsFormsApp4
                 seleccio_varietat_panel.AddElement(seleccio_varietat_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_varietat_win);
-            seleccio_varietat_win.SetEnabled(false);
+            seleccio_varietat_win.SetVisible(false);
 
             // Finestra seleccio treball
             seleccio_treball_win = new UI_Window(this);
@@ -489,7 +489,7 @@ namespace WindowsFormsApp4
                 seleccio_treball_panel.AddElement(seleccio_treball_guarda_button);
             }
             ui_manager.AddUIWindow(seleccio_treball_win);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_treball_win.SetVisible(false);
 
             // Finestra confirmacio canvis guardats
             guarda_canvis_win = new UI_Window(this);
@@ -509,7 +509,7 @@ namespace WindowsFormsApp4
                 guarda_canvis_panel.AddElement(guarda_canvis_button);
             }
             ui_manager.AddUIWindow(guarda_canvis_win);
-            guarda_canvis_win.SetEnabled(false);
+            guarda_canvis_win.SetVisible(false);
 
             // Always on bottom
             gmap.SendToBack();

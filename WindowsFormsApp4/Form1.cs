@@ -27,11 +27,11 @@ namespace WindowsFormsApp4
 
         private void ObreFinestraSeleccioPropietari(object sender, EventArgs e)
         {
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_varietat_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
 
-            seleccio_propietari_win.SetEnabled(!seleccio_propietari_win.GetEnabled());
+            seleccio_propietari_win.SetVisible(!seleccio_propietari_win.GetVisible());
 
             if (seleccio_propietari_win.GetEnabled())
                 ActualitzaLlistaPropietari();
@@ -39,11 +39,11 @@ namespace WindowsFormsApp4
 
         private void ObreFinestraSeleccioFinca(object sender, EventArgs e)
         {
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_varietat_win.SetVisible(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
 
-            seleccio_finca_win.SetEnabled(!seleccio_finca_win.GetEnabled());
+            seleccio_finca_win.SetVisible(!seleccio_finca_win.GetVisible());
 
             if (seleccio_finca_win.GetEnabled())
                 ActualitzaLlistaFinques();
@@ -51,11 +51,11 @@ namespace WindowsFormsApp4
 
         private void ObreFinestraSeleccioVarietat(object sender, EventArgs e)
         {
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
 
-            seleccio_varietat_win.SetEnabled(!seleccio_varietat_win.GetEnabled());
+            seleccio_varietat_win.SetVisible(!seleccio_varietat_win.GetVisible());
 
             if (seleccio_varietat_win.GetEnabled())
                 ActualitzaLlistaVarietats();
@@ -63,11 +63,11 @@ namespace WindowsFormsApp4
 
         private void ObreFinestraSeleccioTreball(object sender, EventArgs e)
         {
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_varietat_win.SetVisible(false);
 
-            seleccio_treball_win.SetEnabled(!seleccio_treball_win.GetEnabled());
+            seleccio_treball_win.SetVisible(!seleccio_treball_win.GetVisible());
 
             if (seleccio_treball_win.GetEnabled())
                 ActualitzaLlistaTreballs();
@@ -97,12 +97,12 @@ namespace WindowsFormsApp4
 
             finca_nom_text.SetText("No hi ha finca seleccionada");
 
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_varietat_win.SetVisible(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
 
-            editor_parceles_panel.SetEnabled(false);
+            editor_parceles_panel.SetVisible(false);
 
             propietaris_manager.can_point = false;
         }
@@ -118,12 +118,12 @@ namespace WindowsFormsApp4
 
             varietat_nom_text.SetText("No hi ha varietat seleccionada");
 
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_varietat_win.SetVisible(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
 
-            editor_parceles_panel.SetEnabled(false);
+            editor_parceles_panel.SetVisible(false);
 
             propietaris_manager.can_point = false;
         }
@@ -139,10 +139,10 @@ namespace WindowsFormsApp4
 
             treball_nom_text.SetText("No hi ha treball seleccionat");
 
-            seleccio_finca_win.SetEnabled(false);
-            seleccio_varietat_win.SetEnabled(false);
-            seleccio_propietari_win.SetEnabled(false);
-            seleccio_treball_win.SetEnabled(false);
+            seleccio_finca_win.SetVisible(false);
+            seleccio_varietat_win.SetVisible(false);
+            seleccio_propietari_win.SetVisible(false);
+            seleccio_treball_win.SetVisible(false);
         }
 
         public void SeleccioPropietariGuarda(object sender, EventArgs e)
@@ -156,7 +156,7 @@ namespace WindowsFormsApp4
                 propietari_nom_text.SetText(sele.GetTbl().Nombre);
                 finca_nom_text.SetText("No hi ha finca seleccionada");
 
-                seleccio_propietari_win.SetEnabled(false);
+                seleccio_propietari_win.SetVisible(false);
             }
         }
 
@@ -177,7 +177,7 @@ namespace WindowsFormsApp4
 
                     finca_nom_text.SetText(sele.GetTbl().Nom1);
 
-                    seleccio_finca_win.SetEnabled(false);
+                    seleccio_finca_win.SetVisible(false);
                 }
             }
         }
@@ -194,7 +194,7 @@ namespace WindowsFormsApp4
 
                 seleccio_varietat_noms_combobox.CleanSelection();
 
-                seleccio_varietat_win.SetEnabled(false);
+                seleccio_varietat_win.SetVisible(false);
             }
         }
 
@@ -210,7 +210,7 @@ namespace WindowsFormsApp4
 
                 seleccio_treball_noms_combobox.CleanSelection();
 
-                seleccio_treball_win.SetEnabled(false);
+                seleccio_treball_win.SetVisible(false);
             }
         }
 
@@ -289,7 +289,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParcelesSeleccionades();
         }
 
-        public void ClickLineaParte(object sender, EventArgs e)
+        public void ClickParte(object sender, EventArgs e)
         {
             if (!partes_seleccionats_listbox.IsSelected())
                 return;
@@ -362,12 +362,12 @@ namespace WindowsFormsApp4
             var src = DateTime.Now;
             editor_parceles_ultim_guardat.SetText("Guardat correctament: " + src.Hour + ":" + src.Minute + ":" + src.Second);
 
-            guarda_canvis_win.SetEnabled(true);
+            guarda_canvis_win.SetVisible(true);
         }
 
         public void ConfirmaGuardaCanvis(object sender, EventArgs e)
         {
-            guarda_canvis_win.SetEnabled(false);
+            guarda_canvis_win.SetVisible(false);
         }
 
         public void ObreFormPartes(object sender, EventArgs e)
@@ -1274,7 +1274,7 @@ namespace WindowsFormsApp4
 
             if (llista_parceles_llista.Count() == 0 || !llista_parceles_llista.IsSelected())
             {
-                editor_parceles_panel.SetEnabled(false);
+                editor_parceles_panel.SetVisible(false);
                 propietaris_manager.can_point = false;
                 llista_parceles_llista.CleanSelection();
             }
@@ -1286,7 +1286,7 @@ namespace WindowsFormsApp4
 
             if(parceles.Count > 0)
             {
-                parceles_seleccionades_panel.SetEnabled(true);
+                parceles_seleccionades_panel.SetVisible(true);
 
                 parceles_seleccionades_listbox.Clear();
                 for(int i = 0; i< parceles.Count; i++)
@@ -1301,7 +1301,7 @@ namespace WindowsFormsApp4
             }
             else
             {
-                parceles_seleccionades_panel.SetEnabled(false);
+                parceles_seleccionades_panel.SetVisible(false);
             }
         }
 
@@ -1346,7 +1346,7 @@ namespace WindowsFormsApp4
             propietaris_manager.parcela_actual = parcela;
             propietaris_manager.parcela_actual.HighlightMarker();
 
-            editor_parceles_panel.SetEnabled(true);
+            editor_parceles_panel.SetVisible(true);
             if (propietaris_manager.parcela_actual.HasPoints())
             {
                 editor_parceles_elimina_button.SetEnabled(true);
@@ -1363,7 +1363,7 @@ namespace WindowsFormsApp4
             else
             {
                 editor_parceles_elimina_button.SetEnabled(false);
-                editor_parceles_crea_button.SetEnabled(true);
+                editor_parceles_crea_button.SetEnabled(false);
                 propietaris_manager.can_point = true;
             }
 
