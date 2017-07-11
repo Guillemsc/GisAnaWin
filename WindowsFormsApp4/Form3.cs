@@ -19,6 +19,7 @@ namespace WindowsFormsApp4
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            ActualitzaLlistaTreballs();
             CarregaInformacioInicial();
         }
 
