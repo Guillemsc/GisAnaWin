@@ -973,7 +973,12 @@ namespace WindowsFormsApp4
             {
                 Parcela par = GetParcelaPolygon(item);
 
+                if (par == null)
+                    return;
+
                 SeleccionaParcelaActual(par, false, false);
+
+                propietaris_manager.parcela_actual = par;
 
                 // Seleccio parceles
                 if (!propietaris_manager.ParcelesSeleccionadesConte(par))

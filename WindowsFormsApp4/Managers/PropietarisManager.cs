@@ -154,6 +154,7 @@ namespace WindowsFormsApp4
         public Varietat varietat_actual = null;
         public Treball treball_actual = null;
         public tblPartesFinca parte_actual = null;
+        public tblLineasPartesFinca1 parte_linea_actual = null;
 
         List<Parcela> parceles_seleccionades = new List<Parcela>();
 

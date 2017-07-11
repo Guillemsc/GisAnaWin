@@ -33,7 +33,7 @@ namespace WindowsFormsApp4
         {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 489);
+            this.ClientSize = new System.Drawing.Size(514, 510);
             this.Name = "Visualitza / Modifica Partes";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -63,7 +63,7 @@ namespace WindowsFormsApp4
                 propietari_text = new UI_Text(new Point(20, 15), 200, 30, "Propietari:");
                 main_window.AddElement(propietari_text);
 
-                propietari_nom_text = new UI_Text(new Point(70, 15), 200, 30, "TOMAS DEOSDAT OMEDES");
+                propietari_nom_text = new UI_Text(new Point(73, 15), 200, 30, "TOMAS DEOSDAT OMEDES");
                 main_window.AddElement(propietari_nom_text);
 
                 treballs_text = new UI_Text(new Point(20, 50), 80, 100, "Treball:");
@@ -85,16 +85,25 @@ namespace WindowsFormsApp4
                 main_window.AddElement(descripcio_text_input);
 
                 add_treball_button = new UI_Button(new Point(463, 130), 30, 30, "+");
-                //add_treball_button.GetElement().Click += new System.EventHandler(this.AfegeigParte);
+                //add_treball_button.GetElement().Click += new System.EventHandler(this.AfegeigLineaParte);
                 main_window.AddElement(add_treball_button);
 
                 remove_treball_button = new UI_Button(new Point(463, 170), 30, 30, "-");
-                //remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaLineaParte);
                 main_window.AddElement(remove_treball_button);
 
-                grid = new UI_Grid(new Point(22, 230), 470, 210);
-                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300);
+                modifica_treball_button = new UI_Button(new Point(21, 215), 130, 25, "Modifica seleccionat");
+                modifica_treball_button.GetElement().Click += new System.EventHandler(this.ModificaParteSeleccionat);
+                main_window.AddElement(modifica_treball_button);
+
+                grid = new UI_Grid(new Point(22, 260), 470, 210);
+                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300); grid.AddColumn("Id", 30);
+                grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
+
+                accepta_button = new UI_Button(new Point(393, 475), 100, 30, "Acceptar");
+                accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                main_window.AddElement(accepta_button);
             }
         }
 
@@ -103,9 +112,6 @@ namespace WindowsFormsApp4
 
         UI_Text propietari_text = null;
         UI_Text propietari_nom_text = null;
-
-        UI_Text finca_id_text = null;
-        UI_Text finca_id_nom_text = null;
 
         UI_Text treballs_text = null;
         UI_ComboBox treballs_combobox = null;
@@ -116,6 +122,7 @@ namespace WindowsFormsApp4
         UI_Grid grid = null;
         UI_Button add_treball_button = null;
         UI_Button remove_treball_button = null;
+        UI_Button modifica_treball_button = null;
         UI_Button accepta_button = null;
 
 
@@ -124,5 +131,8 @@ namespace WindowsFormsApp4
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        List<tblLineasPartesFinca1> partes_linea_per_afegir = new List<tblLineasPartesFinca1>();
+        List<tblLineasPartesFinca1> partes_linea_per_eliminar = new List<tblLineasPartesFinca1>();
     }
 }

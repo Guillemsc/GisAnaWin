@@ -120,6 +120,11 @@ namespace WindowsFormsApp4
             _element.Enabled = set;
         }
 
+        public void Focus()
+        {
+            _element.Focus();
+        }
+
         public string GetTyp() { return _type; }
 
         Control _element = null;
@@ -380,6 +385,13 @@ namespace WindowsFormsApp4
             cb.DroppedDown = true;
             cb.Focus();
         }
+
+        public void SetSelectedElement(string name)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+
+            cb.SelectedIndex = cb.FindStringExact(name);
+        }
     }
 
     public class UI_ListBox : UI_Element
@@ -497,6 +509,12 @@ namespace WindowsFormsApp4
             DateTimePicker d = GetElement() as DateTimePicker;
             return d.Value;
         }
+
+        public void SetDate(DateTime date)
+        {
+            DateTimePicker d = GetElement() as DateTimePicker;
+            d.Value = date;
+        }
     }
 
     public class UI_Grid : UI_Element
@@ -511,6 +529,7 @@ namespace WindowsFormsApp4
             d.AllowDrop = false;
             d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             d.AllowUserToAddRows = false;
+            d.ReadOnly = true;
 
             SetElement(d);
         }
@@ -544,13 +563,13 @@ namespace WindowsFormsApp4
         {
             DataGridView d = GetElement() as DataGridView;
 
-            string[] ret = new string[d.SelectedRows[0].Cells.Count];
+            string[] ret = new string[d.ColumnCount];
 
             if(IsSelected())
             {
-                for(int i = 0; i < d.SelectedRows[0].Cells.Count; i++)
+                for(int i = 0; i < d.ColumnCount; i++)
                 {
-                    ret[i] = d.SelectedRows[0].Cells[i].Value as string;
+                    ret[i] = d.Rows[GetSelectedRowIndex()].Cells[i].Value as string;
                 }
             }
 
@@ -569,6 +588,13 @@ namespace WindowsFormsApp4
             d.Rows.RemoveAt(index);
         }
 
+        public void ModifyRow(int index, params object[] text)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            d.Rows[index].SetValues(text);
+        }
+
         public bool IsSelected()
         {
             bool ret = false;
@@ -580,6 +606,20 @@ namespace WindowsFormsApp4
             }
 
             return ret;
+        }
+
+        public void CleanSelection()
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            if (d.CurrentRow != null)
+                d.CurrentRow.Selected = false;
+
+            if (d.CurrentCell != null)
+                d.CurrentCell.Selected = false;
+
+
+            d.ClearSelection();
         }
     }
 }
