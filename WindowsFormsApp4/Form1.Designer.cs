@@ -121,7 +121,7 @@ namespace WindowsFormsApp4
             this.Controls.Add(this.gmap);
             this.MinimumSize = new System.Drawing.Size(815, 546);
             this.Name = "Gis AnaWin";
-            this.Text = "Gis AnaWin";
+            this.Text = this.Name;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,7 +187,6 @@ namespace WindowsFormsApp4
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
-            info_parte_form.ShowDialog();
             // -----------------------------------
 
         }

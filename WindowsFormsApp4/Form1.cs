@@ -79,7 +79,7 @@ namespace WindowsFormsApp4
 
             if(m.Button == MouseButtons.Right)
             {
-                int i = 0;
+                //int i = 0;
             }
         }
 
@@ -151,12 +151,15 @@ namespace WindowsFormsApp4
             {
                 Propietari sele = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
 
-                propietaris_manager.propietari_actual = sele;
+                if (sele != null)
+                {
+                    propietaris_manager.propietari_actual = sele;
 
-                propietari_nom_text.SetText(sele.GetTbl().Nombre);
-                finca_nom_text.SetText("No hi ha finca seleccionada");
+                    propietari_nom_text.SetText(sele.GetTbl().Nombre);
+                    finca_nom_text.SetText("No hi ha finca seleccionada");
 
-                seleccio_propietari_win.SetVisible(false);
+                    seleccio_propietari_win.SetVisible(false);
+                }
             }
         }
 
@@ -165,6 +168,9 @@ namespace WindowsFormsApp4
             if (seleccio_finca_noms_combobox.IsSelected())
             {
                 Finca sele = seleccio_finca_noms_combobox.GetSelected() as Finca;
+
+                if (sele == null)
+                    return;
 
                 Propietari prop = GetPropietariPerFinca(sele);
 
@@ -188,13 +194,16 @@ namespace WindowsFormsApp4
             {
                 Varietat sele = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
 
-                propietaris_manager.varietat_actual = sele;
+                if (sele != null)
+                {
+                    propietaris_manager.varietat_actual = sele;
 
-                varietat_nom_text.SetText(sele.GetTbl().Nombre);
+                    varietat_nom_text.SetText(sele.GetTbl().Nombre);
 
-                seleccio_varietat_noms_combobox.CleanSelection();
+                    seleccio_varietat_noms_combobox.CleanSelection();
 
-                seleccio_varietat_win.SetVisible(false);
+                    seleccio_varietat_win.SetVisible(false);
+                }
             }
         }
 
@@ -204,13 +213,16 @@ namespace WindowsFormsApp4
             {
                 Treball sele = seleccio_treball_noms_combobox.GetSelected() as Treball;
 
-                propietaris_manager.treball_actual = sele;
+                if (sele != null)
+                {
+                    propietaris_manager.treball_actual = sele;
 
-                treball_nom_text.SetText(sele.GetTbl().Descripcio);
+                    treball_nom_text.SetText(sele.GetTbl().Descripcio);
 
-                seleccio_treball_noms_combobox.CleanSelection();
+                    seleccio_treball_noms_combobox.CleanSelection();
 
-                seleccio_treball_win.SetVisible(false);
+                    seleccio_treball_win.SetVisible(false);
+                }
             }
         }
 
@@ -249,30 +261,31 @@ namespace WindowsFormsApp4
 
             Varietat v = GetVarietatPerParcela(propietaris_manager.parcela_actual);
 
-            propietaris_manager.parcela_actual.AddCoordenades(coor_list);
+            if (v != null)
+            {
+                propietaris_manager.parcela_actual.AddCoordenades(coor_list);
 
-            propietaris_manager.parcela_actual.SetColor(v.color, v.color);
+                propietaris_manager.parcela_actual.SetColor(v.color, v.color);
 
-            point_manager.NetejaTmpMarcadors();
+                point_manager.NetejaTmpMarcadors();
 
-            editor_parceles_crea_button.SetEnabled(false);
+                editor_parceles_crea_button.SetEnabled(false);
 
-            editor_parceles_elimina_button.SetEnabled(true);
+                editor_parceles_elimina_button.SetEnabled(true);
 
-            propietaris_manager.can_point = false;
+                propietaris_manager.can_point = false;
+            }
         }
 
         public void EliminaParcela(object sender, EventArgs e)
         {
             propietaris_manager.DeleteParcelaSeleccionada(propietaris_manager.parcela_actual);
 
-            List<tblCoordenadesFincaParcela> c = propietaris_manager.parcela_actual.GetCoordenades();
+            List<tblCoordenadesFincaParcela> coords = propietaris_manager.parcela_actual.GetCoordenades();
 
-            for(int i = 0; i < c.Count; i++)
-            {
-                server_manager.DeleteCoordenades(c[i]);
-            }
-
+            for(int i = 0; i < coords.Count; i++)
+                server_manager.DeleteCoordenades(coords[i]);
+            
             propietaris_manager.parcela_actual.ClearPoints();
             propietaris_manager.parcela_actual = null;
             editor_parceles_elimina_button.SetEnabled(false);
@@ -296,11 +309,13 @@ namespace WindowsFormsApp4
 
             Label l = partes_seleccionats_listbox.GetSelected() as Label;
 
-            tblPartesFinca lp = GetPartePerParteId(int.Parse(l.Text));
-
-            if(lp != null)
+            if (l != null)
             {
-                propietaris_manager.parte_actual = lp;
+                tblPartesFinca lp = GetPartePerParteId(int.Parse(l.Text));
+
+                if (lp != null)
+                    propietaris_manager.parte_actual = lp;
+                
             }
         }
 
@@ -477,9 +492,7 @@ namespace WindowsFormsApp4
             propietaris_manager.EliminaCoordenades();
 
             for (int i = 0; i < coordenades.Count; i++)
-            {
                 propietaris_manager.AfegirCoordenada(coordenades[i]);
-            }
 
             for(int z = 0; z < parceles.Count; z++)
             {
