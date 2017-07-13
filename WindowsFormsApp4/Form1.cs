@@ -33,7 +33,7 @@ namespace WindowsFormsApp4
 
             seleccio_propietari_win.SetVisible(!seleccio_propietari_win.GetVisible());
 
-            if (seleccio_propietari_win.GetEnabled())
+            if (seleccio_propietari_win.GetVisible())
                 ActualitzaLlistaPropietari();
         }
 
@@ -45,7 +45,7 @@ namespace WindowsFormsApp4
 
             seleccio_finca_win.SetVisible(!seleccio_finca_win.GetVisible());
 
-            if (seleccio_finca_win.GetEnabled())
+            if (seleccio_finca_win.GetVisible())
                 ActualitzaLlistaFinques();
         }
 
@@ -57,7 +57,7 @@ namespace WindowsFormsApp4
 
             seleccio_varietat_win.SetVisible(!seleccio_varietat_win.GetVisible());
 
-            if (seleccio_varietat_win.GetEnabled())
+            if (seleccio_varietat_win.GetVisible())
                 ActualitzaLlistaVarietats();
         }
 
@@ -69,7 +69,7 @@ namespace WindowsFormsApp4
 
             seleccio_treball_win.SetVisible(!seleccio_treball_win.GetVisible());
 
-            if (seleccio_treball_win.GetEnabled())
+            if (seleccio_treball_win.GetVisible())
                 ActualitzaLlistaTreballs();
         }
 
@@ -1007,8 +1007,6 @@ namespace WindowsFormsApp4
 
                 ActualitzaLlistaParcelesSeleccionades();
 
-                ActualitzaLlistaParceles();
-
                 ActualitzaLlistaPartes();
             }
         }
@@ -1177,15 +1175,12 @@ namespace WindowsFormsApp4
             seleccio_treball_noms_combobox.Clear();
 
             List<Treball> treballs = propietaris_manager.GetTreballs();
-
-            if(propietaris_manager.propietari_actual == null)
+            
+            for(int i = 0; i < treballs.Count; i++)
             {
-                for(int i = 0; i < treballs.Count; i++)
-                {
-                    seleccio_treball_noms_combobox.AddElement(treballs[i]);
-                }
+                seleccio_treball_noms_combobox.AddElement(treballs[i]);
             }
-
+               
             seleccio_treball_noms_combobox.OpenDropDown();
         }
 
@@ -1200,6 +1195,9 @@ namespace WindowsFormsApp4
                 for (int i = 0; i < propietaris_manager.GetParceles().Count;)
                 {
                     Parcela parcela_actual = propietaris_manager.GetParceles()[i];
+
+                    if (parcela_actual != null)
+                        parcela_actual.ClearDraw();
 
                     // Propietaris
                     if (propietaris_manager.propietari_actual != null)
@@ -1268,6 +1266,15 @@ namespace WindowsFormsApp4
                     ++i;
                 }
             }
+            else
+            {
+                List<Parcela> pa = propietaris_manager.GetParceles();
+
+                for (int p = 0; p < pa.Count; p++)
+                {
+                    pa[p].Draw();
+                }
+            }
 
             // Print
             int acumulator = 5;
@@ -1285,6 +1292,9 @@ namespace WindowsFormsApp4
 
                     if (propietaris_manager.parcela_actual == parceles[y])
                         l.SelectedIndex = l.Items.Count - 1;
+
+                    if (parceles[y] != null)
+                        parceles[y].Draw();
 
                     acumulator += 18;
                 }
@@ -1330,29 +1340,38 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
 
-            List<Finca> finques = new List<Finca>();
+            List<tblPartesFinca> partes_to_add = new List<tblPartesFinca>();
 
             for (int i = 0; i < parceles.Count; i++)
             {
                 Finca f = GetFincaPerParcela(parceles[i]);
 
-                if (!finques.Contains(f))
-                    finques.Add(f);
+                List<tblPartesFinca> partes = f.GetPartes();
+
+                for (int p = 0; p < partes.Count; p++)
+                {
+                    List<tblLineasPartesFinca1> lineas = GetPartesLineaPerParte(partes[p]);
+
+                    for (int l = 0; l < lineas.Count; l++)
+                    {
+                        if (lineas[l].idParcela == parceles[i].GetTbl().idParcela)
+                        {
+                            if (!partes_to_add.Contains(partes[p]))
+                                partes_to_add.Add(partes[p]);
+
+                            break;
+                        }
+                    }
+                }
             }
 
-            for (int y = 0; y < finques.Count; y++)
+            for (int y = 0; y < partes_to_add.Count; y++)
             {
-                List<tblPartesFinca> partes = finques[y].GetPartes();
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
 
-                for (int z = 0; z < partes.Count; z++)
-                {
-                    UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes[z].idParte.ToString(), partes[z].idParte.ToString());
-
-                    partes_seleccionats_listbox.AddElement(t);
-                    ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
-                    l.DisplayMember = "Text";
-                }
-
+                partes_seleccionats_listbox.AddElement(t);
+                ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
+                l.DisplayMember = "Text";
             }
         }
 

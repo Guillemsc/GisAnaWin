@@ -179,7 +179,7 @@ namespace WindowsFormsApp4
                 server_manager.AddLineaParteFinca(partes_linea_per_afegir[i]);
             }
 
-            //server_manager.SubmitChanges();
+            server_manager.SubmitChanges();
 
             this.Close();
         }

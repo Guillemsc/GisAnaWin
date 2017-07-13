@@ -413,7 +413,7 @@ namespace WindowsFormsApp4
             // Finestra seleccio propietari
             seleccio_propietari_win = new UI_Window(this);
             {
-                seleccio_propietari_panel = new UI_Panel(new Point(230, 20), 350, 50);
+                seleccio_propietari_panel = new UI_Panel(new Point(229, 20), 350, 50);
                 seleccio_propietari_panel.SetColor(Color.Cornsilk);
                 seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_propietari_win.AddElement(seleccio_propietari_panel);
@@ -433,7 +433,7 @@ namespace WindowsFormsApp4
             // Finestra seleccio finca
             seleccio_finca_win = new UI_Window(this);
             {
-                seleccio_finca_panel = new UI_Panel(new Point(230, 80), 350, 50);
+                seleccio_finca_panel = new UI_Panel(new Point(229, 75), 350, 50);
                 seleccio_finca_panel.SetColor(Color.Cornsilk);
                 seleccio_finca_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_finca_win.AddElement(seleccio_finca_panel);
@@ -453,7 +453,7 @@ namespace WindowsFormsApp4
             // Finestra seleccio varietat
             seleccio_varietat_win = new UI_Window(this);
             {
-                seleccio_varietat_panel = new UI_Panel(new Point(230, 145), 350, 50);
+                seleccio_varietat_panel = new UI_Panel(new Point(229, 148), 350, 50);
                 seleccio_varietat_panel.SetColor(Color.Cornsilk);
                 seleccio_varietat_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_varietat_win.AddElement(seleccio_varietat_panel);
@@ -473,7 +473,7 @@ namespace WindowsFormsApp4
             // Finestra seleccio treball
             seleccio_treball_win = new UI_Window(this);
             {
-                seleccio_treball_panel = new UI_Panel(new Point(230, 203), 350, 50);
+                seleccio_treball_panel = new UI_Panel(new Point(229, 233), 350, 50);
                 seleccio_treball_panel.SetColor(Color.Cornsilk);
                 seleccio_treball_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 seleccio_treball_win.AddElement(seleccio_treball_panel);

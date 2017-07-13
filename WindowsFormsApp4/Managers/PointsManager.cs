@@ -171,6 +171,7 @@ namespace WindowsFormsApp4
         public void HighlightMarker()
         {
             _overlay.Markers.Remove(text_marker);
+
             if (_overlay != null && !_overlay.Markers.Contains(text_marker))
             {
                 text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.red_pushpin);
@@ -190,6 +191,9 @@ namespace WindowsFormsApp4
 
         public void ClearDraw()
         {
+            if (polygon == null || text_marker == null)
+                return;
+
             if (_overlay != null)
             {
                 _overlay.Polygons.Remove(polygon);
@@ -200,6 +204,9 @@ namespace WindowsFormsApp4
 
         public void Draw()
         {
+            if (polygon == null || text_marker == null)
+                return;
+
             if (_overlay != null && !_overlay.Polygons.Contains(polygon))
             {
                 _overlay.Polygons.Add(polygon);
