@@ -966,6 +966,8 @@ namespace WindowsFormsApp4
                 propietaris_manager.can_point_back = propietaris_manager.can_point;
                 propietaris_manager.can_point = false;
             }
+
+            mouse_over_polygon = true;
         }
 
         private void gmap_PoligonOut(GMapPolygon item)
@@ -978,6 +980,8 @@ namespace WindowsFormsApp4
 
                 propietaris_manager.can_point = propietaris_manager.can_point_back;
             }
+
+            mouse_over_polygon = false;
         }
 
         private void gmap_PoligonClick(GMapPolygon item, MouseEventArgs e)
@@ -1009,6 +1013,64 @@ namespace WindowsFormsApp4
 
                 ActualitzaLlistaPartes();
             }
+        }
+
+        private void gmap_DoubleClick(object sender, EventArgs e)
+        {
+            // Selecciona totes les parceles de una mateixa finca ----
+            if (!mouse_over_polygon || propietaris_manager.parcela_actual == null)
+                return;
+
+            Finca finca = GetFincaPerParcela(propietaris_manager.parcela_actual);
+
+            if (finca == null)
+                return;
+
+            if(propietaris_manager.parcela_actual.IsHighlighted())
+                propietaris_manager.parcela_actual.DeHiglight();
+            else
+                propietaris_manager.parcela_actual.Highlight();
+
+            List<Parcela> parceles = GetParcelesPerFinca(finca);
+
+            int highlighted = 0;
+            int all = 0;
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i].HasPoints())
+                {
+                    if(parceles[i].IsHighlighted())
+                        highlighted++;
+
+                    all++;
+                }
+            } 
+            
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (!parceles[i].HasPoints())
+                    continue;
+
+                if (highlighted == all && all > 0)
+                {
+                    propietaris_manager.DeleteParcelaSeleccionada(parceles[i]);
+                    parceles[i].DeHiglight();
+                }
+                else
+                {
+                    if (!propietaris_manager.ParcelesSeleccionadesConte(parceles[i]))
+                        propietaris_manager.AddParcelaSeleccionada(parceles[i]);
+
+                    parceles[i].Draw();
+                    parceles[i].Highlight();
+                }
+            }
+               
+            ActualitzaLlistaParcelesSeleccionades();
+
+            ActualitzaLlistaPartes();
+            // -------------------------------------------
         }
 
         // Canvia el mapa a satelit o mapa normal

@@ -63,8 +63,14 @@ namespace WindowsFormsApp4
                 propietari_text = new UI_Text(new Point(20, 15), 200, 30, "Propietari:");
                 main_window.AddElement(propietari_text);
 
+                finca_text = new UI_Text(new Point(240, 15), 200, 30, "Finca:");
+                main_window.AddElement(finca_text);
+
                 propietari_nom_text = new UI_Text(new Point(73, 15), 200, 30, "TOMAS DEOSDAT OMEDES");
                 main_window.AddElement(propietari_nom_text);
+
+                finca_nom_text = new UI_Text(new Point(276, 15), 200, 30, "FINCA1");
+                main_window.AddElement(finca_nom_text);
 
                 treballs_text = new UI_Text(new Point(20, 50), 80, 100, "Treball:");
                 main_window.AddElement(treballs_text);
@@ -112,6 +118,9 @@ namespace WindowsFormsApp4
 
         UI_Text propietari_text = null;
         UI_Text propietari_nom_text = null;
+
+        UI_Text finca_text = null;
+        UI_Text finca_nom_text = null;
 
         UI_Text treballs_text = null;
         UI_ComboBox treballs_combobox = null;

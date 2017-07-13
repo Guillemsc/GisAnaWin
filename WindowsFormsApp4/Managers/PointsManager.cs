@@ -307,6 +307,7 @@ namespace WindowsFormsApp4
             if (polygon != null)
             {
                 polygon.Stroke = new Pen(Color.Red, 6);
+                _highlighed = true;
             }
         }
 
@@ -316,7 +317,13 @@ namespace WindowsFormsApp4
             {
                 polygon.Stroke = new Pen(_lines, 3);
                 polygon.Fill = new SolidBrush(Color.FromArgb(100, _fill));
+                _highlighed = false;
             }
+        }
+
+        public bool IsHighlighted()
+        {
+            return _highlighed;
         }
 
         public void AddLineaParte(tblLineasPartesFinca1 lpartes)
@@ -343,6 +350,7 @@ namespace WindowsFormsApp4
         List<tblLineasPartesFinca1> lineas_parte = new List<tblLineasPartesFinca1>();
         Color _lines = Color.Blue;
         Color _fill = Color.Blue;
+        bool _highlighed = false;
     }
 
     public class Marcador

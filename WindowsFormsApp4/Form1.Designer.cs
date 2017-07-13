@@ -110,6 +110,7 @@ namespace WindowsFormsApp4
             this.gmap.OnPolygonClick += new GMap.NET.WindowsForms.PolygonClick(this.gmap_PoligonClick);
             this.gmap.OnPolygonEnter += new GMap.NET.WindowsForms.PolygonEnter(this.gmap_PoligonEnter);
             this.gmap.OnPolygonLeave += new GMap.NET.WindowsForms.PolygonLeave(this.gmap_PoligonOut);
+            this.gmap.DoubleClick += new System.EventHandler(this.gmap_DoubleClick);
             this.gmap.OnMapDrag += new GMap.NET.MapDrag(this.UpdateLatLon);
             this.gmap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gmap_MouseClick);
             // 
@@ -643,6 +644,9 @@ namespace WindowsFormsApp4
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        // Logic
+        bool mouse_over_polygon = false;
 
         // Starting args
         string finca_id = "";

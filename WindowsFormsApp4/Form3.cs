@@ -365,10 +365,12 @@ namespace WindowsFormsApp4
         public void CarregaInformacioInicial()
         {
             Propietari propietari = GetPropietariPerParte(propietaris_manager.parte_actual);
+            Finca finca = GetFincaPerParte(propietaris_manager.parte_actual);
 
-            if(propietari != null)
+            if(propietari != null && finca != null)
             {
                 propietari_nom_text.SetText(propietari.GetTbl().Nombre);
+                finca_nom_text.SetText(finca.GetTbl().Nom1);
                 ActualitzaLlistaPartesLlista();
             }
         }
