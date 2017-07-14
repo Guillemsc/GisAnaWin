@@ -287,7 +287,6 @@ namespace WindowsFormsApp4
                 server_manager.DeleteCoordenades(coords[i]);
             
             propietaris_manager.parcela_actual.ClearPoints();
-            propietaris_manager.parcela_actual = null;
             editor_parceles_elimina_button.SetEnabled(false);
 
             propietaris_manager.can_point = true;
@@ -733,10 +732,10 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = propietaris_manager.GetParceles();
 
-            for(int i = 0; i<parceles.Count; i++)
+            for(int i = 0; i < parceles.Count; i++)
             {
                 Parcela parcela_actual = parceles[i];
-                if (parcela_actual.GetTbl().idParcela.ToString().Replace(" ", "") == id)
+                if (parcela_actual.GetTbl().idParcela.ToString().Replace(" ", "") == id.ToString().Replace(" ", ""))
                 {
                     ret = parcela_actual;
                     break;
@@ -886,7 +885,7 @@ namespace WindowsFormsApp4
         // Click a la pantalla per crear punts
         private void gmap_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!propietaris_manager.can_point)
+            if (!propietaris_manager.can_point || propietaris_manager.parcela_actual == null)
                 return;
 
             if (gmap.IsMouseOverMarker)
@@ -1075,21 +1074,18 @@ namespace WindowsFormsApp4
 
         // Canvia el mapa a satelit o mapa normal
         public void SwitchMapSat(object sender, EventArgs e)
-        {
-            if (mapsat_button != null)
+        {         
+            if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
             {
-                if (gmap.MapProvider == GMap.NET.MapProviders.GoogleMapProvider.Instance)
-                {
-                    gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
-                    mapsat_button.SetText("Canvia a Mapa");
-                }
-                else
-                {
-                    gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-                    mapsat_button.SetText("Canvia a Satel.lit");
-                }
+                gmap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+                mapsat_button.SetText("Canvia a Mapa");
             }
-        }
+            else
+            {
+                gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+                mapsat_button.SetText("Canvia a Satel.lit");
+            }
+        }       
 
         public void SearchName(object sender, EventArgs e)
         {
@@ -1439,10 +1435,12 @@ namespace WindowsFormsApp4
 
         public void SeleccionaParcelaActual(Parcela parcela, bool zoom = false, bool center = false)
         {
-            if(propietaris_manager.parcela_actual != null)
+            if(propietaris_manager.parcela_actual != null && propietaris_manager.parcela_actual.HasPoints())
                 propietaris_manager.parcela_actual.DeHighlightMarker();
 
             propietaris_manager.parcela_actual = parcela;
+
+            if(propietaris_manager.parcela_actual != null && propietaris_manager.parcela_actual.HasPoints())
             propietaris_manager.parcela_actual.HighlightMarker();
 
             editor_parceles_panel.SetVisible(true);
@@ -1472,7 +1470,6 @@ namespace WindowsFormsApp4
             if (finca != null && propietari != null)
             {
                 propietaris_manager.finca_actual = finca;
-                propietaris_manager.parcela_actual = parcela;
                 propietaris_manager.propietari_actual = propietari;
 
                 propietari_nom_text.SetText(propietari.GetTbl().Nombre);
