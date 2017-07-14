@@ -25,54 +25,6 @@ namespace WindowsFormsApp4
         // Botons ----------------------------------------------------------------------
         // -----------------------------------------------------------------------------
 
-        private void ObreFinestraSeleccioPropietari(object sender, EventArgs e)
-        {
-            seleccio_finca_win.SetVisible(false);
-            seleccio_varietat_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
-
-            seleccio_propietari_win.SetVisible(!seleccio_propietari_win.GetVisible());
-
-            if (seleccio_propietari_win.GetVisible())
-                ActualitzaLlistaPropietari();
-        }
-
-        private void ObreFinestraSeleccioFinca(object sender, EventArgs e)
-        {
-            seleccio_varietat_win.SetVisible(false);
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
-
-            seleccio_finca_win.SetVisible(!seleccio_finca_win.GetVisible());
-
-            if (seleccio_finca_win.GetVisible())
-                ActualitzaLlistaFinques();
-        }
-
-        private void ObreFinestraSeleccioVarietat(object sender, EventArgs e)
-        {
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_finca_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
-
-            seleccio_varietat_win.SetVisible(!seleccio_varietat_win.GetVisible());
-
-            if (seleccio_varietat_win.GetVisible())
-                ActualitzaLlistaVarietats();
-        }
-
-        private void ObreFinestraSeleccioTreball(object sender, EventArgs e)
-        {
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_finca_win.SetVisible(false);
-            seleccio_varietat_win.SetVisible(false);
-
-            seleccio_treball_win.SetVisible(!seleccio_treball_win.GetVisible());
-
-            if (seleccio_treball_win.GetVisible())
-                ActualitzaLlistaTreballs();
-        }
-
         private void ObreFinestraOpcionsParcela(object sender, EventArgs e)
         {
             MouseEventArgs m = e as MouseEventArgs;
@@ -83,8 +35,49 @@ namespace WindowsFormsApp4
             }
         }
 
-        private void CercaPropietariFinca(object sender, EventArgs e)
+        private void ActualitzaLlistaPropietariEvent(object sender, EventArgs e)
         {
+            ActualitzaLlistaPropietari();
+        }
+
+        private void SeleccionaPropietariEvent(object sender, EventArgs e)
+        {
+            propietaris_manager.propietari_actual = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
+            ActualitzaLlistaParceles();
+        }
+
+        private void ActualitzaLlistaFinquesEvent(object sender, EventArgs e)
+        {
+            ActualitzaLlistaFinques();
+        }
+
+        private void SeleccionaFincaEvent(object sender, EventArgs e)
+        {
+            propietaris_manager.finca_actual = seleccio_finca_noms_combobox.GetSelected() as Finca;
+            ActualitzaLlistaParceles();
+        }
+
+        private void ActualitzaLlistaTreballsEvent(object sender, EventArgs e)
+        {
+            ActualitzaLlistaTreballs();
+        }
+
+
+        private void SeleccionaTreballEvent(object sender, EventArgs e)
+        {
+            propietaris_manager.treball_actual = seleccio_treball_noms_combobox.GetSelected() as Treball;
+            ActualitzaLlistaParceles();
+        }
+
+        private void ActualitzaLlistaVarietatsEvent(object sender, EventArgs e)
+        {
+            ActualitzaLlistaVarietats();
+        }
+
+
+        private void SeleccionaVarietatEvent(object sender, EventArgs e)
+        {
+            propietaris_manager.varietat_actual = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
             ActualitzaLlistaParceles();
         }
 
@@ -93,22 +86,13 @@ namespace WindowsFormsApp4
             propietaris_manager.finca_actual = null;
             propietaris_manager.propietari_actual = null;
 
-            propietari_nom_text.SetText("No hi ha propietari seleccionat");
-
-            finca_nom_text.SetText("No hi ha finca seleccionada");
-
-            seleccio_finca_win.SetVisible(false);
-            seleccio_varietat_win.SetVisible(false);
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
+            seleccio_propietari_noms_combobox.CleanSelection();
+            seleccio_finca_noms_combobox.CleanSelection();
 
             editor_parceles_panel.SetVisible(false);
 
             propietaris_manager.can_point = false;
-        }
 
-        private void CercaVarietat(object sender, EventArgs e)
-        {
             ActualitzaLlistaParceles();
         }
 
@@ -116,20 +100,12 @@ namespace WindowsFormsApp4
         {
             propietaris_manager.varietat_actual = null;
 
-            varietat_nom_text.SetText("No hi ha varietat seleccionada");
-
-            seleccio_finca_win.SetVisible(false);
-            seleccio_varietat_win.SetVisible(false);
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
+            seleccio_varietat_noms_combobox.CleanSelection();
 
             editor_parceles_panel.SetVisible(false);
 
             propietaris_manager.can_point = false;
-        }
 
-        private void CercaTreball(object sender, EventArgs e)
-        {
             ActualitzaLlistaParceles();
         }
 
@@ -137,93 +113,9 @@ namespace WindowsFormsApp4
         {
             propietaris_manager.treball_actual = null;
 
-            treball_nom_text.SetText("No hi ha treball seleccionat");
+            seleccio_treball_noms_combobox.CleanSelection();
 
-            seleccio_finca_win.SetVisible(false);
-            seleccio_varietat_win.SetVisible(false);
-            seleccio_propietari_win.SetVisible(false);
-            seleccio_treball_win.SetVisible(false);
-        }
-
-        public void SeleccioPropietariGuarda(object sender, EventArgs e)
-        {
-            if (seleccio_propietari_noms_combobox.IsSelected())
-            {
-                Propietari sele = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
-
-                if (sele != null)
-                {
-                    propietaris_manager.propietari_actual = sele;
-
-                    propietari_nom_text.SetText(sele.GetTbl().Nombre);
-                    finca_nom_text.SetText("No hi ha finca seleccionada");
-
-                    seleccio_propietari_win.SetVisible(false);
-                }
-            }
-        }
-
-        public void SeleccioFincaGuarda(object sender, EventArgs e)
-        {
-            if (seleccio_finca_noms_combobox.IsSelected())
-            {
-                Finca sele = seleccio_finca_noms_combobox.GetSelected() as Finca;
-
-                if (sele == null)
-                    return;
-
-                Propietari prop = GetPropietariPerFinca(sele);
-
-                if (prop != null)
-                {
-                    propietaris_manager.propietari_actual = prop;
-                    propietaris_manager.finca_actual = sele;
-
-                    propietari_nom_text.SetText(prop.GetTbl().Nombre);
-
-                    finca_nom_text.SetText(sele.GetTbl().Nom1);
-
-                    seleccio_finca_win.SetVisible(false);
-                }
-            }
-        }
-
-        public void SeleccioVarietatGuarda(object sender, EventArgs e)
-        {
-            if(seleccio_varietat_noms_combobox.IsSelected())
-            {
-                Varietat sele = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
-
-                if (sele != null)
-                {
-                    propietaris_manager.varietat_actual = sele;
-
-                    varietat_nom_text.SetText(sele.GetTbl().Nombre);
-
-                    seleccio_varietat_noms_combobox.CleanSelection();
-
-                    seleccio_varietat_win.SetVisible(false);
-                }
-            }
-        }
-
-        public void SeleccioTreballGuarda(object sender, EventArgs e)
-        {
-            if(seleccio_treball_noms_combobox.IsSelected())
-            {
-                Treball sele = seleccio_treball_noms_combobox.GetSelected() as Treball;
-
-                if (sele != null)
-                {
-                    propietaris_manager.treball_actual = sele;
-
-                    treball_nom_text.SetText(sele.GetTbl().Descripcio);
-
-                    seleccio_treball_noms_combobox.CleanSelection();
-
-                    seleccio_treball_win.SetVisible(false);
-                }
-            }
+            ActualitzaLlistaParceles();
         }
 
         public void ParcelaClick(object sender, EventArgs e)
@@ -1161,8 +1053,6 @@ namespace WindowsFormsApp4
             {
                 seleccio_propietari_noms_combobox.AddElement(proveedors[i]);
             }
-
-            seleccio_propietari_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaFinques()
@@ -1193,14 +1083,10 @@ namespace WindowsFormsApp4
                         seleccio_finca_noms_combobox.AddElement(finques[i]);
                 }
             }
-
-            seleccio_finca_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaVarietats()
         {
-            seleccio_varietat_noms_combobox.CleanSelection();
-
             seleccio_varietat_noms_combobox.Clear();
 
             List<Varietat> varietats = propietaris_manager.GetVarietats();
@@ -1222,14 +1108,10 @@ namespace WindowsFormsApp4
                     }
                 }
             }
-
-            seleccio_varietat_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaTreballs()
         {
-            seleccio_treball_noms_combobox.CleanSelection();
-
             seleccio_treball_noms_combobox.Clear();
 
             List<Treball> treballs = propietaris_manager.GetTreballs();
@@ -1238,8 +1120,6 @@ namespace WindowsFormsApp4
             {
                 seleccio_treball_noms_combobox.AddElement(treballs[i]);
             }
-               
-            seleccio_treball_noms_combobox.OpenDropDown();
         }
 
         public void ActualitzaLlistaParceles()
@@ -1273,7 +1153,7 @@ namespace WindowsFormsApp4
                     }
 
                     // Finques
-                    if (propietaris_manager.propietari_actual != null && propietaris_manager.finca_actual != null)
+                    if (propietaris_manager.finca_actual != null)
                     {
                         if (parcela_actual.GetTbl().idFinca != propietaris_manager.finca_actual.GetTbl().idFinca)
                         {
@@ -1471,9 +1351,6 @@ namespace WindowsFormsApp4
             {
                 propietaris_manager.finca_actual = finca;
                 propietaris_manager.propietari_actual = propietari;
-
-                propietari_nom_text.SetText(propietari.GetTbl().Nombre);
-                finca_nom_text.SetText(finca.GetTbl().Nom1);
             }
         }
 

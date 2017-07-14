@@ -248,36 +248,25 @@ namespace WindowsFormsApp4
                 propietaris_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(propietaris_text);
 
-                nom_propietari_panel = new UI_Panel(new Point(18, 34), 165, 23);
-                nom_propietari_panel.SetColor(Color.Cornsilk);
-                main_win.AddElement(nom_propietari_panel);
-
-                open_propietari_search_button = new UI_Button(new Point(190, 33), 26, 25, "...");
-                open_propietari_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioPropietari);
-                main_win.AddElement(open_propietari_search_button);
-
-                propietari_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha propietari seleccionat");
-                nom_propietari_panel.AddElement(propietari_nom_text);
+                seleccio_propietari_noms_combobox = new UI_ComboBox(new Point(15, 35), 200, 80);
+                seleccio_propietari_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_propietari_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_propietari_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaPropietariEvent));
+                seleccio_propietari_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaPropietariEvent));
+                main_win.AddElement(seleccio_propietari_noms_combobox);
 
                 finques_text = new UI_Text(new Point(15, 65), 193, 40, "Finca: ");
                 finques_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(finques_text);
 
-                nom_finca_panel = new UI_Panel(new Point(18, 84), 165, 23);
-                nom_finca_panel.SetColor(Color.Cornsilk);
-                main_win.AddElement(nom_finca_panel);
+                seleccio_finca_noms_combobox = new UI_ComboBox(new Point(15, 84), 200, 100);
+                seleccio_finca_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_finca_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_finca_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaFinquesEvent));
+                seleccio_finca_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaFincaEvent));
+                main_win.AddElement(seleccio_finca_noms_combobox);
 
-                open_finca_search_button = new UI_Button(new Point(190, 83), 26, 25, "...");
-                open_finca_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioFinca);
-                main_win.AddElement(open_finca_search_button);
-
-                finca_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha finca seleccionada");
-                nom_finca_panel.AddElement(finca_nom_text);
-
-                propietari_finca_cerca = new UI_Button(new Point(18, 110), 46, 20, "Cerca");
-                propietari_finca_cerca.GetElement().Click += new System.EventHandler(this.CercaPropietariFinca);
-                main_win.AddElement(propietari_finca_cerca);
-                propietari_finca_neteja = new UI_Button(new Point(70, 110), 46, 20, "Neteja");
+                propietari_finca_neteja = new UI_Button(new Point(15, 110), 46, 20, "Neteja");
                 propietari_finca_neteja.GetElement().Click += new System.EventHandler(this.NetejaPropietariFinca);
                 main_win.AddElement(propietari_finca_neteja);
 
@@ -290,21 +279,14 @@ namespace WindowsFormsApp4
                 varietat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(varietat_text);
 
-                nom_varietat_panel = new UI_Panel(new Point(18, 164), 165, 23);
-                nom_varietat_panel.SetColor(Color.Cornsilk);
-                main_win.AddElement(nom_varietat_panel);
+                seleccio_varietat_noms_combobox = new UI_ComboBox(new Point(15, 164), 200, 100);
+                seleccio_varietat_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_varietat_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_varietat_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaVarietatsEvent));
+                seleccio_varietat_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaVarietatEvent));
+                main_win.AddElement(seleccio_varietat_noms_combobox);
 
-                open_varietat_search_button = new UI_Button(new Point(190, 163), 26, 25, "...");
-                open_varietat_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioVarietat);
-                main_win.AddElement(open_varietat_search_button);
-
-                varietat_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha varietat seleccionada");
-                nom_varietat_panel.AddElement(varietat_nom_text);
-
-                varietat_cerca = new UI_Button(new Point(18, 190), 46, 20, "Cerca");
-                varietat_cerca.GetElement().Click += new System.EventHandler(this.CercaVarietat);
-                main_win.AddElement(varietat_cerca);
-                varietat_neteja = new UI_Button(new Point(70, 190), 46, 20, "Neteja");
+                varietat_neteja = new UI_Button(new Point(15, 190), 46, 20, "Neteja");
                 varietat_neteja.GetElement().Click += new System.EventHandler(this.NetejaVarietat);
                 main_win.AddElement(varietat_neteja);
 
@@ -316,21 +298,14 @@ namespace WindowsFormsApp4
                 treballs_text = new UI_Text(new Point(15, 225), 100, 40, "Treballs: ");
                 main_win.AddElement(treballs_text);
 
-                nom_treball_panel = new UI_Panel(new Point(18, 245), 165, 23);
-                nom_treball_panel.SetColor(Color.Cornsilk);
+                seleccio_treball_noms_combobox = new UI_ComboBox(new Point(15, 245), 200, 100);
+                seleccio_treball_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                seleccio_treball_noms_combobox.SetDrowDownVisibleItems(30);
+                seleccio_treball_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaTreballsEvent));
+                seleccio_treball_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaTreballEvent));
+                main_win.AddElement(seleccio_treball_noms_combobox);
 
-                open_treball_search_button = new UI_Button(new Point(190, 245), 26, 25, "...");
-                open_treball_search_button.GetElement().Click += new System.EventHandler(this.ObreFinestraSeleccioTreball);
-                main_win.AddElement(open_treball_search_button);
-
-                treball_nom_text = new UI_Text(new Point(4, 5), 200, 30, "No hi ha treball seleccionat");
-                nom_treball_panel.AddElement(treball_nom_text);
-                main_win.AddElement(nom_treball_panel);
-
-                treball_cerca = new UI_Button(new Point(18, 270), 46, 20, "Cerca");
-                treball_cerca.GetElement().Click += new System.EventHandler(this.CercaTreball);
-                main_win.AddElement(treball_cerca);
-                treball_neteja = new UI_Button(new Point(70, 270), 46, 20, "Neteja");
+                treball_neteja = new UI_Button(new Point(15, 270), 46, 20, "Neteja");
                 treball_neteja.GetElement().Click += new System.EventHandler(this.NetejaTreball);
                 main_win.AddElement(treball_neteja);
 
@@ -411,86 +386,6 @@ namespace WindowsFormsApp4
             }
             ui_manager.AddUIWindow(main_win);
 
-            // Finestra seleccio propietari
-            seleccio_propietari_win = new UI_Window(this);
-            {
-                seleccio_propietari_panel = new UI_Panel(new Point(229, 20), 350, 50);
-                seleccio_propietari_panel.SetColor(Color.Cornsilk);
-                seleccio_propietari_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_propietari_win.AddElement(seleccio_propietari_panel);
-
-                seleccio_propietari_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
-                seleccio_propietari_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_propietari_noms_combobox.SetDrowDownVisibleItems(30);
-                seleccio_propietari_panel.AddElement(seleccio_propietari_noms_combobox);
-
-                seleccio_propietari_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
-                seleccio_propietari_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioPropietariGuarda);
-                seleccio_propietari_panel.AddElement(seleccio_propietari_guarda_button);
-            }
-            ui_manager.AddUIWindow(seleccio_propietari_win);
-            seleccio_propietari_win.SetVisible(false);
-
-            // Finestra seleccio finca
-            seleccio_finca_win = new UI_Window(this);
-            {
-                seleccio_finca_panel = new UI_Panel(new Point(229, 75), 350, 50);
-                seleccio_finca_panel.SetColor(Color.Cornsilk);
-                seleccio_finca_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_finca_win.AddElement(seleccio_finca_panel);
-
-                seleccio_finca_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
-                seleccio_finca_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_finca_noms_combobox.SetDrowDownVisibleItems(30);
-                seleccio_finca_panel.AddElement(seleccio_finca_noms_combobox);
-
-                seleccio_finca_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
-                seleccio_finca_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioFincaGuarda);
-                seleccio_finca_panel.AddElement(seleccio_finca_guarda_button);
-            }
-            ui_manager.AddUIWindow(seleccio_finca_win);
-            seleccio_finca_win.SetVisible(false);
-
-            // Finestra seleccio varietat
-            seleccio_varietat_win = new UI_Window(this);
-            {
-                seleccio_varietat_panel = new UI_Panel(new Point(229, 148), 350, 50);
-                seleccio_varietat_panel.SetColor(Color.Cornsilk);
-                seleccio_varietat_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_varietat_win.AddElement(seleccio_varietat_panel);
-
-                seleccio_varietat_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
-                seleccio_varietat_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_varietat_noms_combobox.SetDrowDownVisibleItems(30);
-                seleccio_varietat_panel.AddElement(seleccio_varietat_noms_combobox);
-
-                seleccio_varietat_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
-                seleccio_varietat_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioVarietatGuarda);
-                seleccio_varietat_panel.AddElement(seleccio_varietat_guarda_button);
-            }
-            ui_manager.AddUIWindow(seleccio_varietat_win);
-            seleccio_varietat_win.SetVisible(false);
-
-            // Finestra seleccio treball
-            seleccio_treball_win = new UI_Window(this);
-            {
-                seleccio_treball_panel = new UI_Panel(new Point(229, 233), 350, 50);
-                seleccio_treball_panel.SetColor(Color.Cornsilk);
-                seleccio_treball_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_treball_win.AddElement(seleccio_treball_panel);
-
-                seleccio_treball_noms_combobox = new UI_ComboBox(new Point(15, 15), 250, 100);
-                seleccio_treball_noms_combobox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
-                seleccio_treball_noms_combobox.SetDrowDownVisibleItems(30);
-                seleccio_treball_panel.AddElement(seleccio_treball_noms_combobox);
-
-                seleccio_treball_guarda_button = new UI_Button(new Point(270, 14), 70, 23, "Selecciona");
-                seleccio_treball_guarda_button.GetElement().Click += new System.EventHandler(this.SeleccioTreballGuarda);
-                seleccio_treball_panel.AddElement(seleccio_treball_guarda_button);
-            }
-            ui_manager.AddUIWindow(seleccio_treball_win);
-            seleccio_treball_win.SetVisible(false);
-
             // Finestra confirmacio canvis guardats
             guarda_canvis_win = new UI_Window(this);
             {
@@ -541,9 +436,10 @@ namespace WindowsFormsApp4
 
                     propietaris_manager.propietari_actual = p;
 
-                    propietari_nom_text.SetText(propietaris_manager.propietari_actual.GetTbl().Nombre);
-
-                    finca_nom_text.SetText(propietaris_manager.finca_actual.GetTbl().Nom1);
+                    ActualitzaLlistaPropietari();
+                    ActualitzaLlistaFinques();
+                    seleccio_propietari_noms_combobox.SetSelectedElement(propietaris_manager.propietari_actual.GetTbl().Nombre);
+                    seleccio_finca_noms_combobox.SetSelectedElement(propietaris_manager.finca_actual.GetTbl().Nom1);
 
                     ActualitzaLlistaParceles();
                 }
@@ -557,10 +453,6 @@ namespace WindowsFormsApp4
         // Windows
         UI_Window main_win = null;
         UI_Window map_win = null;
-        UI_Window seleccio_propietari_win = null;
-        UI_Window seleccio_finca_win = null;
-        UI_Window seleccio_varietat_win = null;
-        UI_Window seleccio_treball_win = null;
         UI_Window guarda_canvis_win = null;
 
         // Elements
@@ -574,30 +466,15 @@ namespace WindowsFormsApp4
         UI_Button mapsat_button = null;
 
         UI_Text propietaris_text = null;
-        UI_Panel nom_propietari_panel = null;
-        UI_Button open_propietari_search_button = null;
-        UI_Text propietari_nom_text = null;
         UI_Text finques_text = null;
-        UI_Panel nom_finca_panel = null;
-        UI_Button open_finca_search_button = null;
-        UI_Text finca_nom_text = null;
         UI_Text varietat_text = null;
-        UI_Panel nom_varietat_panel = null;
-        UI_Button open_varietat_search_button = null;
-        UI_Text varietat_nom_text = null;
         UI_Text treballs_text = null;
-        UI_Panel nom_treball_panel = null;
-        UI_Button open_treball_search_button = null;
-        UI_Text treball_nom_text = null;
         UI_Text llista_parceles_text = null;
         UI_ListBox llista_parceles_llista = null;
-        UI_Button propietari_finca_cerca = null;
         UI_Button propietari_finca_neteja = null;
         UI_Panel divisor_propietari_finca = null;
-        UI_Button varietat_cerca = null;
         UI_Button varietat_neteja = null;
         UI_Panel divisor_varietat = null;
-        UI_Button treball_cerca = null;
         UI_Button treball_neteja = null;
         UI_Panel divisor_treball = null;
 
@@ -616,21 +493,11 @@ namespace WindowsFormsApp4
         UI_ListBox partes_seleccionats_listbox = null;
         UI_Button elimina_parte_button = null;
 
-        UI_Panel seleccio_propietari_panel = null;
         UI_ComboBox seleccio_propietari_noms_combobox = null;
-        UI_Button seleccio_propietari_guarda_button = null;
-
-        UI_Panel seleccio_finca_panel = null;
         UI_ComboBox seleccio_finca_noms_combobox = null;
-        UI_Button seleccio_finca_guarda_button = null;
-
-        UI_Panel seleccio_varietat_panel = null;
         UI_ComboBox seleccio_varietat_noms_combobox = null;
-        UI_Button seleccio_varietat_guarda_button = null;
 
-        UI_Panel seleccio_treball_panel = null;
         UI_ComboBox seleccio_treball_noms_combobox = null;
-        UI_Button seleccio_treball_guarda_button = null;
 
         UI_Panel guarda_canvis_panel = null;
         UI_Text guarda_canvis_text = null;

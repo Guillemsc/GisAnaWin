@@ -392,6 +392,24 @@ namespace WindowsFormsApp4
 
             cb.SelectedIndex = cb.FindStringExact(name);
         }
+
+        public void DropDown(EventHandler ev)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.DropDown += ev;
+        }
+
+        public void DropDownClosed(EventHandler ev)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.DropDownClosed += ev;
+        }
+
+        public void ItemSelected(EventHandler ev)
+        {
+            ComboBox cb = GetElement() as ComboBox;
+            cb.SelectionChangeCommitted += ev;
+        }
     }
 
     public class UI_ListBox : UI_Element
