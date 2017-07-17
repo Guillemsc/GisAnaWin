@@ -103,7 +103,7 @@ namespace WindowsFormsApp4
             this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
-            this.gmap.Size = new System.Drawing.Size(580, 551);
+            this.gmap.Size = new System.Drawing.Size(580, 600);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 14D;
             this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_MarkerClick);
@@ -118,9 +118,9 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 531);
+            this.ClientSize = new System.Drawing.Size(800, 581);
             this.Controls.Add(this.gmap);
-            this.MinimumSize = new System.Drawing.Size(815, 546);
+            this.MinimumSize = new System.Drawing.Size(815, 606);
             this.Name = "Gis AnaWin";
             this.Text = this.Name;
             this.ResumeLayout(false);
@@ -199,37 +199,37 @@ namespace WindowsFormsApp4
             // General Map UI Input
             map_win = new UI_Window(this);
             {
-                text_input_lat = new UI_MaskedTextInput(new Point(16, 485), 92, 50);
+                text_input_lat = new UI_MaskedTextInput(new Point(16, 535), 92, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lat);
 
-                text_input_lon = new UI_MaskedTextInput(new Point(123, 485), 92, 50);
+                text_input_lon = new UI_MaskedTextInput(new Point(123, 535), 92, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_lon);
 
-                search_button_coor = new UI_Button(new Point(15, 460), 201, 23, "Cerca coordenades");
+                search_button_coor = new UI_Button(new Point(15, 510), 201, 23, "Cerca coordenades");
                 search_button_coor.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_coor.GetElement().Click += new System.EventHandler(this.SearchLatLon);
                 map_win.AddElement(search_button_coor);
 
-                lat_text = new UI_Text(new Point(16, 510), 193, 40, "Lat");
+                lat_text = new UI_Text(new Point(16, 560), 193, 40, "Lat");
                 lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lat_text);
 
-                lon_text = new UI_Text(new Point(123, 510), 193, 40, "Lon");
+                lon_text = new UI_Text(new Point(123, 560), 193, 40, "Lon");
                 lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(lon_text);
 
-                search_button_name = new UI_Button(new Point(15, 403), 201, 23, "Cerca nom");
+                search_button_name = new UI_Button(new Point(15, 453), 201, 23, "Cerca nom");
                 search_button_name.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_name.GetElement().Click += new System.EventHandler(this.SearchName);
                 map_win.AddElement(search_button_name);
 
-                text_input_nom = new UI_MaskedTextInput(new Point(16, 428), 200, 50);
+                text_input_nom = new UI_MaskedTextInput(new Point(16, 478), 200, 50);
                 text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(text_input_nom);
 
-                mapsat_button = new UI_Button(new Point(690, 500), 100, 23, "Canvia a Mapa");
+                mapsat_button = new UI_Button(new Point(690, 550), 100, 23, "Canvia a Mapa");
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
@@ -313,11 +313,30 @@ namespace WindowsFormsApp4
                 divisor_treball.SetColor(Color.Black);
                 main_win.AddElement(divisor_treball);
 
+                // Any vinya
+                any_vinya_text = new UI_Text(new Point(15, 305), 100, 40, "Any: ");
+                main_win.AddElement(any_vinya_text);
+
+                a_vinya_text = new UI_Text(new Point(110, 332), 100, 40, "a");
+                main_win.AddElement(a_vinya_text);
+
+                any_comença = new UI_MaskedTextInput(new Point(16, 325), 92, 40, "0");
+                any_comença.OnLostFocus(ActualitzaLlistaParcelesEvent);
+                main_win.AddElement(any_comença);
+
+                any_acaba = new UI_MaskedTextInput(new Point(123, 325), 92, 40, "2017");
+                any_acaba.OnLostFocus(ActualitzaLlistaParcelesEvent);
+                main_win.AddElement(any_acaba);
+
+                divisor_any_vinya = new UI_Panel(new Point(18, 350), 195, 1);
+                divisor_any_vinya.SetColor(Color.Black);
+                main_win.AddElement(divisor_any_vinya);
+
                 // Parceles
-                llista_parceles_text = new UI_Text(new Point(15, 305), 200, 30, "Parceles:");
+                llista_parceles_text = new UI_Text(new Point(15, 355), 200, 30, "Parceles:");
                 main_win.AddElement(llista_parceles_text);
 
-                llista_parceles_llista = new UI_ListBox(new Point(15, 325), 200, 80);
+                llista_parceles_llista = new UI_ListBox(new Point(15, 375), 200, 80);
                 llista_parceles_llista.GetElement().Click += new System.EventHandler(this.ParcelaClick);
                 llista_parceles_llista.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 main_win.AddElement(llista_parceles_llista);
@@ -363,7 +382,7 @@ namespace WindowsFormsApp4
                     elimina_parte_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
                     parceles_seleccionades_panel.AddElement(elimina_parte_button);
 
-                    parceles_selecionades_text = new UI_Text(new Point(5, 80), 100, 30, "Parceles seleccionades:");
+                    parceles_selecionades_text = new UI_Text(new Point(2, 80), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
                     parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 100), 130, 180);
@@ -371,10 +390,16 @@ namespace WindowsFormsApp4
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
 
-                    partes_seleccionats_text = new UI_Text(new Point(5, 290), 100, 30, "Partes:");
+                    ha_parceles_seleccionades_text = new UI_Text(new Point(2, 275), 100, 30, "Ha totals:");
+                    parceles_seleccionades_panel.AddElement(ha_parceles_seleccionades_text);
+
+                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 275), 100, 30, "0");
+                    parceles_seleccionades_panel.AddElement(ha_valor_parceles_seleccionades_text);
+
+                   partes_seleccionats_text = new UI_Text(new Point(2, 310), 100, 10, "Partes:");
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_text);
 
-                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 310), 130, 180);
+                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 330), 130, 180);
                     partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     partes_seleccionats_listbox.SetAutoSize(true);
                     partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickParte);
@@ -477,6 +502,11 @@ namespace WindowsFormsApp4
         UI_Panel divisor_varietat = null;
         UI_Button treball_neteja = null;
         UI_Panel divisor_treball = null;
+        UI_Text any_vinya_text = null;
+        UI_Text a_vinya_text = null;
+        UI_MaskedTextInput any_comença = null;
+        UI_MaskedTextInput any_acaba = null;
+        UI_Panel divisor_any_vinya = null;
 
         UI_Panel editor_parceles_panel = null;
         UI_Button editor_parceles_crea_button = null;
@@ -489,6 +519,8 @@ namespace WindowsFormsApp4
         UI_Panel parceles_seleccionades_panel = null;
         UI_Text parceles_selecionades_text = null;
         UI_ListBox parceles_seleccionades_listbox = null;
+        UI_Text ha_parceles_seleccionades_text = null;
+        UI_Text ha_valor_parceles_seleccionades_text = null;
         UI_Text partes_seleccionats_text = null;
         UI_ListBox partes_seleccionats_listbox = null;
         UI_Button elimina_parte_button = null;

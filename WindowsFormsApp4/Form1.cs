@@ -62,7 +62,6 @@ namespace WindowsFormsApp4
             ActualitzaLlistaTreballs();
         }
 
-
         private void SeleccionaTreballEvent(object sender, EventArgs e)
         {
             propietaris_manager.treball_actual = seleccio_treball_noms_combobox.GetSelected() as Treball;
@@ -74,10 +73,14 @@ namespace WindowsFormsApp4
             ActualitzaLlistaVarietats();
         }
 
-
         private void SeleccionaVarietatEvent(object sender, EventArgs e)
         {
             propietaris_manager.varietat_actual = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
+            ActualitzaLlistaParceles();
+        }
+
+        private void ActualitzaLlistaParcelesEvent(object sender, EventArgs e)
+        {
             ActualitzaLlistaParceles();
         }
 
@@ -1128,7 +1131,15 @@ namespace WindowsFormsApp4
 
             List<Parcela> parceles = new List<Parcela>();
 
-            if (propietaris_manager.propietari_actual != null || propietaris_manager.finca_actual != null || propietaris_manager.varietat_actual != null || propietaris_manager.treball_actual != null)
+            int comença = 0;
+            int acaba = 0;
+
+            Propietari propietari_actual = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
+            Finca finca_actual = seleccio_finca_noms_combobox.GetSelected() as Finca;
+            Varietat varietat_actual = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
+            Treball treball_actual = seleccio_treball_noms_combobox.GetSelected() as Treball;
+
+            if (propietari_actual != null || finca_actual != null || varietat_actual != null || treball_actual != null || (int.TryParse(any_comença.GetText(), out comença) && int.TryParse(any_acaba.GetText(), out acaba)))
             {
                 for (int i = 0; i < propietaris_manager.GetParceles().Count;)
                 {
@@ -1138,13 +1149,13 @@ namespace WindowsFormsApp4
                         parcela_actual.ClearDraw();
 
                     // Propietaris
-                    if (propietaris_manager.propietari_actual != null)
+                    if (propietari_actual != null)
                     {
                         Finca f = GetFincaPerParcela(parcela_actual);
 
                         if (f != null)
                         {
-                            if (f.GetTbl().idProveedor.ToString().Replace(" ", "") != propietaris_manager.propietari_actual.GetTbl().idProveedor.Replace(" ", ""))
+                            if (f.GetTbl().idProveedor.ToString().Replace(" ", "") != propietari_actual.GetTbl().idProveedor.Replace(" ", ""))
                             {
                                 ++i;
                                 continue;
@@ -1153,9 +1164,9 @@ namespace WindowsFormsApp4
                     }
 
                     // Finques
-                    if (propietaris_manager.finca_actual != null)
+                    if (finca_actual != null)
                     {
-                        if (parcela_actual.GetTbl().idFinca != propietaris_manager.finca_actual.GetTbl().idFinca)
+                        if (parcela_actual.GetTbl().idFinca != finca_actual.GetTbl().idFinca)
                         {
                             ++i;
                             continue;
@@ -1163,9 +1174,9 @@ namespace WindowsFormsApp4
                     }
 
                     // Varietat
-                    if (propietaris_manager.varietat_actual != null)
+                    if (varietat_actual != null)
                     {
-                        if (parcela_actual.GetTbl().idVarietat.ToString().ToString().Replace(" ", "") != propietaris_manager.varietat_actual.GetTbl().idTipoUva.ToString().Replace(" ", ""))
+                        if (parcela_actual.GetTbl().idVarietat.ToString().ToString().Replace(" ", "") != varietat_actual.GetTbl().idTipoUva.ToString().Replace(" ", ""))
                         {
                             ++i;
                             continue;
@@ -1173,7 +1184,7 @@ namespace WindowsFormsApp4
                     }
 
                     // Treballs
-                    if (propietaris_manager.treball_actual != null)
+                    if (treball_actual != null)
                     {
                         int count = 0;
 
@@ -1185,7 +1196,7 @@ namespace WindowsFormsApp4
 
                             for (int p = 0; p < partes.Count; p++)
                             {
-                                if (propietaris_manager.treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
+                                if (treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
                                 {
                                     count++;
                                     break;
@@ -1198,6 +1209,17 @@ namespace WindowsFormsApp4
                             continue;
                         }
                     }
+
+                    comença = 0;
+                    acaba = 0;
+                    int.TryParse(any_comença.GetText(), out comença);
+                    int.TryParse(any_acaba.GetText(), out acaba);
+                    if (!(parcela_actual.GetTbl().AnyPlantacio >= comença) || !(parcela_actual.GetTbl().AnyPlantacio <= acaba))
+                    {
+                        ++i;
+                        continue;
+                    }
+                       
 
                     // Add
                     parceles.Add(parcela_actual);
@@ -1252,11 +1274,15 @@ namespace WindowsFormsApp4
 
             if(parceles.Count > 0)
             {
+                float ha_totals = 0;
+
                 parceles_seleccionades_panel.SetVisible(true);
 
                 parceles_seleccionades_listbox.Clear();
-                for(int i = 0; i< parceles.Count; i++)
+                for(int i = 0; i < parceles.Count; i++)
                 {
+                    ha_totals += (float)parceles[i].GetTbl().Ha;
+
                     UI_Text t = new UI_Text(new Point(5, 5), 100, 30, parceles[i].GetTbl().idParcelaVinicola, parceles[i].GetTbl().idParcela.ToString());
 
                     parceles_seleccionades_listbox.AddElement(t);
@@ -1264,6 +1290,8 @@ namespace WindowsFormsApp4
                     l.DisplayMember = "Text";
 
                 }
+
+                ha_valor_parceles_seleccionades_text.SetText(ha_totals.ToString("0.000"));
             }
             else
             {

@@ -127,6 +127,11 @@ namespace WindowsFormsApp4
 
         public string GetTyp() { return _type; }
 
+        public void OnLostFocus(EventHandler ev)
+        {
+            _element.LostFocus += ev;
+        }
+
         Control _element = null;
         string _type;
     }
@@ -309,6 +314,12 @@ namespace WindowsFormsApp4
         {
             MaskedTextBox l = GetElement() as MaskedTextBox;
             l.Text = text;
+        }
+
+        public void OnTextChanged(EventHandler ev)
+        {
+            MaskedTextBox l = GetElement() as MaskedTextBox;
+            l.TextChanged += ev;
         }
     }
 
