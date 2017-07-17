@@ -11,6 +11,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
+using System.Drawing.Printing;
 
 namespace WindowsFormsApp4
 {
@@ -292,6 +293,27 @@ namespace WindowsFormsApp4
         public void ObreFormInfoPartes(object sender, EventArgs e)
         {
             info_parte_form.ShowDialog();
+        }
+
+        Bitmap memoryImage = null;
+        public void ImprimirMapa(object sender, EventArgs e)
+        {
+            PrintDocument printDocument1 = new PrintDocument();
+            printDocument1.PrintPage += printDocument;
+
+            // Capture screen
+            Graphics myGraphics = gmap.CreateGraphics();
+            Size s = gmap.Size;
+            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            memoryGraphics.CopyFromScreen(gmap.Location.X, gmap.Location.Y, 0, 0, s);
+
+            printDocument1.Print();
+        }
+
+        private void printDocument(System.Object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
         }
 
         // ---------------------------------------------------------------------- Botons

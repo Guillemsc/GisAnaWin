@@ -88,7 +88,6 @@ namespace WindowsFormsApp4
             this.gmap.GrayScaleMode = false;
             this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gmap.LevelsKeepInMemmory = 5;
-            this.gmap.Location = new System.Drawing.Point(229, -1);
             this.gmap.MarkersEnabled = true;
             this.gmap.MaximumSize = new System.Drawing.Size(10000, 10000);
             this.gmap.MaxZoom = 23;
@@ -103,6 +102,7 @@ namespace WindowsFormsApp4
             this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
+            this.gmap.Location = new System.Drawing.Point(232, 0);
             this.gmap.Size = new System.Drawing.Size(580, 600);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 14D;
@@ -234,6 +234,11 @@ namespace WindowsFormsApp4
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
 
+                imprimir_button = new UI_Button(new Point(620, 550), 50, 23, "Imprimir");
+                imprimir_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                imprimir_button.GetElement().Click += new System.EventHandler(this.ImprimirMapa);
+                map_win.AddElement(imprimir_button);
+
                 editor_parceles_ultim_guardat = new UI_Text(new Point(520, 505), 100, 25, "");
                 editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(editor_parceles_ultim_guardat);
@@ -320,11 +325,11 @@ namespace WindowsFormsApp4
                 a_vinya_text = new UI_Text(new Point(110, 332), 100, 40, "a");
                 main_win.AddElement(a_vinya_text);
 
-                any_comença = new UI_MaskedTextInput(new Point(16, 325), 92, 40, "0");
+                any_comença = new UI_MaskedTextInput(new Point(16, 325), 92, 40, "1900");
                 any_comença.OnLostFocus(ActualitzaLlistaParcelesEvent);
                 main_win.AddElement(any_comença);
 
-                any_acaba = new UI_MaskedTextInput(new Point(123, 325), 92, 40, "2017");
+                any_acaba = new UI_MaskedTextInput(new Point(123, 325), 92, 40, DateTime.Now.Year.ToString());
                 any_acaba.OnLostFocus(ActualitzaLlistaParcelesEvent);
                 main_win.AddElement(any_acaba);
 
@@ -489,6 +494,7 @@ namespace WindowsFormsApp4
         UI_Button search_button_name = null;
         UI_MaskedTextInput text_input_nom = null;
         UI_Button mapsat_button = null;
+        UI_Button imprimir_button = null;
 
         UI_Text propietaris_text = null;
         UI_Text finques_text = null;
