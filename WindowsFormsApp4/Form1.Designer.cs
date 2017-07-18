@@ -175,6 +175,7 @@ namespace WindowsFormsApp4
             ActualitzaVarietatsDesDeServidor();
             ActualitzaTreballsDesDeServidor();
             ActualitzaParcelesDesDeServidor();
+            ActualitzaAnalitiquesDesDeServidor();
 
             ActualitzaLlistaParceles();
 
@@ -188,6 +189,9 @@ namespace WindowsFormsApp4
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
+
+            imprimir_form = new Form4(propietaris_manager, point_manager, server_manager, ui_manager);
+            imprimir_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -479,6 +483,7 @@ namespace WindowsFormsApp4
         // Forms
         Form2 crea_parte_form = null;
         Form3 info_parte_form = null;
+        Form4 imprimir_form = null;
         
         // Windows
         UI_Window main_win = null;

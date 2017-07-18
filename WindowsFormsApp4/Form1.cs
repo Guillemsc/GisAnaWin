@@ -12,6 +12,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
 using System.Drawing.Printing;
+using System.Drawing.Imaging;
 
 namespace WindowsFormsApp4
 {
@@ -298,17 +299,35 @@ namespace WindowsFormsApp4
         Bitmap memoryImage = null;
         public void ImprimirMapa(object sender, EventArgs e)
         {
-            PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.PrintPage += printDocument;
-
             // Capture screen
-            Graphics myGraphics = gmap.CreateGraphics();
-            Size s = gmap.Size;
-            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(gmap.Location.X, gmap.Location.Y, 0, 0, s);
+            //Graphics myGraphics = this.CreateGraphics();
+            //Size s = this.Size;
+            //memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
 
-            printDocument1.Print();
+
+            ////gmap.DrawToBitmap(memoryImage, new Rectangle(gmap.Location, gmap.Size));
+            ////FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            ////folderBrowserDialog1.Description = "Guarda imatge";
+            ////DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            ////if (result == DialogResult.OK)
+            ////{
+            ////    string folderName = folderBrowserDialog1.SelectedPath + "\\";
+
+            ////    memoryImage.Save(folderName + "test.png", ImageFormat.Png);
+            ////}
+
+            //gmap.Enabled = false;
+            //this.WindowState = FormWindowState.Maximized;
+            //Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+            //memoryGraphics.CopyFromScreen(this.Location.X + gmap.Location.X, this.Location.Y, 0, 0, s);
+            //PrintDocument printDocument1 = new PrintDocument();
+            //printDocument1.DefaultPageSettings.Landscape = true;
+            //printDocument1.PrintPage += printDocument;
+            //printDocument1.Print();
+            //gmap.Enabled = true;
+
+
         }
 
         private void printDocument(System.Object sender, PrintPageEventArgs e)
@@ -461,6 +480,8 @@ namespace WindowsFormsApp4
         {
             List<tblFamiliesCost> treballs = server_manager.GetTreballs();
 
+            propietaris_manager.EliminaTreballs();
+
             for(int i = 0; i < treballs.Count(); i++)
             {
                 Treball t = new Treball(treballs[i]);
@@ -468,6 +489,22 @@ namespace WindowsFormsApp4
             }
 
             Console.WriteLine("Actualitzat Treballs Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
+        public void ActualitzaAnalitiquesDesDeServidor()
+        {
+            List<tblAnaliticaFincaParcela> analitiques = server_manager.GetAnalitiques();
+
+            propietaris_manager.EliminaAnalitiques();
+
+            for(int i = 0; i < analitiques.Count; i++)
+            {
+                Analitica a = new Analitica(analitiques[i]);
+                propietaris_manager.AfegirAnalitica(a);
+            }
+
+            Console.WriteLine("Actualitzat Analitiques Des De Servidor");
             Console.WriteLine("----------------------------------");
         }
 

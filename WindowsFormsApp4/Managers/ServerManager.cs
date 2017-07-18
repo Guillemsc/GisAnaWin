@@ -132,6 +132,19 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblAnaliticaFincaParcela> GetAnalitiques()
+        {
+            List<tblAnaliticaFincaParcela> ret = new List<tblAnaliticaFincaParcela>();
+
+            if(servidor.tblAnaliticaFincaParcela.Count() > 0)
+            {
+                foreach (var prov in servidor.tblAnaliticaFincaParcela)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
         public tblCoordenadesFincaParcela AddCoordenades(int id_parcela, double lat, double lon, string codigo_empresa, int id_finca, int id_punt_cor)
         {
             tblCoordenadesFincaParcela ret = new tblCoordenadesFincaParcela();

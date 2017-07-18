@@ -84,6 +84,16 @@ namespace WindowsFormsApp4
         {
             treballs.Clear();
         }
+        
+        public void AfegirAnalitica(Analitica analitica)
+        {
+            analitiques.Add(analitica);
+        }
+
+        public void EliminaAnalitiques()
+        {
+            analitiques.Clear();
+        }
 
         public List<tblCoordenadesFincaParcela> GetCoordenades()
         {
@@ -146,6 +156,7 @@ namespace WindowsFormsApp4
         List<Parcela> parceles = new List<Parcela>();
         List<Varietat> varietats = new List<Varietat>();
         List<Treball> treballs = new List<Treball>();
+        List<Analitica> analitiques = new List<Analitica>();
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 
         public Propietari propietari_actual = null;
@@ -225,5 +236,22 @@ namespace WindowsFormsApp4
         public tblFamiliesCost GetTbl() { return _tbl; }
 
         private tblFamiliesCost _tbl;
+    }
+
+    public class Analitica
+    {
+        public Analitica(tblAnaliticaFincaParcela analitica)
+        {
+            _tbl = analitica;
+        }
+
+        public override string ToString()
+        {
+            return _tbl.Observaciones;   
+        }
+
+        public tblAnaliticaFincaParcela GetTbl() { return _tbl; }
+
+        private tblAnaliticaFincaParcela _tbl;
     }
 }
