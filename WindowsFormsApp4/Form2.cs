@@ -170,6 +170,7 @@ namespace WindowsFormsApp4
             int ret = -1;
 
             List<Finca> finques = propietaris_manager.GetFinques();
+            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
 
             for(int i = 0; i < finques.Count; i++)
             {
@@ -181,6 +182,13 @@ namespace WindowsFormsApp4
                         ret = partes[y].idParte;
                 }
             }
+
+            for(int i = 0; i < analitiques.Count; i++)
+            {
+                if (analitiques[i].GetTbl().idParte > ret)
+                    ret = (int)analitiques[i].GetTbl().idParte;
+            }
+
 
             ret++;
 

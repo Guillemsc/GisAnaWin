@@ -306,7 +306,7 @@ namespace WindowsFormsApp4
         {
             if (polygon != null)
             {
-                polygon.Stroke = new Pen(Color.Red, 6);
+                polygon.Stroke = new Pen(Color.Red, 4);
                 _highlighed = true;
             }
         }

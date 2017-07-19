@@ -34,7 +34,7 @@ namespace WindowsFormsApp4
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 510);
-            this.Name = "Analítiques";
+            this.Name = "Crea analítica";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
@@ -102,7 +102,7 @@ namespace WindowsFormsApp4
                 main_window.AddElement(observacions_text_input);
 
                 accepta_button = new UI_Button(new Point(388, 465), 100, 30, "Acceptar");
-                //accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
                 main_window.AddElement(accepta_button);
             }
         }

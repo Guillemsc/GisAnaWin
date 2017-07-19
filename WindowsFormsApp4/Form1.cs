@@ -213,6 +213,8 @@ namespace WindowsFormsApp4
                     propietaris_manager.parte_actual = lp;
                 
             }
+
+            elimina_parte_button.SetEnabled(true);
         }
 
         public void EliminaParte(object sender, EventArgs e)
@@ -293,7 +295,18 @@ namespace WindowsFormsApp4
 
         public void ObreFormInfoPartes(object sender, EventArgs e)
         {
-            info_parte_form.ShowDialog();
+            if(partes_seleccionats_listbox.IsSelected())
+                info_parte_form.ShowDialog();
+        }
+
+        public void ObreFormAnalitiques(object sender, EventArgs e)
+        {
+            afegir_analitica_form.ShowDialog();
+        }
+
+        public void ObreFormVisualitzaAnalitiques(object sender, EventArgs e)
+        {
+            visualitza_analitica_form.ShowDialog();
         }
 
         Bitmap memoryImage = null;
@@ -1356,10 +1369,26 @@ namespace WindowsFormsApp4
                 }
 
                 ha_valor_parceles_seleccionades_text.SetText(ha_totals.ToString("0.000"));
+
+                afegir_partes_button.SetEnabled(true);
+
+                if (parceles.Count == 1)
+                {
+                    afegir_analitica_button.SetEnabled(true);
+                    visualitza_analitiques_button.SetEnabled(true);
+                }
+                else
+                {
+                    afegir_analitica_button.SetEnabled(false);
+                    visualitza_analitiques_button.SetEnabled(false);
+                }
             }
             else
             {
                 parceles_seleccionades_panel.SetVisible(false);
+                afegir_partes_button.SetEnabled(false);
+                afegir_analitica_button.SetEnabled(false);
+                visualitza_analitiques_button.SetEnabled(false);
             }
         }
 
@@ -1403,6 +1432,8 @@ namespace WindowsFormsApp4
                 ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
                 l.DisplayMember = "Text";
             }
+
+            elimina_parte_button.SetEnabled(false);
         }
 
         public void SeleccionaParcelaActual(Parcela parcela, bool zoom = false, bool center = false)

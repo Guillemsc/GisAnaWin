@@ -85,6 +85,11 @@ namespace WindowsFormsApp4
             treballs.Clear();
         }
         
+        public List<Analitica> GetAnalitiques()
+        {
+            return analitiques;
+        }
+
         public void AfegirAnalitica(Analitica analitica)
         {
             analitiques.Add(analitica);

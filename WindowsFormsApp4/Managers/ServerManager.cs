@@ -171,6 +171,11 @@ namespace WindowsFormsApp4
             servidor.tblLineasPartesFinca1.InsertOnSubmit(parte_linea);
         }
 
+        public void AddAnalitica(tblAnaliticaFincaParcela analitica)
+        {
+            servidor.tblAnaliticaFincaParcela.InsertOnSubmit(analitica);
+        }
+
         public void DeleteCoordenades(tblCoordenadesFincaParcela coordenates)
         {
             servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);
@@ -184,6 +189,11 @@ namespace WindowsFormsApp4
         public void DeleteLineaParteFinca(tblLineasPartesFinca1 parte_linea)
         {
             servidor.tblLineasPartesFinca1.DeleteOnSubmit(parte_linea);
+        }
+
+        public void DeleteAnalitica(tblAnaliticaFincaParcela analitica)
+        {
+            servidor.tblAnaliticaFincaParcela.DeleteOnSubmit(analitica);
         }
 
         public void SubmitChanges()

@@ -193,7 +193,9 @@ namespace WindowsFormsApp4
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
 
             afegir_analitica_form = new Form4(propietaris_manager, point_manager, server_manager, ui_manager);
-            afegir_analitica_form.ShowDialog();
+
+            visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
+            visualitza_analitica_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -391,25 +393,31 @@ namespace WindowsFormsApp4
                     elimina_parte_button = new UI_Button(new Point(5, 37), 120, 30, "Elimina parte");
                     elimina_parte_button.SetColor(Color.Cornsilk);
                     elimina_parte_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                    elimina_parte_button.SetEnabled(false);
                     parceles_seleccionades_panel.AddElement(elimina_parte_button);
 
                     afegir_analitica_button = new UI_Button(new Point(5, 69), 120, 30, "Afegir analítica");
                     afegir_analitica_button.SetColor(Color.Cornsilk);
-                    afegir_analitica_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                    afegir_analitica_button.GetElement().Click += new System.EventHandler(this.ObreFormAnalitiques);
                     parceles_seleccionades_panel.AddElement(afegir_analitica_button);
 
-                    parceles_selecionades_text = new UI_Text(new Point(2, 110), 100, 30, "Parceles seleccionades:");
+                    visualitza_analitiques_button = new UI_Button(new Point(5, 102), 120, 30, "Visualitza analítiques");
+                    visualitza_analitiques_button.SetColor(Color.Cornsilk);
+                    visualitza_analitiques_button.GetElement().Click += new System.EventHandler(this.ObreFormVisualitzaAnalitiques);
+                    parceles_seleccionades_panel.AddElement(visualitza_analitiques_button);
+
+                    parceles_selecionades_text = new UI_Text(new Point(2, 140), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 130), 130, 180);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 160), 130, 150);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
 
-                    ha_parceles_seleccionades_text = new UI_Text(new Point(2, 305), 100, 30, "Ha totals:");
+                    ha_parceles_seleccionades_text = new UI_Text(new Point(2, 310), 100, 30, "Ha totals:");
                     parceles_seleccionades_panel.AddElement(ha_parceles_seleccionades_text);
 
-                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 305), 100, 30, "0");
+                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 310), 100, 30, "0");
                     parceles_seleccionades_panel.AddElement(ha_valor_parceles_seleccionades_text);
 
                     partes_seleccionats_text = new UI_Text(new Point(2, 340), 100, 10, "Partes:");
@@ -491,6 +499,7 @@ namespace WindowsFormsApp4
         Form2 crea_parte_form = null;
         Form3 info_parte_form = null;
         Form4 afegir_analitica_form = null;
+        Form5 visualitza_analitica_form = null;
         
         // Windows
         UI_Window main_win = null;
@@ -543,6 +552,7 @@ namespace WindowsFormsApp4
         UI_ListBox partes_seleccionats_listbox = null;
         UI_Button elimina_parte_button = null;
         UI_Button afegir_analitica_button = null;
+        UI_Button visualitza_analitiques_button = null;
 
         UI_ComboBox seleccio_propietari_noms_combobox = null;
         UI_ComboBox seleccio_finca_noms_combobox = null;
