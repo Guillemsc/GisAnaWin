@@ -96,6 +96,10 @@ namespace WindowsFormsApp4
                 accepta_button = new UI_Button(new Point(393, 345), 100, 30, "Acceptar");
                 accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
                 main_window.AddElement(accepta_button);
+
+                accepta_button = new UI_Button(new Point(393, 475), 100, 30, "Acceptar");
+                accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                main_window.AddElement(accepta_button);
             }
         }
 

@@ -182,6 +182,8 @@ namespace WindowsFormsApp4
             UpdateLatLon();
 
             LoadArgs();
+
+            gmap.ZoomAndCenterMarkers(point_manager.overlay_finca.Id);
             // -----------------------------------
 
             // Forms -----------------------------
@@ -190,8 +192,8 @@ namespace WindowsFormsApp4
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
 
-            imprimir_form = new Form4(propietaris_manager, point_manager, server_manager, ui_manager);
-            imprimir_form.ShowDialog();
+            afegir_analitica_form = new Form4(propietaris_manager, point_manager, server_manager, ui_manager);
+            afegir_analitica_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -381,34 +383,39 @@ namespace WindowsFormsApp4
                 parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
-                    llistat_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Afegir partes");
-                    llistat_partes_button.SetColor(Color.Cornsilk);
-                    llistat_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
-                    parceles_seleccionades_panel.AddElement(llistat_partes_button);
+                    afegir_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Afegir partes");
+                    afegir_partes_button.SetColor(Color.Cornsilk);
+                    afegir_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
+                    parceles_seleccionades_panel.AddElement(afegir_partes_button);
 
                     elimina_parte_button = new UI_Button(new Point(5, 37), 120, 30, "Elimina parte");
                     elimina_parte_button.SetColor(Color.Cornsilk);
                     elimina_parte_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
                     parceles_seleccionades_panel.AddElement(elimina_parte_button);
 
-                    parceles_selecionades_text = new UI_Text(new Point(2, 80), 100, 30, "Parceles seleccionades:");
+                    afegir_analitica_button = new UI_Button(new Point(5, 69), 120, 30, "Afegir analítica");
+                    afegir_analitica_button.SetColor(Color.Cornsilk);
+                    afegir_analitica_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
+                    parceles_seleccionades_panel.AddElement(afegir_analitica_button);
+
+                    parceles_selecionades_text = new UI_Text(new Point(2, 110), 100, 30, "Parceles seleccionades:");
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 100), 130, 180);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 130), 130, 180);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
                     parceles_seleccionades_listbox.SetAutoSize(true);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
 
-                    ha_parceles_seleccionades_text = new UI_Text(new Point(2, 275), 100, 30, "Ha totals:");
+                    ha_parceles_seleccionades_text = new UI_Text(new Point(2, 305), 100, 30, "Ha totals:");
                     parceles_seleccionades_panel.AddElement(ha_parceles_seleccionades_text);
 
-                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 275), 100, 30, "0");
+                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 305), 100, 30, "0");
                     parceles_seleccionades_panel.AddElement(ha_valor_parceles_seleccionades_text);
 
-                   partes_seleccionats_text = new UI_Text(new Point(2, 310), 100, 10, "Partes:");
+                    partes_seleccionats_text = new UI_Text(new Point(2, 340), 100, 10, "Partes:");
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_text);
 
-                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 330), 130, 180);
+                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 360), 130, 150);
                     partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     partes_seleccionats_listbox.SetAutoSize(true);
                     partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickParte);
@@ -483,7 +490,7 @@ namespace WindowsFormsApp4
         // Forms
         Form2 crea_parte_form = null;
         Form3 info_parte_form = null;
-        Form4 imprimir_form = null;
+        Form4 afegir_analitica_form = null;
         
         // Windows
         UI_Window main_win = null;
@@ -526,7 +533,7 @@ namespace WindowsFormsApp4
         UI_Text editor_parceles_ultim_guardat = null;
         UI_Button editor_parceles_opcions = null;
 
-        UI_Button llistat_partes_button = null;
+        UI_Button afegir_partes_button = null;
         UI_Panel parceles_seleccionades_panel = null;
         UI_Text parceles_selecionades_text = null;
         UI_ListBox parceles_seleccionades_listbox = null;
@@ -535,6 +542,7 @@ namespace WindowsFormsApp4
         UI_Text partes_seleccionats_text = null;
         UI_ListBox partes_seleccionats_listbox = null;
         UI_Button elimina_parte_button = null;
+        UI_Button afegir_analitica_button = null;
 
         UI_ComboBox seleccio_propietari_noms_combobox = null;
         UI_ComboBox seleccio_finca_noms_combobox = null;

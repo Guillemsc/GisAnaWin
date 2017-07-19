@@ -12,13 +12,15 @@ namespace WindowsFormsApp4
 {
     public partial class Form4 : Form
     {
-        public Form4(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
+        public Form4(PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
         {
-            InitializeComponent(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            InitializeComponent(propietaris_manager, points_manager, server_manager, ui_manager);
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            //ActualitzaLlistaTreballs();
+            //CarregaInformacioInicial();
         }
     }
 }

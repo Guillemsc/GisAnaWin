@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using System.Drawing;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
@@ -30,16 +31,16 @@ namespace WindowsFormsApp4
         /// </summary>
         private void InitializeComponent(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
         {
-            // 
-            // Form4
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 360);
-            this.Name = "Form4";
-            this.Text = "Form4";
+            this.ClientSize = new System.Drawing.Size(514, 510);
+            this.Name = "Analítiques";
+            this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
 
             // Set Managers ----------------------
             propietaris_manager = _propietaris_manager;
@@ -51,29 +52,92 @@ namespace WindowsFormsApp4
             // UI --------------------------------
             LoadUI();
             // -----------------------------------
-
         }
-
         #endregion
 
         public void LoadUI()
         {
-            ReportDataSource RDS = new ReportDataSource("Report1.rdlc");
+            main_window = new UI_Window(this);
+            {
+                data_text = new UI_Text(new Point(15, 20), 30, 100, "Data:");
+                main_window.AddElement(data_text);
 
-            report_viewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            report_viewer.Location = new System.Drawing.Point(0, 0);
-            report_viewer.Name = "reportViewer1";
-            report_viewer.ServerReport.BearerToken = null;
-            report_viewer.Size = new System.Drawing.Size(this.Size.Width, this.Size.Height);
-            report_viewer.TabIndex = 0;
-            //report_viewer.LocalReport.DataSources.Add(RDS);
-            report_viewer.Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top);
-            this.Controls.Add(report_viewer);
-            report_viewer.LocalReport.ReportEmbeddedResource = "RDS";
-            report_viewer.RefreshReport();
+                data_dataselect = new UI_DateSelect(new Point(18, 40), 200, 100);
+                main_window.AddElement(data_dataselect);
+
+                intensitat_colorant_text = new UI_Text(new Point(15, 80), 200, 30, "Intensitat colorant:");
+                main_window.AddElement(intensitat_colorant_text);
+
+                intensitat_colorant_text_input = new UI_MaskedTextInput(new Point(18, 100), 200, 30);
+                main_window.AddElement(intensitat_colorant_text_input);
+
+                ph_text = new UI_Text(new Point(255, 80), 255, 30, "pH:");
+                main_window.AddElement(ph_text);
+
+                ph_text_input = new UI_MaskedTextInput(new Point(258, 100), 100, 30);
+                main_window.AddElement(ph_text_input);
+
+                grau_text = new UI_Text(new Point(15, 140), 255, 30, "Grau alc:");
+                main_window.AddElement(grau_text);
+
+                grau_text_input = new UI_MaskedTextInput(new Point(18, 160), 100, 30);
+                main_window.AddElement(grau_text_input);
+
+                densitat_text = new UI_Text(new Point(255, 140), 255, 30, "Densitat prod:");
+                main_window.AddElement(densitat_text);
+
+                densitat_text_input = new UI_MaskedTextInput(new Point(258, 160), 100, 30);
+                main_window.AddElement(densitat_text_input);
+
+                estat_sanitari_text = new UI_Text(new Point(15, 200), 255, 30, "Estat sanitari:");
+                main_window.AddElement(estat_sanitari_text);
+
+                estat_sanitari_text_input = new UI_MaskedTextInput(new Point(18, 220), 470, 30);
+                main_window.AddElement(estat_sanitari_text_input);
+
+                observacions_text = new UI_Text(new Point(15, 260), 255, 30, "Observacions:");
+                main_window.AddElement(observacions_text);
+
+                observacions_text_input = new UI_TextInput(new Point(18, 280), 470, 175);
+                main_window.AddElement(observacions_text_input);
+
+                accepta_button = new UI_Button(new Point(388, 465), 100, 30, "Acceptar");
+                //accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                main_window.AddElement(accepta_button);
+            }
         }
 
-        private Microsoft.Reporting.WinForms.ReportViewer report_viewer;
+        // UI
+        UI_Window main_window = null;
+
+        UI_Text data_text = null;
+        UI_DateSelect data_dataselect = null;
+
+        UI_Text intensitat_colorant_text = null;
+        UI_MaskedTextInput intensitat_colorant_text_input = null;
+
+        UI_Text ph_text = null;
+        UI_MaskedTextInput ph_text_input = null;
+
+        UI_Text grau_text = null;
+        UI_MaskedTextInput grau_text_input = null;
+
+        UI_Text densitat_text = null;
+        UI_MaskedTextInput densitat_text_input = null;
+
+        UI_Text estat_sanitari_text = null;
+        UI_MaskedTextInput estat_sanitari_text_input = null;
+
+        UI_Text observacions_text = null;
+        UI_TextInput observacions_text_input = null;
+
+        UI_Button accepta_button = null;
+
+        UI_Text propietari_text = null;
+        UI_Text propietari_nom_text = null;
+
+        UI_Text finca_text = null;
+        UI_Text finca_nom_text = null;
 
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
@@ -81,6 +145,4 @@ namespace WindowsFormsApp4
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
     }
-
-
 }

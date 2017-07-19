@@ -815,6 +815,11 @@ namespace WindowsFormsApp4
             return null;
         }
 
+        public void SetZoomByMapDistances(double x, double y)
+        {
+            gmap.ZoomAndCenterMarkers(point_manager.overlay_finca.Id);
+        }
+
         // ----------------------------------------------------------------------- Utils
         // -----------------------------------------------------------------------------
 

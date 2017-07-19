@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Configuracion>
+  <ServidorPrograma>
+    <Id>AnaWinCellerBatea</Id>
+    <Server>PCSERVER\SQLEXPRESS2012</Server>
+    <DataBase>AnaWinCellerBatea</DataBase>
+    <User>sa</User>
+    <Password/>
+  </ServidorPrograma>
+</Configuracion>
