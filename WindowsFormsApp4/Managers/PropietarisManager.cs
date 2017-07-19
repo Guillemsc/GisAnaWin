@@ -252,7 +252,7 @@ namespace WindowsFormsApp4
 
         public override string ToString()
         {
-            return _tbl.Observaciones;   
+            return _tbl.Fecha.ToString();   
         }
 
         public tblAnaliticaFincaParcela GetTbl() { return _tbl; }
