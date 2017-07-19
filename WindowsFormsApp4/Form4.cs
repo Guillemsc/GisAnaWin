@@ -29,6 +29,12 @@ namespace WindowsFormsApp4
                 || observacions_text_input.GetText() == "")
                 return;
 
+            float test;
+
+            if (!float.TryParse(intensitat_colorant_text_input.GetText(), out test) || !float.TryParse(ph_text_input.GetText(), out test)
+                || !float.TryParse(grau_text_input.GetText(), out test) || !float.TryParse(densitat_text_input.GetText(), out test))
+                return;
+
             Parcela parcela = propietaris_manager.GetParcelesSeleccionades()[0];
 
             tblAnaliticaFincaParcela analitica = new tblAnaliticaFincaParcela();
