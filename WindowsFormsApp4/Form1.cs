@@ -222,48 +222,17 @@ namespace WindowsFormsApp4
             if(propietaris_manager.parte_actual == null)
                 return;
 
-            List<Finca> finques = propietaris_manager.GetFinques();
             List<tblLineasPartesFinca1> lineas = GetPartesLineaPerParte(propietaris_manager.parte_actual);
 
             // Neteja finques
-            for (int i = 0; i < finques.Count; i++)
+            for(int i = 0; i < lineas.Count; i++)
             {
-                Finca f_actual = finques[i];
-
-                if (f_actual.GetTbl().idFinca == propietaris_manager.parte_actual.idFinca)
-                {
-                    f_actual.EliminaPartes(propietaris_manager.parte_actual);
-
-                    for (int l = 0; l < lineas.Count; l++)
-                    {
-                        if (propietaris_manager.parte_actual.idParte == lineas[l].idParte)
-                            f_actual.EliminaPartesLinea(lineas[l]);
-                    }
-                }
+                server_manager.DeleteLineaParteFinca(lineas[i]);
+                propietaris_manager.EliminaParteLinea(lineas[i]);
             }
 
-            List<Parcela> parceles = propietaris_manager.GetParceles();
-
-            // Neteja parceles
-            for (int y = 0; y < parceles.Count; y++)
-            {
-                Parcela p_actual = parceles[y];
-
-                for (int l = 0; l < lineas.Count; l++)
-                {
-                    if(lineas[l].idParcela == p_actual.GetTbl().idParcela)
-                        p_actual.EliminaLineaParte(lineas[l]);
-                }
-            }
-
-            ActualitzaLlistaPartes();
-
+            propietaris_manager.EliminaParte(propietaris_manager.parte_actual);
             server_manager.DeleteParteFinca(propietaris_manager.parte_actual);
-
-            for (int l = 0; l < lineas.Count; l++)
-            {
-                server_manager.DeleteLineaParteFinca(lineas[l]);
-            }
 
             server_manager.SubmitChanges();
         }
@@ -370,8 +339,6 @@ namespace WindowsFormsApp4
         public void ActualitzaFinquesDesDeServidor()
         {
             List<tblFinques> finques = server_manager.GetFinques();
-            List<tblPartesFinca> partes = server_manager.GetPartesFinca();
-            List<tblLineasPartesFinca1> partes_linea = server_manager.GetLineasPartesFinca();
 
             propietaris_manager.EliminaFinques();
 
@@ -379,23 +346,6 @@ namespace WindowsFormsApp4
             {
                 Finca f = new Finca(point_manager.overlay_finca, finques[i]);
                 propietaris_manager.AfegirFinca(f);
-
-                for(int y = 0; y < partes.Count; y++)
-                {
-                    if (partes[y].idFinca == f.GetTbl().idFinca)
-                    {
-                        f.AddParte(partes[y]);
-
-                        for (int l = 0; l < partes_linea.Count; l++)
-                        {
-                            if (partes_linea[l].idParte == partes[y].idParte)
-                            {
-                                f.AddPartesLinea(partes_linea[l]);
-                            }
-                        }
-                
-                    }
-                }
             }
 
             Console.WriteLine("Actualitzat Finques Des De Servidor");
@@ -405,8 +355,6 @@ namespace WindowsFormsApp4
         public void ActualitzaParcelesDesDeServidor()
         {
             List<tblParceles> parceles = server_manager.GetParceles();
-            List<tblFinques> finques = server_manager.GetFinques();
-            List<tblLineasPartesFinca1> partes_lineas = server_manager.GetLineasPartesFinca();
 
             propietaris_manager.EliminaParceles();
 
@@ -414,18 +362,42 @@ namespace WindowsFormsApp4
             {
                 Parcela p = new Parcela(point_manager.overlay_parcela, parceles[i]);
                 propietaris_manager.AfegirParcela(p);
-
-                for (int y = 0; y < partes_lineas.Count; y++)
-                {
-                    if (partes_lineas[y].idParcela.ToString().Replace(" ", "") == p.GetTbl().idParcela.ToString().Replace(" ", ""))
-                        p.AddLineaParte(partes_lineas[y]);
-                }
             }
 
             Console.WriteLine("Actualitzat Parceles Des De Servidor");
             Console.WriteLine("----------------------------------");
 
             ActualitzaCoordenadesDesDeServidor(propietaris_manager.GetParceles());
+        }
+
+        public void ActualitzaPartesDesDeServidor()
+        {
+            List<tblPartesFinca> partes = server_manager.GetPartesFinca();
+
+            propietaris_manager.ClearPartes();
+
+            for(int i = 0; i < partes.Count; i++)
+            {
+                propietaris_manager.AfegirParte(partes[i]);
+            }
+
+            Console.WriteLine("Actualitzat Partes Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
+        public void ActualitzaPartesLineaDesDeServidor()
+        {
+            List<tblLineasPartesFinca1> partes_linea = server_manager.GetLineasPartesFinca();
+
+            propietaris_manager.ClearPartesLinea();
+
+            for (int i = 0; i < partes_linea.Count; i++)
+            {
+                propietaris_manager.AfegirParteLinea(partes_linea[i]);
+            }
+
+            Console.WriteLine("Actualitzat Partes Linea Des De Servidor");
+            Console.WriteLine("----------------------------------");
         }
 
         public void ActualitzaCoordenadesDesDeServidor(List<Parcela> parceles)
@@ -761,19 +733,12 @@ namespace WindowsFormsApp4
 
         public tblPartesFinca GetPartePerParteId(int id)
         {
-            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
 
-            for (int i = 0; i < finques.Count; i++)
+            for (int i = 0; i < partes.Count; i++)
             {
-                Finca f_actual = finques[i];
-
-                List<tblPartesFinca> partes = f_actual.GetPartes();
-
-                for (int y = 0; y < partes.Count; y++)
-                {
-                    if (partes[y].idParte == id)
-                        return partes[y];
-                }
+                if (partes[i].idParte == id)
+                    return partes[i];
             }
 
             return null;
@@ -783,44 +748,45 @@ namespace WindowsFormsApp4
         {
             List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
 
-            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblLineasPartesFinca1> partes_linea  = propietaris_manager.GetPartesLinea();
 
-            for (int i = 0; i < finques.Count; i++)
+            for (int i = 0; i < partes_linea.Count; i++)
             {
-                Finca f_actual = finques[i];
-
-                List<tblLineasPartesFinca1> lineas = f_actual.GetPartesLinea();
-
-                for(int y = 0; y < lineas.Count; y++)
-                {
-                    if(lineas[y].idParte == parte.idParte)
-                    {
-                        ret.Add(lineas[y]);
-                    }
-                }
+                if (partes_linea[i].idParte == parte.idParte)
+                    ret.Add(partes_linea[i]);
             }
 
-                return ret;
+            return ret;
         }
 
         public tblLineasPartesFinca1 GetLineaPartePerLineaID(int id)
         {
-            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblLineasPartesFinca1> partes_linea = propietaris_manager.GetPartesLinea();
 
-            for (int i = 0; i < finques.Count; i++)
+            for (int i = 0; i < partes_linea.Count; i++)
             {
-                Finca f_actual = finques[i];
-
-                List<tblLineasPartesFinca1> lineas = f_actual.GetPartesLinea();
-
-                for(int y = 0; y < lineas.Count; y++)
-                {
-                    if (lineas[y].idLinea == id)
-                        return lineas[y];
-                }
+                if (partes_linea[i].idLinea == id)
+                    return partes_linea[i];
             }
 
             return null;
+        }
+
+        public List<tblPartesFinca> GetPartesPerFincaId(int id)
+        {
+            List<tblPartesFinca> ret = new List<tblPartesFinca>();
+
+            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
+
+            for (int i = 0; i < partes.Count; i++)
+            {
+                if (partes[i].idFinca == id)
+                {
+                    ret.Add(partes[i]);
+                }
+            }
+
+            return ret;
         }
 
         public void SetZoomByMapDistances(double x, double y)
@@ -1258,24 +1224,25 @@ namespace WindowsFormsApp4
                     // Treballs
                     if (treball_actual != null)
                     {
-                        int count = 0;
+                        bool stop = true;
 
-                        Finca f = GetFincaPerParcela(parcela_actual);
+                        List<tblLineasPartesFinca1> partes_l = propietaris_manager.GetPartesLinea();
 
-                        if (f != null)
+                        for(int p = 0; p < partes_l.Count; p++)
                         {
-                            List<tblLineasPartesFinca1> partes = f.GetPartesLinea();
-
-                            for (int p = 0; p < partes.Count; p++)
+                            if (partes_l[p].idParcela != parcela_actual.GetTbl().idParcela)
                             {
-                                if (treball_actual.GetTbl().idCost == partes[p].idFamiliaCoste)
-                                {
-                                    count++;
-                                    break;
-                                }
+                                continue;
+                            }
+
+                            if (partes_l[p].idFamiliaCoste == treball_actual.GetTbl().idCost)
+                            {
+                                stop = false;
+                                break;
                             }
                         }
-                        if (count == 0)
+
+                        if (stop)
                         {
                             ++i;
                             continue;
@@ -1397,7 +1364,7 @@ namespace WindowsFormsApp4
             {
                 Finca f = GetFincaPerParcela(parceles[i]);
 
-                List<tblPartesFinca> partes = f.GetPartes();
+                List<tblPartesFinca> partes = GetPartesPerFincaId(f.GetTbl().idFinca);
 
                 for (int p = 0; p < partes.Count; p++)
                 {
@@ -1408,7 +1375,7 @@ namespace WindowsFormsApp4
                         if (lineas[l].idParcela == parceles[i].GetTbl().idParcela)
                         {
                             if (!partes_to_add.Contains(partes[p]))
-                                    partes_to_add.Add(partes[p]);
+                                partes_to_add.Add(partes[p]);
 
                             break;
                         }

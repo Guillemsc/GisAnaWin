@@ -84,7 +84,47 @@ namespace WindowsFormsApp4
         {
             treballs.Clear();
         }
-        
+
+        public List<tblPartesFinca> GetPartes()
+        {
+            return partes;
+        }
+
+        public void AfegirParte(tblPartesFinca parte)
+        {
+            partes.Add(parte);
+        }
+
+        public void EliminaParte(tblPartesFinca parte)
+        {
+            partes.Remove(parte);
+        }
+
+        public void ClearPartes()
+        {
+            partes.Clear();
+        }
+
+        public List<tblLineasPartesFinca1> GetPartesLinea()
+        {
+            return partes_linea;
+        }
+
+        public void AfegirParteLinea(tblLineasPartesFinca1 parte)
+        {
+            partes_linea.Add(parte);
+        }
+
+        public void EliminaParteLinea(tblLineasPartesFinca1 parte)
+        {
+            partes_linea.Remove(parte);
+        }
+
+        public void ClearPartesLinea()
+        {
+            partes_linea.Clear();
+        }
+
         public List<Analitica> GetAnalitiques()
         {
             return analitiques;
@@ -161,6 +201,8 @@ namespace WindowsFormsApp4
         List<Parcela> parceles = new List<Parcela>();
         List<Varietat> varietats = new List<Varietat>();
         List<Treball> treballs = new List<Treball>();
+        List<tblPartesFinca> partes = new List<tblPartesFinca>();
+        List<tblLineasPartesFinca1> partes_linea = new List<tblLineasPartesFinca1>();
         List<Analitica> analitiques = new List<Analitica>();
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 

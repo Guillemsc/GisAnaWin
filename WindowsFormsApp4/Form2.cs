@@ -97,7 +97,7 @@ namespace WindowsFormsApp4
                     parte.idFinca = finca_actual.GetTbl().idFinca;
                     parte.idParte = GetPartesNewId();
 
-                    finca_actual.AddParte(parte);
+                    propietaris_manager.AfegirParte(parte);
                     server_manager.AddParteFinca(parte);
 
                     for (int l = 0; l < partes_linea_per_afegir.Count; l++)
@@ -117,10 +117,8 @@ namespace WindowsFormsApp4
                             linea.idLinea = GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
 
-                            parcela_actual.AddLineaParte(linea);
+                            propietaris_manager.AfegirParteLinea(linea);
                             server_manager.AddLineaParteFinca(linea);
-
-                            finca_actual.AddPartesLinea(linea);
                         }
                     }
                 }
@@ -173,18 +171,13 @@ namespace WindowsFormsApp4
         {
             int ret = -1;
 
-            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
             List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
 
-            for(int i = 0; i < finques.Count; i++)
+            for (int i = 0; i < partes.Count; i++)
             {
-                List<tblPartesFinca> partes = finques[i].GetPartes();
-
-                for(int y = 0; y < partes.Count; y++)
-                {
-                    if (partes[y].idParte > ret)
-                        ret = partes[y].idParte;
-                }
+                if (partes[i].idParte > ret)
+                    ret = partes[i].idParte;
             }
 
             for(int i = 0; i < analitiques.Count; i++)
@@ -192,7 +185,6 @@ namespace WindowsFormsApp4
                 if (analitiques[i].GetTbl().idParte > ret)
                     ret = (int)analitiques[i].GetTbl().idParte;
             }
-
 
             ret++;
 
@@ -203,17 +195,12 @@ namespace WindowsFormsApp4
         {
             int ret = -1;
 
-            List<Finca> finques = propietaris_manager.GetFinques();
+            List<tblLineasPartesFinca1> partes_l = propietaris_manager.GetPartesLinea();
 
-            for (int i = 0; i < finques.Count; i++)
+            for(int i = 0; i < partes_l.Count; i++)
             {
-                List<tblLineasPartesFinca1> partes_l = finques[i].GetPartesLinea();
-
-                for (int y = 0; y < partes_l.Count; y++)
-                {
-                    if (partes_l[y].idLinea > ret)
-                        ret = partes_l[y].idLinea;
-                }
+                if (partes_l[i].idLinea > ret)
+                    ret = partes_l[i].idLinea;
             }
 
             ret++;

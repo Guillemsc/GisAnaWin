@@ -91,41 +91,9 @@ namespace WindowsFormsApp4
 
         public tblFinques GetTbl() { return _tbl; }
 
-        public void AddParte(tblPartesFinca parte)
-        {
-            partes.Add(parte);
-        }
-
-        public List<tblPartesFinca> GetPartes()
-        {
-            return partes;
-        }
-
-        public void AddPartesLinea(tblLineasPartesFinca1 parte)
-        {
-            partes_linea.Add(parte);
-        }
-
-        public bool EliminaPartesLinea(tblLineasPartesFinca1 parte)
-        {
-            return partes_linea.Remove(parte);
-        }
-
-        public bool EliminaPartes(tblPartesFinca parte)
-        {
-            return partes.Remove(parte);
-        }
-
-        public List<tblLineasPartesFinca1> GetPartesLinea()
-        {
-            return partes_linea;
-        }
-
         GMapOverlay _overlay = null;
         GMapPolygon polygon = null;
         private tblFinques _tbl = null;
-        private List<tblPartesFinca> partes = new List<tblPartesFinca>();
-        private List<tblLineasPartesFinca1> partes_linea = new List<tblLineasPartesFinca1>();
     }
 
     public class Parcela
@@ -326,28 +294,12 @@ namespace WindowsFormsApp4
             return _highlighed;
         }
 
-        public void AddLineaParte(tblLineasPartesFinca1 lpartes)
-        {
-            lineas_parte.Add(lpartes);
-        }
-
-        public bool EliminaLineaParte(tblLineasPartesFinca1 lpartes)
-        {
-            return lineas_parte.Remove(lpartes);
-        }
-
-        public List<tblLineasPartesFinca1> GetLineasParte()
-        {
-            return lineas_parte;
-        }
-
         GMapPolygon polygon = null;
         GMapOverlay _overlay = null;
         GMapMarker text_marker = null;
         PointLatLng center_pos;
         tblParceles _tbl = null;
         List<tblCoordenadesFincaParcela> _coordenates_tbl = new List<tblCoordenadesFincaParcela>();
-        List<tblLineasPartesFinca1> lineas_parte = new List<tblLineasPartesFinca1>();
         Color _lines = Color.Blue;
         Color _fill = Color.Blue;
         bool _highlighed = false;

@@ -331,20 +331,16 @@ namespace WindowsFormsApp4
         {
             int ret = -1;
 
-            List<Finca> finques = propietaris_manager.GetFinques();
             List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
+            
+            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
 
-            for (int i = 0; i < finques.Count; i++)
+            for (int y = 0; y < partes.Count; y++)
             {
-                List<tblPartesFinca> partes = finques[i].GetPartes();
-
-                for (int y = 0; y < partes.Count; y++)
-                {
-                    if (partes[y].idParte > ret)
-                        ret = partes[y].idParte;
-                }
+                if (partes[y].idParte > ret)
+                    ret = partes[y].idParte;
             }
-
+               
             for (int i = 0; i < analitiques.Count; i++)
             {
                 if (analitiques[i].GetTbl().idParte > ret)
