@@ -20,6 +20,7 @@ namespace WindowsFormsApp4
         private void Form5_Load(object sender, EventArgs e)
         {
             CarregaInformacioInicial();
+            grid.CleanSelection();
         }
 
         private void CarregaInformacioInicial()
@@ -121,31 +122,26 @@ namespace WindowsFormsApp4
             if (analitica == null)
                 return;
 
+            bool exists = true;
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
                 if(analitiques_per_afegir[i].GetTbl().idAnalitica == analitica.GetTbl().idAnalitica)
                 {
                     analitiques_per_afegir.RemoveAt(i);
+                    exists = false;
                     break;
                 }
             }
 
-            analitiques_per_eliminar.Add(analitica);
+            if(exists)
+                analitiques_per_eliminar.Add(analitica);
 
             CarregaInformacioInicial();
         }
 
         public void Crea(object sender, EventArgs e)
         {
-            if (data_dataselect.GetDate() == null || intensitat_colorant_text_input.GetText() == "" || ph_text_input.GetText() == ""
-                    || grau_text_input.GetText() == "" || densitat_text_input.GetText() == "" || estat_sanitari_text_input.GetText() == ""
-                    || observacions_text_input.GetText() == "")
-                return;
-
-            float test;
-
-            if (!float.TryParse(intensitat_colorant_text_input.GetText(), out test) || !float.TryParse(ph_text_input.GetText(), out test)
-                || !float.TryParse(grau_text_input.GetText(), out test) || !float.TryParse(densitat_text_input.GetText(), out test))
+            if (!FormulariComplert())
                 return;
 
             Parcela parcela = propietaris_manager.GetParcelesSeleccionades()[0];
@@ -195,15 +191,18 @@ namespace WindowsFormsApp4
             if (analitica == null)
                 return;
 
+            if (!FormulariComplert())
+                return;
+
             analitiques_per_eliminar.Add(analitica);
 
             tblAnaliticaFincaParcela a = new tblAnaliticaFincaParcela();
 
             a.Fecha = data_dataselect.GetDate();
-            a.IC = (decimal)float.Parse(intensitat_colorant_text_input.GetText());
-            a.ph = (decimal)float.Parse(ph_text_input.GetText());
-            a.grauAlc = (decimal)float.Parse(grau_text_input.GetText());
-            a.DensitatProduccio = (decimal)float.Parse(densitat_text_input.GetText());
+            a.IC = decimal.Parse(intensitat_colorant_text_input.GetText());
+            a.ph = decimal.Parse(ph_text_input.GetText());
+            a.grauAlc = decimal.Parse(grau_text_input.GetText());
+            a.DensitatProduccio = decimal.Parse(densitat_text_input.GetText());
             a.EstatSanitari = estat_sanitari_text_input.GetText();
             a.Observaciones = observacions_text_input.GetText();
             a.CodigoEmpresa = analitica.GetTbl().CodigoEmpresa;
@@ -216,7 +215,7 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
-                if(analitiques_per_afegir[i].GetTbl().idAnalitica == nova_analitica.GetTbl().idAnalitica)
+                if (analitiques_per_afegir[i].GetTbl().idAnalitica == nova_analitica.GetTbl().idAnalitica)
                 {
                     analitiques_per_afegir.RemoveAt(i);
                     break;
@@ -233,13 +232,16 @@ namespace WindowsFormsApp4
 
         public void Accepta(object sender, EventArgs e)
         {
+            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
+
             for (int i = 0; i < analitiques_per_eliminar.Count; i++)
             {
-                if (propietaris_manager.GetAnalitiques().Contains(analitiques_per_eliminar[i]))
-                    server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
+                server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
 
                 propietaris_manager.GetAnalitiques().Remove(analitiques_per_eliminar[i]);
             }
+
+            server_manager.SubmitChanges();
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
@@ -256,7 +258,25 @@ namespace WindowsFormsApp4
             estat_sanitari_text_input.SetText("");
             observacions_text_input.SetText("");
 
+            grid.CleanSelection();
+
             this.Hide();
+        }
+
+        bool FormulariComplert()
+        {
+            if (data_dataselect.GetDate() == null || intensitat_colorant_text_input.GetText() == "" || ph_text_input.GetText() == ""
+        || grau_text_input.GetText() == "" || densitat_text_input.GetText() == "" || estat_sanitari_text_input.GetText() == ""
+        || observacions_text_input.GetText() == "")
+                return false;
+
+            float test;
+
+            if (!float.TryParse(intensitat_colorant_text_input.GetText(), out test) || !float.TryParse(ph_text_input.GetText(), out test)
+                || !float.TryParse(grau_text_input.GetText(), out test) || !float.TryParse(densitat_text_input.GetText(), out test))
+                return false;
+
+            return true;
         }
 
         Analitica GetAnaliticaPerId(int id)

@@ -128,6 +128,8 @@ namespace WindowsFormsApp4
                 server_manager.SubmitChanges();
             }
 
+            //grid.CleanSelection();
+
             this.Close();
         }
 

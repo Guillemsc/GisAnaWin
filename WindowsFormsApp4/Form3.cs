@@ -21,6 +21,7 @@ namespace WindowsFormsApp4
         {
             ActualitzaLlistaTreballs();
             CarregaInformacioInicial();
+            grid.CleanSelection();
         }
 
         // ---------------------------------------------------------------------- Botons
