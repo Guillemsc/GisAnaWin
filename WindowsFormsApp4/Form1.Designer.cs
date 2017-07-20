@@ -193,7 +193,6 @@ namespace WindowsFormsApp4
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
             
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
-            visualitza_analitica_form.ShowDialog();
             // -----------------------------------
 
         }
