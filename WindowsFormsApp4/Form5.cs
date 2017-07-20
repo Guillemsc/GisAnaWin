@@ -187,7 +187,7 @@ namespace WindowsFormsApp4
             {
                 if (analitiques_per_afegir[i].GetTbl().idAnalitica == id)
                 {
-                    analitiques_per_afegir.RemoveAt(i);
+                    analitica = analitiques_per_afegir[i];
                     break;
                 }
             }
@@ -232,8 +232,10 @@ namespace WindowsFormsApp4
         {
             for (int i = 0; i < analitiques_per_eliminar.Count; i++)
             {
+                if (propietaris_manager.GetAnalitiques().Contains(analitiques_per_eliminar[i]))
+                    server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
+
                 propietaris_manager.GetAnalitiques().Remove(analitiques_per_eliminar[i]);
-                server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
             }
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
