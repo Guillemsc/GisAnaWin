@@ -191,9 +191,7 @@ namespace WindowsFormsApp4
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
-
-            afegir_analitica_form = new Form4(propietaris_manager, point_manager, server_manager, ui_manager);
-
+            
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
             visualitza_analitica_form.ShowDialog();
             // -----------------------------------
@@ -381,7 +379,7 @@ namespace WindowsFormsApp4
                 }
                 editor_parceles_panel.SetVisible(false);
 
-                // Parceles / Partes seleccionades
+                // Parceles / Partes seleccionades / Analitiques
                 parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
@@ -396,12 +394,7 @@ namespace WindowsFormsApp4
                     elimina_parte_button.SetEnabled(false);
                     parceles_seleccionades_panel.AddElement(elimina_parte_button);
 
-                    afegir_analitica_button = new UI_Button(new Point(5, 69), 120, 30, "Afegir analítica");
-                    afegir_analitica_button.SetColor(Color.Cornsilk);
-                    afegir_analitica_button.GetElement().Click += new System.EventHandler(this.ObreFormAnalitiques);
-                    parceles_seleccionades_panel.AddElement(afegir_analitica_button);
-
-                    visualitza_analitiques_button = new UI_Button(new Point(5, 102), 120, 30, "Visualitza analítiques");
+                    visualitza_analitiques_button = new UI_Button(new Point(5, 71), 120, 40, "Visualitza analítiques");
                     visualitza_analitiques_button.SetColor(Color.Cornsilk);
                     visualitza_analitiques_button.GetElement().Click += new System.EventHandler(this.ObreFormVisualitzaAnalitiques);
                     parceles_seleccionades_panel.AddElement(visualitza_analitiques_button);
@@ -498,7 +491,6 @@ namespace WindowsFormsApp4
         // Forms
         Form2 crea_parte_form = null;
         Form3 info_parte_form = null;
-        Form4 afegir_analitica_form = null;
         Form5 visualitza_analitica_form = null;
         
         // Windows
@@ -551,7 +543,6 @@ namespace WindowsFormsApp4
         UI_Text partes_seleccionats_text = null;
         UI_ListBox partes_seleccionats_listbox = null;
         UI_Button elimina_parte_button = null;
-        UI_Button afegir_analitica_button = null;
         UI_Button visualitza_analitiques_button = null;
 
         UI_ComboBox seleccio_propietari_noms_combobox = null;

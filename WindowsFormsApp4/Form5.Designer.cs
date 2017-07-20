@@ -33,7 +33,7 @@ namespace WindowsFormsApp4
         {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 440);
+            this.ClientSize = new System.Drawing.Size(1014, 470);
             this.Name = "Analítiques";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form5_Load);
@@ -106,6 +106,22 @@ namespace WindowsFormsApp4
 
                 observacions_text_input = new UI_TextInput(new Point(503, 290), 470, 130);
                 main_window.AddElement(observacions_text_input);
+
+                elimina_button = new UI_Button(new Point(14, 431), 100, 30, "Elimina analítica");
+                elimina_button.GetElement().Click += new System.EventHandler(this.Elimina);
+                main_window.AddElement(elimina_button);
+
+                actualitza_button = new UI_Button(new Point(633, 431), 120, 30, "Actualitza analítica");
+                actualitza_button.GetElement().Click += new System.EventHandler(this.Actualitza);
+                main_window.AddElement(actualitza_button);
+
+                crea_button = new UI_Button(new Point(503, 431), 120, 30, "Crea analítica");
+                crea_button.GetElement().Click += new System.EventHandler(this.Crea);
+                main_window.AddElement(crea_button);
+
+                accepta_button = new UI_Button(new Point(880, 431), 100, 30, "Acceptar");
+                accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
+                main_window.AddElement(accepta_button);
             }
         }
 
@@ -133,19 +149,24 @@ namespace WindowsFormsApp4
 
         UI_Text observacions_text = null;
         UI_TextInput observacions_text_input = null;
+        
+        UI_Button elimina_button = null;
+
+        UI_Button actualitza_button = null;
+
+        UI_Button crea_button = null;
 
         UI_Button accepta_button = null;
 
-        UI_Text propietari_text = null;
-        UI_Text propietari_nom_text = null;
 
-        UI_Text finca_text = null;
-        UI_Text finca_nom_text = null;
 
         public PropietarisManager propietaris_manager = null;
         public PointsManager point_manager = null;
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        List<Analitica> analitiques_per_afegir = new List<Analitica>();
+        List<Analitica> analitiques_per_eliminar = new List<Analitica>();
     }
 }
