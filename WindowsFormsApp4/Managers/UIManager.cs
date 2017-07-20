@@ -559,6 +559,8 @@ namespace WindowsFormsApp4
             d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             d.AllowUserToAddRows = false;
             d.ReadOnly = true;
+            d.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
 
             SetElement(d);
         }
@@ -646,7 +648,6 @@ namespace WindowsFormsApp4
 
             if (d.CurrentCell != null)
                 d.CurrentCell.Selected = false;
-
 
             d.ClearSelection();
         }

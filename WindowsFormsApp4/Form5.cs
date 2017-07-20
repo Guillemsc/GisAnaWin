@@ -226,6 +226,9 @@ namespace WindowsFormsApp4
             analitiques_per_afegir.Add(nova_analitica);
 
             CarregaInformacioInicial();
+
+            grid.CleanSelection();
+            data_dataselect.Focus();
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -245,6 +248,13 @@ namespace WindowsFormsApp4
             }
 
             server_manager.SubmitChanges();
+
+            intensitat_colorant_text_input.SetText("");
+            ph_text_input.SetText("");
+            grau_text_input.SetText("");
+            densitat_text_input.SetText("");
+            estat_sanitari_text_input.SetText("");
+            observacions_text_input.SetText("");
 
             this.Hide();
         }
