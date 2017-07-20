@@ -128,7 +128,9 @@ namespace WindowsFormsApp4
                 server_manager.SubmitChanges();
             }
 
-            //grid.CleanSelection();
+            grid.CleanSelection();
+
+            partes_linea_per_afegir.Clear();
 
             this.Close();
         }

@@ -182,6 +182,9 @@ namespace WindowsFormsApp4
 
             server_manager.SubmitChanges();
 
+            partes_linea_per_afegir.Clear();
+            partes_linea_per_eliminar.Clear();
+
             this.Close();
         }
 

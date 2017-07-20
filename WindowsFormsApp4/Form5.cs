@@ -119,6 +119,15 @@ namespace WindowsFormsApp4
 
             Analitica analitica = GetAnaliticaPerId(id);
 
+            for(int i = 0; i < analitiques_per_afegir.Count; i++)
+            {
+                if (analitiques_per_afegir[i].GetTbl().idAnalitica == id)
+                {
+                    analitica = analitiques_per_afegir[i];
+                    break;
+                }
+            }
+
             if (analitica == null)
                 return;
 
@@ -236,7 +245,15 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < analitiques_per_eliminar.Count; i++)
             {
-                server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
+                bool exists = false;
+                for(int y = 0; y < analitiques.Count; y++)
+                {
+                    if (analitiques[y].GetTbl() == analitiques_per_eliminar[i].GetTbl())
+                        exists = true;
+                }
+
+                if (exists)
+                    server_manager.DeleteAnalitica(analitiques_per_eliminar[i].GetTbl());
 
                 propietaris_manager.GetAnalitiques().Remove(analitiques_per_eliminar[i]);
             }
@@ -245,7 +262,17 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
+                bool exists = false;
+                for (int y = 0; y < analitiques.Count; y++)
+                {
+                    if (analitiques[y].GetTbl().idAnalitica == analitiques_per_afegir[i].GetTbl().idAnalitica)
+                        exists = true;
+                }
+
+                if(!exists)
                 propietaris_manager.AfegirAnalitica(analitiques_per_afegir[i]);
+
+
                 server_manager.AddAnalitica(analitiques_per_afegir[i].GetTbl());
             }
 
@@ -259,6 +286,9 @@ namespace WindowsFormsApp4
             observacions_text_input.SetText("");
 
             grid.CleanSelection();
+
+            analitiques_per_afegir.Clear();
+            analitiques_per_eliminar.Clear();
 
             this.Hide();
         }
@@ -321,6 +351,11 @@ namespace WindowsFormsApp4
                     ret = (int)analitiques[i].GetTbl().idParte;
             }
 
+            for (int i = 0; i < analitiques_per_afegir.Count; i++)
+            {
+                if (analitiques_per_afegir[i].GetTbl().idParte > ret)
+                    ret = (int)analitiques_per_afegir[i].GetTbl().idParte;
+            }
 
             ret++;
 
@@ -336,8 +371,14 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < analitiques.Count; i++)
             {
-                if (analitiques[i].GetTbl().idParte > ret)
-                    ret = (int)analitiques[i].GetTbl().idParte;
+                if (analitiques[i].GetTbl().idAnalitica > ret)
+                    ret = (int)analitiques[i].GetTbl().idAnalitica;
+            }
+
+            for (int i = 0; i < analitiques_per_afegir.Count; i++)
+            {
+                if (analitiques_per_afegir[i].GetTbl().idAnalitica > ret)
+                    ret = analitiques_per_afegir[i].GetTbl().idAnalitica;
             }
 
             ret++;

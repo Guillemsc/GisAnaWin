@@ -1408,7 +1408,7 @@ namespace WindowsFormsApp4
                         if (lineas[l].idParcela == parceles[i].GetTbl().idParcela)
                         {
                             if (!partes_to_add.Contains(partes[p]))
-                                partes_to_add.Add(partes[p]);
+                                    partes_to_add.Add(partes[p]);
 
                             break;
                         }
