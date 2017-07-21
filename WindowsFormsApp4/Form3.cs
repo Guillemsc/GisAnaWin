@@ -178,10 +178,24 @@ namespace WindowsFormsApp4
                 server_manager.AddLineaParteFinca(partes_linea_per_afegir[i]);
             }
 
-            server_manager.SubmitChanges();
-
             partes_linea_per_afegir.Clear();
             partes_linea_per_eliminar.Clear();
+
+            // Elimina partes buits
+            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
+
+            for(int i = 0; i < partes.Count; i++)
+            {
+                List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(partes[i].idParte);
+
+                if (lineas.Count == 0)
+                {
+                    propietaris_manager.EliminaParte(partes[i]);
+                    server_manager.DeleteParteFinca(partes[i]);
+                }
+            }
+
+            server_manager.SubmitChanges();
 
             this.Close();
         }

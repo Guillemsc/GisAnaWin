@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Drawing;
 using System.Xml.Linq;
-using System.Configuration;
-using System.Collections.Generic;
 
 
 // ---------------------------------------------------------------------- Botons
@@ -193,6 +192,7 @@ namespace WindowsFormsApp4
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
+            info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
             
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------

@@ -19,11 +19,11 @@ namespace WindowsFormsApp4
 
         private void Form5_Load(object sender, EventArgs e)
         {
-            CarregaInformacioInicial();
+            ActualitzaLlistaAnalitiques();
             grid.CleanSelection();
         }
 
-        private void CarregaInformacioInicial()
+        private void ActualitzaLlistaAnalitiques()
         {
             if (propietaris_manager.parcela_actual == null)
                 return;
@@ -145,7 +145,7 @@ namespace WindowsFormsApp4
             if(exists)
                 analitiques_per_eliminar.Add(analitica);
 
-            CarregaInformacioInicial();
+            ActualitzaLlistaAnalitiques();
         }
 
         public void Crea(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace WindowsFormsApp4
 
             analitiques_per_afegir.Add(a);
 
-            CarregaInformacioInicial();
+            ActualitzaLlistaAnalitiques();
         }
 
         public void Actualitza(object sender, EventArgs e)
@@ -233,7 +233,7 @@ namespace WindowsFormsApp4
 
             analitiques_per_afegir.Add(nova_analitica);
 
-            CarregaInformacioInicial();
+            ActualitzaLlistaAnalitiques();
 
             grid.CleanSelection();
             data_dataselect.Focus();

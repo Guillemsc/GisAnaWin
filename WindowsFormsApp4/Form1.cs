@@ -262,6 +262,11 @@ namespace WindowsFormsApp4
             ActualitzaLlistaPartes();
         }
 
+        public void InfoParteTanca(object sender, FormClosedEventArgs e)
+        {
+            ActualitzaLlistaPartes();
+        }
+
         public void ObreFormInfoPartes(object sender, EventArgs e)
         {
             if(partes_seleccionats_listbox.IsSelected())
