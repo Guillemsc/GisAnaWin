@@ -219,6 +219,7 @@ namespace WindowsFormsApp4
             {
                 text_marker.ToolTipMode = MarkerTooltipMode.Always;
                 text_marker.ToolTipText = text;
+                text_marker.ToolTip.TextPadding = new Size(5, 0);
                 text_marker.ToolTip.Stroke.Color = Color.FromArgb(120, 255, 255, 255);
                 text_marker.ToolTip.Fill = new SolidBrush(Color.FromArgb(180, 255, 255, 255));
                 text_marker.ToolTip.Foreground = new SolidBrush(Color.FromArgb(250, 32, 32, 32));
