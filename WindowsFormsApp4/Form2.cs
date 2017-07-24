@@ -21,8 +21,6 @@ namespace WindowsFormsApp4
         {
             ActualitzaLlistaTreballs();
             CarregaLListaPartes();
-
-            partes_linea_per_afegir.Clear(); 
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -41,22 +39,23 @@ namespace WindowsFormsApp4
             if (treball == null || data_dataselect.GetDate() == null || descripcio == "")
                 return;
 
-            tblLineasPartesFinca1 parte_linea = new tblLineasPartesFinca1();
-            parte_linea.CodigoEmpresa = "0";
-            parte_linea.Descripcion = descripcio;
-            parte_linea.idFamiliaCoste = treball.GetTbl().idCost;
-            parte_linea.idLinea = 0;
-            parte_linea.idParcela = 0;
-            parte_linea.Observaciones = "";
-            parte_linea.Precio = 0;
-            parte_linea.Total = 0;
-            parte_linea.Unidades = 0;
+            List<Parcela> seleccionades = propietaris_manager.GetParcelesSeleccionades();
 
-            partes_linea_per_afegir.Add(parte_linea);
+            for (int i = 0; i < seleccionades.Count; i++)
+            {
+                tblLineasPartesFinca1 parte_linea = new tblLineasPartesFinca1();
+                parte_linea.CodigoEmpresa = "0";
+                parte_linea.Descripcion = descripcio;
+                parte_linea.idFamiliaCoste = treball.GetTbl().idCost;
+                parte_linea.idLinea = 0;
+                parte_linea.idParcela = seleccionades[i].GetTbl().idParcela;
+                parte_linea.Observaciones = "";
+                parte_linea.Precio = 0;
+                parte_linea.Total = 0;
+                parte_linea.Unidades = 0;
 
-            // --------
-
-            grid.AddRow(treball.GetTbl().Descripcio, descripcio);
+                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, parte_linea);
+            }
 
             treballs_combobox.CleanSelection();
             descripcio_text_input.SetText("");
@@ -66,69 +65,70 @@ namespace WindowsFormsApp4
         {
             if (grid.IsSelected())
             {
-                partes_linea_per_afegir.RemoveAt(grid.GetSelectedRowIndex());
-
                 grid.DeleteRow(grid.GetSelectedRowIndex());
             }
         }
 
         private void Accepta(object sender, EventArgs e)
         {
-            if (partes_linea_per_afegir.Count > 0)
+            if (grid.GetRows().Count == 0)
+                return;
+
+            List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+            List<Finca> finques = new List<Finca>();
+
+            for (int i = 0; i < parceles.Count; i++)
             {
-                List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
-                List<Finca> finques = new List<Finca>();
+                Finca finca = GetFincaPerParcela(parceles[i]);
 
-                for (int i = 0; i < parceles.Count; i++)
+                if (!finques.Contains(finca))
+                    finques.Add(finca);
+            }
+
+            for (int f = 0; f < finques.Count; f++)
+            {
+                Finca finca_actual = finques[f];
+
+                tblPartesFinca parte = new tblPartesFinca();
+                parte.Fecha = data_dataselect.GetDate();
+                parte.CodigoEmpresa = finca_actual.GetTbl().CodigoEmpresa;
+                parte.idFinca = finca_actual.GetTbl().idFinca;
+                parte.idParte = GetPartesNewId();
+
+                propietaris_manager.AfegirParte(parte);
+                server_manager.AddParteFinca(parte);
+
+                for (int r = 0; r < grid.GetRows().Count; r++)
                 {
-                    Finca finca = GetFincaPerParcela(parceles[i]);
+                    tblLineasPartesFinca1 li = grid.GetRows()[r].Cells[3].Value as tblLineasPartesFinca1;
 
-                    if (!finques.Contains(finca))
-                        finques.Add(finca);
-                }
-
-                for (int f = 0; f < finques.Count; f++)
-                {
-                    Finca finca_actual = finques[f];
-
-                    tblPartesFinca parte = new tblPartesFinca();
-                    parte.Fecha = data_dataselect.GetDate();
-                    parte.CodigoEmpresa = finca_actual.GetTbl().CodigoEmpresa;
-                    parte.idFinca = finca_actual.GetTbl().idFinca;
-                    parte.idParte = GetPartesNewId();
-
-                    propietaris_manager.AfegirParte(parte);
-                    server_manager.AddParteFinca(parte);
-
-                    for (int l = 0; l < partes_linea_per_afegir.Count; l++)
+                    for (int p = 0; p < parceles.Count; p++)
                     {
-                        for (int p = 0; p < parceles.Count; p++)
+                        Parcela parcela_actual = parceles[p];
+
+                        if (parcela_actual.GetTbl().idFinca == finca_actual.GetTbl().idFinca && parcela_actual.GetTbl().idParcela == li.idParcela)
                         {
-                            Parcela parcela_actual = parceles[p];
-
-                            if (parcela_actual.GetTbl().idFinca != finca_actual.GetTbl().idFinca)
-                                continue;
-
                             tblLineasPartesFinca1 linea = new tblLineasPartesFinca1();
-                            linea.Descripcion = partes_linea_per_afegir[l].Descripcion;
-                            linea.idFamiliaCoste = partes_linea_per_afegir[l].idFamiliaCoste;
+                            linea.Descripcion = grid.GetRows()[r].Cells[1].Value as string;
+                            linea.idFamiliaCoste = li.idFamiliaCoste;
                             linea.CodigoEmpresa = parcela_actual.GetTbl().CodigoEmpresa;
                             linea.idParcela = parcela_actual.GetTbl().idParcela;
                             linea.idLinea = GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
+
+                            string dec = grid.GetRows()[r].Cells[2].Value.ToString();
+                            linea.Unidades = decimal.Parse(dec);
 
                             propietaris_manager.AfegirParteLinea(linea);
                             server_manager.AddLineaParteFinca(linea);
                         }
                     }
                 }
-
-                server_manager.SubmitChanges();
             }
 
-            grid.CleanSelection();
+            //server_manager.SubmitChanges();
 
-            partes_linea_per_afegir.Clear();
+            grid.CleanSelection();
 
             this.Close();
         }

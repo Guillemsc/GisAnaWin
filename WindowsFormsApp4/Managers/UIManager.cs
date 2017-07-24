@@ -558,7 +558,6 @@ namespace WindowsFormsApp4
             d.AllowDrop = false;
             d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             d.AllowUserToAddRows = false;
-            d.ReadOnly = true;
             d.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
@@ -650,6 +649,25 @@ namespace WindowsFormsApp4
                 d.CurrentCell.Selected = false;
 
             d.ClearSelection();
+        }
+
+        public void SetReadOnlyColumn(int index, bool set)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Columns[index].ReadOnly = set;
+        }
+
+        public void SetColumnVisible(int index, bool set)
+        {
+            DataGridView d = GetElement() as DataGridView;
+            d.Columns[index].Visible = set;
+        }
+
+        public DataGridViewRowCollection GetRows()
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            return d.Rows;
         }
     }
 }

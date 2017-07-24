@@ -90,7 +90,9 @@ namespace WindowsFormsApp4
                 main_window.AddElement(remove_treball_button);
 
                 grid = new UI_Grid(new Point(22, 180), 470, 150);
-                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300);
+                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 70); grid.AddColumn("tblLinea", 0);
+                grid.SetReadOnlyColumn(0, true);
+                grid.SetColumnVisible(3, false);
                 main_window.AddElement(grid);
 
                 accepta_button = new UI_Button(new Point(393, 345), 100, 30, "Acceptar");
@@ -120,6 +122,6 @@ namespace WindowsFormsApp4
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
 
-        List<tblLineasPartesFinca1> partes_linea_per_afegir = new List<tblLineasPartesFinca1>();
+        GMap.NET.WindowsForms.GMapControl gmap = null;
     }
 }

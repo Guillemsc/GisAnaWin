@@ -235,6 +235,8 @@ namespace WindowsFormsApp4
             server_manager.DeleteParteFinca(propietaris_manager.parte_actual);
 
             server_manager.SubmitChanges();
+
+            ActualitzaLlistaPartes();
         }
 
         public void GuardaCanvis(object sender, EventArgs e)

@@ -61,7 +61,7 @@ namespace WindowsFormsApp4
             
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[2]);
+            int id = int.Parse(str[3]);
 
             List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -87,7 +87,7 @@ namespace WindowsFormsApp4
 
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[2]);
+            int id = int.Parse(str[3]);
 
             List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -191,6 +191,7 @@ namespace WindowsFormsApp4
                 if (lineas.Count == 0)
                 {
                     propietaris_manager.EliminaParte(partes[i]);
+
                     server_manager.DeleteParteFinca(partes[i]);
                 }
             }
@@ -368,11 +369,23 @@ namespace WindowsFormsApp4
 
             List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
+            List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+
             for(int i = 0; i < lineas.Count; i++)
             {
+                bool found = false;
+                for(int p = 0; p < parceles.Count; p++)
+                {
+                    if (parceles[p].GetTbl().idParcela == lineas[i].idParcela)
+                        found = true;
+                }
+
+                if (!found)
+                    continue;
+
                 Treball treball = GetTreballPerTreballId(lineas[i].idFamiliaCoste);
 
-                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].idLinea.ToString());
+                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString());
             }
 
             grid.CleanSelection();

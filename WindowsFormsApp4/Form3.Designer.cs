@@ -103,7 +103,8 @@ namespace WindowsFormsApp4
                 main_window.AddElement(modifica_treball_button);
 
                 grid = new UI_Grid(new Point(22, 260), 470, 210);
-                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300); grid.AddColumn("Id", 30);
+                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 70); grid.AddColumn("Id", 30);
+                grid.SetReadOnlyColumn(0, false); grid.SetReadOnlyColumn(3, false);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
 
