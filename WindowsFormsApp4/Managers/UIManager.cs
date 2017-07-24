@@ -577,6 +577,31 @@ namespace WindowsFormsApp4
             d.Rows.Add(text);
         }
 
+        public void AddRowOnIndex(int index, params object[] text)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            List<DataGridViewRow> rows = new List<DataGridViewRow>();
+
+            for(int i = 0; i < d.Rows.Count; i++)
+            {
+                rows.Add(d.Rows[i]);
+            }
+
+            d.Rows.Clear();
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                if (i == index)
+                {
+                    d.Rows.Add(text);
+                }
+
+                d.Rows.Add(rows[i]);
+            }
+        }
+
+
         public void SetAllowDrop(bool set)
         {
             DataGridView d = GetElement() as DataGridView;
@@ -600,6 +625,23 @@ namespace WindowsFormsApp4
                 for(int i = 0; i < d.ColumnCount; i++)
                 {
                     ret[i] = d.Rows[GetSelectedRowIndex()].Cells[i].Value as string;
+                }
+            }
+
+            return ret;
+        }
+
+        public string[] GetRow(int index)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            string[] ret = new string[d.ColumnCount];
+
+            if (IsSelected())
+            {
+                for (int i = 0; i < d.ColumnCount; i++)
+                {
+                    ret[i] = d.Rows[index].Cells[i].Value as string;
                 }
             }
 

@@ -120,13 +120,15 @@ namespace WindowsFormsApp4
             treballs_combobox.SetSelectedElement(treball.GetTbl().Descripcio);
             data_dataselect.SetDate((DateTime)propietaris_manager.parte_actual.Fecha);
             descripcio_text_input.SetText(linea_actual.Descripcion);
+            unitats_text_input.SetText(linea_actual.Unidades.ToString());
 
             propietaris_manager.parte_linea_actual = linea_actual;
         }
 
         public void ModificaParteSeleccionat(object sender, EventArgs e)
         {
-            if (!grid.IsSelected() || propietaris_manager.parte_linea_actual == null)
+            decimal test;
+            if (!grid.IsSelected() || propietaris_manager.parte_linea_actual == null || !decimal.TryParse(unitats_text_input.GetText(), out test))
                 return;
 
             Treball treball = treballs_combobox.GetSelected() as Treball;
@@ -141,10 +143,10 @@ namespace WindowsFormsApp4
             nova_linea.Observaciones = propietaris_manager.parte_linea_actual.Observaciones;
             nova_linea.Precio = propietaris_manager.parte_linea_actual.Precio;
             nova_linea.Total = propietaris_manager.parte_linea_actual.Total;
-            nova_linea.Unidades = propietaris_manager.parte_linea_actual.Unidades;
 
             nova_linea.Descripcion = descripcio_text_input.GetText();
             nova_linea.idFamiliaCoste = treball.GetTbl().idCost;
+            nova_linea.Unidades = decimal.Parse(unitats_text_input.GetText());
 
             // Comprova que aquesta linea no ha sigut ja modificata i actualitza
             for (int y = 0; y < partes_linea_per_afegir.Count; y++)
@@ -161,7 +163,7 @@ namespace WindowsFormsApp4
 
             propietaris_manager.parte_linea_actual = nova_linea;
 
-            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.idLinea.ToString());
+            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString() ,nova_linea.idLinea.ToString());
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -184,16 +186,17 @@ namespace WindowsFormsApp4
             // Elimina partes buits
             List<tblPartesFinca> partes = propietaris_manager.GetPartes();
 
-            for(int i = 0; i < partes.Count; i++)
+            for(int i = 0; i < partes.Count;)
             {
                 List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(partes[i].idParte);
 
                 if (lineas.Count == 0)
                 {
-                    propietaris_manager.EliminaParte(partes[i]);
-
                     server_manager.DeleteParteFinca(partes[i]);
+                    propietaris_manager.EliminaParte(partes[i]);
                 }
+                else
+                    ++i;
             }
 
             server_manager.SubmitChanges();
@@ -373,19 +376,19 @@ namespace WindowsFormsApp4
 
             for(int i = 0; i < lineas.Count; i++)
             {
-                bool found = false;
+                Parcela parcela = null;
                 for(int p = 0; p < parceles.Count; p++)
                 {
                     if (parceles[p].GetTbl().idParcela == lineas[i].idParcela)
-                        found = true;
+                        parcela = parceles[p];
                 }
 
-                if (!found)
+                if (parcela == null)
                     continue;
 
                 Treball treball = GetTreballPerTreballId(lineas[i].idFamiliaCoste);
 
-                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString());
+                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString(), parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha);
             }
 
             grid.CleanSelection();

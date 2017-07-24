@@ -54,7 +54,7 @@ namespace WindowsFormsApp4
                 parte_linea.Total = 0;
                 parte_linea.Unidades = 0;
 
-                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, parte_linea);
+                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, parte_linea, seleccionades[i].GetTbl().idParcelaVinicola, seleccionades[i].GetTbl().Ha);
             }
 
             treballs_combobox.CleanSelection();
@@ -126,7 +126,7 @@ namespace WindowsFormsApp4
                 }
             }
 
-            //server_manager.SubmitChanges();
+            server_manager.SubmitChanges();
 
             grid.CleanSelection();
 

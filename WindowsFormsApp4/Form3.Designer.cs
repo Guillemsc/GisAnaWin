@@ -90,21 +90,24 @@ namespace WindowsFormsApp4
                 descripcio_text_input = new UI_TextInput(new Point(22, 130), 421, 70);
                 main_window.AddElement(descripcio_text_input);
 
-                add_treball_button = new UI_Button(new Point(463, 130), 30, 30, "+");
-                //add_treball_button.GetElement().Click += new System.EventHandler(this.AfegeigLineaParte);
-                main_window.AddElement(add_treball_button);
+                unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
+                main_window.AddElement(unitats_text);
 
-                remove_treball_button = new UI_Button(new Point(463, 170), 30, 30, "-");
+                unitats_text_input = new UI_MaskedTextInput(new Point(22, 230), 100, 70);
+                main_window.AddElement(unitats_text_input);
+
+                remove_treball_button = new UI_Button(new Point(160, 275), 30, 25, "-");
                 remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaLineaParte);
                 main_window.AddElement(remove_treball_button);
 
-                modifica_treball_button = new UI_Button(new Point(21, 215), 130, 25, "Modifica seleccionat");
+                modifica_treball_button = new UI_Button(new Point(21, 275), 130, 25, "Modifica seleccionat");
                 modifica_treball_button.GetElement().Click += new System.EventHandler(this.ModificaParteSeleccionat);
                 main_window.AddElement(modifica_treball_button);
 
-                grid = new UI_Grid(new Point(22, 260), 470, 210);
-                grid.AddColumn("Treball", 50); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 70); grid.AddColumn("Id", 30);
-                grid.SetReadOnlyColumn(0, false); grid.SetReadOnlyColumn(3, false);
+                grid = new UI_Grid(new Point(22, 320), 470, 150);
+                grid.AddColumn("Treball", 70); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 70); grid.AddColumn("Id", 30);
+                grid.AddColumn("Parcela viti", 60); grid.AddColumn("Ha", 60);
+                grid.SetReadOnlyColumn(0, false); grid.SetReadOnlyColumn(3, false); grid.SetReadOnlyColumn(4, false); grid.SetReadOnlyColumn(5, false);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
 
@@ -130,10 +133,11 @@ namespace WindowsFormsApp4
         UI_Text descripcio_text = null;
         UI_TextInput descripcio_text_input = null;
         UI_Grid grid = null;
-        UI_Button add_treball_button = null;
         UI_Button remove_treball_button = null;
         UI_Button modifica_treball_button = null;
         UI_Button accepta_button = null;
+        UI_Text unitats_text = null;
+        UI_MaskedTextInput unitats_text_input = null;
 
 
         public PropietarisManager propietaris_manager = null;

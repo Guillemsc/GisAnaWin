@@ -368,6 +368,7 @@ namespace WindowsFormsApp4
             for (int i = 0; i < parceles.Count; i++)
             {
                 Parcela p = new Parcela(point_manager.overlay_parcela, parceles[i]);
+                p.SetText(p.GetTbl().idParcelaVinicola);
                 propietaris_manager.AfegirParcela(p);
             }
 

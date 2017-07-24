@@ -131,7 +131,8 @@ namespace WindowsFormsApp4
 
             center_pos = (CalculateCenterOfPolygon(points));
             text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
-            text_marker.ToolTipMode = MarkerTooltipMode.Always;
+
+            SetText(text);
 
             Draw();
         }
@@ -144,6 +145,8 @@ namespace WindowsFormsApp4
             {
                 text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.red_pushpin);
                 _overlay.Markers.Add(text_marker);
+
+                SetText(text);
             }
         }
 
@@ -154,6 +157,8 @@ namespace WindowsFormsApp4
             {
                 text_marker = new GMarkerGoogle(center_pos, GMarkerGoogleType.blue_pushpin);
                 _overlay.Markers.Add(text_marker);
+
+                SetText(text);
             }
         }
 
@@ -206,9 +211,19 @@ namespace WindowsFormsApp4
             return center_pos;
         }
 
-        public void SetText(string text)
-        {
-            text_marker.ToolTipText = text;
+        public void SetText(string _text)
+        { 
+            text = _text;
+
+            if(text_marker != null)
+            {
+                text_marker.ToolTipMode = MarkerTooltipMode.Always;
+                text_marker.ToolTipText = text;
+                text_marker.ToolTip.Stroke.Color = Color.FromArgb(120, 255, 255, 255);
+                text_marker.ToolTip.Fill = new SolidBrush(Color.FromArgb(180, 255, 255, 255));
+                text_marker.ToolTip.Foreground = new SolidBrush(Color.FromArgb(250, 32, 32, 32));
+                text_marker.ToolTip.Font = new Font("Arial", 9, FontStyle.Bold);
+            }
         }
 
         private PointLatLng CalculateCenterOfPolygon(List<PointLatLng> polypoints)
@@ -303,6 +318,7 @@ namespace WindowsFormsApp4
         Color _lines = Color.Blue;
         Color _fill = Color.Blue;
         bool _highlighed = false;
+        string text;
     }
 
     public class Marcador
