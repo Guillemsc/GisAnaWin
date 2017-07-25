@@ -90,8 +90,8 @@ namespace WindowsFormsApp4
                 main_window.AddElement(remove_treball_button);
 
                 grid = new UI_Grid(new Point(22, 180), 470, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300, true); grid.AddColumn("Unitats", 60, true); grid.AddColumn("tblLinea", 0, true);
-                grid.AddColumn("Parcela viti", 60); grid.AddColumn("Ha", 60);
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 60); grid.AddColumn("tblLinea", 0, true);
+                grid.AddColumn("Parcela viti", 60, true); grid.AddColumn("Ha", 60, true);
                 grid.SetColumnVisible(3, false);
                 main_window.AddElement(grid);
 
