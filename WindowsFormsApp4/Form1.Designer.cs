@@ -83,7 +83,7 @@ namespace WindowsFormsApp4
             this.gmap.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.gmap.Bearing = 0F;
             this.gmap.CanDragMap = true;
-            this.gmap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gmap.EmptyTileColor = System.Drawing.Color.AliceBlue;
             this.gmap.GrayScaleMode = false;
             this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gmap.LevelsKeepInMemmory = 5;
@@ -92,13 +92,15 @@ namespace WindowsFormsApp4
             this.gmap.MaxZoom = 23;
             this.gmap.MinZoom = 2;
             this.gmap.MouseWheelZoomEnabled = true;
-            this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gmap.EmptyTileText = "No es pot carregar";
+            this.gmap.IgnoreMarkerOnMouseWheel = true;
+            this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
             this.gmap.Name = "gmap";
             this.gmap.NegativeMode = false;
             this.gmap.PolygonsEnabled = true;
-            this.gmap.RetryLoadTile = 0;
-            this.gmap.RoutesEnabled = true;
-            this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gmap.RetryLoadTile = 2;
+            this.gmap.RoutesEnabled = false;
+            this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Fractional;
             this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmap.ShowTileGridLines = false;
             this.gmap.Location = new System.Drawing.Point(232, 0);
@@ -169,20 +171,24 @@ namespace WindowsFormsApp4
             // -----------------------------------
 
             // Carrega info ----------------------
-            ActualitzaPropietarisDesDeServidor();
-            ActualitzaFinquesDesDeServidor();
-            ActualitzaVarietatsDesDeServidor();
-            ActualitzaTreballsDesDeServidor();
-            ActualitzaParcelesDesDeServidor();
-            ActualitzaPartesDesDeServidor();
-            ActualitzaPartesLineaDesDeServidor();
-            ActualitzaAnalitiquesDesDeServidor();
+            if (server_manager.CheckServerConnection())
+            {
 
-            ActualitzaLlistaParceles();
+                ActualitzaPropietarisDesDeServidor();
+                ActualitzaFinquesDesDeServidor();
+                ActualitzaVarietatsDesDeServidor();
+                ActualitzaTreballsDesDeServidor();
+                ActualitzaParcelesDesDeServidor();
+                ActualitzaPartesDesDeServidor();
+                ActualitzaPartesLineaDesDeServidor();
+                ActualitzaAnalitiquesDesDeServidor();
 
-            UpdateLatLon();
+                ActualitzaLlistaParceles();
 
-            LoadArgs();
+                UpdateLatLon();
+
+                LoadArgs();
+            }
 
             gmap.ZoomAndCenterMarkers(point_manager.overlay_finca.Id);
             // -----------------------------------

@@ -15,6 +15,11 @@ namespace WindowsFormsApp4
 
         public DataClasses1DataContext GetServidor() { return servidor; }
 
+        public bool CheckServerConnection()
+        {
+            return servidor.DatabaseExists();
+        }
+
         public List<tblProveedores> GetProveedors()
         {
             List<tblProveedores> ret = new List<tblProveedores>();

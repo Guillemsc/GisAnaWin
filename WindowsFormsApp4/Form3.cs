@@ -27,33 +27,6 @@ namespace WindowsFormsApp4
         // ---------------------------------------------------------------------- Botons
         // -----------------------------------------------------------------------------
 
-        //public void AfegeigLineaParte(object sender, EventArgs e)
-        //{
-        //    Treball treball = null;
-        //    string descripcio = "";
-
-        //    if (treballs_combobox.IsSelected())
-        //        treball = treballs_combobox.GetSelected() as Treball;
-
-        //    descripcio = descripcio_text_input.GetText();
-
-        //    if (treball == null || data_dataselect.GetDate() == null || descripcio == "")
-        //        return;
-            
-
-
-        //    tblLineasPartesFinca1 parte_linea = new tblLineasPartesFinca1();
-        //    parte_linea.CodigoEmpresa = "0";
-        //    parte_linea.Descripcion = descripcio;
-        //    parte_linea.idFamiliaCoste = treball.GetTbl().idCost;
-        //    parte_linea.idLinea = GetPartesLineaNewId();
-        //    parte_linea.idParcela = 0;
-        //    parte_linea.Observaciones = "";
-        //    parte_linea.Precio = 0;
-        //    parte_linea.Total = 0;
-        //    parte_linea.Unidades = 0;
-        //}
-
         public void EliminaLineaParte(object sender, EventArgs e)
         {
             if (!grid.IsSelected())
@@ -70,6 +43,7 @@ namespace WindowsFormsApp4
                 if(lineas[i].idLinea == id)
                 {
                     partes_linea_per_eliminar.Add(lineas[i]);
+                    partes_linea_per_afegir.Remove(lineas[i]);
                     break;
                 }
             }

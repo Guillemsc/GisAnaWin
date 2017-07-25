@@ -61,7 +61,8 @@ namespace WindowsFormsApp4
             main_window = new UI_Window(this);
             {
                 grid = new UI_Grid(new Point(15, 15), 470, 405);
-                grid.AddColumn("Data", 150); grid.AddColumn("IC", 70); grid.AddColumn("PH", 70); grid.AddColumn("Grau alc", 70); grid.AddColumn("Densitat produccio", 70); grid.AddColumn("Id", 50);
+                grid.AddColumn("Data", 150, true); grid.AddColumn("IC", 70, true); grid.AddColumn("PH", 70, true);
+                grid.AddColumn("Grau alc", 70, true); grid.AddColumn("Densitat produccio", 70, true); grid.AddColumn("Id", 50, true);
                 grid.GetElement().Click += new System.EventHandler(this.AnaliticaClick);
                 main_window.AddElement(grid);
 

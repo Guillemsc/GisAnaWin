@@ -564,11 +564,12 @@ namespace WindowsFormsApp4
             SetElement(d);
         }
 
-        public void AddColumn(string text, int width)
+        public void AddColumn(string text, int width, bool read_only = false)
         {
             DataGridView d = GetElement() as DataGridView;
             d.Columns.Add(text, text);
             d.Columns[d.Columns.Count - 1].Width = width;
+            d.Columns[d.Columns.Count - 1].ReadOnly = read_only;
         }
 
         public void AddRow(params object[] text)
