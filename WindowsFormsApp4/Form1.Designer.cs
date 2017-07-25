@@ -173,7 +173,6 @@ namespace WindowsFormsApp4
             // Carrega info ----------------------
             if (server_manager.CheckServerConnection())
             {
-
                 ActualitzaPropietarisDesDeServidor();
                 ActualitzaFinquesDesDeServidor();
                 ActualitzaVarietatsDesDeServidor();

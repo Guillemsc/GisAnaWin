@@ -207,11 +207,10 @@ namespace WindowsFormsApp4
 
             if (l != null)
             {
-                tblPartesFinca lp = GetPartePerParteId(int.Parse(l.Text));
+                tblPartesFinca lp = GetPartePerParteId(int.Parse(l.Name));
 
                 if (lp != null)
                     propietaris_manager.parte_actual = lp;
-                
             }
 
             elimina_parte_button.SetEnabled(true);
@@ -1393,7 +1392,8 @@ namespace WindowsFormsApp4
 
             for (int y = 0; y < partes_to_add.Count; y++)
             {
-                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
+                Finca f = GetFincaPerId(partes_to_add[y].idFinca.ToString());
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30,f.GetTbl().Nom1 + "  ID: " + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
 
                 partes_seleccionats_listbox.AddElement(t);
                 ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;

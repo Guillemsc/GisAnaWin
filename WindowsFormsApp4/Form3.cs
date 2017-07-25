@@ -43,7 +43,15 @@ namespace WindowsFormsApp4
                 if(lineas[i].idLinea == id)
                 {
                     partes_linea_per_eliminar.Add(lineas[i]);
-                    partes_linea_per_afegir.Remove(lineas[i]);
+
+                    for(int a = 0; a < partes_linea_per_afegir.Count; a++)
+                    {
+                        if (partes_linea_per_afegir[a].idLinea == lineas[i].idLinea)
+                        {
+                            partes_linea_per_afegir.RemoveAt(a);
+                            break;
+                        }
+                    }
                     break;
                 }
             }
