@@ -212,7 +212,6 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Report1DS.datasource" />
     <None Include="Properties\DataSources\ReportDataParte.datasource" />
-    <None Include="Properties\DataSources\UI_Grid.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
