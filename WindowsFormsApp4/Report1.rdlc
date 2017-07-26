@@ -77,8 +77,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.39911cm</Top>
+            <Left>0.3175cm</Left>
             <Height>0.83812cm</Height>
-            <Width>4.00813cm</Width>
+            <Width>3.69063cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -169,30 +170,30 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.98053cm</Width>
+                  <Width>4.18842cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.98053cm</Width>
+                  <Width>4.18842cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.83039cm</Width>
+                  <Width>4.03828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.98053cm</Width>
+                  <Width>4.18842cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.83039cm</Width>
+                  <Width>4.03828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.83039cm</Width>
+                  <Width>4.03828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.83039cm</Width>
+                  <Width>4.03828cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.94844cm</Height>
+                  <Height>0.60448cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -203,11 +204,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>finca nom</Value>
-                                  <Style />
+                                  <Value>Finca:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox16</rd:DefaultName>
@@ -216,6 +222,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -233,11 +240,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>parcela viti</Value>
-                                  <Style />
+                                  <Value>Parcela:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -246,6 +258,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -263,11 +276,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>data</Value>
-                                  <Style />
+                                  <Value>Data:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -276,6 +294,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -293,11 +312,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>estat</Value>
-                                  <Style />
+                                  <Value>Estat:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox20</rd:DefaultName>
@@ -306,6 +330,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -323,11 +348,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>treball</Value>
-                                  <Style />
+                                  <Value>Treball:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
@@ -336,6 +366,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -353,11 +384,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>descripcio</Value>
-                                  <Style />
+                                  <Value>Descripció:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -366,6 +402,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -383,11 +420,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>unitats</Value>
-                                  <Style />
+                                  <Value>Unitats:</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -396,6 +438,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#2a2a2a</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -428,9 +471,10 @@
                           <rd:DefaultName>finca_nom</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -458,9 +502,10 @@
                           <rd:DefaultName>parcela_viti</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -488,9 +533,10 @@
                           <rd:DefaultName>data</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -518,9 +564,10 @@
                           <rd:DefaultName>estat</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -548,9 +595,10 @@
                           <rd:DefaultName>treball</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -578,9 +626,10 @@
                           <rd:DefaultName>descripcio</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -608,9 +657,10 @@
                           <rd:DefaultName>unitats</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -647,8 +697,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>23.11733cm</Top>
             <Left>0.3175cm</Left>
-            <Height>1.55292cm</Height>
-            <Width>27.26317cm</Width>
+            <Height>1.20896cm</Height>
+            <Width>28.71838cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
