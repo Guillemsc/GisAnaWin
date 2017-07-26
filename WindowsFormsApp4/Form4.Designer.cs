@@ -32,8 +32,8 @@ namespace WindowsFormsApp4
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.report1DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@ namespace WindowsFormsApp4
             this.reportViewer.ServerReport.BearerToken = null;
             this.reportViewer.Size = new System.Drawing.Size(983, 689);
             this.reportViewer.TabIndex = 0;
-
+            this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
             // 
             // Form4
             // 

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Drawing;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 
 // ---------------------------------------------------------------------- Botons
@@ -200,7 +201,12 @@ namespace WindowsFormsApp4
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
 
             report_viewer_form = new Form4();
-            report_viewer_form.SetInfo("file:///" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\lena512.bmp", "hiiiiiii", "hiiiii2");
+
+            List<ReportDataParte> info = new List<ReportDataParte>();
+            info.Add(new ReportDataParte("a", "a", "a", "a", "a", "a", "a"));
+            info.Add(new ReportDataParte("asd", "a", "a", "a", "a", "a", "a"));
+
+            report_viewer_form.SetInfo(info, "file:///" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\lena512.bmp", "hiiiiiii", "hiiiii2");
             report_viewer_form.ShowDialog();
 
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);

@@ -24,10 +24,12 @@ namespace WindowsFormsApp4
             this.reportViewer.RefreshReport();
         }
 
-        public void SetInfo(string imatge_url, string _treball, string _data)
+        public void SetInfo(List<ReportDataParte> info, string imatge_url, string _treball, string _data)
         {
             treball = _treball;
             data = _data;
+
+            report1DSBindingSource.DataSource = info;
 
             Microsoft.Reporting.WinForms.ReportParameter[] para = new Microsoft.Reporting.WinForms.ReportParameter[3];
             para[0] = new Microsoft.Reporting.WinForms.ReportParameter("nom", treball);
@@ -37,6 +39,11 @@ namespace WindowsFormsApp4
             this.reportViewer.LocalReport.EnableExternalImages = true;
             this.reportViewer.LocalReport.SetParameters(para);
             this.reportViewer.RefreshReport();
+        }
+
+        private void reportViewer_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
