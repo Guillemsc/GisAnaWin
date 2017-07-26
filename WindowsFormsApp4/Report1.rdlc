@@ -71,15 +71,14 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.73766cm</Top>
-            <Left>0.47308cm</Left>
+            <Top>1.16099cm</Top>
             <Height>0.83812cm</Height>
-            <Width>4.77542cm</Width>
+            <Width>4.00813cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -105,10 +104,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>2.69558cm</Top>
-            <Left>15.07808cm</Left>
+            <Top>12.37933cm</Top>
             <Height>0.6cm</Height>
-            <Width>7.95042cm</Width>
+            <Width>7.32062cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -135,10 +133,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>3.93912cm</Top>
-            <Left>15.07808cm</Left>
+            <Top>12.37933cm</Top>
+            <Left>9.42866cm</Left>
             <Height>0.6cm</Height>
-            <Width>7.95042cm</Width>
+            <Width>7.43822cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -153,10 +151,10 @@
           <Image Name="Image1">
             <Source>External</Source>
             <Value>=Parameters!imatge_mapa.Value</Value>
-            <Top>2.69558cm</Top>
-            <Left>1.55787cm</Left>
+            <Sizing>Fit</Sizing>
+            <Top>2.54495cm</Top>
             <Height>9.33167cm</Height>
-            <Width>11.79229cm</Width>
+            <Width>16.83121cm</Width>
             <ZIndex>3</ZIndex>
             <ToolTip>=Parameters!imatge_mapa.Value</ToolTip>
             <Style>
@@ -169,25 +167,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.15303cm</Width>
+                  <Width>2.49535cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.15303cm</Width>
+                  <Width>2.49535cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.00289cm</Width>
+                  <Width>2.34521cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.15303cm</Width>
+                  <Width>2.49535cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.00289cm</Width>
+                  <Width>2.34521cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.00289cm</Width>
+                  <Width>2.34521cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.00289cm</Width>
+                  <Width>2.34521cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -645,10 +643,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>12.4587cm</Top>
-            <Left>1.55787cm</Left>
+            <Top>13.78161cm</Top>
             <Height>1.55292cm</Height>
-            <Width>21.47063cm</Width>
+            <Width>16.86688cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -658,9 +655,13 @@
           </Tablix>
         </ReportItems>
         <Height>7.48969in</Height>
-        <Style />
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
       </Body>
-      <Width>13.00335in</Width>
+      <Width>6.6405in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
