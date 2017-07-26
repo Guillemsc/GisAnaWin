@@ -77,8 +77,8 @@ namespace WindowsFormsApp4
             // 
             // gmap
             // 
-            this.gmap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.gmap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gmap.AutoSize = true;
             this.gmap.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -201,13 +201,6 @@ namespace WindowsFormsApp4
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
 
             report_viewer_form = new Form4();
-
-            List<ReportDataParte> info = new List<ReportDataParte>();
-            info.Add(new ReportDataParte("a", "a", "a", "a", "a", "a", "a"));
-            info.Add(new ReportDataParte("asd", "a", "a", "a", "a", "a", "a"));
-
-            report_viewer_form.SetInfo(info, "file:///" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\lena512.bmp", "hiiiiiii", "hiiiii2");
-            report_viewer_form.ShowDialog();
 
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------

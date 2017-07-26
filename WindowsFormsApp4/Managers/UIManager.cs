@@ -120,6 +120,11 @@ namespace WindowsFormsApp4
             _element.Enabled = set;
         }
 
+        public bool GetEnabled()
+        {
+            return _element.Enabled;
+        }
+
         public void Focus()
         {
             _element.Focus();

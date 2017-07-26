@@ -40,6 +40,8 @@ namespace WindowsFormsApp4
             // reportViewer
             // 
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right 
+                | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.report1DSBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
@@ -66,9 +68,7 @@ namespace WindowsFormsApp4
         }
 
         #endregion
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        public Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource report1DSBindingSource;
-
-        Bitmap image; string treball; string data;
     }
 }

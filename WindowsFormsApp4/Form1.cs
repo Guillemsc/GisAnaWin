@@ -279,43 +279,69 @@ namespace WindowsFormsApp4
             visualitza_analitica_form.ShowDialog();
         }
 
-        Bitmap memoryImage = null;
         public void ImprimirMapa(object sender, EventArgs e)
         {
+            // Set form position
+            Point pos = this.Location;
+            Size size = this.Size;
+
+            this.Location = new Point(0, 0);
+            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
             // Capture screen
-            //Graphics myGraphics = this.CreateGraphics();
-            //Size s = this.Size;
-            //memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+            Bitmap memoryImage = null;
+
+            Graphics myGraphics = this.CreateGraphics();
+            Size s = this.Size;
+            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
+
+            gmap.DrawToBitmap(memoryImage, new Rectangle(new Point(0, 0), new Size(this.Width - (gmap.Location.X - this.Location.X), this.Height - (gmap.Location.Y - this.Location.Y))));
+
+            string folderName = AppDomain.CurrentDomain.BaseDirectory + "\\";
+            string fileName = "image.png";
+            memoryImage.Save(folderName + fileName, ImageFormat.Png);
+
+            // Reset form position
+            this.Location = pos;
+            this.Size = size;
+
+            // Fill report
+            List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+
+            List<ReportDataParte> info = new List<ReportDataParte>();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                Finca f = GetFincaPerParcela(parceles[i]);
+
+                if (f == null)
+                    continue;
+
+                List<tblPartesFinca> partes = GetPartesPerFincaId(f.GetTbl().idFinca);
+
+                for(int p = 0; p < partes.Count; p++)
+                {
+                    List<tblLineasPartesFinca1> linea = GetPartesLineaPerParte(partes[p]);
+
+                    for(int l = 0; l < linea.Count; l++)
+                    {
+                        if(linea[l].idParcela == parceles[i].GetTbl().idParcela)
+                        {
+                            Treball treball = GetTreballPerTreballId(linea[l].idFamiliaCoste);
+
+                            if (treball == null)
+                                continue;
+
+                            info.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, "null", 
+                                partes[p].Fecha.ToString(), treball.GetTbl().Descripcio, linea[l].Descripcion, linea[l].Unidades.ToString()));
+                        }
+                    }
+                }
+            }
 
 
-            ////gmap.DrawToBitmap(memoryImage, new Rectangle(gmap.Location, gmap.Size));
-            ////FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-            ////folderBrowserDialog1.Description = "Guarda imatge";
-            ////DialogResult result = folderBrowserDialog1.ShowDialog();
-
-            ////if (result == DialogResult.OK)
-            ////{
-            ////    string folderName = folderBrowserDialog1.SelectedPath + "\\";
-
-            ////    memoryImage.Save(folderName + "test.png", ImageFormat.Png);
-            ////}
-
-            //gmap.Enabled = false;
-            //this.WindowState = FormWindowState.Maximized;
-            //Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            //memoryGraphics.CopyFromScreen(this.Location.X + gmap.Location.X, this.Location.Y, 0, 0, s);
-            //PrintDocument printDocument1 = new PrintDocument();
-            //printDocument1.DefaultPageSettings.Landscape = true;
-            //printDocument1.PrintPage += printDocument;
-            //printDocument1.Print();
-            //gmap.Enabled = true;
-
-
-        }
-
-        private void printDocument(System.Object sender, PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(memoryImage, 0, 0);
+            report_viewer_form.SetInfo(info, "file:///" + folderName + fileName, "hiiiiiii", "hiiiii2");
+            report_viewer_form.ShowDialog();
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -790,6 +816,24 @@ namespace WindowsFormsApp4
                 if (partes[i].idFinca == id)
                 {
                     ret.Add(partes[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public Treball GetTreballPerTreballId(int id)
+        {
+            Treball ret = null;
+
+            List<Treball> treballs = propietaris_manager.GetTreballs();
+
+            for (int i = 0; i < treballs.Count; i++)
+            {
+                if (treballs[i].GetTbl().idCost == id)
+                {
+                    ret = treballs[i];
+                    break;
                 }
             }
 
