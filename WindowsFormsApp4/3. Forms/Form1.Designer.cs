@@ -198,7 +198,11 @@ namespace WindowsFormsApp4
 
             info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
-            
+
+            report_viewer_form = new Form4();
+            report_viewer_form.SetInfo("file:///" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\lena512.bmp", "hiiiiiii", "hiiiii2");
+            report_viewer_form.ShowDialog();
+
             visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
@@ -497,6 +501,7 @@ namespace WindowsFormsApp4
         // Forms
         Form2 crea_parte_form = null;
         Form3 info_parte_form = null;
+        Form4 report_viewer_form = null;
         Form5 visualitza_analitica_form = null;
         
         // Windows

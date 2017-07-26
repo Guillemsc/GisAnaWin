@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp4
+namespace WindowsFormsApp4._1._Base
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
