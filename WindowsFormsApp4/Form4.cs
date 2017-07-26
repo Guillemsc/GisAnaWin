@@ -24,7 +24,7 @@ namespace WindowsFormsApp4
             this.reportViewer.RefreshReport();
         }
 
-        public void SetInfo(List<ReportDataParte> info, string imatge_url, string treball, string data)
+        public void SetInfo(List<ReportDataParte> info, string imatge_url, string data)
         {
             this.Size = new System.Drawing.Size(983, 689);
             this.MaximizeBox = false;
@@ -32,13 +32,12 @@ namespace WindowsFormsApp4
 
             report1DSBindingSource.DataSource = info;
 
-            Microsoft.Reporting.WinForms.ReportParameter[] para = new Microsoft.Reporting.WinForms.ReportParameter[3];
-            para[0] = new Microsoft.Reporting.WinForms.ReportParameter("nom", treball);
-            para[1] = new Microsoft.Reporting.WinForms.ReportParameter("data", data);
-            para[2] = new Microsoft.Reporting.WinForms.ReportParameter("imatge_mapa", imatge_url);
+            Microsoft.Reporting.WinForms.ReportParameter[] para = new Microsoft.Reporting.WinForms.ReportParameter[2];
+            para[0] = new Microsoft.Reporting.WinForms.ReportParameter("data", data);
+            para[1] = new Microsoft.Reporting.WinForms.ReportParameter("imatge_mapa", imatge_url);
 
             this.reportViewer.LocalReport.EnableExternalImages = true;
-            var setup = this.reportViewer.GetPageSettings();
+            System.Drawing.Printing.PageSettings setup = this.reportViewer.GetPageSettings();
             setup.Margins = new System.Drawing.Printing.Margins(5, 5, 5, 5);
             setup.Landscape = true;
             this.reportViewer.SetPageSettings(setup);

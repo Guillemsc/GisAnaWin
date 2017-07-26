@@ -340,7 +340,7 @@ namespace WindowsFormsApp4
             }
 
 
-            report_viewer_form.SetInfo(info, "file:///" + folderName + fileName, "hiiiiiii", "hiiiii2");
+            report_viewer_form.SetInfo(info, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
             report_viewer_form.ShowDialog();
         }
 

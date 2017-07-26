@@ -90,36 +90,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox14">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!nom.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>21.71505cm</Top>
-            <Left>7.40289cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.26708cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox15">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -136,10 +106,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>21.71505cm</Top>
-            <Left>16.83155cm</Left>
+            <Left>0.3175cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.38468cm</Width>
-            <ZIndex>2</ZIndex>
+            <Width>7.97144cm</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -158,7 +128,7 @@
             <Left>0.3175cm</Left>
             <Height>17.87771cm</Height>
             <Width>32.2638cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <ToolTip>=Parameters!imatge_mapa.Value</ToolTip>
             <Style>
               <Border>
@@ -699,7 +669,7 @@
             <Left>0.3175cm</Left>
             <Height>1.20896cm</Height>
             <Width>28.71838cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -713,7 +683,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Parameters!data.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -722,10 +692,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
             <Top>1.39911cm</Top>
-            <Left>10.52724cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.80729cm</Width>
-            <ZIndex>5</ZIndex>
+            <Left>4.50592cm</Left>
+            <Height>0.83812cm</Height>
+            <Width>11.82861cm</Width>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -758,11 +728,6 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="nom">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="data">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
@@ -777,11 +742,6 @@
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>nom</ParameterName>
-        </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
