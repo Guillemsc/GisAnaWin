@@ -145,7 +145,8 @@ namespace WindowsFormsApp4
 
             propietaris_manager.parte_linea_actual = nova_linea;
 
-            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString() ,nova_linea.idLinea.ToString());
+            tblPartesFinca parte = GetPartePerParteId(nova_linea.idParte);
+            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), parte.Estat, nova_linea.idLinea.ToString());
         }
 
         public void Accepta(object sender, EventArgs e)

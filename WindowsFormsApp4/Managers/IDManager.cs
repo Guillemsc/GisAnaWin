@@ -10,9 +10,9 @@ namespace WindowsFormsApp4
     {
         public IDManager()
         {
-            AddIDType("propietari");
-            AddIDType("finca");
-            AddIDType("parcela");
+            //AddIDType("propietari");
+            //AddIDType("finca");
+            //AddIDType("parcela");
         }
 
         public int GetNewID(string name)
