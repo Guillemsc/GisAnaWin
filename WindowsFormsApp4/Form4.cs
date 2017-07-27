@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,7 @@ namespace WindowsFormsApp4
         {
             this.Size = new System.Drawing.Size(983, 689);
             this.MaximizeBox = false;
+            this.reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             this.reportViewer.Clear();
 
             report1DSBindingSource.DataSource = info;

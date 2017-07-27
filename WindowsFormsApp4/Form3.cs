@@ -110,7 +110,7 @@ namespace WindowsFormsApp4
         public void ModificaParteSeleccionat(object sender, EventArgs e)
         {
             decimal test;
-            if (!grid.IsSelected() || propietaris_manager.parte_linea_actual == null || !decimal.TryParse(unitats_text_input.GetText(), out test))
+            if (!grid.IsSelected() || !treballs_combobox.IsSelected() || propietaris_manager.parte_linea_actual == null || !decimal.TryParse(unitats_text_input.GetText(), out test))
                 return;
 
             Treball treball = treballs_combobox.GetSelected() as Treball;
@@ -150,10 +150,20 @@ namespace WindowsFormsApp4
 
         public void Accepta(object sender, EventArgs e)
         {
+            List<tblLineasPartesFinca1> lin = propietaris_manager.GetPartesLinea();
+
             for (int i = 0; i < partes_linea_per_eliminar.Count; i++)
             {
+                for (int l = 0; l < lin.Count; l++)
+                {
+                    if (partes_linea_per_eliminar[i] == lin[l])
+                    {
+                        server_manager.DeleteLineaParteFinca(partes_linea_per_eliminar[i]);
+                        break;
+                    }
+                }
+
                 propietaris_manager.EliminaParteLinea(partes_linea_per_eliminar[i]);
-                server_manager.DeleteLineaParteFinca(partes_linea_per_eliminar[i]);
             }
 
             for (int i = 0; i < partes_linea_per_afegir.Count; i++)

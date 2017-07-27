@@ -126,8 +126,8 @@
             <Sizing>Fit</Sizing>
             <Top>2.54495cm</Top>
             <Left>0.3175cm</Left>
-            <Height>17.87771cm</Height>
-            <Width>32.2638cm</Width>
+            <Height>17.50729cm</Height>
+            <Width>33.00463cm</Width>
             <ZIndex>2</ZIndex>
             <ToolTip>=Parameters!imatge_mapa.Value</ToolTip>
             <Style>
@@ -714,7 +714,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>12.82728in</Width>
+      <Width>13.11895in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
