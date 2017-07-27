@@ -93,6 +93,21 @@ namespace WindowsFormsApp4
                 unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
                 main_window.AddElement(unitats_text);
 
+                pendent_check = new UI_CheckBox(new Point(150, 230), 80, 30);
+                pendent_check.SetText("Pendent");
+                pendent_check.OnCheck(ChangeCheck);
+                main_window.AddElement(pendent_check);
+
+                proces_check = new UI_CheckBox(new Point(250, 230), 80, 30);
+                proces_check.SetText("Proces");
+                proces_check.OnCheck(ChangeCheck);
+                main_window.AddElement(proces_check);
+
+                acabat_check = new UI_CheckBox(new Point(350, 230), 80, 30);
+                acabat_check.SetText("Acabat");
+                acabat_check.OnCheck(ChangeCheck);
+                main_window.AddElement(acabat_check);
+
                 unitats_text_input = new UI_MaskedTextInput(new Point(22, 230), 100, 70);
                 main_window.AddElement(unitats_text_input);
 
@@ -105,8 +120,9 @@ namespace WindowsFormsApp4
                 main_window.AddElement(modifica_treball_button);
 
                 grid = new UI_Grid(new Point(22, 320), 470, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300, true); grid.AddColumn("Unitats", 70, true); grid.AddColumn("Id", 30, true);
-                grid.AddColumn("Parcela viti", 60, true); grid.AddColumn("Ha", 60, true);
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300, true); grid.AddColumn("Unitats", 70, true);
+                grid.AddColumn("Estat", 60, true); grid.AddColumn("Id", 30, true); grid.AddColumn("Parcela viti", 60, true);
+                grid.AddColumn("Ha", 60, true);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
 
@@ -136,6 +152,9 @@ namespace WindowsFormsApp4
         UI_Button modifica_treball_button = null;
         UI_Button accepta_button = null;
         UI_Text unitats_text = null;
+        UI_CheckBox pendent_check = null;
+        UI_CheckBox proces_check = null;
+        UI_CheckBox acabat_check = null;
         UI_MaskedTextInput unitats_text_input = null;
 
 

@@ -34,7 +34,7 @@ namespace WindowsFormsApp4
             
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[3]);
+            int id = int.Parse(str[4]);
 
             List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -69,7 +69,7 @@ namespace WindowsFormsApp4
 
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[3]);
+            int id = int.Parse(str[4]);
 
             List<tblLineasPartesFinca1> lineas = GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -196,6 +196,27 @@ namespace WindowsFormsApp4
             this.Close();
         }
 
+        private void ChangeCheck(object sender, EventArgs e)
+        {
+            CheckBox c = sender as CheckBox;
+
+            if (c == pendent_check.GetElement())
+            {
+                proces_check.SetSelected(false);
+                acabat_check.SetSelected(false);
+            }
+            else if (c == proces_check.GetElement())
+            {
+                pendent_check.SetSelected(false);
+                acabat_check.SetSelected(false);
+            }
+            else if (c == acabat_check.GetElement())
+            {
+                proces_check.SetSelected(false);
+                pendent_check.SetSelected(false);
+            }
+        }
+
         // ---------------------------------------------------------------------- Botons
         // -----------------------------------------------------------------------------
 
@@ -206,9 +227,24 @@ namespace WindowsFormsApp4
         // -------------------------------------------------------------------- Servidor
         // -----------------------------------------------------------------------------
 
+
         // -----------------------------------------------------------------------------
         // Utils -----------------------------------------------------------------------
         // -----------------------------------------------------------------------------
+
+        public string GetEstat()
+        {
+            if (pendent_check.IsSelected())
+                return "pendent";
+
+            if (proces_check.IsSelected())
+                return "proces";
+
+            if (acabat_check.IsSelected())
+                return "acabat";
+
+            return "";
+        }
 
         public int GetPartesLineaNewId()
         {
@@ -379,8 +415,8 @@ namespace WindowsFormsApp4
                     continue;
 
                 Treball treball = GetTreballPerTreballId(lineas[i].idFamiliaCoste);
-
-                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString(), parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha);
+                tblPartesFinca parte = GetPartePerParteId(propietaris_manager.parte_actual.idParte);
+                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, parte.Estat, lineas[i].idLinea.ToString(), parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha);
             }
 
             grid.CleanSelection();

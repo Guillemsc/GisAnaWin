@@ -94,6 +94,7 @@ namespace WindowsFormsApp4
                 parte.CodigoEmpresa = finca_actual.GetTbl().CodigoEmpresa;
                 parte.idFinca = finca_actual.GetTbl().idFinca;
                 parte.idParte = GetPartesNewId();
+                parte.Estat = GetEstat();
 
                 propietaris_manager.AfegirParte(parte);
                 server_manager.AddParteFinca(parte);
@@ -133,6 +134,27 @@ namespace WindowsFormsApp4
             this.Close();
         }
 
+        private void ChangeCheck(object sender, EventArgs e)
+        {
+            CheckBox c = sender as CheckBox;
+
+            if(c == pendent_check.GetElement())
+            {
+                proces_check.SetSelected(false);
+                acabat_check.SetSelected(false);
+            }
+            else if (c == proces_check.GetElement())
+            {
+                pendent_check.SetSelected(false);
+                acabat_check.SetSelected(false);
+            }
+            else if (c == acabat_check.GetElement())
+            {
+                proces_check.SetSelected(false);
+                pendent_check.SetSelected(false);
+            }
+        }
+
         // -----------------------------------------------------------------------------
         // Servidor --------------------------------------------------------------------
         // -----------------------------------------------------------------------------
@@ -143,6 +165,20 @@ namespace WindowsFormsApp4
         // -----------------------------------------------------------------------------
         // Utils -----------------------------------------------------------------------
         // -----------------------------------------------------------------------------
+
+        public string GetEstat()
+        {
+            if (pendent_check.IsSelected())
+                return "pendent";
+
+            if (proces_check.IsSelected())
+                return "proces";
+
+            if (acabat_check.IsSelected())
+                return "acabat";
+
+            return "";
+        }
 
         // ----------------------------------------------------------------------- Utils
         // -----------------------------------------------------------------------------
@@ -234,6 +270,11 @@ namespace WindowsFormsApp4
         public void CarregaLListaPartes()
         {
             grid.Clear();
+
+            pendent_check.SetSelected(false);
+            proces_check.SetSelected(false);
+            acabat_check.SetSelected(false);
+
         }
 
         // ------------------------------------------------------------------ Actualitza

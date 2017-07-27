@@ -281,6 +281,8 @@ namespace WindowsFormsApp4
 
         public void ImprimirMapa(object sender, EventArgs e)
         {
+            this.Enabled = false;
+
             // Set form position
             Point pos = this.Location;
             Size size = this.Size;
@@ -332,7 +334,9 @@ namespace WindowsFormsApp4
                             if (treball == null)
                                 continue;
 
-                            info.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, "null", 
+
+                            tblPartesFinca parte = GetPartePerParteId(linea[l].idParte);
+                            info.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, parte.Estat, 
                                 partes[p].Fecha.ToString(), treball.GetTbl().Descripcio, linea[l].Descripcion, linea[l].Unidades.ToString()));
                         }
                     }
@@ -342,6 +346,7 @@ namespace WindowsFormsApp4
 
             report_viewer_form.SetInfo(info, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
             report_viewer_form.ShowDialog();
+            this.Enabled = true;
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -1216,6 +1221,8 @@ namespace WindowsFormsApp4
 
         public void ActualitzaLlistaParceles()
         {
+            this.Enabled = false;
+
             llista_parceles_llista.Clear();
 
             List<Parcela> parceles = new List<Parcela>();
@@ -1356,6 +1363,10 @@ namespace WindowsFormsApp4
                 propietaris_manager.can_point = false;
                 llista_parceles_llista.CleanSelection();
             }
+
+            this.Enabled = true;
+
+            gmap.ZoomAndCenterMarkers(point_manager.overlay_parcela.Id);
         }
 
         public void ActualitzaLlistaParcelesSeleccionades()
@@ -1400,6 +1411,8 @@ namespace WindowsFormsApp4
                 afegir_partes_button.SetEnabled(false);
                 visualitza_analitiques_button.SetEnabled(false);
             }
+
+
         }
 
 

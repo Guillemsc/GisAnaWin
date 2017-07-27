@@ -589,7 +589,7 @@ namespace WindowsFormsApp4
 
             List<DataGridViewRow> rows = new List<DataGridViewRow>();
 
-            for(int i = 0; i < d.Rows.Count; i++)
+            for (int i = 0; i < d.Rows.Count; i++)
             {
                 rows.Add(d.Rows[i]);
             }
@@ -626,9 +626,9 @@ namespace WindowsFormsApp4
 
             string[] ret = new string[d.ColumnCount];
 
-            if(IsSelected())
+            if (IsSelected())
             {
-                for(int i = 0; i < d.ColumnCount; i++)
+                for (int i = 0; i < d.ColumnCount; i++)
                 {
                     ret[i] = d.Rows[GetSelectedRowIndex()].Cells[i].Value as string;
                 }
@@ -716,6 +716,49 @@ namespace WindowsFormsApp4
             DataGridView d = GetElement() as DataGridView;
 
             return d.Rows;
+        }
+    }
+
+    public class UI_CheckBox : UI_Element
+    {
+        public UI_CheckBox(Point pos, int w, int h, string name = "") : base("check_box")
+        {
+            CheckBox c = new CheckBox();
+            c.Name = name;
+            c.Location = pos;
+            c.Width = w;
+            c.Height = h;
+            c.AllowDrop = false;
+
+            SetElement(c);
+        }
+
+        public bool IsSelected()
+        {
+            CheckBox c = GetElement() as CheckBox;
+
+            return c.Checked;
+        }
+
+        public void SetSelected(bool set)
+        {
+            CheckBox c = GetElement() as CheckBox;
+
+            c.Checked = set;
+        }
+
+        public void SetText(string text)
+        {
+            CheckBox c = GetElement() as CheckBox;
+
+            c.Text = text;
+        }
+
+        public void OnCheck(EventHandler ev)
+        {
+            CheckBox c = GetElement() as CheckBox;
+
+            c.CheckedChanged += ev;
         }
     }
 }
