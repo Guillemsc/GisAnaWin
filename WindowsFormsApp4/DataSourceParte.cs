@@ -21,20 +21,4 @@ namespace WindowsFormsApp4
         public string descripcio { get; set; }
         public string unitats { get; set; }
     }
-
-    public class ReportDataAnalitica
-    {
-        public ReportDataAnalitica(string _data, string _ic, string _estat, string _ph, string _grau, string _densitat, string _observacions)
-        {
-            data = _data; ic = _ic; estat = _estat; ph = _ph; grau = _grau; densitat = _densitat; observacions = _observacions;
-        }
-
-        public string data { get; set; }
-        public string ic { get; set; }
-        public string ph { get; set; }
-        public string grau { get; set; }
-        public string densitat { get; set; }
-        public string estat { get; set; }
-        public string observacions { get; set; }
-    }
 }
