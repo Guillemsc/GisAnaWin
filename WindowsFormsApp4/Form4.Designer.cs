@@ -31,8 +31,13 @@ namespace WindowsFormsApp4
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.report1DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.report2DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +48,11 @@ namespace WindowsFormsApp4
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             reportDataSource1.Name = "DataSet1";
+
+            reportDataSource2.Value = this.report2DSBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource2.Name = "DataSet2";
+
             reportDataSource1.Value = this.report1DSBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Report1.rdlc";
@@ -69,6 +79,7 @@ namespace WindowsFormsApp4
 
         #endregion
         private System.Windows.Forms.BindingSource report1DSBindingSource;
+        private System.Windows.Forms.BindingSource report2DSBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }

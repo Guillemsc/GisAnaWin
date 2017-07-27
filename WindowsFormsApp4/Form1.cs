@@ -309,8 +309,10 @@ namespace WindowsFormsApp4
 
             // Fill report
             List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
+            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
 
-            List<ReportDataParte> info = new List<ReportDataParte>();
+            List<ReportDataParte> info_partes = new List<ReportDataParte>();
+            List<ReportDataAnalitica> info_analitiques = new List<ReportDataAnalitica>();
 
             for (int i = 0; i < parceles.Count; i++)
             {
@@ -334,17 +336,30 @@ namespace WindowsFormsApp4
                             if (treball == null)
                                 continue;
 
-
                             tblPartesFinca parte = GetPartePerParteId(linea[l].idParte);
-                            info.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, parte.Estat, 
-                                partes[p].Fecha.ToString(), treball.GetTbl().Descripcio, linea[l].Descripcion, linea[l].Unidades.ToString()));
+                            info_partes.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, parte.Estat, 
+                                partes[p].Fecha.ToString(), treball.GetTbl().Descripcio, linea[l].Descripcion, 
+                                linea[l].Unidades.ToString()));
                         }
+                    }
+                }
+
+                for(int a = 0; a < analitiques.Count; a++)
+                {
+                    if(analitiques[a].GetTbl().idParcela == parceles[i].GetTbl().idParcela)
+                    {
+                        info_analitiques.Add(new ReportDataAnalitica(analitiques[a].GetTbl().Fecha.ToString(),
+                            analitiques[a].GetTbl().IC.ToString(), analitiques[a].GetTbl().EstatSanitari,
+                            analitiques[a].GetTbl().ph.ToString(), analitiques[a].GetTbl().grauAlc.ToString(),
+                            analitiques[a].GetTbl().DensitatProduccio.ToString(), analitiques[a].GetTbl().Observaciones));
                     }
                 }
             }
 
 
-            report_viewer_form.SetInfo(info, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
+
+
+            report_viewer_form.SetInfo(info_partes, info_analitiques, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
             report_viewer_form.ShowDialog();
             this.Enabled = true;
         }

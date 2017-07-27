@@ -214,8 +214,54 @@
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Analitica.datasource" />
+    <None Include="Properties\DataSources\DataClasses1DataContext.datasource" />
+    <None Include="Properties\DataSources\Finca.datasource" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Form2.datasource" />
+    <None Include="Properties\DataSources\Form3.datasource" />
+    <None Include="Properties\DataSources\Form4.datasource" />
+    <None Include="Properties\DataSources\Form5.datasource" />
+    <None Include="Properties\DataSources\IDManager.datasource" />
+    <None Include="Properties\DataSources\IDType.datasource" />
+    <None Include="Properties\DataSources\Marcador.datasource" />
+    <None Include="Properties\DataSources\Parcela.datasource" />
+    <None Include="Properties\DataSources\PointsManager.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Propietari.datasource" />
+    <None Include="Properties\DataSources\PropietarisManager.datasource" />
     <None Include="Properties\DataSources\Report1DS.datasource" />
+    <None Include="Properties\DataSources\ReportDataAnalitica.datasource" />
     <None Include="Properties\DataSources\ReportDataParte.datasource" />
+    <None Include="Properties\DataSources\ServerManager.datasource" />
+    <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
+    <None Include="Properties\DataSources\tblAnaliticaFincaParcela.datasource" />
+    <None Include="Properties\DataSources\tblColorProducto.datasource" />
+    <None Include="Properties\DataSources\tblCoordenadesFincaParcela.datasource" />
+    <None Include="Properties\DataSources\tblFamiliesCost.datasource" />
+    <None Include="Properties\DataSources\tblFinques.datasource" />
+    <None Include="Properties\DataSources\tblLineasPartesFinca1.datasource" />
+    <None Include="Properties\DataSources\tblParceles.datasource" />
+    <None Include="Properties\DataSources\tblPartesFinca.datasource" />
+    <None Include="Properties\DataSources\tblProveedores.datasource" />
+    <None Include="Properties\DataSources\tblTipoUva.datasource" />
+    <None Include="Properties\DataSources\Treball.datasource" />
+    <None Include="Properties\DataSources\UIManager.datasource" />
+    <None Include="Properties\DataSources\UI_Button.datasource" />
+    <None Include="Properties\DataSources\UI_CheckBox.datasource" />
+    <None Include="Properties\DataSources\UI_ComboBox.datasource" />
+    <None Include="Properties\DataSources\UI_DateSelect.datasource" />
+    <None Include="Properties\DataSources\UI_Element.datasource" />
+    <None Include="Properties\DataSources\UI_Grid.datasource" />
+    <None Include="Properties\DataSources\UI_ListBox.datasource" />
+    <None Include="Properties\DataSources\UI_MaskedTextInput.datasource" />
+    <None Include="Properties\DataSources\UI_Panel.datasource" />
+    <None Include="Properties\DataSources\UI_Text.datasource" />
+    <None Include="Properties\DataSources\UI_TextInput.datasource" />
+    <None Include="Properties\DataSources\UI_Window.datasource" />
+    <None Include="Properties\DataSources\Varietat.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

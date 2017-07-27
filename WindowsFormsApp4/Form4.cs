@@ -25,14 +25,15 @@ namespace WindowsFormsApp4
             this.reportViewer.RefreshReport();
         }
 
-        public void SetInfo(List<ReportDataParte> info, string imatge_url, string data)
+        public void SetInfo(List<ReportDataParte> partes, List<ReportDataAnalitica> vanalitiques, string imatge_url, string data)
         {
             this.Size = new System.Drawing.Size(983, 689);
             this.MaximizeBox = false;
             this.reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             this.reportViewer.Clear();
 
-            report1DSBindingSource.DataSource = info;
+            report1DSBindingSource.DataSource = partes;
+            report2DSBindingSource.DataSource = vanalitiques;
 
             Microsoft.Reporting.WinForms.ReportParameter[] para = new Microsoft.Reporting.WinForms.ReportParameter[2];
             para[0] = new Microsoft.Reporting.WinForms.ReportParameter("data", data);
