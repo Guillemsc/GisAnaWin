@@ -167,13 +167,13 @@
             <Sizing>Fit</Sizing>
             <Top>2.54495cm</Top>
             <Left>0.3175cm</Left>
-            <Height>17.50729cm</Height>
-            <Width>33.00463cm</Width>
+            <Height>16.95167cm</Height>
+            <Width>27.52776cm</Width>
             <ZIndex>2</ZIndex>
             <ToolTip>=Parameters!imatge_mapa.Value</ToolTip>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
             </Style>
           </Image>
@@ -181,25 +181,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.18842cm</Width>
+                  <Width>6.51675cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.18842cm</Width>
+                  <Width>2.44217cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>3.4562cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.18842cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>2.91842cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>4.03828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>7.05453cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.29203cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -485,7 +485,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -516,7 +516,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -547,7 +547,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -578,7 +578,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -609,7 +609,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -640,7 +640,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -662,7 +662,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>unitats</rd:DefaultName>
@@ -671,7 +673,7 @@
                               <Color>#202020</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -706,7 +708,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>23.11733cm</Top>
+            <Top>24.26194cm</Top>
             <Left>0.3175cm</Left>
             <Height>1.20896cm</Height>
             <Width>28.71838cm</Width>
@@ -760,11 +762,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>data</Value>
-                                <Style />
+                                <Value>Data:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -773,6 +780,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -787,22 +795,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.28011cm</Width>
+                  <Width>2.80829cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.94659cm</Width>
+                  <Width>2.73812cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.18842cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>2.68029cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>4.03828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>3.82661cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>8.43837cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -822,7 +830,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ic</rd:DefaultName>
@@ -831,6 +841,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -852,7 +863,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>grau</rd:DefaultName>
@@ -861,6 +874,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -882,7 +896,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ph</rd:DefaultName>
@@ -891,6 +907,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -921,6 +938,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -951,6 +969,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -981,6 +1000,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e8e8e8</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1006,11 +1026,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>ic</Value>
-                                <Style />
+                                <Value>Ic:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox25</rd:DefaultName>
@@ -1019,6 +1044,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1039,11 +1065,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>grau</Value>
-                                <Style />
+                                <Value>Grau:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox27</rd:DefaultName>
@@ -1052,6 +1083,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1072,11 +1104,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>ph</Value>
-                                <Style />
+                                <Value>Ph:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox29</rd:DefaultName>
@@ -1085,6 +1122,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1105,11 +1143,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>densitat</Value>
-                                <Style />
+                                <Value>Densitat:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox31</rd:DefaultName>
@@ -1118,6 +1161,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1138,11 +1182,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>estat</Value>
-                                <Style />
+                                <Value>Estat:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox39</rd:DefaultName>
@@ -1151,6 +1200,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1176,11 +1226,16 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>observacions</Value>
-                                <Style />
+                                <Value>Observacions:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox19</rd:DefaultName>
@@ -1189,6 +1244,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1236,6 +1292,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
+                          <BackgroundColor>#e8e8e8</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1248,9 +1305,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>24.86766cm</Top>
+            <Top>27.39514cm</Top>
             <Left>0.36724cm</Left>
-            <Height>1.20647cm</Height>
+            <Height>1.20648cm</Height>
             <Width>28.66864cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
@@ -1259,15 +1316,85 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value> Partes</Value>
+                    <Style>
+                      <FontSize>20pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>23.26506cm</Top>
+            <Left>0.3175cm</Left>
+            <Height>0.99688cm</Height>
+            <Width>28.71838cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#2a2a2a</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value> Analítiques</Value>
+                    <Style>
+                      <FontSize>20pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>26.39826cm</Top>
+            <Left>0.36725cm</Left>
+            <Height>0.99688cm</Height>
+            <Width>28.66863cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#2a2a2a</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>10.37999in</Height>
+        <Height>11.26048in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>13.11895in</Width>
+      <Width>11.43145in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
