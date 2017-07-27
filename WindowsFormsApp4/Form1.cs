@@ -294,10 +294,10 @@ namespace WindowsFormsApp4
             Bitmap memoryImage = null;
 
             Graphics myGraphics = this.CreateGraphics();
-            Size s = this.Size;
+            Size s = gmap.Size;
             memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
 
-            gmap.DrawToBitmap(memoryImage, new Rectangle(new Point(0, 0), new Size(this.Width - (gmap.Location.X - this.Location.X), this.Height - (gmap.Location.Y - this.Location.Y))));
+            gmap.DrawToBitmap(memoryImage, new Rectangle(new Point(0, 0), new Size(gmap.Width, gmap.Height)));
 
             string folderName = AppDomain.CurrentDomain.BaseDirectory + "\\";
             string fileName = "image.png";

@@ -105,7 +105,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Partes</Value>
+                    <Value>Empresa blablabalb</Value>
                     <Style>
                       <FontSize>15pt</FontSize>
                     </Style>
@@ -120,7 +120,7 @@
             <Top>1.39911cm</Top>
             <Left>0.3175cm</Left>
             <Height>0.83812cm</Height>
-            <Width>3.69063cm</Width>
+            <Width>10.91376cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -166,9 +166,9 @@
             <Value>=Parameters!imatge_mapa.Value</Value>
             <Sizing>Fit</Sizing>
             <Top>2.54495cm</Top>
-            <Left>0.3175cm</Left>
-            <Height>16.95167cm</Height>
-            <Width>27.52776cm</Width>
+            <Left>0.36725cm</Left>
+            <Height>17.48084cm</Height>
+            <Width>28.66863cm</Width>
             <ZIndex>2</ZIndex>
             <ToolTip>=Parameters!imatge_mapa.Value</ToolTip>
             <Style>
@@ -730,14 +730,16 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.39911cm</Top>
-            <Left>4.50592cm</Left>
-            <Height>0.83812cm</Height>
-            <Width>11.82861cm</Width>
+            <Top>1.69015cm</Top>
+            <Left>22.49894cm</Left>
+            <Height>0.54708cm</Height>
+            <Width>6.53694cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
