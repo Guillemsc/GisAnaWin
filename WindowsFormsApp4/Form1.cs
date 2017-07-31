@@ -37,55 +37,65 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Event que es crida per a actualitzar la llista de propietaris
         private void ActualitzaLlistaPropietariEvent(object sender, EventArgs e)
         {
             ActualitzaLlistaPropietari();
         }
 
+        // Event que es crida quan es selecciona un propietari en la "seleccio_propietari_noms_combobox"
         private void SeleccionaPropietariEvent(object sender, EventArgs e)
         {
             propietaris_manager.propietari_actual = seleccio_propietari_noms_combobox.GetSelected() as Propietari;
             ActualitzaLlistaParceles();
         }
 
+        // Event que es crida per a actualitzar la llista de finques
         private void ActualitzaLlistaFinquesEvent(object sender, EventArgs e)
         {
             ActualitzaLlistaFinques();
         }
 
+        // Event que es crida quan es selecciona una finca en la "seleccio_finca_noms_combobox"
         private void SeleccionaFincaEvent(object sender, EventArgs e)
         {
             propietaris_manager.finca_actual = seleccio_finca_noms_combobox.GetSelected() as Finca;
             ActualitzaLlistaParceles();
         }
 
+        // Event que es crida per a actualitzar la llista de treballs
         private void ActualitzaLlistaTreballsEvent(object sender, EventArgs e)
         {
             ActualitzaLlistaTreballs();
         }
 
+        // Event que es crida quan es selecciona un treball en la "seleccio_treball_noms_combobox"
         private void SeleccionaTreballEvent(object sender, EventArgs e)
         {
             propietaris_manager.treball_actual = seleccio_treball_noms_combobox.GetSelected() as Treball;
             ActualitzaLlistaParceles();
         }
 
+        // Event que es crida per a actualitzar la llista de varietats
         private void ActualitzaLlistaVarietatsEvent(object sender, EventArgs e)
         {
             ActualitzaLlistaVarietats();
         }
 
+        // Event que es crida quan es selecciona una varietat en la "seleccio_varietat_noms_combobox"
         private void SeleccionaVarietatEvent(object sender, EventArgs e)
         {
             propietaris_manager.varietat_actual = seleccio_varietat_noms_combobox.GetSelected() as Varietat;
             ActualitzaLlistaParceles();
         }
 
+        // Event que es crida per a actualitzar la llista de parceles
         private void ActualitzaLlistaParcelesEvent(object sender, EventArgs e)
         {
             ActualitzaLlistaParceles();
         }
 
+        // Neteja els camps de propietari i finca
         private void NetejaPropietariFinca(object sender, EventArgs e)
         {
             propietaris_manager.finca_actual = null;
@@ -101,6 +111,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParceles();
         }
 
+        // Neteja el camp de varietats
         private void NetejaVarietat(object sender, EventArgs e)
         {
             propietaris_manager.varietat_actual = null;
@@ -114,6 +125,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParceles();
         }
 
+        // Neteja el camp de treball
         private void NetejaTreball(object sender, EventArgs e)
         {
             propietaris_manager.treball_actual = null;
@@ -123,6 +135,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParceles();
         }
 
+        // Selecciona la parcela que es clica de la llista de parceles
         public void ParcelaClick(object sender, EventArgs e)
         {
             Label l = null;
@@ -140,6 +153,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Crea una nova parcela en el mapa
         public void CreaParcela(object sender, EventArgs e)
         {
             List<tblCoordenadesFincaParcela> coor_list = new List<tblCoordenadesFincaParcela>();
@@ -174,6 +188,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Elimina la parcela seleccionada
         public void EliminaParcela(object sender, EventArgs e)
         {
             propietaris_manager.DeleteParcelaSeleccionada(propietaris_manager.parcela_actual);
@@ -198,6 +213,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaParcelesSeleccionades();
         }
 
+        // Selecciona el parte que es clica
         public void ClickParte(object sender, EventArgs e)
         {
             if (!partes_seleccionats_listbox.IsSelected())
@@ -216,6 +232,7 @@ namespace WindowsFormsApp4
             elimina_parte_button.SetEnabled(true);
         }
 
+        // Elimina el parte seleccionat
         public void EliminaParte(object sender, EventArgs e)
         {
             if(propietaris_manager.parte_actual == null)
@@ -238,6 +255,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaPartes();
         }
 
+        // Envia els canvis al servidor
         public void GuardaCanvis(object sender, EventArgs e)
         {
             server_manager.SubmitChanges();
@@ -248,37 +266,45 @@ namespace WindowsFormsApp4
             guarda_canvis_win.SetVisible(true);
         }
 
+        // Desactiva la finestra de guarda canvis
         public void ConfirmaGuardaCanvis(object sender, EventArgs e)
         {
             guarda_canvis_win.SetVisible(false);
         }
 
+        // Obre la finestra per a crear un nou parte
         public void ObreFormPartes(object sender, EventArgs e)
         {
             crea_parte_form.ShowDialog();
         }
 
+        // Es crida quan es tanca la finestra per a crear un nou parte
         public void CreaParteTanca(object sender, FormClosedEventArgs e)
         {
             ActualitzaLlistaPartes();
         }
 
+        // Obre la finestra per a modificar un parte
+        public void ObreFormInfoPartes(object sender, EventArgs e)
+        {
+            if (partes_seleccionats_listbox.IsSelected())
+                info_parte_form.ShowDialog();
+        }
+
+        // Es crida quan es tanca la finestra per a modificar un parte
         public void InfoParteTanca(object sender, FormClosedEventArgs e)
         {
             ActualitzaLlistaPartes();
         }
 
-        public void ObreFormInfoPartes(object sender, EventArgs e)
-        {
-            if(partes_seleccionats_listbox.IsSelected())
-                info_parte_form.ShowDialog();
-        }
-
+        // Obre la finestra de les analitiques
         public void ObreFormVisualitzaAnalitiques(object sender, EventArgs e)
         {
             visualitza_analitica_form.ShowDialog();
         }
 
+        // Obre la finestra per a imprimir la imatge del mapa
+        // i la informacio sobre partes i analitiques
         public void ImprimirMapa(object sender, EventArgs e)
         {
             this.Enabled = false;
@@ -336,9 +362,11 @@ namespace WindowsFormsApp4
                             if (treball == null)
                                 continue;
 
+                            DateTime date = (DateTime)partes[p].Fecha;
+
                             tblPartesFinca parte = GetPartePerParteId(linea[l].idParte);
                             info_partes.Add(new ReportDataParte(f.GetTbl().Nom1, parceles[i].GetTbl().idParcelaVinicola, parte.Estat, 
-                                partes[p].Fecha.ToString(), treball.GetTbl().Descripcio, linea[l].Descripcion, 
+                                date.ToShortDateString(), treball.GetTbl().Descripcio, linea[l].Descripcion, 
                                 linea[l].Unidades.ToString()));
                         }
                     }
@@ -348,7 +376,9 @@ namespace WindowsFormsApp4
                 {
                     if(analitiques[a].GetTbl().idParcela == parceles[i].GetTbl().idParcela)
                     {
-                        info_analitiques.Add(new ReportDataAnalitica(parceles[i].GetTbl().idParcelaVinicola, analitiques[a].GetTbl().Fecha.ToString(),
+                        DateTime date = (DateTime)analitiques[a].GetTbl().Fecha;
+
+                        info_analitiques.Add(new ReportDataAnalitica(parceles[i].GetTbl().idParcelaVinicola, date.ToShortDateString(),
                             analitiques[a].GetTbl().IC.ToString(), analitiques[a].GetTbl().EstatSanitari,
                             analitiques[a].GetTbl().ph.ToString(), analitiques[a].GetTbl().grauAlc.ToString(),
                             analitiques[a].GetTbl().DensitatProduccio.ToString(), analitiques[a].GetTbl().Observaciones));
@@ -920,6 +950,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Es crida quan el mouse passa per damunt una parcela
         private void gmap_PoligonEnter(GMapPolygon item)
         {
             if (propietaris_manager.curr_list_box != null)
@@ -973,6 +1004,7 @@ namespace WindowsFormsApp4
             mouse_over_polygon = true;
         }
 
+        // Es crida quan el mouse passa surt de damunt d'una parcela
         private void gmap_PoligonOut(GMapPolygon item)
         {
             if (propietaris_manager.curr_list_box != null)
@@ -987,6 +1019,7 @@ namespace WindowsFormsApp4
             mouse_over_polygon = false;
         }
 
+        // Es crida quan es clica una parcela
         private void gmap_PoligonClick(GMapPolygon item, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -1018,6 +1051,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Es crida quan es fa doble click sobre qualsevol punt del mapa
         private void gmap_DoubleClick(object sender, EventArgs e)
         {
             // Selecciona totes les parceles de una mateixa finca ----
@@ -1429,7 +1463,6 @@ namespace WindowsFormsApp4
 
 
         }
-
 
         public void ActualitzaLlistaPartes()
         {
