@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="WindowsFormsApp4">
@@ -82,6 +82,10 @@
           <DataField>observacions</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="parcela">
+          <DataField>parcela</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ph">
           <DataField>ph</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -105,7 +109,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Empresa blablabalb</Value>
+                    <Value>=Parameters!nom_empresa.Value</Value>
                     <Style>
                       <FontSize>15pt</FontSize>
                     </Style>
@@ -120,7 +124,7 @@
             <Top>1.39911cm</Top>
             <Left>0.3175cm</Left>
             <Height>0.83812cm</Height>
-            <Width>10.91376cm</Width>
+            <Width>15.33354cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -703,7 +707,7 @@
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="Detalles" />
+                  <Group Name="Finca" />
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
@@ -757,6 +761,42 @@
                 <TablixCornerRow>
                   <TablixCornerCell>
                     <CellContents>
+                      <Textbox Name="Textbox11">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Parcela:</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox11</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#2a2a2a</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixCornerCell>
+                  <TablixCornerCell>
+                    <CellContents>
                       <Textbox Name="Textbox22">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
@@ -797,22 +837,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.80829cm</Width>
+                  <Width>2.82105cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.73812cm</Width>
+                  <Width>2.75088cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.68029cm</Width>
+                  <Width>2.69305cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.03828cm</Width>
+                  <Width>2.67521cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.82661cm</Width>
+                  <Width>4.1537cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>8.43837cm</Width>
+                  <Width>6.59421cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -840,7 +880,7 @@
                           <rd:DefaultName>ic</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -850,7 +890,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -874,7 +913,7 @@
                           <rd:DefaultName>grau</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -884,7 +923,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -908,7 +946,7 @@
                           <rd:DefaultName>ph</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -918,7 +956,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -934,13 +971,15 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>densitat</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -950,7 +989,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -972,7 +1010,7 @@
                           <rd:DefaultName>estat1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -982,7 +1020,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1004,7 +1041,7 @@
                           <rd:DefaultName>observacions</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
+                              <Color>#2a2a2a</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -1014,7 +1051,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1267,37 +1303,37 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="data">
+                  <Group Name="parcela">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!data.Value</GroupExpression>
+                      <GroupExpression>=Fields!parcela.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!data.Value</Value>
+                      <Value>=Fields!parcela.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>4.13868cm</Size>
+                    <Size>2.93118cm</Size>
                     <CellContents>
-                      <Textbox Name="data1">
+                      <Textbox Name="parcela">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!data.Value</Value>
+                                <Value>=Fields!parcela.Value</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
                             <Style />
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>data1</rd:DefaultName>
+                        <rd:DefaultName>parcela</rd:DefaultName>
                         <Style>
                           <Border>
-                            <Color>LightGrey</Color>
+                            <Color>#2a2a2a</Color>
                             <Style>Solid</Style>
                           </Border>
                           <BackgroundColor>#f0f0f0</BackgroundColor>
@@ -1307,23 +1343,72 @@
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
-                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="data" />
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!data.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>4.15144cm</Size>
+                            <CellContents>
+                              <Textbox Name="data1">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>=Fields!data.Value</Value>
+                                        <Style />
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>data1</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>#2a2a2a</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>#f0f0f0</BackgroundColor>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                        </TablixMember>
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <FixedColumnHeaders>true</FixedColumnHeaders>
+            <FixedRowHeaders>true</FixedRowHeaders>
             <DataSetName>DataSet2</DataSetName>
             <Top>27.39514cm</Top>
-            <Left>0.36724cm</Left>
+            <Left>0.3175cm</Left>
             <Height>1.20648cm</Height>
-            <Width>28.66864cm</Width>
+            <Width>28.77068cm</Width>
             <ZIndex>5</ZIndex>
+            <DataElementOutput>Output</DataElementOutput>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
+            <cl:ComponentMetadata />
           </Tablix>
           <Textbox Name="Textbox2">
             <CanGrow>true</CanGrow>
@@ -1396,14 +1481,14 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>11.26048in</Height>
+        <Height>11.2996in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>11.43145in</Width>
+      <Width>11.45204in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -1425,6 +1510,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="nom_empresa">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1440,6 +1529,11 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>imatge_mapa</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>nom_empresa</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

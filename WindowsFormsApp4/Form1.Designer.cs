@@ -136,9 +136,18 @@ namespace WindowsFormsApp4
         // Load
         override protected void OnLoad(EventArgs e)
         {
+            // Managers --------------------------
+            point_manager = new PointsManager(gmap);
+            propietaris_manager = new PropietarisManager();
+            ui_manager = new UIManager(this);
+            id_manager = new IDManager();
+            server_manager = new ServerManager();
+            // -----------------------------------
+
             // Server config ---------------------
             XDocument xdoc = XDocument.Load(AppDomain.CurrentDomain.BaseDirectory + "Config" + Environment.UserName + ".xml");
             XElement connection = xdoc.Element("Configuracion").Element("ServidorPrograma");
+            XElement empresa = xdoc.Element("Configuracion").Element("EmpresaInfo");
 
             string id = connection.Element("Id").Value;
             string server = connection.Element("Server").Value;
@@ -149,6 +158,8 @@ namespace WindowsFormsApp4
             UpdateConnectionConfig(server, data_base, user, pass);
 
             this.Text += (" (" + data_base + ")");
+
+            propietaris_manager.empresa_nom = empresa.Element("Nom").Value;
             // -----------------------------------
 
             // Gmap ------------------------------
@@ -156,14 +167,6 @@ namespace WindowsFormsApp4
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             gmap.SetPositionByKeywords("Batea, España");
             gmap.ShowCenter = false;
-            // -----------------------------------
-
-            // Managers --------------------------
-            point_manager = new PointsManager(gmap);
-            propietaris_manager = new PropietarisManager();
-            ui_manager = new UIManager(this);
-            id_manager = new IDManager();
-            server_manager = new ServerManager();
             // -----------------------------------
 
             // UI --------------------------------

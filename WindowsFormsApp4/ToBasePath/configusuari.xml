@@ -6,6 +6,9 @@
     <Server>PCSERVER\SQLEXPRESS2012</Server>
     <DataBase>AnaWinCellerBatea</DataBase>
     <User>sa</User>
-    <Password/>
+    <Password></Password>
   </ServidorPrograma>
+  <EmpresaInfo>
+	<Nom>Nom de l'empresa</Nom>
+  </EmpresaInfo>
 </Configuracion>

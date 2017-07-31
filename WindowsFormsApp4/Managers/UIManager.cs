@@ -678,6 +678,9 @@ namespace WindowsFormsApp4
             bool ret = false;
             DataGridView d = GetElement() as DataGridView;
 
+            if (d.Rows.Count == 0)
+                return false;
+
             if (d.CurrentCell.Selected && d.CurrentCell.RowIndex >= 0 && d.CurrentCell.RowIndex < d.Rows.Count)
             {
                 ret = true;

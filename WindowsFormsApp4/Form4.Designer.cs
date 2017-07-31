@@ -47,14 +47,15 @@ namespace WindowsFormsApp4
             this.reportViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+
+            reportDataSource1.Value = this.report1DSBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             reportDataSource1.Name = "DataSet1";
 
             reportDataSource2.Value = this.report2DSBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource2);
             reportDataSource2.Name = "DataSet2";
 
-            reportDataSource1.Value = this.report1DSBindingSource;
-            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Report1.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 0);
             this.reportViewer.Name = "reportViewer";

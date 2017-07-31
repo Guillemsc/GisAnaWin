@@ -348,7 +348,7 @@ namespace WindowsFormsApp4
                 {
                     if(analitiques[a].GetTbl().idParcela == parceles[i].GetTbl().idParcela)
                     {
-                        info_analitiques.Add(new ReportDataAnalitica(analitiques[a].GetTbl().Fecha.ToString(),
+                        info_analitiques.Add(new ReportDataAnalitica(parceles[i].GetTbl().idParcelaVinicola, analitiques[a].GetTbl().Fecha.ToString(),
                             analitiques[a].GetTbl().IC.ToString(), analitiques[a].GetTbl().EstatSanitari,
                             analitiques[a].GetTbl().ph.ToString(), analitiques[a].GetTbl().grauAlc.ToString(),
                             analitiques[a].GetTbl().DensitatProduccio.ToString(), analitiques[a].GetTbl().Observaciones));
@@ -359,7 +359,7 @@ namespace WindowsFormsApp4
 
 
 
-            report_viewer_form.SetInfo(info_partes, info_analitiques, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
+            report_viewer_form.SetInfo(info_partes, info_analitiques, propietaris_manager.empresa_nom, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
             report_viewer_form.ShowDialog();
             this.Enabled = true;
         }
@@ -1501,8 +1501,9 @@ namespace WindowsFormsApp4
             }
             else
             {
+                editor_parceles_crea_button.SetEnabled(point_manager.GetTmpMarcadors().Count >= 3);
+
                 editor_parceles_elimina_button.SetEnabled(false);
-                editor_parceles_crea_button.SetEnabled(false);
                 propietaris_manager.can_point = true;
             }
 

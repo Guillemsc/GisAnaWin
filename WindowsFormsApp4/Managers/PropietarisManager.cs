@@ -219,6 +219,8 @@ namespace WindowsFormsApp4
         public bool can_point_back = false;
         public bool can_point = false;
         public ListBox curr_list_box = null;
+
+        public string empresa_nom;
     }
 
     public class Propietari

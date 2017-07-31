@@ -158,10 +158,10 @@ namespace WindowsFormsApp4
             tblAnaliticaFincaParcela analitica = new tblAnaliticaFincaParcela();
 
             analitica.Fecha = data_dataselect.GetDate();
-            analitica.IC = (decimal)float.Parse(intensitat_colorant_text_input.GetText());
-            analitica.ph = (decimal)float.Parse(ph_text_input.GetText());
-            analitica.grauAlc = (decimal)float.Parse(grau_text_input.GetText());
-            analitica.DensitatProduccio = (decimal)float.Parse(densitat_text_input.GetText());
+            analitica.IC = decimal.Parse(intensitat_colorant_text_input.GetText());
+            analitica.ph = decimal.Parse(ph_text_input.GetText());
+            analitica.grauAlc = decimal.Parse(grau_text_input.GetText());
+            analitica.DensitatProduccio = decimal.Parse(densitat_text_input.GetText());
             analitica.EstatSanitari = estat_sanitari_text_input.GetText();
             analitica.Observaciones = observacions_text_input.GetText();
             analitica.CodigoEmpresa = parcela.GetTbl().CodigoEmpresa;
