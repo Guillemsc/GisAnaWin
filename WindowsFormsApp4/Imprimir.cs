@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp4
 {
-    public partial class Form4 : Form
+    public partial class Imprimir : Form
     {
-        public Form4()
+        public Imprimir()
         {
             InitializeComponent();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
-    partial class Form3
+    partial class ModificaPartes
     {
         /// <summary>
         /// Required designer variable.

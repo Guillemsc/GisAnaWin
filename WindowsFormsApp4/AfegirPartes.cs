@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp4
 {
-    public partial class Form2 : Form
+    public partial class AfegirPartes : Form
     {
-        public Form2(PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
+        public AfegirPartes(PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
         {
             InitializeComponent(propietaris_manager, points_manager, server_manager, ui_manager);
         }

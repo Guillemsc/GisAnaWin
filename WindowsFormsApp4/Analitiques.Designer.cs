@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
-    partial class Form5
+    partial class Analitiques
     {
         /// <summary>
         /// Required designer variable.

@@ -38,7 +38,7 @@ using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
-    partial class Form1
+    partial class Principal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -197,15 +197,15 @@ namespace WindowsFormsApp4
             // -----------------------------------
 
             // Forms -----------------------------
-            crea_parte_form = new Form2(propietaris_manager, point_manager, server_manager, ui_manager);
+            crea_parte_form = new AfegirPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
-            info_parte_form = new Form3(propietaris_manager, point_manager, server_manager, ui_manager);
+            info_parte_form = new ModificaPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
 
-            report_viewer_form = new Form4();
+            report_viewer_form = new Imprimir();
 
-            visualitza_analitica_form = new Form5(propietaris_manager, point_manager, server_manager, ui_manager);
+            visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
         }
@@ -501,10 +501,10 @@ namespace WindowsFormsApp4
         }
 
         // Forms
-        Form2 crea_parte_form = null;
-        Form3 info_parte_form = null;
-        Form4 report_viewer_form = null;
-        Form5 visualitza_analitica_form = null;
+        AfegirPartes crea_parte_form = null;
+        ModificaPartes info_parte_form = null;
+        Imprimir report_viewer_form = null;
+        Analitiques visualitza_analitica_form = null;
         
         // Windows
         UI_Window main_win = null;

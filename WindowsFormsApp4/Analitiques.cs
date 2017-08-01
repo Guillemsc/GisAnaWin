@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp4
 {
-    public partial class Form5 : Form
+    public partial class Analitiques : Form
     {
-        public Form5(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
+        public Analitiques(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
         {
             InitializeComponent(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }

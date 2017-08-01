@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WindowsFormsApp4
 {
-    partial class Form2
+    partial class AfegirPartes
     {
         /// <summary>
         /// Required designer variable.
