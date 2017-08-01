@@ -36,7 +36,7 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 419);
+            this.ClientSize = new System.Drawing.Size(914, 419);
             this.Name = "Afegir Partes";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -75,20 +75,16 @@ namespace WindowsFormsApp4
                 data_dataselect = new UI_DateSelect(new Point(242, 30), 200, 100);
                 main_window.AddElement(data_dataselect);
 
-                pendent_check = new UI_CheckBox(new Point(25, 60), 80, 30);
-                pendent_check.SetText("Pendent");
-                pendent_check.OnCheck(ChangeCheck);
-                main_window.AddElement(pendent_check);
+                estat_panel = new UI_Panel(new Point(25, 60), 380, 40);
+                main_window.AddElement(estat_panel);
 
-                proces_check = new UI_CheckBox(new Point(125, 60), 80, 30);
-                proces_check.SetText("Proces");
-                proces_check.OnCheck(ChangeCheck);
-                main_window.AddElement(proces_check);
+                pendent_check = new UI_RadioButton(new Point(0, 0), "Pendent");
+                estat_panel.AddElement(pendent_check);
+                proces_check = new UI_RadioButton(new Point(120, 0), "Procés");
+                estat_panel.AddElement(proces_check);
+                acabat_check = new UI_RadioButton(new Point(240, 0), "Acabat");
+                estat_panel.AddElement(acabat_check);
 
-                acabat_check = new UI_CheckBox(new Point(225, 60), 80, 30);
-                acabat_check.SetText("Acabat");
-                acabat_check.OnCheck(ChangeCheck);
-                main_window.AddElement(acabat_check);
 
                 descripcio_text = new UI_Text(new Point(20, 100), 100, 30, "Descripció:");
                 main_window.AddElement(descripcio_text);
@@ -104,9 +100,11 @@ namespace WindowsFormsApp4
                 remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
                 main_window.AddElement(remove_treball_button);
 
-                grid = new UI_Grid(new Point(22, 210), 470, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 60); grid.AddColumn("tblLinea", 0, true);
-                grid.AddColumn("Parcela viti", 60, true); grid.AddColumn("Ha", 60, true);
+                grid = new UI_Grid(new Point(22, 210), 870, 150);
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130); grid.AddColumn("tblLinea", 0, true);
+                grid.AddColumn("Unitat Metrica", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
+                grid.AddCheckBoxColumn("Fertirrigació", 100, false); grid.AddComboBoxColumn("Eficacia tractament", 150, false, "0", "1", "2", "3");
+                grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
                 grid.SetColumnVisible(3, false);
                 main_window.AddElement(grid);
 
@@ -124,9 +122,10 @@ namespace WindowsFormsApp4
         UI_ComboBox treballs_combobox = null;
         UI_Text data_text = null;
         UI_DateSelect data_dataselect = null;
-        UI_CheckBox pendent_check = null;
-        UI_CheckBox proces_check = null;
-        UI_CheckBox acabat_check = null;
+        UI_Panel estat_panel = null;
+        UI_RadioButton pendent_check = null;
+        UI_RadioButton proces_check = null;
+        UI_RadioButton acabat_check = null;
         UI_Text descripcio_text = null;
         UI_TextInput descripcio_text_input = null;
         UI_Grid grid = null;
@@ -139,7 +138,5 @@ namespace WindowsFormsApp4
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
-
-        GMap.NET.WindowsForms.GMapControl gmap = null;
     }
 }

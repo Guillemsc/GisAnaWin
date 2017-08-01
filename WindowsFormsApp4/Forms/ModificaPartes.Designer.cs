@@ -122,7 +122,9 @@ namespace WindowsFormsApp4
                 grid = new UI_Grid(new Point(22, 320), 470, 150);
                 grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300, true); grid.AddColumn("Unitats", 70, true);
                 grid.AddColumn("Estat", 60, true); grid.AddColumn("Id", 30, true); grid.AddColumn("Parcela viti", 60, true);
-                grid.AddColumn("Ha", 60, true);
+                grid.AddColumn("Ha", 60, true); grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 150, true);
+                grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
+                grid.SetColumnVisible(3, false);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
 

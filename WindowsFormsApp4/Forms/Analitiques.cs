@@ -88,7 +88,7 @@ namespace WindowsFormsApp4
 
             int id = int.Parse(str[5]);
 
-            Analitica analitica = GetAnaliticaPerId(id);
+            Analitica analitica = propietaris_manager.GetAnaliticaPerId(id);
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
@@ -117,7 +117,7 @@ namespace WindowsFormsApp4
 
             int id = int.Parse(str[5]);
 
-            Analitica analitica = GetAnaliticaPerId(id);
+            Analitica analitica = propietaris_manager.GetAnaliticaPerId(id);
 
             for(int i = 0; i < analitiques_per_afegir.Count; i++)
             {
@@ -167,7 +167,7 @@ namespace WindowsFormsApp4
             analitica.CodigoEmpresa = parcela.GetTbl().CodigoEmpresa;
             analitica.idAnalitica = GetAnaliticaNewId();
             analitica.idFinca = parcela.GetTbl().idFinca;
-            analitica.idParte = GetPartesNewId();
+            analitica.idParte = propietaris_manager.GetPartesNewId();
             analitica.idParcela = parcela.GetTbl().idParcela;
 
             Analitica a = new Analitica(analitica);
@@ -186,7 +186,7 @@ namespace WindowsFormsApp4
 
             int id = int.Parse(str[5]);
 
-            Analitica analitica = GetAnaliticaPerId(id);
+            Analitica analitica = propietaris_manager.GetAnaliticaPerId(id);
 
             for (int i = 0; i < analitiques_per_afegir.Count; i++)
             {
@@ -308,56 +308,6 @@ namespace WindowsFormsApp4
 
             return true;
         }
-
-        Analitica GetAnaliticaPerId(int id)
-        {
-            Analitica ret = null;
-
-            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
-
-            for (int i = 0; i < analitiques.Count; i++)
-            {
-                if (analitiques[i].GetTbl().idAnalitica == id)
-                {
-                    ret = analitiques[i];
-                    break;
-                }
-            }
-
-            return ret;
-        }
-
-        public int GetPartesNewId()
-        {
-            int ret = -1;
-
-            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
-            
-            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
-
-            for (int y = 0; y < partes.Count; y++)
-            {
-                if (partes[y].idParte > ret)
-                    ret = partes[y].idParte;
-            }
-               
-            for (int i = 0; i < analitiques.Count; i++)
-            {
-                if (analitiques[i].GetTbl().idParte > ret)
-                    ret = (int)analitiques[i].GetTbl().idParte;
-            }
-
-            for (int i = 0; i < analitiques_per_afegir.Count; i++)
-            {
-                if (analitiques_per_afegir[i].GetTbl().idParte > ret)
-                    ret = (int)analitiques_per_afegir[i].GetTbl().idParte;
-            }
-
-            ret++;
-
-            return ret;
-        }
-
 
         public int GetAnaliticaNewId()
         {

@@ -54,7 +54,7 @@ namespace WindowsFormsApp4
                 parte_linea.Total = 0;
                 parte_linea.Unidades = 0;
 
-                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, parte_linea, seleccionades[i].GetTbl().idParcelaVinicola, seleccionades[i].GetTbl().Ha);
+                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, 0.0, parte_linea, seleccionades[i].GetTbl().idParcelaVinicola, seleccionades[i].GetTbl().Ha);
             }
 
             treballs_combobox.CleanSelection();
@@ -79,7 +79,7 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < parceles.Count; i++)
             {
-                Finca finca = GetFincaPerParcela(parceles[i]);
+                Finca finca = propietaris_manager.GetFincaPerParcela(parceles[i]);
 
                 if (!finques.Contains(finca))
                     finques.Add(finca);
@@ -93,7 +93,7 @@ namespace WindowsFormsApp4
                 parte.Fecha = data_dataselect.GetDate();
                 parte.CodigoEmpresa = finca_actual.GetTbl().CodigoEmpresa;
                 parte.idFinca = finca_actual.GetTbl().idFinca;
-                parte.idParte = GetPartesNewId();
+                parte.idParte = propietaris_manager.GetPartesNewId();
                 parte.Estat = GetEstat();
 
                 propietaris_manager.AfegirParte(parte);
@@ -101,7 +101,7 @@ namespace WindowsFormsApp4
 
                 for (int r = 0; r < grid.GetRows().Count; r++)
                 {
-                    tblLineasPartesFinca1 li = grid.GetRows()[r].Cells[3].Value as tblLineasPartesFinca1;
+                    tblLineasPartesFinca1 li = grid.GetRows()[r].Cells[4].Value as tblLineasPartesFinca1;
 
                     for (int p = 0; p < parceles.Count; p++)
                     {
@@ -114,7 +114,7 @@ namespace WindowsFormsApp4
                             linea.idFamiliaCoste = li.idFamiliaCoste;
                             linea.CodigoEmpresa = parcela_actual.GetTbl().CodigoEmpresa;
                             linea.idParcela = parcela_actual.GetTbl().idParcela;
-                            linea.idLinea = GetPartesLineaNewId();
+                            linea.idLinea = propietaris_manager.GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
 
                             string dec = grid.GetRows()[r].Cells[2].Value.ToString();
@@ -134,27 +134,6 @@ namespace WindowsFormsApp4
             this.Close();
         }
 
-        private void ChangeCheck(object sender, EventArgs e)
-        {
-            CheckBox c = sender as CheckBox;
-
-            if(c == pendent_check.GetElement())
-            {
-                proces_check.SetSelected(false);
-                acabat_check.SetSelected(false);
-            }
-            else if (c == proces_check.GetElement())
-            {
-                pendent_check.SetSelected(false);
-                acabat_check.SetSelected(false);
-            }
-            else if (c == acabat_check.GetElement())
-            {
-                proces_check.SetSelected(false);
-                pendent_check.SetSelected(false);
-            }
-        }
-
         // -----------------------------------------------------------------------------
         // Servidor --------------------------------------------------------------------
         // -----------------------------------------------------------------------------
@@ -168,13 +147,13 @@ namespace WindowsFormsApp4
 
         public string GetEstat()
         {
-            if (pendent_check.IsSelected())
+            if (pendent_check.GetChecked())
                 return "pendent";
 
-            if (proces_check.IsSelected())
+            if (proces_check.GetChecked())
                 return "proces";
 
-            if (acabat_check.IsSelected())
+            if (acabat_check.GetChecked())
                 return "acabat";
 
             return "";
@@ -183,66 +162,6 @@ namespace WindowsFormsApp4
         // ----------------------------------------------------------------------- Utils
         // -----------------------------------------------------------------------------
 
-        public Finca GetFincaPerParcela(Parcela p)
-        {
-            Finca ret = null;
-
-            List<Finca> finques = propietaris_manager.GetFinques();
-
-            for (int i = 0; i < finques.Count; i++)
-            {
-                Finca finca_actual = finques[i];
-
-                if (finca_actual.GetTbl().idFinca == p.GetTbl().idFinca)
-                {
-                    ret = finca_actual;
-                    break;
-                }
-            }
-
-            return ret;
-        }
-
-        public int GetPartesNewId()
-        {
-            int ret = -1;
-
-            List<tblPartesFinca> partes = propietaris_manager.GetPartes();
-            List<Analitica> analitiques = propietaris_manager.GetAnalitiques();
-
-            for (int i = 0; i < partes.Count; i++)
-            {
-                if (partes[i].idParte > ret)
-                    ret = partes[i].idParte;
-            }
-
-            for(int i = 0; i < analitiques.Count; i++)
-            {
-                if (analitiques[i].GetTbl().idParte > ret)
-                    ret = (int)analitiques[i].GetTbl().idParte;
-            }
-
-            ret++;
-
-            return ret;
-        }
-
-        public int GetPartesLineaNewId()
-        {
-            int ret = -1;
-
-            List<tblLineasPartesFinca1> partes_l = propietaris_manager.GetPartesLinea();
-
-            for(int i = 0; i < partes_l.Count; i++)
-            {
-                if (partes_l[i].idLinea > ret)
-                    ret = partes_l[i].idLinea;
-            }
-
-            ret++;
-
-            return ret;
-        }
 
         // -----------------------------------------------------------------------------
         // Gmap ------------------------------------------------------------------------
@@ -270,11 +189,6 @@ namespace WindowsFormsApp4
         public void CarregaLListaPartes()
         {
             grid.Clear();
-
-            pendent_check.SetSelected(false);
-            proces_check.SetSelected(false);
-            acabat_check.SetSelected(false);
-
         }
 
         // ------------------------------------------------------------------ Actualitza

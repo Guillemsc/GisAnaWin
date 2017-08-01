@@ -577,6 +577,34 @@ namespace WindowsFormsApp4
             d.Columns[d.Columns.Count - 1].ReadOnly = read_only;
         }
 
+        public void AddCheckBoxColumn(string text, int width, bool read_only = false)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            checkColumn.Name = text;
+            checkColumn.HeaderText = text;
+            checkColumn.Width = width;
+            checkColumn.ReadOnly = read_only;
+            d.Columns.Add(checkColumn);
+        }
+
+        public void AddComboBoxColumn(string text, int width, bool read_only = false, params object[] obj)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
+            column.Name = text;
+            column.HeaderText = text;
+            column.Width = width;
+            column.ReadOnly = read_only;
+    
+            for(int i = 0; i < obj.Length; i++)
+                column.Items.Add(obj[i]);
+
+            d.Columns.Add(column);
+        }
+
         public void AddRow(params object[] text)
         {
             DataGridView d = GetElement() as DataGridView;
@@ -762,6 +790,33 @@ namespace WindowsFormsApp4
             CheckBox c = GetElement() as CheckBox;
 
             c.CheckedChanged += ev;
+        }
+    }
+
+    public class UI_RadioButton : UI_Element
+    {
+        public UI_RadioButton(Point pos, string text, string name = "") : base("radio_button")
+        {
+            RadioButton c = new RadioButton();
+            c.Name = name;
+            c.Location = pos;
+            c.Text = text;
+
+            SetElement(c);
+        }
+
+        public bool GetChecked()
+        {
+            RadioButton c = GetElement() as RadioButton;
+
+            return c.Checked;
+        }
+
+        public void SetText(string text)
+        {
+            RadioButton c = GetElement() as RadioButton;
+            c.Text = text;
+
         }
     }
 }

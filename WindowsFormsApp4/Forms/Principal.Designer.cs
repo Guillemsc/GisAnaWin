@@ -199,6 +199,7 @@ namespace WindowsFormsApp4
             // Forms -----------------------------
             crea_parte_form = new AfegirPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
+            crea_parte_form.ShowDialog();
 
             info_parte_form = new ModificaPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
@@ -208,7 +209,6 @@ namespace WindowsFormsApp4
             visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
 
             quadern_camp_form = new Forms.QuadernCamp();
-            quadern_camp_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -483,13 +483,13 @@ namespace WindowsFormsApp4
         {
             if(finca_id != "")
             {
-                Finca f = GetFincaPerId(finca_id);
+                Finca f = propietaris_manager.GetFincaPerId(finca_id);
 
                 if (f != null)
                 {
                     propietaris_manager.finca_actual = f;
 
-                    Propietari p = GetPropietariPerFinca(f);
+                    Propietari p = propietaris_manager.GetPropietariPerFinca(f);
 
                     propietaris_manager.propietari_actual = p;
 

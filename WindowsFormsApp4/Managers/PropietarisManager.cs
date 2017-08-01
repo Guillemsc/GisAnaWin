@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using GMap.NET.WindowsForms;
 
 namespace WindowsFormsApp4
 {
@@ -195,6 +196,429 @@ namespace WindowsFormsApp4
             
             return ret;
         }
+
+
+        public Finca GetFincaPerParcela(Parcela p)
+        {
+            Finca ret = null;
+
+            List<Finca> finques = GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca finca_actual = finques[i];
+
+                if (finca_actual.GetTbl().idFinca == p.GetTbl().idFinca)
+                {
+                    ret = finca_actual;
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public int GetPartesNewId()
+        {
+            int ret = -1;
+
+            List<tblPartesFinca> partes = GetPartes();
+            List<Analitica> analitiques = GetAnalitiques();
+
+            for (int i = 0; i < partes.Count; i++)
+            {
+                if (partes[i].idParte > ret)
+                    ret = partes[i].idParte;
+            }
+
+            for (int i = 0; i < analitiques.Count; i++)
+            {
+                if (analitiques[i].GetTbl().idParte > ret)
+                    ret = (int)analitiques[i].GetTbl().idParte;
+            }
+
+            ret++;
+
+            return ret;
+        }
+
+        public int GetPartesLineaNewId()
+        {
+            int ret = -1;
+
+            List<tblLineasPartesFinca1> partes_l = GetPartesLinea();
+
+            for (int i = 0; i < partes_l.Count; i++)
+            {
+                if (partes_l[i].idLinea > ret)
+                    ret = partes_l[i].idLinea;
+            }
+
+            ret++;
+
+            return ret;
+        }
+
+        public string EliminaAccents(string txt)
+        {
+            byte[] tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(txt);
+            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+            return asciiStr;
+        }
+
+        public Propietari GetPropietariPerFinca(Finca finca)
+        {
+            Propietari ret = null;
+
+            for (int i = 0; i < GetPropietaris().Count; i++)
+            {
+                string id1 = GetPropietaris()[i].GetTbl().idProveedor.Replace(" ", "");
+                string id2 = finca.GetTbl().idProveedor.ToString().Replace(" ", "");
+
+                if (id1 == id2)
+                {
+                    ret = GetPropietaris()[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public List<Finca> GetFinquesPerPropietari(Propietari prop)
+        {
+            List<Finca> ret = new List<Finca>();
+
+            for (int i = 0; i < GetFinques().Count; i++)
+            {
+                string id1 = prop.GetTbl().idProveedor.Replace(" ", "");
+                string id2 = GetFinques()[i].GetTbl().idProveedor.ToString().Replace(" ", "");
+
+                if (id1 == id2)
+                    ret.Add(GetFinques()[i]);
+            }
+
+            return ret;
+        }
+
+        public List<Parcela> GetParcelesPerFinca(Finca fin)
+        {
+            List<Parcela> parceles = GetParceles();
+
+            List<Parcela> ret = new List<Parcela>();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i].GetTbl().idFinca == fin.GetTbl().idFinca)
+                {
+                    ret.Add(parceles[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public List<Parcela> GetParcelesPerPropietari(Propietari p)
+        {
+            List<Parcela> parceles = GetParceles();
+
+            List<Parcela> ret = new List<Parcela>();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                Finca f = GetFincaPerParcela(parceles[i]);
+
+                if (f != null && f.GetTbl().idProveedor.ToString().Replace(" ", "") == p.GetTbl().idProveedor.Replace(" ", ""))
+                {
+                    ret.Add(parceles[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public List<Parcela> GetParcelesPerVarietat(Varietat v)
+        {
+            List<Parcela> parceles = GetParceles();
+
+            List<Parcela> ret = new List<Parcela>();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i].GetTbl().idVarietat == v.GetTbl().idTipoUva)
+                {
+                    ret.Add(parceles[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public Propietari GetPropietariPerParcela(Parcela parcela)
+        {
+            Propietari ret = null;
+
+            Finca finca = GetFincaPerParcela(parcela);
+
+            ret = GetPropietariPerFinca(finca);
+
+            return ret;
+        }
+
+        public bool PropietariTeVarietat(Propietari prop, Varietat var)
+        {
+            List<Finca> finques = GetFinquesPerPropietari(prop);
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                List<Parcela> parceles = GetParcelesPerFinca(finques[i]);
+
+                for (int y = 0; y < parceles.Count; y++)
+                {
+                    if (parceles[y].GetTbl().idVarietat == var.GetTbl().idTipoUva)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public Varietat GetVarietatPerParcela(Parcela parcela)
+        {
+            Varietat ret = null;
+
+            List<Varietat> varietats = GetVarietats();
+
+            for (int i = 0; i < varietats.Count; i++)
+            {
+                if (parcela.GetTbl().idVarietat == varietats[i].GetTbl().idTipoUva)
+                {
+                    ret = varietats[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Parcela GetParcelaPerParcelaID(string id)
+        {
+            Parcela ret = null;
+
+            List<Parcela> parceles = GetParceles();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                Parcela parcela_actual = parceles[i];
+                if (parcela_actual.GetTbl().idParcela.ToString().Replace(" ", "") == id.ToString().Replace(" ", ""))
+                {
+                    ret = parcela_actual;
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public List<tblCoordenadesFincaParcela> GetCoordenadesPerParcela(Parcela pa)
+        {
+            List<tblCoordenadesFincaParcela> ret = new List<tblCoordenadesFincaParcela>();
+
+            List<tblCoordenadesFincaParcela> coordenades = GetCoordenades();
+
+            for (int i = 0; i < coordenades.Count; i++)
+            {
+                if (coordenades[i].idParcela == pa.GetTbl().idParcela)
+                {
+                    ret.Add(coordenades[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public Parcela GetParcelaPolygon(GMapPolygon item)
+        {
+            Parcela ret = null;
+
+            List<Parcela> parceles = GetParceles();
+
+            for (int i = 0; i < parceles.Count; i++)
+            {
+                if (parceles[i].GetPolygon() == item)
+                {
+                    ret = parceles[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Finca GetFincaPerId(string id)
+        {
+            Finca ret = null;
+
+            List<Finca> finques = GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                if (finques[i].GetTbl().idFinca.ToString().Replace(" ", "") == id.Replace(" ", ""))
+                {
+                    ret = finques[i];
+                }
+            }
+
+            return ret;
+        }
+
+        public tblPartesFinca GetPartePerParteId(int id)
+        {
+            List<tblPartesFinca> partes = GetPartes();
+
+            for (int i = 0; i < partes.Count; i++)
+            {
+                if (partes[i].idParte == id)
+                    return partes[i];
+            }
+
+            return null;
+        }
+
+        public List<tblLineasPartesFinca1> GetPartesLineaPerParte(tblPartesFinca parte)
+        {
+            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+
+            List<tblLineasPartesFinca1> partes_linea = GetPartesLinea();
+
+            for (int i = 0; i < partes_linea.Count; i++)
+            {
+                if (partes_linea[i].idParte == parte.idParte)
+                    ret.Add(partes_linea[i]);
+            }
+
+            return ret;
+        }
+
+        public tblLineasPartesFinca1 GetLineaPartePerLineaID(int id)
+        {
+            List<tblLineasPartesFinca1> partes_linea = GetPartesLinea();
+
+            for (int i = 0; i < partes_linea.Count; i++)
+            {
+                if (partes_linea[i].idLinea == id)
+                    return partes_linea[i];
+            }
+
+            return null;
+        }
+
+        public List<tblPartesFinca> GetPartesPerFincaId(int id)
+        {
+            List<tblPartesFinca> ret = new List<tblPartesFinca>();
+
+            List<tblPartesFinca> partes = GetPartes();
+
+            for (int i = 0; i < partes.Count; i++)
+            {
+                if (partes[i].idFinca == id)
+                {
+                    ret.Add(partes[i]);
+                }
+            }
+
+            return ret;
+        }
+
+        public Treball GetTreballPerTreballId(int id)
+        {
+            Treball ret = null;
+
+            List<Treball> treballs = GetTreballs();
+
+            for (int i = 0; i < treballs.Count; i++)
+            {
+                if (treballs[i].GetTbl().idCost == id)
+                {
+                    ret = treballs[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Analitica GetAnaliticaPerId(int id)
+        {
+            Analitica ret = null;
+
+            List<Analitica> analitiques = GetAnalitiques();
+
+            for (int i = 0; i < analitiques.Count; i++)
+            {
+                if (analitiques[i].GetTbl().idAnalitica == id)
+                {
+                    ret = analitiques[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Finca GetFincaPerParte(tblPartesFinca parte)
+        {
+            Finca ret = null;
+
+            List<Finca> finques = GetFinques();
+
+            for (int i = 0; i < finques.Count; i++)
+            {
+                Finca finca_actual = finques[i];
+
+                if (finca_actual.GetTbl().idFinca == parte.idFinca)
+                {
+                    ret = finca_actual;
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Propietari GetPropietariPerParte(tblPartesFinca parte)
+        {
+            Propietari ret = null;
+
+            Finca f = GetFincaPerParte(parte);
+
+            if (f != null)
+            {
+                ret = GetPropietariPerFinca(f);
+            }
+
+            return ret;
+        }
+
+        public List<tblLineasPartesFinca1> GetLineasPerParteId(int id)
+        {
+            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+
+            List<tblLineasPartesFinca1> partes_l = GetPartesLinea();
+
+            for (int i = 0; i < partes_l.Count; i++)
+            {
+                if (partes_l[i].idParte == id)
+                {
+                    ret.Add(partes_l[i]);
+                }
+            }
+
+            return ret;
+        }
+
 
         List<Propietari> propietaris = new List<Propietari>();
         List<Finca> finques = new List<Finca>();
