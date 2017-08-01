@@ -144,18 +144,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSourceAnalitica.cs" />
-    <Compile Include="DataSourceParte.cs" />
-    <Compile Include="Imprimir.cs">
+    <Compile Include="DataSources\DataSourceAnalitica.cs" />
+    <Compile Include="DataSources\DataSourceParte.cs" />
+    <Compile Include="Forms\Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Imprimir.Designer.cs">
+    <Compile Include="Forms\Imprimir.Designer.cs">
       <DependentUpon>Imprimir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Analitiques.cs">
+    <Compile Include="Forms\Analitiques.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Analitiques.Designer.cs">
+    <Compile Include="Forms\Analitiques.Designer.cs">
       <DependentUpon>Analitiques.cs</DependentUpon>
     </Compile>
     <Compile Include="DataClasses1.cs">
@@ -166,22 +166,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Principal.cs">
+    <Compile Include="Forms\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Principal.Designer.cs">
+    <Compile Include="Forms\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="AfegirPartes.cs">
+    <Compile Include="Forms\AfegirPartes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AfegirPartes.Designer.cs">
+    <Compile Include="Forms\AfegirPartes.Designer.cs">
       <DependentUpon>AfegirPartes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModificaPartes.cs">
+    <Compile Include="Forms\ModificaPartes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModificaPartes.Designer.cs">
+    <Compile Include="Forms\ModificaPartes.Designer.cs">
       <DependentUpon>ModificaPartes.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\IDManager.cs" />
@@ -192,7 +192,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="Imprimir.resx">
+    <EmbeddedResource Include="Forms\Imprimir.resx">
       <DependentUpon>Imprimir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -204,7 +204,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Reports\ReportImprimirMapa.rdlc" />
     <None Include="DataClasses1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
