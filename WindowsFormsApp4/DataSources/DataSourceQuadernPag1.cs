@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp4.DataSources
 {
-    class ReportDataQuadernPag1
+    public class ReportDataQuadernPag1
     {
         public ReportDataQuadernPag1(string _titular_explotacio, string _titular_explotacio_nif, 
             string _titular_explotacio_ccpae, string _assessor_explotacio, string _assessor_explotacio_nif, string _assessor_explotacio_registre)

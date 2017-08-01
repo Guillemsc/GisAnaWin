@@ -9,7 +9,53 @@
       </ConnectionProperties>
       <rd:DataSourceID>f01b1b56-7817-42bd-b18b-1d22a5c56f6c</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>8edb0f4b-4892-4f8e-a5a5-392f2cf34956</rd:DataSourceID>
+    </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>WindowsFormsApp4DataSources</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="assessor_explotacio">
+          <DataField>assessor_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_nif">
+          <DataField>assessor_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_registre">
+          <DataField>assessor_explotacio_registre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio">
+          <DataField>titular_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_ccpae">
+          <DataField>titular_explotacio_ccpae</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_nif">
+          <DataField>titular_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
+        <rd:TableName>ReportDataQuadernPag1</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag1, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -186,7 +232,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox3</rd:DefaultName>
-                          <ToolTip>=Parameters!titular_explotacio.Value</ToolTip>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -274,21 +319,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox4">
+                        <Textbox Name="titular_explotacio">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!titular_explotacio.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <rd:DefaultName>titular_explotacio</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -304,21 +349,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox6">
+                        <Textbox Name="titular_explotacio_nif">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!titular_explotacio_nif.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <rd:DefaultName>titular_explotacio_nif</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -334,21 +379,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="titular_explotacio_ccpae">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!titular_explotacio_ccpae.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>titular_explotacio_ccpae</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -383,8 +428,8 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>EmptyDataset</DataSetName>
-            <Top>4.25662cm</Top>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>3.62162cm</Top>
             <Left>0.29104cm</Left>
             <Height>1.2cm</Height>
             <Width>28.47009cm</Width>
@@ -526,7 +571,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!assessor_explotacio.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -556,7 +601,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!assessor_explotacio_nif.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -586,7 +631,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!assessor_explotacio_registre.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -628,7 +673,8 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>5.9982cm</Top>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>5.3632cm</Top>
             <Left>0.29104cm</Left>
             <Height>1.2cm</Height>
             <Width>28.47009cm</Width>
@@ -654,7 +700,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>8.54287cm</Top>
+            <Top>7.27287cm</Top>
             <Left>0.29104cm</Left>
             <Height>0.6cm</Height>
             <Width>28.47009cm</Width>
@@ -687,7 +733,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>10.07745cm</Top>
+            <Top>8.17245cm</Top>
             <Left>0.29104cm</Left>
             <Height>0.83812cm</Height>
             <Width>8.14104cm</Width>
@@ -861,7 +907,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>11.29453cm</Top>
+            <Top>9.38953cm</Top>
             <Left>0.28787cm</Left>
             <Height>7.40833cm</Height>
             <Width>28.47326cm</Width>
@@ -893,10 +939,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>19.23203cm</Top>
+            <Top>17.15064cm</Top>
             <Left>0.29104cm</Left>
             <Height>0.6cm</Height>
-            <Width>3.53188cm</Width>
+            <Width>4.37855cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -923,10 +969,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>19.23203cm</Top>
-            <Left>4.25662cm</Left>
+            <Top>17.11536cm</Top>
+            <Left>5.12975cm</Left>
             <Height>0.6cm</Height>
-            <Width>5.01354cm</Width>
+            <Width>4.14042cm</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -946,7 +992,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>11.44828in</Width>
+      <Width>11.43145in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

@@ -30,11 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
 
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.report1DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).BeginInit();
+
             this.SuspendLayout();
             // 
             // reportViewer
             // 
+            reportDataSource1.Value = this.report1DSBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource1.Name = "DataSet1";
+
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Reports.ReportQuadernCamp.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 0);
@@ -54,10 +63,13 @@
             this.Load += new System.EventHandler(this.QuadernCamp_Load);
             this.ResumeLayout(false);
 
+            ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).EndInit();
+
         }
 
         #endregion
 
+        private System.Windows.Forms.BindingSource report1DSBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }
