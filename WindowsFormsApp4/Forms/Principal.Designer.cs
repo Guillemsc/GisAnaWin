@@ -206,6 +206,9 @@ namespace WindowsFormsApp4
             report_viewer_form = new Imprimir();
 
             visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
+
+            quadern_camp_form = new Forms.QuadernCamp();
+            quadern_camp_form.ShowDialog();
             // -----------------------------------
 
         }
@@ -505,6 +508,7 @@ namespace WindowsFormsApp4
         ModificaPartes info_parte_form = null;
         Imprimir report_viewer_form = null;
         Analitiques visualitza_analitica_form = null;
+        Forms.QuadernCamp quadern_camp_form = null;
         
         // Windows
         UI_Window main_win = null;

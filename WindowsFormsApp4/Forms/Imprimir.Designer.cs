@@ -40,6 +40,7 @@ namespace WindowsFormsApp4
 
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report2DSBindingSource)).BeginInit();
 
             this.SuspendLayout();
             // 

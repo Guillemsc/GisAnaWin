@@ -144,6 +144,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\DataSourceQuadernPag1.cs" />
     <Compile Include="DataSources\DataSourceAnalitica.cs" />
     <Compile Include="DataSources\DataSourceParte.cs" />
     <Compile Include="Forms\Imprimir.cs">
@@ -210,6 +211,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\ReportQuadernCamp.rdlc" />
     <EmbeddedResource Include="Reports\ReportImprimirMapa.rdlc" />
     <None Include="DataClasses1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

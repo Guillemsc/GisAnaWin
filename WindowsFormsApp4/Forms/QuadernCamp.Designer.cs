@@ -29,10 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.SuspendLayout();
+            // 
+            // reportViewer
+            // 
+            this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Reports.ReportQuadernCamp.rdlc";
+            this.reportViewer.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer.Name = "reportViewer";
+            this.reportViewer.ServerReport.BearerToken = null;
+            this.reportViewer.Size = new System.Drawing.Size(983, 689);
+            this.reportViewer.TabIndex = 1;
+            // 
+            // QuadernCamp
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "QuadernCamp";
+            this.ClientSize = new System.Drawing.Size(983, 689);
+            this.Controls.Add(this.reportViewer);
+            this.Name = "QuadernCamp";
+            this.Text = this.Name;
+            this.Load += new System.EventHandler(this.QuadernCamp_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }

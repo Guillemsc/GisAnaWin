@@ -20,8 +20,6 @@ namespace WindowsFormsApp4
 
         private void Form4_Load(object sender, EventArgs e)
         {
-
-            this.reportViewer.RefreshReport();
             this.reportViewer.RefreshReport();
         }
 
