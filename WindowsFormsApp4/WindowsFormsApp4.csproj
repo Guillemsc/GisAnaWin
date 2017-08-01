@@ -184,6 +184,12 @@
     <Compile Include="Forms\ModificaPartes.Designer.cs">
       <DependentUpon>ModificaPartes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\QuadernCamp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuadernCamp.Designer.cs">
+      <DependentUpon>QuadernCamp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Managers\IDManager.cs" />
     <Compile Include="Managers\PointsManager.cs" />
     <Compile Include="Managers\PropietarisManager.cs" />

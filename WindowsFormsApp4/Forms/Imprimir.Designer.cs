@@ -40,6 +40,7 @@ namespace WindowsFormsApp4
 
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).BeginInit();
+
             this.SuspendLayout();
             // 
             // reportViewer
@@ -56,7 +57,7 @@ namespace WindowsFormsApp4
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource2);
             reportDataSource2.Name = "DataSet2";
 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Report1.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "WindowsFormsApp4.Reports.ReportImprimirMapa.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 0);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
@@ -64,16 +65,17 @@ namespace WindowsFormsApp4
             this.reportViewer.TabIndex = 0;
             this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
             // 
-            // Form4
+            // Imprimir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 689);
             this.Controls.Add(this.reportViewer);
-            this.Name = "Form4";
-            this.Text = "Form4";
+            this.Name = "Imprimir";
+            this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report2DSBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
