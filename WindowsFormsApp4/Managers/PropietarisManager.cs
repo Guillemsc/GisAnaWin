@@ -155,6 +155,21 @@ namespace WindowsFormsApp4
         {
             coordenades.Clear();
         }
+
+        public List<UnitatMetrica> GetUnitatsMetriques()
+        {
+            return unitats_metriques;
+        }
+
+        public void AfegirUnitatMetrica(UnitatMetrica uni)
+        {
+            unitats_metriques.Add(uni);
+        }
+
+        public void EliminaUnitatsMetriques()
+        {
+            unitats_metriques.Clear();
+        }
              
         public Propietari TrobaPropietariPerID(string id)
         {
@@ -619,32 +634,69 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public UnitatMetrica GetUnitatMetricaPerId(int id)
+        {
+            UnitatMetrica ret = null;
 
-        List<Propietari> propietaris = new List<Propietari>();
-        List<Finca> finques = new List<Finca>();
-        List<Parcela> parceles = new List<Parcela>();
-        List<Varietat> varietats = new List<Varietat>();
-        List<Treball> treballs = new List<Treball>();
-        List<tblPartesFinca> partes = new List<tblPartesFinca>();
-        List<tblLineasPartesFinca> partes_linea = new List<tblLineasPartesFinca>();
-        List<Analitica> analitiques = new List<Analitica>();
+            List<UnitatMetrica> unitats = GetUnitatsMetriques();
+
+            for(int i = 0; i < unitats.Count(); i++)
+            {
+                if(unitats[i].GetTbl().id == id)
+                {
+                    ret = unitats[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public UnitatMetrica GetUnitatMetricaPerNom(string nom)
+        {
+            UnitatMetrica ret = null;
+
+            List<UnitatMetrica> unitats = GetUnitatsMetriques();
+
+            for (int i = 0; i < unitats.Count(); i++)
+            {
+                if (unitats[i].GetTbl().Unitat.ToLower().Replace(" ", "") == nom.ToLower().Replace(" ", ""))
+                {
+                    ret = unitats[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+
+        List<Propietari>                 propietaris = new List<Propietari>();
+        List<Finca>                      finques = new List<Finca>();
+        List<Parcela>                    parceles = new List<Parcela>();
+        List<Varietat>                   varietats = new List<Varietat>();
+        List<Treball>                    treballs = new List<Treball>();
+        List<UnitatMetrica>              unitats_metriques = new List<UnitatMetrica>();
+        List<tblPartesFinca>             partes = new List<tblPartesFinca>();
+        List<tblLineasPartesFinca>       partes_linea = new List<tblLineasPartesFinca>();
+        List<Analitica>                  analitiques = new List<Analitica>();
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 
-        public Propietari propietari_actual = null;
-        public Finca finca_actual = null;
-        public Parcela parcela_actual = null;
-        public Varietat varietat_actual = null;
-        public Treball treball_actual = null;
-        public tblPartesFinca parte_actual = null;
-        public tblLineasPartesFinca parte_linea_actual = null;
+        public Propietari                propietari_actual = null;
+        public Finca                     finca_actual = null;
+        public Parcela                   parcela_actual = null;
+        public Varietat                  varietat_actual = null;
+        public Treball                   treball_actual = null;
+        public tblPartesFinca            parte_actual = null;
+        public tblLineasPartesFinca      parte_linea_actual = null;
 
-        List<Parcela> parceles_seleccionades = new List<Parcela>();
+        List<Parcela>                    parceles_seleccionades = new List<Parcela>();
 
-        public bool can_point_back = false;
-        public bool can_point = false;
-        public ListBox curr_list_box = null;
+        public bool                      can_point_back = false;
+        public bool                      can_point = false;
+        public ListBox                   curr_list_box = null;
 
-        public string empresa_nom;
+        public string                    empresa_nom;
     }
 
     public class Propietari
@@ -726,5 +778,25 @@ namespace WindowsFormsApp4
         public tblAnaliticaFincaParcela GetTbl() { return _tbl; }
 
         private tblAnaliticaFincaParcela _tbl;
+    }
+
+    public class UnitatMetrica
+    {
+        public UnitatMetrica(tblUnitatsMetriques _uni)
+        {
+            uni = _uni;
+        }
+
+        public override string ToString()
+        {
+            return uni.Unitat;
+        }
+
+        public tblUnitatsMetriques GetTbl()
+        {
+            return uni;
+        }
+
+        private tblUnitatsMetriques uni;
     }
 }

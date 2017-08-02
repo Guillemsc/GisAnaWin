@@ -569,12 +569,14 @@ namespace WindowsFormsApp4
             SetElement(d);
         }
 
-        public void AddColumn(string text, int width, bool read_only = false)
+        public void AddColumn(string text, int width, bool read_only = false, bool visible = true)
         {
             DataGridView d = GetElement() as DataGridView;
             d.Columns.Add(text, text);
             d.Columns[d.Columns.Count - 1].Width = width;
             d.Columns[d.Columns.Count - 1].ReadOnly = read_only;
+            d.Columns[d.Columns.Count - 1].Visible = visible;
+
         }
 
         public void AddCheckBoxColumn(string text, int width, bool read_only = false)
@@ -601,6 +603,29 @@ namespace WindowsFormsApp4
     
             for(int i = 0; i < obj.Length; i++)
                 column.Items.Add(obj[i]);
+
+            if (obj.Length == 0)
+                column.Items.Add("Empty");
+
+            d.Columns.Add(column);
+        }
+
+        public void AddComboBoxColumn(string text, int width, List<object> obj, bool read_only = false)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
+            column.Name = text;
+            column.HeaderText = text;
+            column.ValueMember = text;
+            column.Width = width;
+            column.ReadOnly = read_only;
+
+            for (int i = 0; i < obj.Count; i++)
+                column.Items.Add(obj[i].ToString());
+
+            if (obj.Count == 0)
+                column.Items.Add("Empty");
 
             d.Columns.Add(column);
         }

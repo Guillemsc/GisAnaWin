@@ -150,6 +150,19 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblUnitatsMetriques> GetUnitatsMetriques()
+        {
+            List<tblUnitatsMetriques> ret = new List<tblUnitatsMetriques>();
+
+            if(servidor.tblUnitatsMetriques.Count() > 0)
+            {
+                foreach (var prov in servidor.tblUnitatsMetriques)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
         public tblCoordenadesFincaParcela AddCoordenades(int id_parcela, double lat, double lon, string codigo_empresa, int id_finca, int id_punt_cor)
         {
             tblCoordenadesFincaParcela ret = new tblCoordenadesFincaParcela();

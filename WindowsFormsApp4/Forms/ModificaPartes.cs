@@ -300,7 +300,12 @@ namespace WindowsFormsApp4
                 Treball treball = propietaris_manager.GetTreballPerTreballId(lineas[i].idFamiliaCoste);
                 tblPartesFinca parte = propietaris_manager.GetPartePerParteId(propietaris_manager.parte_actual.idParte);
 
-                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, parte.Estat, lineas[i].idLinea.ToString(), 
+                UnitatMetrica metrica = propietaris_manager.GetUnitatMetricaPerId((int)lineas[i].idUnitatMetrica);
+                string metrica_nom = "";
+                if (metrica != null)
+                    metrica_nom = metrica.GetTbl().Unitat;
+
+                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString(), metrica_nom, parte.Estat, 
                     parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)lineas[i].FertirrigacioSiNo ? "Si" : "No", 
                     lineas[i].EficaciaTractament);
             }

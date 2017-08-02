@@ -189,4 +189,10 @@
       <Association Name="tblFamiliesCost_tblLineasPartesFinca" Member="tblFamiliesCost" ThisKey="CodigoEmpresa,idFamiliaCoste" OtherKey="CodigoEmpresa,idCost" Type="tblFamiliesCost" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblUnitatsMetriques" Member="tblUnitatsMetriques">
+    <Type Name="tblUnitatsMetriques">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Unitat" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

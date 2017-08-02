@@ -177,6 +177,7 @@ namespace WindowsFormsApp4
             // Carrega info ----------------------
             if (server_manager.CheckServerConnection())
             {
+                Console.WriteLine("----------------------------------");
                 ActualitzaPropietarisDesDeServidor();
                 ActualitzaFinquesDesDeServidor();
                 ActualitzaVarietatsDesDeServidor();
@@ -185,6 +186,8 @@ namespace WindowsFormsApp4
                 ActualitzaPartesDesDeServidor();
                 ActualitzaPartesLineaDesDeServidor();
                 ActualitzaAnalitiquesDesDeServidor();
+                ActualitzaTreballsDesDeServidor();
+                ActualitzaUnitatsMetriquesDesDeServidor();
 
                 ActualitzaLlistaParceles();
 

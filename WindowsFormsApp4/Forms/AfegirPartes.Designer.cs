@@ -101,11 +101,19 @@ namespace WindowsFormsApp4
                 main_window.AddElement(remove_treball_button);
 
                 grid = new UI_Grid(new Point(22, 210), 870, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130); grid.AddColumn("tblLinea", 0, true);
-                grid.AddColumn("Unitat Metrica", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
+
+
+                List<object> obj = new List<object>();
+
+                for (int i = 0; i < propietaris_manager.GetUnitatsMetriques().Count; i++)
+                {
+                    obj.Add(propietaris_manager.GetUnitatsMetriques()[i]);
+                }
+
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130, false); grid.AddColumn("tblLinea", 0, true, false);
+                grid.AddComboBoxColumn("Unitat Metrica", 130, obj); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
                 grid.AddCheckBoxColumn("Fertirrigació", 100, false); grid.AddComboBoxColumn("Eficacia tractament", 150, false, "0", "1", "2", "3");
                 grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
-                grid.SetColumnVisible(3, false);
                 main_window.AddElement(grid);
 
                 accepta_button = new UI_Button(new Point(393, 375), 100, 30, "Acceptar");

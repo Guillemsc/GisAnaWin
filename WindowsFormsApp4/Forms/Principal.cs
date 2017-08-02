@@ -571,6 +571,21 @@ namespace WindowsFormsApp4
             Console.WriteLine("----------------------------------");
         }
 
+        public void ActualitzaUnitatsMetriquesDesDeServidor()
+        {
+            List<tblUnitatsMetriques> unitats = server_manager.GetUnitatsMetriques();
+
+            propietaris_manager.EliminaUnitatsMetriques();
+
+            for(int i = 0; i < unitats.Count(); i++)
+            {
+                propietaris_manager.AfegirUnitatMetrica(new UnitatMetrica(unitats[i]));
+            }
+
+            Console.WriteLine("Actualitzat Unitats metriques Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
         // -------------------------------------------------------------------- Servidor
         // -----------------------------------------------------------------------------
 

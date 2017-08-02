@@ -54,7 +54,7 @@ namespace WindowsFormsApp4
                 parte_linea.Total = 0;
                 parte_linea.Unidades = 0;
 
-                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, 0.0, parte_linea, seleccionades[i].GetTbl().idParcelaVinicola, seleccionades[i].GetTbl().Ha);
+                grid.AddRow(treball.GetTbl().Descripcio, descripcio, 0.0, parte_linea, null, seleccionades[i].GetTbl().idParcelaVinicola, seleccionades[i].GetTbl().Ha, false, null);
             }
 
             treballs_combobox.CleanSelection();
@@ -101,7 +101,7 @@ namespace WindowsFormsApp4
 
                 for (int r = 0; r < grid.GetRows().Count; r++)
                 {
-                    tblLineasPartesFinca li = grid.GetRows()[r].Cells[4].Value as tblLineasPartesFinca;
+                    tblLineasPartesFinca li = grid.GetRows()[r].Cells[3].Value as tblLineasPartesFinca;
 
                     for (int p = 0; p < parceles.Count; p++)
                     {
@@ -117,7 +117,14 @@ namespace WindowsFormsApp4
                             linea.idLinea = propietaris_manager.GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
                             linea.FertirrigacioSiNo = (bool)grid.GetRows()[r].Cells[7].Value;
-                            linea.EficaciaTractament = int.Parse((string)grid.GetRows()[r].Cells[8].Value);
+
+                            if(grid.GetRows()[r].Cells[8].Value != null)
+                                linea.EficaciaTractament = int.Parse((string)grid.GetRows()[r].Cells[8].Value);
+
+                            if (grid.GetRows()[r].Cells[4].Value != null)
+                            {
+                                linea.idUnitatMetrica = propietaris_manager.GetUnitatMetricaPerNom((string)grid.GetRows()[r].Cells[4].Value).GetTbl().id;
+                            }
 
                             string dec = grid.GetRows()[r].Cells[2].Value.ToString();
                             linea.Unidades = decimal.Parse(dec);
