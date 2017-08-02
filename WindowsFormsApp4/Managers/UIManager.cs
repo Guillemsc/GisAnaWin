@@ -752,7 +752,7 @@ namespace WindowsFormsApp4
 
     public class UI_CheckBox : UI_Element
     {
-        public UI_CheckBox(Point pos, int w, int h, string name = "") : base("check_box")
+        public UI_CheckBox(Point pos, int w, int h, string text = "", string name = "") : base("check_box")
         {
             CheckBox c = new CheckBox();
             c.Name = name;
@@ -760,6 +760,7 @@ namespace WindowsFormsApp4
             c.Width = w;
             c.Height = h;
             c.AllowDrop = false;
+            c.Text = text;
 
             SetElement(c);
         }
@@ -805,6 +806,12 @@ namespace WindowsFormsApp4
             SetElement(c);
         }
 
+        public void Check()
+        {
+            RadioButton c = GetElement() as RadioButton;
+            c.Checked = true;
+        }
+
         public bool GetChecked()
         {
             RadioButton c = GetElement() as RadioButton;
@@ -816,7 +823,6 @@ namespace WindowsFormsApp4
         {
             RadioButton c = GetElement() as RadioButton;
             c.Text = text;
-
         }
     }
 }

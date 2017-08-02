@@ -199,16 +199,17 @@ namespace WindowsFormsApp4
             // Forms -----------------------------
             crea_parte_form = new AfegirPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
-            crea_parte_form.ShowDialog();
 
             info_parte_form = new ModificaPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
+            //info_parte_form.ShowDialog();
 
             report_viewer_form = new Imprimir();
 
             visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
 
             quadern_camp_form = new Forms.QuadernCamp();
+            quadern_camp_form.ShowDialog();
             // -----------------------------------
 
         }

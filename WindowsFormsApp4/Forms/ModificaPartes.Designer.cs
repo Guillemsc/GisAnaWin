@@ -33,7 +33,7 @@ namespace WindowsFormsApp4
         {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 510);
+            this.ClientSize = new System.Drawing.Size(914, 510);
             this.Name = "Visualitza / Modifica Partes";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -93,20 +93,18 @@ namespace WindowsFormsApp4
                 unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
                 main_window.AddElement(unitats_text);
 
-                pendent_check = new UI_CheckBox(new Point(150, 230), 80, 30);
-                pendent_check.SetText("Pendent");
-                pendent_check.OnCheck(ChangeCheck);
-                main_window.AddElement(pendent_check);
+                estat_panel = new UI_Panel(new Point(155, 230), 380, 40);
+                main_window.AddElement(estat_panel);
 
-                proces_check = new UI_CheckBox(new Point(250, 230), 80, 30);
-                proces_check.SetText("Proces");
-                proces_check.OnCheck(ChangeCheck);
-                main_window.AddElement(proces_check);
+                pendent_check = new UI_RadioButton(new Point(0, 0), "Pendent");
+                estat_panel.AddElement(pendent_check);
+                proces_check = new UI_RadioButton(new Point(120, 0), "Procés");
+                estat_panel.AddElement(proces_check);
+                acabat_check = new UI_RadioButton(new Point(240, 0), "Acabat");
+                estat_panel.AddElement(acabat_check);
 
-                acabat_check = new UI_CheckBox(new Point(350, 230), 80, 30);
-                acabat_check.SetText("Acabat");
-                acabat_check.OnCheck(ChangeCheck);
-                main_window.AddElement(acabat_check);
+                fertirrigacio_checkbox = new UI_CheckBox(new Point(540, 225), 100, 30, "Fertirrigacio");
+                main_window.AddElement(fertirrigacio_checkbox);
 
                 unitats_text_input = new UI_MaskedTextInput(new Point(22, 230), 100, 70);
                 main_window.AddElement(unitats_text_input);
@@ -119,10 +117,10 @@ namespace WindowsFormsApp4
                 modifica_treball_button.GetElement().Click += new System.EventHandler(this.ModificaParteSeleccionat);
                 main_window.AddElement(modifica_treball_button);
 
-                grid = new UI_Grid(new Point(22, 320), 470, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300, true); grid.AddColumn("Unitats", 70, true);
-                grid.AddColumn("Estat", 60, true); grid.AddColumn("Id", 30, true); grid.AddColumn("Parcela viti", 60, true);
-                grid.AddColumn("Ha", 60, true); grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 150, true);
+                grid = new UI_Grid(new Point(22, 320), 870, 150);
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130); grid.AddColumn("tblLinea", 0, true);
+                grid.AddColumn("Unitat Metrica", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
+                grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 150, true);
                 grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
                 grid.SetColumnVisible(3, false);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
@@ -154,10 +152,12 @@ namespace WindowsFormsApp4
         UI_Button modifica_treball_button = null;
         UI_Button accepta_button = null;
         UI_Text unitats_text = null;
-        UI_CheckBox pendent_check = null;
-        UI_CheckBox proces_check = null;
-        UI_CheckBox acabat_check = null;
+        UI_Panel estat_panel = null;
+        UI_RadioButton pendent_check = null;
+        UI_RadioButton proces_check = null;
+        UI_RadioButton acabat_check = null;
         UI_MaskedTextInput unitats_text_input = null;
+        UI_CheckBox fertirrigacio_checkbox = null;
 
 
         public PropietarisManager propietaris_manager = null;
@@ -166,7 +166,7 @@ namespace WindowsFormsApp4
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
 
-        List<tblLineasPartesFinca1> partes_linea_per_afegir = new List<tblLineasPartesFinca1>();
-        List<tblLineasPartesFinca1> partes_linea_per_eliminar = new List<tblLineasPartesFinca1>();
+        List<tblLineasPartesFinca> partes_linea_per_afegir = new List<tblLineasPartesFinca>();
+        List<tblLineasPartesFinca> partes_linea_per_eliminar = new List<tblLineasPartesFinca>();
     }
 }

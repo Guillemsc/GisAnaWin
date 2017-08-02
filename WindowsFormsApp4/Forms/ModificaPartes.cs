@@ -22,6 +22,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaTreballs();
             CarregaInformacioInicial();
             grid.CleanSelection();
+            fertirrigacio_checkbox.SetSelected(false);
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -36,7 +37,7 @@ namespace WindowsFormsApp4
 
             int id = int.Parse(str[4]);
 
-            List<tblLineasPartesFinca1> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
+            List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
             for(int i = 0; i < lineas.Count; i++)
             {
@@ -64,14 +65,14 @@ namespace WindowsFormsApp4
             if (!grid.IsSelected())
                 return;
 
-            tblLineasPartesFinca1 linea_actual = null;
+            tblLineasPartesFinca linea_actual = null;
             Treball treball = null;
 
             string[] str = grid.GetSelectedRow();
 
             int id = int.Parse(str[4]);
 
-            List<tblLineasPartesFinca1> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
+            List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
             for (int i = 0; i < lineas.Count; i++)
             {
@@ -103,6 +104,7 @@ namespace WindowsFormsApp4
             data_dataselect.SetDate((DateTime)propietaris_manager.parte_actual.Fecha);
             descripcio_text_input.SetText(linea_actual.Descripcion);
             unitats_text_input.SetText(linea_actual.Unidades.ToString());
+            fertirrigacio_checkbox.SetSelected((bool)linea_actual.FertirrigacioSiNo);
 
             propietaris_manager.parte_linea_actual = linea_actual;
         }
@@ -115,7 +117,7 @@ namespace WindowsFormsApp4
 
             Treball treball = treballs_combobox.GetSelected() as Treball;
 
-            tblLineasPartesFinca1 nova_linea = new tblLineasPartesFinca1();
+            tblLineasPartesFinca nova_linea = new tblLineasPartesFinca();
 
             nova_linea.CodigoEmpresa = propietaris_manager.parte_linea_actual.CodigoEmpresa;
             nova_linea.idFamiliaCoste = propietaris_manager.parte_linea_actual.idFamiliaCoste;
@@ -129,6 +131,7 @@ namespace WindowsFormsApp4
             nova_linea.Descripcion = descripcio_text_input.GetText();
             nova_linea.idFamiliaCoste = treball.GetTbl().idCost;
             nova_linea.Unidades = decimal.Parse(unitats_text_input.GetText());
+            nova_linea.FertirrigacioSiNo = fertirrigacio_checkbox.IsSelected();
 
             // Comprova que aquesta linea no ha sigut ja modificata i actualitza
             for (int y = 0; y < partes_linea_per_afegir.Count; y++)
@@ -145,13 +148,16 @@ namespace WindowsFormsApp4
 
             propietaris_manager.parte_linea_actual = nova_linea;
 
+            Parcela parcela = propietaris_manager.GetParcelaPerParcelaID(nova_linea.idParcela.ToString());
+
             tblPartesFinca parte = propietaris_manager.GetPartePerParteId(nova_linea.idParte);
-            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), parte.Estat, nova_linea.idLinea.ToString());
+            grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), 
+                nova_linea.idLinea.ToString(), "" , parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No");
         }
 
         public void Accepta(object sender, EventArgs e)
         {
-            List<tblLineasPartesFinca1> lin = propietaris_manager.GetPartesLinea();
+            List<tblLineasPartesFinca> lin = propietaris_manager.GetPartesLinea();
 
             for (int i = 0; i < partes_linea_per_eliminar.Count; i++)
             {
@@ -181,7 +187,7 @@ namespace WindowsFormsApp4
 
             for(int i = 0; i < partes.Count;)
             {
-                List<tblLineasPartesFinca1> lineas = propietaris_manager.GetLineasPerParteId(partes[i].idParte);
+                List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(partes[i].idParte);
 
                 if (lineas.Count == 0)
                 {
@@ -195,27 +201,6 @@ namespace WindowsFormsApp4
             server_manager.SubmitChanges();
 
             this.Close();
-        }
-
-        private void ChangeCheck(object sender, EventArgs e)
-        {
-            CheckBox c = sender as CheckBox;
-
-            if (c == pendent_check.GetElement())
-            {
-                proces_check.SetSelected(false);
-                acabat_check.SetSelected(false);
-            }
-            else if (c == proces_check.GetElement())
-            {
-                pendent_check.SetSelected(false);
-                acabat_check.SetSelected(false);
-            }
-            else if (c == acabat_check.GetElement())
-            {
-                proces_check.SetSelected(false);
-                pendent_check.SetSelected(false);
-            }
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -235,18 +220,27 @@ namespace WindowsFormsApp4
 
         public string GetEstat()
         {
-            if (pendent_check.IsSelected())
+            if (pendent_check.GetChecked())
                 return "pendent";
 
-            if (proces_check.IsSelected())
+            if (proces_check.GetChecked())
                 return "proces";
 
-            if (acabat_check.IsSelected())
+            if (acabat_check.GetChecked())
                 return "acabat";
 
             return "";
         }
 
+        public void SetEstat(string estat)
+        {
+            if (estat == "pendent")
+                pendent_check.Check();
+            if (estat == "proces")
+                proces_check.Check();
+            if (estat == "acabat")
+                acabat_check.Check();
+        }
         
 
         // ----------------------------------------------------------------------- Utils
@@ -265,6 +259,9 @@ namespace WindowsFormsApp4
 
         public void CarregaInformacioInicial()
         {
+            if (propietaris_manager.parte_actual == null || propietaris_manager.parte_actual == null)
+                return;
+
             Propietari propietari = propietaris_manager.GetPropietariPerParte(propietaris_manager.parte_actual);
             Finca finca = propietaris_manager.GetFincaPerParte(propietaris_manager.parte_actual);
 
@@ -272,6 +269,7 @@ namespace WindowsFormsApp4
             {
                 propietari_nom_text.SetText(propietari.GetTbl().Nombre);
                 finca_nom_text.SetText(finca.GetTbl().Nom1);
+
                 ActualitzaLlistaPartesLlista();
             }
         }
@@ -283,7 +281,7 @@ namespace WindowsFormsApp4
             if (propietaris_manager.parte_actual == null)
                 return;
 
-            List<tblLineasPartesFinca1> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
+            List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
             List<Parcela> parceles = propietaris_manager.GetParcelesSeleccionades();
 
@@ -301,7 +299,10 @@ namespace WindowsFormsApp4
 
                 Treball treball = propietaris_manager.GetTreballPerTreballId(lineas[i].idFamiliaCoste);
                 tblPartesFinca parte = propietaris_manager.GetPartePerParteId(propietaris_manager.parte_actual.idParte);
-                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, parte.Estat, lineas[i].idLinea.ToString(), parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha);
+
+                grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, parte.Estat, lineas[i].idLinea.ToString(), 
+                    parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)lineas[i].FertirrigacioSiNo ? "Si" : "No", 
+                    lineas[i].EficaciaTractament);
             }
 
             grid.CleanSelection();

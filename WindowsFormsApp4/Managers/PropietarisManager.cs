@@ -106,17 +106,17 @@ namespace WindowsFormsApp4
             partes.Clear();
         }
 
-        public List<tblLineasPartesFinca1> GetPartesLinea()
+        public List<tblLineasPartesFinca> GetPartesLinea()
         {
             return partes_linea;
         }
 
-        public void AfegirParteLinea(tblLineasPartesFinca1 parte)
+        public void AfegirParteLinea(tblLineasPartesFinca parte)
         {
             partes_linea.Add(parte);
         }
 
-        public void EliminaParteLinea(tblLineasPartesFinca1 parte)
+        public void EliminaParteLinea(tblLineasPartesFinca parte)
         {
             partes_linea.Remove(parte);
         }
@@ -246,7 +246,7 @@ namespace WindowsFormsApp4
         {
             int ret = -1;
 
-            List<tblLineasPartesFinca1> partes_l = GetPartesLinea();
+            List<tblLineasPartesFinca> partes_l = GetPartesLinea();
 
             for (int i = 0; i < partes_l.Count; i++)
             {
@@ -487,11 +487,11 @@ namespace WindowsFormsApp4
             return null;
         }
 
-        public List<tblLineasPartesFinca1> GetPartesLineaPerParte(tblPartesFinca parte)
+        public List<tblLineasPartesFinca> GetPartesLineaPerParte(tblPartesFinca parte)
         {
-            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
 
-            List<tblLineasPartesFinca1> partes_linea = GetPartesLinea();
+            List<tblLineasPartesFinca> partes_linea = GetPartesLinea();
 
             for (int i = 0; i < partes_linea.Count; i++)
             {
@@ -502,9 +502,9 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        public tblLineasPartesFinca1 GetLineaPartePerLineaID(int id)
+        public tblLineasPartesFinca GetLineaPartePerLineaID(int id)
         {
-            List<tblLineasPartesFinca1> partes_linea = GetPartesLinea();
+            List<tblLineasPartesFinca> partes_linea = GetPartesLinea();
 
             for (int i = 0; i < partes_linea.Count; i++)
             {
@@ -602,11 +602,11 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        public List<tblLineasPartesFinca1> GetLineasPerParteId(int id)
+        public List<tblLineasPartesFinca> GetLineasPerParteId(int id)
         {
-            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
 
-            List<tblLineasPartesFinca1> partes_l = GetPartesLinea();
+            List<tblLineasPartesFinca> partes_l = GetPartesLinea();
 
             for (int i = 0; i < partes_l.Count; i++)
             {
@@ -626,7 +626,7 @@ namespace WindowsFormsApp4
         List<Varietat> varietats = new List<Varietat>();
         List<Treball> treballs = new List<Treball>();
         List<tblPartesFinca> partes = new List<tblPartesFinca>();
-        List<tblLineasPartesFinca1> partes_linea = new List<tblLineasPartesFinca1>();
+        List<tblLineasPartesFinca> partes_linea = new List<tblLineasPartesFinca>();
         List<Analitica> analitiques = new List<Analitica>();
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
 
@@ -636,7 +636,7 @@ namespace WindowsFormsApp4
         public Varietat varietat_actual = null;
         public Treball treball_actual = null;
         public tblPartesFinca parte_actual = null;
-        public tblLineasPartesFinca1 parte_linea_actual = null;
+        public tblLineasPartesFinca parte_linea_actual = null;
 
         List<Parcela> parceles_seleccionades = new List<Parcela>();
 

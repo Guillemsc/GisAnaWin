@@ -238,7 +238,7 @@ namespace WindowsFormsApp4
             if(propietaris_manager.parte_actual == null)
                 return;
 
-            List<tblLineasPartesFinca1> lineas = propietaris_manager.GetPartesLineaPerParte(propietaris_manager.parte_actual);
+            List<tblLineasPartesFinca> lineas = propietaris_manager.GetPartesLineaPerParte(propietaris_manager.parte_actual);
 
             // Neteja finques
             for(int i = 0; i < lineas.Count; i++)
@@ -351,7 +351,7 @@ namespace WindowsFormsApp4
 
                 for(int p = 0; p < partes.Count; p++)
                 {
-                    List<tblLineasPartesFinca1> linea = propietaris_manager.GetPartesLineaPerParte(partes[p]);
+                    List<tblLineasPartesFinca> linea = propietaris_manager.GetPartesLineaPerParte(partes[p]);
 
                     for(int l = 0; l < linea.Count; l++)
                     {
@@ -470,7 +470,7 @@ namespace WindowsFormsApp4
 
         public void ActualitzaPartesLineaDesDeServidor()
         {
-            List<tblLineasPartesFinca1> partes_linea = server_manager.GetLineasPartesFinca();
+            List<tblLineasPartesFinca> partes_linea = server_manager.GetLineasPartesFinca();
 
             propietaris_manager.ClearPartesLinea();
 
@@ -1024,7 +1024,7 @@ namespace WindowsFormsApp4
                     {
                         bool stop = true;
 
-                        List<tblLineasPartesFinca1> partes_l = propietaris_manager.GetPartesLinea();
+                        List<tblLineasPartesFinca> partes_l = propietaris_manager.GetPartesLinea();
 
                         for(int p = 0; p < partes_l.Count; p++)
                         {
@@ -1171,7 +1171,7 @@ namespace WindowsFormsApp4
 
                 for (int p = 0; p < partes.Count; p++)
                 {
-                    List<tblLineasPartesFinca1> lineas = propietaris_manager.GetPartesLineaPerParte(partes[p]);
+                    List<tblLineasPartesFinca> lineas = propietaris_manager.GetPartesLineaPerParte(partes[p]);
 
                     for (int l = 0; l < lineas.Count; l++)
                     {

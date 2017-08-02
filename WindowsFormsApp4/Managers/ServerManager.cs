@@ -111,13 +111,13 @@ namespace WindowsFormsApp4
             return ret;
         }
 
-        public List<tblLineasPartesFinca1> GetLineasPartesFinca()
+        public List<tblLineasPartesFinca> GetLineasPartesFinca()
         {
-            List<tblLineasPartesFinca1> ret = new List<tblLineasPartesFinca1>();
+            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
 
-            if (servidor.tblLineasPartesFinca1.Count() > 0)
+            if (servidor.tblLineasPartesFinca.Count() > 0)
             {
-                foreach (var prov in servidor.tblLineasPartesFinca1)
+                foreach (var prov in servidor.tblLineasPartesFinca)
                     ret.Add(prov);
             }
 
@@ -171,9 +171,9 @@ namespace WindowsFormsApp4
             servidor.tblPartesFinca.InsertOnSubmit(parte);
         }
 
-        public void AddLineaParteFinca(tblLineasPartesFinca1 parte_linea)
+        public void AddLineaParteFinca(tblLineasPartesFinca parte_linea)
         {
-            servidor.tblLineasPartesFinca1.InsertOnSubmit(parte_linea);
+            servidor.tblLineasPartesFinca.InsertOnSubmit(parte_linea);
         }
 
         public void AddAnalitica(tblAnaliticaFincaParcela analitica)
@@ -191,9 +191,9 @@ namespace WindowsFormsApp4
             servidor.tblPartesFinca.DeleteOnSubmit(parte);
         }
 
-        public void DeleteLineaParteFinca(tblLineasPartesFinca1 parte_linea)
+        public void DeleteLineaParteFinca(tblLineasPartesFinca parte_linea)
         {
-            servidor.tblLineasPartesFinca1.DeleteOnSubmit(parte_linea);
+            servidor.tblLineasPartesFinca.DeleteOnSubmit(parte_linea);
         }
 
         public void DeleteAnalitica(tblAnaliticaFincaParcela analitica)

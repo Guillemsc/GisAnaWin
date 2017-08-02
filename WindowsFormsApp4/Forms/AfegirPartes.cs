@@ -43,7 +43,7 @@ namespace WindowsFormsApp4
 
             for (int i = 0; i < seleccionades.Count; i++)
             {
-                tblLineasPartesFinca1 parte_linea = new tblLineasPartesFinca1();
+                tblLineasPartesFinca parte_linea = new tblLineasPartesFinca();
                 parte_linea.CodigoEmpresa = "0";
                 parte_linea.Descripcion = descripcio;
                 parte_linea.idFamiliaCoste = treball.GetTbl().idCost;
@@ -101,7 +101,7 @@ namespace WindowsFormsApp4
 
                 for (int r = 0; r < grid.GetRows().Count; r++)
                 {
-                    tblLineasPartesFinca1 li = grid.GetRows()[r].Cells[4].Value as tblLineasPartesFinca1;
+                    tblLineasPartesFinca li = grid.GetRows()[r].Cells[4].Value as tblLineasPartesFinca;
 
                     for (int p = 0; p < parceles.Count; p++)
                     {
@@ -109,13 +109,15 @@ namespace WindowsFormsApp4
 
                         if (parcela_actual.GetTbl().idFinca == finca_actual.GetTbl().idFinca && parcela_actual.GetTbl().idParcela == li.idParcela)
                         {
-                            tblLineasPartesFinca1 linea = new tblLineasPartesFinca1();
+                            tblLineasPartesFinca linea = new tblLineasPartesFinca();
                             linea.Descripcion = grid.GetRows()[r].Cells[1].Value as string;
                             linea.idFamiliaCoste = li.idFamiliaCoste;
                             linea.CodigoEmpresa = parcela_actual.GetTbl().CodigoEmpresa;
                             linea.idParcela = parcela_actual.GetTbl().idParcela;
                             linea.idLinea = propietaris_manager.GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
+                            linea.FertirrigacioSiNo = (bool)grid.GetRows()[r].Cells[7].Value;
+                            linea.EficaciaTractament = int.Parse((string)grid.GetRows()[r].Cells[8].Value);
 
                             string dec = grid.GetRows()[r].Cells[2].Value.ToString();
                             linea.Unidades = decimal.Parse(dec);
