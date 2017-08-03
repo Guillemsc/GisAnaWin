@@ -93,7 +93,10 @@ namespace WindowsFormsApp4
                 unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
                 main_window.AddElement(unitats_text);
 
-                estat_panel = new UI_Panel(new Point(155, 230), 380, 40);
+                unitats_mesura_combobox = new UI_ComboBox(new Point(140, 230), 50, 30);
+                main_window.AddElement(unitats_mesura_combobox);
+
+                estat_panel = new UI_Panel(new Point(255, 230), 380, 40);
                 main_window.AddElement(estat_panel);
 
                 pendent_check = new UI_RadioButton(new Point(0, 0), "Pendent");
@@ -103,7 +106,7 @@ namespace WindowsFormsApp4
                 acabat_check = new UI_RadioButton(new Point(240, 0), "Acabat");
                 estat_panel.AddElement(acabat_check);
 
-                fertirrigacio_checkbox = new UI_CheckBox(new Point(540, 225), 100, 30, "Fertirrigacio");
+                fertirrigacio_checkbox = new UI_CheckBox(new Point(640, 225), 100, 30, "Fertirrigacio");
                 main_window.AddElement(fertirrigacio_checkbox);
 
                 unitats_text_input = new UI_MaskedTextInput(new Point(22, 230), 100, 70);
@@ -151,6 +154,7 @@ namespace WindowsFormsApp4
         UI_Button modifica_treball_button = null;
         UI_Button accepta_button = null;
         UI_Text unitats_text = null;
+        UI_ComboBox unitats_mesura_combobox = null;
         UI_Panel estat_panel = null;
         UI_RadioButton pendent_check = null;
         UI_RadioButton proces_check = null;

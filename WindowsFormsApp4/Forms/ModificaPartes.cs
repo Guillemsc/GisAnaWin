@@ -20,6 +20,7 @@ namespace WindowsFormsApp4
         private void Form3_Load(object sender, EventArgs e)
         {
             ActualitzaLlistaTreballs();
+            ActualitzaLListaUnitatsMesura();
             CarregaInformacioInicial();
             grid.CleanSelection();
             fertirrigacio_checkbox.SetSelected(false);
@@ -35,7 +36,7 @@ namespace WindowsFormsApp4
             
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[4]);
+            int id = int.Parse(str[3]);
 
             List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -67,10 +68,11 @@ namespace WindowsFormsApp4
 
             tblLineasPartesFinca linea_actual = null;
             Treball treball = null;
+            UnitatMetrica unitat = null;
 
             string[] str = grid.GetSelectedRow();
 
-            int id = int.Parse(str[4]);
+            int id = int.Parse(str[3]);
 
             List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
 
@@ -97,6 +99,9 @@ namespace WindowsFormsApp4
 
             treball = propietaris_manager.GetTreballPerTreballId(linea_actual.idFamiliaCoste);
 
+            if(linea_actual.idUnitatMetrica != null)
+                unitat = propietaris_manager.GetUnitatMetricaPerId((int)linea_actual.idUnitatMetrica);
+
             if (treball == null)
                 return;
 
@@ -105,6 +110,9 @@ namespace WindowsFormsApp4
             descripcio_text_input.SetText(linea_actual.Descripcion);
             unitats_text_input.SetText(linea_actual.Unidades.ToString());
             fertirrigacio_checkbox.SetSelected((bool)linea_actual.FertirrigacioSiNo);
+
+            if(unitat != null)
+                unitats_mesura_combobox.SetSelectedElement(unitat.ToString());
 
             propietaris_manager.parte_linea_actual = linea_actual;
         }
@@ -116,6 +124,7 @@ namespace WindowsFormsApp4
                 return;
 
             Treball treball = treballs_combobox.GetSelected() as Treball;
+            UnitatMetrica unitat = unitats_mesura_combobox.GetSelected() as UnitatMetrica;
 
             tblLineasPartesFinca nova_linea = new tblLineasPartesFinca();
 
@@ -132,6 +141,9 @@ namespace WindowsFormsApp4
             nova_linea.idFamiliaCoste = treball.GetTbl().idCost;
             nova_linea.Unidades = decimal.Parse(unitats_text_input.GetText());
             nova_linea.FertirrigacioSiNo = fertirrigacio_checkbox.IsSelected();
+
+            if (unitat != null)
+                nova_linea.idUnitatMetrica = unitat.GetTbl().id;
 
             // Comprova que aquesta linea no ha sigut ja modificata i actualitza
             for (int y = 0; y < partes_linea_per_afegir.Count; y++)
@@ -152,7 +164,7 @@ namespace WindowsFormsApp4
 
             tblPartesFinca parte = propietaris_manager.GetPartePerParteId(nova_linea.idParte);
             grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), 
-                nova_linea.idLinea.ToString(), "" , parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No");
+                nova_linea.idLinea.ToString(), unitat, parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No");
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -328,6 +340,17 @@ namespace WindowsFormsApp4
             }
         }
 
+        private void ActualitzaLListaUnitatsMesura()
+        {
+            unitats_mesura_combobox.Clear();
+
+            List<UnitatMetrica> unitats = propietaris_manager.GetUnitatsMetriques();
+
+            for(int i = 0; i < unitats.Count; i++)
+            {
+                unitats_mesura_combobox.AddElement(unitats[i]);
+            }
+        }
         // ------------------------------------------------------------------ Actualitza
         // -----------------------------------------------------------------------------
 
