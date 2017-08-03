@@ -24,6 +24,10 @@ namespace WindowsFormsApp4
             CarregaInformacioInicial();
             grid.CleanSelection();
             fertirrigacio_checkbox.SetSelected(false);
+
+            eficacia_combobox.Clear();
+            eficacia_combobox.AddElement("0"); eficacia_combobox.AddElement("1");
+            eficacia_combobox.AddElement("2"); eficacia_combobox.AddElement("3");
         }
 
         // ---------------------------------------------------------------------- Botons
@@ -114,6 +118,8 @@ namespace WindowsFormsApp4
             if(unitat != null)
                 unitats_mesura_combobox.SetSelectedElement(unitat.ToString());
 
+            eficacia_combobox.SetSelectedElement(linea_actual.EficaciaTractament.ToString());
+
             propietaris_manager.parte_linea_actual = linea_actual;
         }
 
@@ -142,6 +148,9 @@ namespace WindowsFormsApp4
             nova_linea.Unidades = decimal.Parse(unitats_text_input.GetText());
             nova_linea.FertirrigacioSiNo = fertirrigacio_checkbox.IsSelected();
 
+            if (eficacia_combobox.IsSelected())
+                nova_linea.EficaciaTractament = int.Parse((string)eficacia_combobox.GetSelected());
+
             if (unitat != null)
                 nova_linea.idUnitatMetrica = unitat.GetTbl().id;
 
@@ -161,10 +170,11 @@ namespace WindowsFormsApp4
             propietaris_manager.parte_linea_actual = nova_linea;
 
             Parcela parcela = propietaris_manager.GetParcelaPerParcelaID(nova_linea.idParcela.ToString());
-
             tblPartesFinca parte = propietaris_manager.GetPartePerParteId(nova_linea.idParte);
+
             grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), 
-                nova_linea.idLinea.ToString(), unitat, parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No");
+                nova_linea.idLinea.ToString(), unitat, parte.Estat, parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, 
+                (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No", nova_linea.EficaciaTractament);
         }
 
         public void Accepta(object sender, EventArgs e)

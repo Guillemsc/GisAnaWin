@@ -90,6 +90,12 @@ namespace WindowsFormsApp4
                 descripcio_text_input = new UI_TextInput(new Point(22, 130), 421, 70);
                 main_window.AddElement(descripcio_text_input);
 
+                eficacia_text = new UI_Text(new Point(460, 110), 100, 40, "Eficacia:");
+                main_window.AddElement(eficacia_text);
+
+                eficacia_combobox = new UI_ComboBox(new Point(460, 130), 150, 30);
+                main_window.AddElement(eficacia_combobox);
+
                 unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
                 main_window.AddElement(unitats_text);
 
@@ -149,6 +155,8 @@ namespace WindowsFormsApp4
         UI_DateSelect data_dataselect = null;
         UI_Text descripcio_text = null;
         UI_TextInput descripcio_text_input = null;
+        UI_Text eficacia_text = null;
+        UI_ComboBox eficacia_combobox = null;
         UI_Grid grid = null;
         UI_Button remove_treball_button = null;
         UI_Button modifica_treball_button = null;
