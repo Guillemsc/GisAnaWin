@@ -16,6 +16,20 @@
       </ConnectionProperties>
       <rd:DataSourceID>8edb0f4b-4892-4f8e-a5a5-392f2cf34956</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>5f117670-c7af-4a79-aa24-8848ca95d79d</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a3724184-4204-48d0-b639-53a9c8f2e0c9</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
@@ -53,6 +67,39 @@
         <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
         <rd:TableName>ReportDataQuadernPag1</rd:TableName>
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag1, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>WindowsFormsApp4DataSources1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="nif">
+          <DataField>nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nom_cognom">
+          <DataField>nom_cognom</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_carnet">
+          <DataField>num_carnet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_ordre">
+          <DataField>num_ordre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_quali">
+          <DataField>num_quali</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
+        <rd:TableName>ReportDataQuadernPag2t1</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag2t1, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

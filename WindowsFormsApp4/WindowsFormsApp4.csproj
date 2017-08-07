@@ -276,6 +276,14 @@
     <None Include="Properties\DataSources\UI_Window.datasource" />
     <None Include="Properties\DataSources\Varietat.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag1.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag2t1.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag2t2.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag2t3.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag2t4.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag2t5.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag3.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag4.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag5.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
