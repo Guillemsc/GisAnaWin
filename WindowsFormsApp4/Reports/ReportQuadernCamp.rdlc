@@ -51,6 +51,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>7d303d52-e8c6-413f-87f4-f7549b439c8d</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources6">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>77bcf206-5929-4b8c-b031-e7b26ccf7b12</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
@@ -192,6 +199,43 @@
     <DataSet Name="DataSet5">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources5</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="assessor_explotacio">
+          <DataField>assessor_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_nif">
+          <DataField>assessor_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_registre">
+          <DataField>assessor_explotacio_registre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio">
+          <DataField>titular_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_ccpae">
+          <DataField>titular_explotacio_ccpae</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_nif">
+          <DataField>titular_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
+        <rd:TableName>ReportDataQuadernPag1</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag1, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet6">
+      <Query>
+        <DataSourceName>WindowsFormsApp4DataSources6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
