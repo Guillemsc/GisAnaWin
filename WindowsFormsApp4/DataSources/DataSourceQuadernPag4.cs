@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp4.DataSources
 {
-    class ReportDataQuadernPag4
+    public class ReportDataQuadernPag4
     {
-        ReportDataQuadernPag4(string _data, string _num_finca, string _cultiu, string _plaga, string _superficie, string _num_aplicador,
+        public ReportDataQuadernPag4(string _data, string _num_finca, string _cultiu, string _plaga, string _superficie, string _num_aplicador,
             string _num_maquinaria, string _kg_brou, string _productes_nom, string _productes_num_registre, string _productes_dosi, 
             string _eficacia)
         {

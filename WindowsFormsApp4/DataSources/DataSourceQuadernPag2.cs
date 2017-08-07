@@ -8,7 +8,7 @@ namespace WindowsFormsApp4.DataSources
 {
     public class ReportDataQuadernPag2t1
     {
-        ReportDataQuadernPag2t1(string _num_ordre, string _nom_cognom, string _nif, string _num_carnet, string _num_quali)
+        public ReportDataQuadernPag2t1(string _num_ordre, string _nom_cognom, string _nif, string _num_carnet, string _num_quali)
         {
             num_ordre = _num_ordre;
             nom_cognom = _nom_cognom;
@@ -26,7 +26,7 @@ namespace WindowsFormsApp4.DataSources
 
     public class ReportDataQuadernPag2t2
     {
-        ReportDataQuadernPag2t2(string _num_ordre, string _nom_cognom, string _nif, string _num_carnet, string _num_quali)
+        public ReportDataQuadernPag2t2(string _num_ordre, string _nom_cognom, string _nif, string _num_carnet, string _num_quali)
         {
             numero_ordre_2t2 = _num_ordre;
             nom_cognom_2t2 = _nom_cognom;
@@ -44,7 +44,7 @@ namespace WindowsFormsApp4.DataSources
 
     public class ReportDataQuadernPag2t3
     {
-        ReportDataQuadernPag2t3(string _num_ordre, string _nom_cognom, string _nif, string _num_registre)
+        public ReportDataQuadernPag2t3(string _num_ordre, string _nom_cognom, string _nif, string _num_registre)
         {
             num_ordre = _num_ordre;
             nom_cognom = _nom_cognom;
@@ -60,7 +60,7 @@ namespace WindowsFormsApp4.DataSources
 
     public class ReportDataQuadernPag2t4
     {
-        ReportDataQuadernPag2t4(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
+        public ReportDataQuadernPag2t4(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
         {
             num_ordre = _num_ordre;
             tipo_maquina = _tipo_maquina;
@@ -78,7 +78,7 @@ namespace WindowsFormsApp4.DataSources
 
     public class ReportDataQuadernPag2t5
     {
-        ReportDataQuadernPag2t5(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
+        public ReportDataQuadernPag2t5(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
         {
             num_ordre_2t5 = _num_ordre;
             tipo_maquina_2t5 = _tipo_maquina;
