@@ -28,18 +28,18 @@ namespace WindowsFormsApp4.DataSources
     {
         ReportDataQuadernPag2t2(string _num_ordre, string _nom_cognom, string _nif, string _num_carnet, string _num_quali)
         {
-            numero_ordre = _num_ordre;
-            nom_cognom = _nom_cognom;
-            nif = _nif;
-            num_carnet = _num_carnet;
-            num_quali = _num_quali;
+            numero_ordre_2t2 = _num_ordre;
+            nom_cognom_2t2 = _nom_cognom;
+            nif_2t2 = _nif;
+            num_carnet_2t2 = _num_carnet;
+            num_quali_2t2 = _num_quali;
         }
 
-        public string numero_ordre { get; set; }
-        public string nom_cognom { get; set; }
-        public string nif { get; set; }
-        public string num_carnet { get; set; }
-        public string num_quali { get; set; }
+        public string numero_ordre_2t2 { get; set; }
+        public string nom_cognom_2t2 { get; set; }
+        public string nif_2t2 { get; set; }
+        public string num_carnet_2t2 { get; set; }
+        public string num_quali_2t2 { get; set; }
     }
 
     public class ReportDataQuadernPag2t3
