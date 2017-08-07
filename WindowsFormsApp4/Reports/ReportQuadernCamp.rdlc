@@ -272,7 +272,7 @@
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag2t5, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag3">
+    <DataSet Name="Pag4">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -321,7 +321,7 @@
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag3, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag5">
+    <DataSet Name="Pag6">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources8</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -366,7 +366,7 @@
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag5, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag4">
+    <DataSet Name="Pag5">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources9</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -3436,7 +3436,7 @@
             <Source>Embedded</Source>
             <Value>generalitat</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>41.33937cm</Top>
+            <Top>41.35136cm</Top>
             <Left>0.28742cm</Left>
             <Height>3.43682cm</Height>
             <Width>8.14104cm</Width>
@@ -3850,7 +3850,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ado_fert.Value</Value>
+                                  <Value>=Fields!cultiu.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3879,7 +3879,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ado_nom.Value</Value>
+                                  <Value>=Fields!superficie.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3982,7 +3982,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>Pag3</DataSetName>
+            <DataSetName>Pag4</DataSetName>
             <Top>44.49507cm</Top>
             <Left>0.321cm</Left>
             <Height>1.57042cm</Height>
@@ -4629,6 +4629,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4684,7 +4685,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>Pag3</DataSetName>
+            <DataSetName>Pag4</DataSetName>
             <Top>65.17976cm</Top>
             <Left>0.31111cm</Left>
             <Height>1.57042cm</Height>
@@ -5534,7 +5535,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>Pag4</DataSetName>
+            <DataSetName>Pag5</DataSetName>
             <Top>86.09777cm</Top>
             <Left>0.30616cm</Left>
             <Height>1.57042cm</Height>
@@ -6155,7 +6156,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>Pag5</DataSetName>
+            <DataSetName>Pag6</DataSetName>
             <Top>106.23655cm</Top>
             <Left>0.30369cm</Left>
             <Height>1.57042cm</Height>

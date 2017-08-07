@@ -150,7 +150,8 @@
     <Compile Include="DataSources\DataSourceQuadernPag2.cs" />
     <Compile Include="DataSources\DataSourceQuadernPag3.cs" />
     <Compile Include="DataSources\DataSourceQuadernPag4.cs" />
-    <Compile Include="DataSources\DataSourecQuadernPag5.cs" />
+    <Compile Include="DataSources\DataSourceQuadernPag5.cs" />
+    <Compile Include="DataSources\DataSourecQuadernPag6.cs" />
     <Compile Include="Forms\Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>

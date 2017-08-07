@@ -55,10 +55,6 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.report6DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 
-            // Pag3
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.report7DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-
             // Pag4
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.report8DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,6 +62,10 @@
             // Pag5
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource9 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.report9DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+
+            // Pag6
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource10 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.report10DSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 
 
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -75,9 +75,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.report4DSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report5DSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report6DSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.report7DSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report8DSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.report9DSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report10DSBindingSource)).BeginInit();
 
             this.SuspendLayout();
             // 
@@ -108,10 +108,6 @@
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource6);
             reportDataSource6.Name = "Pag2t5";
 
-            reportDataSource7.Value = this.report7DSBindingSource;
-            this.reportViewer.LocalReport.DataSources.Add(reportDataSource7);
-            reportDataSource7.Name = "Pag3";
-
             reportDataSource8.Value = this.report8DSBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource8);
             reportDataSource8.Name = "Pag4";
@@ -119,6 +115,10 @@
             reportDataSource9.Value = this.report9DSBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource9);
             reportDataSource9.Name = "Pag5";
+
+            reportDataSource10.Value = this.report10DSBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource10);
+            reportDataSource10.Name = "Pag6";
 
 
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -145,9 +145,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.report4DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report5DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report6DSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.report7DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report8DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report9DSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.report10DSBindingSource)).EndInit();
             this.ResumeLayout(false);
         }
 
@@ -159,9 +159,9 @@
         private System.Windows.Forms.BindingSource report4DSBindingSource;
         private System.Windows.Forms.BindingSource report5DSBindingSource;
         private System.Windows.Forms.BindingSource report6DSBindingSource;
-        private System.Windows.Forms.BindingSource report7DSBindingSource;
         private System.Windows.Forms.BindingSource report8DSBindingSource;
         private System.Windows.Forms.BindingSource report9DSBindingSource;
+        private System.Windows.Forms.BindingSource report10DSBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }

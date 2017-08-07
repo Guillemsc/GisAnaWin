@@ -8,29 +8,32 @@ namespace WindowsFormsApp4.DataSources
 {
     public class ReportDataQuadernPag3
     {
-        public ReportDataQuadernPag3(string _data, string _num_finca, string _cultiu, string _superficie, string _treballs, 
-            string _ado_nom, string _ado_compo, string _ado_quantitat, string _ado_fert)
+        public ReportDataQuadernPag3(string _num_finca, string _nom_finca, string _municipi, string _poligon, string _parcela,
+            string _recinte, string _us, string _cultiu, string _superficie, string _sistema_conreu, string _num_rcv)
         {
-            data = _data;
             num_finca = _num_finca;
+            nom_finca = _nom_finca;
+            municipi = _municipi;
+            poligon = _poligon;
+            parcela = _parcela;
+            recinte = _recinte;
+            us = _us;
             cultiu = _cultiu;
             superficie = _superficie;
-            treballs = _treballs;
-            ado_nom = _ado_nom;
-            ado_compo = _ado_compo;
-            ado_quantitat = _ado_quantitat;
-            ado_fert = _ado_fert;
-
+            sistema_conreu = _sistema_conreu;
+            num_rcv = _num_rcv;
         }
 
-        public string data { get; set; }
-        public string num_finca { get; set; }
-        public string cultiu { get; set; }
-        public string superficie { get; set; }
-        public string treballs { get; set; }
-        public string ado_nom { get; set; }
-        public string ado_compo { get; set; }
-        public string ado_quantitat { get; set; }
-        public string ado_fert { get; set; }
+        string num_finca { get; set; }
+        string nom_finca { get; set; }
+        string municipi { get; set; }
+        string poligon { get; set; }
+        string parcela { get; set; }
+        string recinte { get; set; }
+        string us { get; set; }
+        string cultiu { get; set; }
+        string superficie { get; set; }
+        string sistema_conreu { get; set; }
+        string num_rcv { get; set; }
     }
 }
