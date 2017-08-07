@@ -16,55 +16,6 @@
       </ConnectionProperties>
       <rd:DataSourceID>8edb0f4b-4892-4f8e-a5a5-392f2cf34956</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources1">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>5f117670-c7af-4a79-aa24-8848ca95d79d</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources2">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>a3724184-4204-48d0-b639-53a9c8f2e0c9</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources3">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>f9ee2883-579e-47c3-8246-a1d982da87eb</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources4">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>2c1b412a-1afa-438f-942e-1b037fed2be9</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources5">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>7d303d52-e8c6-413f-87f4-f7549b439c8d</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources6">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>77bcf206-5929-4b8c-b031-e7b26ccf7b12</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources7">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>33ac7ba0-0797-41bb-b551-687051af72ff</rd:DataSourceID>
-    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
