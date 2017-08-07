@@ -394,6 +394,17 @@ namespace WindowsFormsApp4
             this.Enabled = true;
         }
 
+        public void ImprimirQuadernCamp(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+
+
+
+
+            quadern_camp_form.ShowDialog();
+            this.Enabled = true;
+        }
+
         // ---------------------------------------------------------------------- Botons
         // -----------------------------------------------------------------------------
 

@@ -264,6 +264,11 @@ namespace WindowsFormsApp4
                 imprimir_button.GetElement().Click += new System.EventHandler(this.ImprimirMapa);
                 map_win.AddElement(imprimir_button);
 
+                imprimir_quadern_camp_button = new UI_Button(new Point(400, 550), 200, 23, "Imprimir quadern de camp");
+                imprimir_quadern_camp_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                imprimir_quadern_camp_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                map_win.AddElement(imprimir_quadern_camp_button); 
+
                 editor_parceles_ultim_guardat = new UI_Text(new Point(520, 505), 100, 25, "");
                 editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(editor_parceles_ultim_guardat);
@@ -529,6 +534,7 @@ namespace WindowsFormsApp4
         UI_MaskedTextInput text_input_nom = null;
         UI_Button mapsat_button = null;
         UI_Button imprimir_button = null;
+        UI_Button imprimir_quadern_camp_button = null;
 
         UI_Text propietaris_text = null;
         UI_Text finques_text = null;

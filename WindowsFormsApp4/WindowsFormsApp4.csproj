@@ -147,6 +147,10 @@
     <Compile Include="DataSources\DataSourceQuadernPag1.cs" />
     <Compile Include="DataSources\DataSourceAnalitica.cs" />
     <Compile Include="DataSources\DataSourceParte.cs" />
+    <Compile Include="DataSources\DataSourceQuadernPag2.cs" />
+    <Compile Include="DataSources\DataSourceQuadernPag3.cs" />
+    <Compile Include="DataSources\DataSourceQuadernPag4.cs" />
+    <Compile Include="DataSources\DataSourecQuadernPag5.cs" />
     <Compile Include="Forms\Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>

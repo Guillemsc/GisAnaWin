@@ -5279,7 +5279,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>102.49326cm</Top>
-            <Left>0cm</Left>
             <Height>0.52944cm</Height>
             <Width>29.03588cm</Width>
             <ZIndex>38</ZIndex>
@@ -5779,7 +5778,7 @@
             <Top>106.23655cm</Top>
             <Left>0.30369cm</Left>
             <Height>1.57042cm</Height>
-            <Width>27.79598cm</Width>
+            <Width>27.79597cm</Width>
             <ZIndex>41</ZIndex>
             <Style>
               <Border>
