@@ -65,6 +65,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>7123d0b0-a481-4538-a26a-beb01706fc4c</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources9">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>3fb31c36-7ba0-4a5c-8216-7ae972f44c20</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="Pag1">
@@ -314,55 +321,6 @@
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag3, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag4">
-      <Query>
-        <DataSourceName>WindowsFormsApp4DataSources7</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="ado_compo">
-          <DataField>ado_compo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_fert">
-          <DataField>ado_fert</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_nom">
-          <DataField>ado_nom</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_quantitat">
-          <DataField>ado_quantitat</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cultiu">
-          <DataField>cultiu</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="data">
-          <DataField>data</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="num_finca">
-          <DataField>num_finca</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="superficie">
-          <DataField>superficie</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="treballs">
-          <DataField>treballs</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
-        <rd:TableName>ReportDataQuadernPag3</rd:TableName>
-        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag3, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
     <DataSet Name="Pag5">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources8</DataSourceName>
@@ -406,6 +364,67 @@
         <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
         <rd:TableName>ReportDataQuadernPag5</rd:TableName>
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag5, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Pag4">
+      <Query>
+        <DataSourceName>WindowsFormsApp4DataSources9</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="cultiu">
+          <DataField>cultiu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="data">
+          <DataField>data</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="eficacia">
+          <DataField>eficacia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="kg_brou">
+          <DataField>kg_brou</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_aplicador">
+          <DataField>num_aplicador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_finca">
+          <DataField>num_finca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="num_maquinaria">
+          <DataField>num_maquinaria</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="plaga">
+          <DataField>plaga</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="productes_dosi">
+          <DataField>productes_dosi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="productes_nom">
+          <DataField>productes_nom</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="productes_num_registre">
+          <DataField>productes_num_registre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="superficie">
+          <DataField>superficie</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
+        <rd:TableName>ReportDataQuadernPag4</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag4, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -781,7 +800,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DataSet1</DataSetName>
+            <DataSetName>Pag1</DataSetName>
             <Top>3.62162cm</Top>
             <Left>0.29104cm</Left>
             <Height>1.2cm</Height>
@@ -917,7 +936,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox12">
+                        <Textbox Name="assessor_explotacio">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -931,7 +950,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <rd:DefaultName>assessor_explotacio</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -947,7 +966,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox13">
+                        <Textbox Name="assessor_explotacio_nif">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -961,7 +980,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <rd:DefaultName>assessor_explotacio_nif</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -977,7 +996,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox14">
+                        <Textbox Name="assessor_explotacio_registre">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -991,7 +1010,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>assessor_explotacio_registre</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1026,7 +1045,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DataSet1</DataSetName>
+            <DataSetName>Pag1</DataSetName>
             <Top>5.3632cm</Top>
             <Left>0.29104cm</Left>
             <Height>1.2cm</Height>
@@ -1633,21 +1652,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox21">
+                        <Textbox Name="num_ordre">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_ordre.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <rd:DefaultName>num_ordre</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1662,21 +1681,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox23">
+                        <Textbox Name="nom_cognom">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nom_cognom.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>nom_cognom</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1691,21 +1710,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox25">
+                        <Textbox Name="nif">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nif.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <rd:DefaultName>nif</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1720,21 +1739,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox29">
+                        <Textbox Name="num_carnet">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_carnet.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <rd:DefaultName>num_carnet</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1749,21 +1768,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox31">
+                        <Textbox Name="num_quali">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_quali.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <rd:DefaultName>num_quali</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1799,6 +1818,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag2t1</DataSetName>
             <Top>24.15328cm</Top>
             <Left>0.34078cm</Left>
             <Height>1.57042cm</Height>
@@ -2049,7 +2069,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!numero_ordre_2t2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2078,7 +2098,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nom_cognom_2t2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2107,7 +2127,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nif_2t2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2136,7 +2156,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_carnet_2t2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2165,7 +2185,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_quali_2t2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2208,6 +2228,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag2t2</DataSetName>
             <Top>27.15163cm</Top>
             <Left>0.321cm</Left>
             <Height>1.57042cm</Height>
@@ -2421,7 +2442,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_ordre.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2450,7 +2471,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nom_cognom.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2479,7 +2500,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!nif.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2508,7 +2529,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_registre.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2550,8 +2571,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>30.32663cm</Top>
-            <Left>0.321cm</Left>
+            <DataSetName>Pag2t3</DataSetName>
+            <Top>30.09761cm</Top>
+            <Left>0.34079cm</Left>
             <Height>1.57042cm</Height>
             <Width>27.75888cm</Width>
             <ZIndex>18</ZIndex>
@@ -2800,7 +2822,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_ordre.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2829,7 +2851,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!tipo_maquina.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2858,7 +2880,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data_compra.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2887,7 +2909,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_roma.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2916,7 +2938,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data_ins.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2959,6 +2981,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag2t4</DataSetName>
             <Top>33.50163cm</Top>
             <Left>0.321cm</Left>
             <Height>1.57042cm</Height>
@@ -3209,7 +3232,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_ordre_2t5.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3238,7 +3261,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!tipo_maquina_2t5.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3267,7 +3290,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data_compra_2t5.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3296,7 +3319,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_roma_2t5.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3325,7 +3348,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data_ins_2t5.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3368,6 +3391,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag2t5</DataSetName>
             <Top>36.67663cm</Top>
             <Left>0.321cm</Left>
             <Height>1.57042cm</Height>
@@ -3739,7 +3763,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_finca.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3768,7 +3792,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_compo.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3797,7 +3821,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_fert.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3826,7 +3850,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_fert.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3855,7 +3879,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_nom.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3877,21 +3901,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox89">
+                        <Textbox Name="ado_nom">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_nom.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox89</rd:DefaultName>
+                          <rd:DefaultName>ado_nom</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3906,21 +3930,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox91">
+                        <Textbox Name="ado_quantitat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_quantitat.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox91</rd:DefaultName>
+                          <rd:DefaultName>ado_quantitat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3958,6 +3982,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag3</DataSetName>
             <Top>44.49507cm</Top>
             <Left>0.321cm</Left>
             <Height>1.57042cm</Height>
@@ -4470,7 +4495,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4499,7 +4524,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_finca.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4528,7 +4553,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!cultiu.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4557,7 +4582,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!superficie.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4586,7 +4611,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!treballs.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4615,7 +4640,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!ado_fert.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -4659,6 +4684,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag3</DataSetName>
             <Top>65.17976cm</Top>
             <Left>0.31111cm</Left>
             <Height>1.57042cm</Height>
@@ -5199,7 +5225,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5228,7 +5254,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_finca.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5257,7 +5283,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!cultiu.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5286,7 +5312,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!plaga.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5315,7 +5341,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!superficie.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5344,7 +5370,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_aplicador.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5373,7 +5399,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_maquinaria.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5402,7 +5428,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!kg_brou.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5431,7 +5457,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!productes_dosi.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5460,7 +5486,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!eficacia.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5508,6 +5534,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag4</DataSetName>
             <Top>86.09777cm</Top>
             <Left>0.30616cm</Left>
             <Height>1.57042cm</Height>
@@ -5939,7 +5966,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!data.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5968,7 +5995,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!producte.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5997,7 +6024,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!quali_1.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -6026,7 +6053,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!quantitat.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -6055,7 +6082,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!proveidor.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -6084,7 +6111,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!num_albara.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -6128,6 +6155,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>Pag5</DataSetName>
             <Top>106.23655cm</Top>
             <Left>0.30369cm</Left>
             <Height>1.57042cm</Height>
