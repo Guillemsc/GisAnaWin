@@ -7,56 +7,63 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>8f3b5b34-d247-4f7b-a12e-96b45d7d0726</rd:DataSourceID>
+      <rd:DataSourceID>e250fda5-a0ee-4cf5-bf96-4b1bbab70993</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>cf8540e4-a74f-480a-88ee-ca752525507f</rd:DataSourceID>
+      <rd:DataSourceID>31e6c233-f3c8-4c03-88d6-379cd3b4e12f</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources2">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>08cdfd20-c7d8-476f-94bd-8aee3825c3a9</rd:DataSourceID>
+      <rd:DataSourceID>87a60fbe-294b-41be-845b-318171c94246</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources3">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>93c6982a-a0cc-4108-890c-e6b47ed1ffca</rd:DataSourceID>
+      <rd:DataSourceID>7c7e1c3a-9d86-4ea7-b636-58f3a084286b</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources4">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c36fdd1b-1dbe-4508-861b-843bad3907d2</rd:DataSourceID>
+      <rd:DataSourceID>8e0f16d4-dda9-4b00-9718-df22f2237599</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources5">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>925abbbb-d007-4a18-b10b-c444b391919e</rd:DataSourceID>
+      <rd:DataSourceID>a855c3a5-64c6-48a7-a5a5-15f1a9408cfa</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources6">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>d8293285-444b-4aa8-a785-c53f11afb09a</rd:DataSourceID>
+      <rd:DataSourceID>91c2fe54-14b3-4e0a-8037-ec4571c24a0d</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>2b37aea8-c68b-4e5d-aeb2-c52455e1d97e</rd:DataSourceID>
+      <rd:DataSourceID>7bd74e9e-532b-43e4-b350-86adc63e1e09</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources8">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>68255538-f684-4858-9267-202347e15a5e</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -303,13 +310,13 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
-        <rd:TableName>ReportDataQuadernPag3</rd:TableName>
-        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag3, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ReportDataQuadernPag4</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag4, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag6">
+    <DataSet Name="Pag5">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources6</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -368,53 +375,49 @@
         <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag5, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="Pag5">
+    <DataSet Name="Pag6">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources7</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources8</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="ado_compo">
-          <DataField>ado_compo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_fert">
-          <DataField>ado_fert</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_nom">
-          <DataField>ado_nom</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ado_quantitat">
-          <DataField>ado_quantitat</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cultiu">
-          <DataField>cultiu</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="data">
           <DataField>data</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="num_finca">
-          <DataField>num_finca</DataField>
+        <Field Name="num_albara">
+          <DataField>num_albara</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="superficie">
-          <DataField>superficie</DataField>
+        <Field Name="producte">
+          <DataField>producte</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="treballs">
-          <DataField>treballs</DataField>
+        <Field Name="proveidor">
+          <DataField>proveidor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="quali_1">
+          <DataField>quali_1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="quali_2">
+          <DataField>quali_2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="quali_3">
+          <DataField>quali_3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="quantitat">
+          <DataField>quantitat</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
-        <rd:TableName>ReportDataQuadernPag4</rd:TableName>
-        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag4, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ReportDataQuadernPag6</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag6, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -5949,7 +5952,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox139">
+                        <Textbox Name="data">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -5963,7 +5966,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <rd:DefaultName>data</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -5978,7 +5981,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox140">
+                        <Textbox Name="producte">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -5992,7 +5995,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>producte</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -6007,7 +6010,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox141">
+                        <Textbox Name="quali_1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6021,7 +6024,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <rd:DefaultName>quali_1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -6036,7 +6039,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox142">
+                        <Textbox Name="quantitat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6050,7 +6053,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <rd:DefaultName>quantitat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -6065,7 +6068,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox143">
+                        <Textbox Name="proveidor">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6079,7 +6082,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <rd:DefaultName>proveidor</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -6094,7 +6097,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox148">
+                        <Textbox Name="num_albara">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6108,7 +6111,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <rd:DefaultName>num_albara</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>

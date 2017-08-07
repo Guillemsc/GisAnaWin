@@ -285,6 +285,7 @@
     <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag3.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag4.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag5.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp4.DataSources.ReportDataQuadernPag6.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp4.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">

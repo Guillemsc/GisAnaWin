@@ -54,11 +54,11 @@ namespace WindowsFormsApp4.Forms
             report10DSBindingSource.DataSource = pag6;
 
 
-            this.reportViewer.LocalReport.EnableExternalImages = true;
-            System.Drawing.Printing.PageSettings setup = this.reportViewer.GetPageSettings();
-            setup.Margins = new System.Drawing.Printing.Margins(5, 5, 5, 5);
-            setup.Landscape = true;
-            this.reportViewer.SetPageSettings(setup);
+            //this.reportViewer.LocalReport.EnableExternalImages = true;
+            //System.Drawing.Printing.PageSettings setup = this.reportViewer.GetPageSettings();
+            //setup.Margins = new System.Drawing.Printing.Margins(5, 5, 5, 5);
+            //setup.Landscape = true;
+            //this.reportViewer.SetPageSettings(setup);
 
             //ReportParameter[] para = new ReportParameter[6];
             //para[0] = new ReportParameter("titular_explotacio", titular_explotacio);
