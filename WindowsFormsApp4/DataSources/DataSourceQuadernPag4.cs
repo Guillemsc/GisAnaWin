@@ -26,17 +26,17 @@ namespace WindowsFormsApp4.DataSources
             eficacia = _eficacia;
         }
 
-        string data;
-        string num_finca;
-        string cultiu;
-        string plaga;
-        string superficie;
-        string num_aplicador;
-        string num_maquinaria;
-        string kg_brou;
-        string productes_nom;
-        string productes_num_registre;
-        string productes_dosi;
-        string eficacia;
+        public string data { get; set; }
+        public string num_finca { get; set; }
+        public string cultiu { get; set; }
+        public string plaga { get; set; }
+        public string superficie { get; set; }
+        public string num_aplicador { get; set; }
+        public string num_maquinaria { get; set; }
+        public string kg_brou { get; set; }
+        public string productes_nom { get; set; }
+        public string productes_num_registre { get; set; }
+        public string productes_dosi { get; set; }
+        public string eficacia { get; set; }
     }
 }

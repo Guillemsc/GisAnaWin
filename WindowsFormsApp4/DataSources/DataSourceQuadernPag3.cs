@@ -23,14 +23,14 @@ namespace WindowsFormsApp4.DataSources
 
         }
 
-        string data;
-        string num_finca;
-        string cultiu;
-        string superficie;
-        string treballs;
-        string ado_nom;
-        string ado_compo;
-        string ado_quantitat;
-        string ado_fert;
+        public string data { get; set; }
+        public string num_finca { get; set; }
+        public string cultiu { get; set; }
+        public string superficie { get; set; }
+        public string treballs { get; set; }
+        public string ado_nom { get; set; }
+        public string ado_compo { get; set; }
+        public string ado_quantitat { get; set; }
+        public string ado_fert { get; set; }
     }
 }

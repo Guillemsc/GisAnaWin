@@ -60,13 +60,14 @@ namespace WindowsFormsApp4.DataSources
 
     public class ReportDataQuadernPag2t4
     {
-        ReportDataQuadernPag2t4(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
+        ReportDataQuadernPag2t4(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins, string _test)
         {
             num_ordre = _num_ordre;
             tipo_maquina = _tipo_maquina;
             data_compra = _data_compra;
             num_roma = _num_roma;
             data_ins = _data_ins;
+            test = _test;
         }
 
         public string num_ordre { get; set; }
@@ -74,6 +75,7 @@ namespace WindowsFormsApp4.DataSources
         public string data_compra { get; set; }
         public string num_roma { get; set; }
         public string data_ins { get; set; }
+        public string test { get; set; }
     }
 
     public class ReportDataQuadernPag2t5

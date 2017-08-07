@@ -21,13 +21,13 @@ namespace WindowsFormsApp4.DataSources
             num_albara = _num_albara;
         }
 
-        string data;
-        string producte;
-        string quali_1;
-        string quali_2;
-        string quali_3;
-        string quantitat;
-        string proveidor;
-        string num_albara;
+        public string data { get; set; }
+        public string producte { get; set; }
+        public string quali_1 { get; set; }
+        public string quali_2 { get; set; }
+        public string quali_3 { get; set; }
+        public string quantitat { get; set; }
+        public string proveidor { get; set; }
+        public string num_albara { get; set; }
     }
 }
