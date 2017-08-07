@@ -14,98 +14,56 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>4bc8d921-bd40-4f09-bf9c-f8e86af91ca9</rd:DataSourceID>
+      <rd:DataSourceID>aa9f61bd-c4b8-4be8-9815-6582fcb2f007</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources2">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>52e201e6-1013-4557-83b4-4d5444a9fd0d</rd:DataSourceID>
+      <rd:DataSourceID>a1786a3e-55b0-4c6e-a9a3-63bc16c22fd1</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources3">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1f179c9a-c78f-408d-a3c5-8f92e9ca6514</rd:DataSourceID>
+      <rd:DataSourceID>728d6765-d36a-48b9-9b1b-889adf719925</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources4">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>f35637b2-d151-493e-a94f-cadbc862ed7a</rd:DataSourceID>
+      <rd:DataSourceID>edada594-25df-4b44-af29-996b4490df53</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources5">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9f34e690-2cb3-4e54-9ac1-f2f700258892</rd:DataSourceID>
+      <rd:DataSourceID>ba6ef2a4-21e5-4d88-80a5-7494f3f8cac7</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources6">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>03694380-9072-4a1b-a6ad-fc4dd6be76a6</rd:DataSourceID>
+      <rd:DataSourceID>87ac5d63-8e07-42ee-81c3-c0086d2e6981</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0503e9a8-6e23-4959-bc3c-7d2e6ea8310b</rd:DataSourceID>
+      <rd:DataSourceID>87b2a376-f8e4-44af-ab18-e21240183717</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WindowsFormsApp4DataSources8">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>6c5d63e7-0614-4edc-8c18-3ecc65209d02</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources9">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>1d6b4259-a0c8-4d22-85f4-1a4c0aa05885</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources10">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>5102f282-1384-4cda-86dc-55b785c63016</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources11">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>d77ca4c3-f0c2-49d0-b9f3-30e192b1127b</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources12">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>99198863-a240-481b-9897-41b4341a1843</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources13">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>3f091102-d063-40c3-ad6c-cfb3377c453f</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WindowsFormsApp4DataSources14">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>6b0e87cb-8b64-4f4a-a173-272255f1299b</rd:DataSourceID>
+      <rd:DataSourceID>7123d0b0-a481-4538-a26a-beb01706fc4c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -148,7 +106,7 @@
     </DataSet>
     <DataSet Name="Pag2t1">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources6</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -181,7 +139,7 @@
     </DataSet>
     <DataSet Name="Pag2t2">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources7</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources2</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -214,7 +172,7 @@
     </DataSet>
     <DataSet Name="Pag2t3">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources8</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -243,7 +201,7 @@
     </DataSet>
     <DataSet Name="Pag2t4">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources10</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources4</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -276,7 +234,7 @@
     </DataSet>
     <DataSet Name="Pag2t5">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources11</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources5</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -309,7 +267,7 @@
     </DataSet>
     <DataSet Name="Pag3">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources12</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -358,7 +316,7 @@
     </DataSet>
     <DataSet Name="Pag4">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources13</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -407,7 +365,7 @@
     </DataSet>
     <DataSet Name="Pag5">
       <Query>
-        <DataSourceName>WindowsFormsApp4DataSources14</DataSourceName>
+        <DataSourceName>WindowsFormsApp4DataSources8</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
