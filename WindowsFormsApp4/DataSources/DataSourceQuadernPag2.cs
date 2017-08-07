@@ -80,17 +80,17 @@ namespace WindowsFormsApp4.DataSources
     {
         ReportDataQuadernPag2t5(string _num_ordre, string _tipo_maquina, string _data_compra, string _num_roma, string _data_ins)
         {
-            num_ordre = _num_ordre;
-            tipo_maquina = _tipo_maquina;
-            data_compra = _data_compra;
-            num_roma = _num_roma;
-            data_ins = _data_ins;
+            num_ordre_2t5 = _num_ordre;
+            tipo_maquina_2t5 = _tipo_maquina;
+            data_compra_2t5 = _data_compra;
+            num_roma_2t5 = _num_roma;
+            data_ins_2t5 = _data_ins;
         }
 
-        public string num_ordre { get; set; }
-        public string tipo_maquina { get; set; }
-        public string data_compra { get; set; }
-        public string num_roma { get; set; }
-        public string data_ins { get; set; }
+        public string num_ordre_2t5 { get; set; }
+        public string tipo_maquina_2t5 { get; set; }
+        public string data_compra_2t5 { get; set; }
+        public string num_roma_2t5 { get; set; }
+        public string data_ins_2t5 { get; set; }
     }
 }
