@@ -9,11 +9,55 @@
       </ConnectionProperties>
       <rd:DataSourceID>00c0654e-f1cb-44d4-8465-fdcdeb1d3226</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WindowsFormsApp4DataSources1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>4bc8d921-bd40-4f09-bf9c-f8e86af91ca9</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="Pag1">
       <Query>
         <DataSourceName>WindowsFormsApp4DataSources</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="assessor_explotacio">
+          <DataField>assessor_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_nif">
+          <DataField>assessor_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="assessor_explotacio_registre">
+          <DataField>assessor_explotacio_registre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio">
+          <DataField>titular_explotacio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_ccpae">
+          <DataField>titular_explotacio_ccpae</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="titular_explotacio_nif">
+          <DataField>titular_explotacio_nif</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WindowsFormsApp4.DataSources</rd:DataSetName>
+        <rd:TableName>ReportDataQuadernPag1</rd:TableName>
+        <rd:ObjectDataSourceType>WindowsFormsApp4.DataSources.ReportDataQuadernPag1, WindowsFormsApp4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>WindowsFormsApp4DataSources1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
