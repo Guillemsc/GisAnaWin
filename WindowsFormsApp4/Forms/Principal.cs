@@ -398,10 +398,8 @@ namespace WindowsFormsApp4
         {
             this.Enabled = false;
 
+            configura_quadern_camp_form.ShowDialog();
 
-
-
-            quadern_camp_form.ShowDialog();
             this.Enabled = true;
         }
 
@@ -597,6 +595,51 @@ namespace WindowsFormsApp4
             Console.WriteLine("----------------------------------");
         }
 
+        public void ActualitzaMaquinariaDesDeServidor()
+        {
+            List<tblMaquinaria> maquinaria = server_manager.GetMaquinaria();
+
+            propietaris_manager.EliminaMaquinaria();
+
+            for(int i = 0; i < maquinaria.Count; i++)
+            {
+                propietaris_manager.AfegirMaquinaria(new Maquina(maquinaria[i]));
+            }
+
+            Console.WriteLine("Actualitzat Maquinaria Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
+        public void ActualitzaPersonalDesDeServidor()
+        {
+            List<tblPersonal> personal = server_manager.GetPersonal();
+
+            propietaris_manager.EliminaPersonal();
+
+            for (int i = 0; i < personal.Count; i++)
+            {
+                propietaris_manager.AfegirPersonal(new Personal(personal[i]));
+            }
+
+            Console.WriteLine("Actualitzat Personal Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
+        public void ActualitzaAdobsDesDeServidor()
+        {
+            List<tblProductesFitosanitaris> adobs = server_manager.GetAdobs();
+
+            propietaris_manager.EliminaAdobs();
+
+            for (int i = 0; i < adobs.Count; i++)
+            {
+                propietaris_manager.AfegirAdob(new Adob(adobs[i]));
+            }
+
+            Console.WriteLine("Actualitzat Adobs Des De Servidor");
+            Console.WriteLine("----------------------------------");
+        }
+
         // -------------------------------------------------------------------- Servidor
         // -----------------------------------------------------------------------------
 
@@ -605,7 +648,7 @@ namespace WindowsFormsApp4
         // Utils -----------------------------------------------------------------------
         // -----------------------------------------------------------------------------
 
-      
+
 
         public void SetZoomByMapDistances(double x, double y)
         {

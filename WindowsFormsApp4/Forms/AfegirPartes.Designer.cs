@@ -36,7 +36,7 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 419);
+            this.ClientSize = new System.Drawing.Size(1014, 619);
             this.Name = "Afegir Partes";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -100,23 +100,33 @@ namespace WindowsFormsApp4
                 remove_treball_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
                 main_window.AddElement(remove_treball_button);
 
-                grid = new UI_Grid(new Point(22, 210), 870, 150);
+                grid = new UI_Grid(new Point(22, 210), 970, 350);
 
-
-                List<object> obj = new List<object>();
+                List<object> unitats = new List<object>();
+                List<object> maquinaria = new List<object>();
+                List<object> aplicadors = new List<object>();
+                List<object> adobs = new List<object>();
 
                 for (int i = 0; i < propietaris_manager.GetUnitatsMetriques().Count; i++)
-                {
-                    obj.Add(propietaris_manager.GetUnitatsMetriques()[i]);
-                }
+                    unitats.Add(propietaris_manager.GetUnitatsMetriques()[i]);
+
+                for (int i = 0; i < propietaris_manager.GetMaquinaria().Count; i++)
+                    maquinaria.Add(propietaris_manager.GetMaquinaria()[i]);
+
+                for (int i = 0; i < propietaris_manager.GetPersonal().Count; i++)
+                    aplicadors.Add(propietaris_manager.GetPersonal()[i]);
+
+                for (int i = 0; i < propietaris_manager.GetAdobs().Count; i++)
+                    adobs.Add(propietaris_manager.GetAdobs()[i]);
 
                 grid.AddColumn("Treball", 50, true); grid.AddColumn("Descripció", 500); grid.AddColumn("Unitats", 130, false); grid.AddColumn("tblLinea", 0, true, false);
-                grid.AddComboBoxColumn("Unitat Metrica", 130, obj); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
+                grid.AddComboBoxColumn("Unitat Metrica", 130, unitats); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
                 grid.AddCheckBoxColumn("Fertirrigació", 100, false); grid.AddComboBoxColumn("Eficacia tractament", 150, false, "0", "1", "2", "3");
-                grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
+                grid.AddComboBoxColumn("Aplicador", 100, aplicadors); grid.AddComboBoxColumn("Maquinaria", 100, maquinaria);
+                grid.AddComboBoxColumn("Adob", 100, adobs);
                 main_window.AddElement(grid);
 
-                accepta_button = new UI_Button(new Point(393, 375), 100, 30, "Acceptar");
+                accepta_button = new UI_Button(new Point(393, 575), 100, 30, "Acceptar");
                 accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
                 main_window.AddElement(accepta_button);
 

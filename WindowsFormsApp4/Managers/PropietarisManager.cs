@@ -170,7 +170,52 @@ namespace WindowsFormsApp4
         {
             unitats_metriques.Clear();
         }
-             
+
+        public List<Maquina> GetMaquinaria()
+        {
+            return maquines;
+        }
+
+        public void AfegirMaquinaria(Maquina m)
+        {
+            maquines.Add(m);
+        }
+
+        public void EliminaMaquinaria()
+        {
+            maquines.Clear();
+        }
+
+        public List<Personal> GetPersonal()
+        {
+            return personal;
+        }
+
+        public void AfegirPersonal(Personal p)
+        {
+            personal.Add(p);
+        }
+
+        public void EliminaPersonal()
+        {
+            personal.Clear();
+        }
+
+        public List<Adob> GetAdobs()
+        {
+            return adobs;
+        }
+
+        public void AfegirAdob(Adob a)
+        {
+            adobs.Add(a);
+        }
+
+        public void EliminaAdobs()
+        {
+            adobs.Clear();
+        }
+
         public Propietari TrobaPropietariPerID(string id)
         {
             Propietari ret = null;
@@ -670,6 +715,113 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public Personal GetPersonalPerNom(string nom)
+        {
+            Personal ret = null;
+
+            List<Personal> personal = GetPersonal();
+
+            for (int i = 0; i < personal.Count(); i++)
+            {
+                if (personal[i].GetTbl().nom.ToLower().Replace(" ", "") == nom.ToLower().Replace(" ", ""))
+                {
+                    ret = personal[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Personal GetPersonalPerId(string id)
+        {
+            Personal ret = null;
+
+            List<Personal> personal = GetPersonal();
+
+            for (int i = 0; i < personal.Count(); i++)
+            {
+                if (personal[i].GetTbl().id == id)
+                {
+                    ret = personal[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Maquina GetMaquinaPerNom(string nom)
+        {
+            Maquina ret = null;
+
+            List<Maquina> maquinaria = GetMaquinaria();
+
+            for (int i = 0; i < maquinaria.Count(); i++)
+            {
+                if (maquinaria[i].GetTbl().nomMaquina.ToLower().Replace(" ", "") == nom.ToLower().Replace(" ", ""))
+                {
+                    ret = maquinaria[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Maquina GetMaquinaPerId(string id)
+        {
+            Maquina ret = null;
+
+            List<Maquina> maquinaria = GetMaquinaria();
+
+            for (int i = 0; i < maquinaria.Count(); i++)
+            {
+                if (maquinaria[i].GetTbl().id == id)
+                {
+                    ret = maquinaria[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Adob GetAdobPerNom(string nom)
+        {
+            Adob ret = null;
+
+            List<Adob> adobs = GetAdobs();
+
+            for (int i = 0; i < adobs.Count(); i++)
+            {
+                if (adobs[i].GetTbl().NomComercial.ToLower().Replace(" ", "") == nom.ToLower().Replace(" ", ""))
+                {
+                    ret = adobs[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
+        public Adob GetAdobPerId(string id)
+        {
+            Adob ret = null;
+
+            List<Adob> adobs = GetAdobs();
+
+            for (int i = 0; i < adobs.Count(); i++)
+            {
+                if (adobs[i].GetTbl().id.ToString().ToLower().Replace(" ", "") == id)
+                {
+                    ret = adobs[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
 
         List<Propietari>                 propietaris = new List<Propietari>();
         List<Finca>                      finques = new List<Finca>();
@@ -681,6 +833,10 @@ namespace WindowsFormsApp4
         List<tblLineasPartesFinca>       partes_linea = new List<tblLineasPartesFinca>();
         List<Analitica>                  analitiques = new List<Analitica>();
         List<tblCoordenadesFincaParcela> coordenades = new List<tblCoordenadesFincaParcela>();
+        List<Maquina>                    maquines = new List<Maquina>();
+        List<Personal>                   personal = new List<Personal>();
+        List<Adob>                       adobs = new List<Adob>();
+   
 
         public Propietari                propietari_actual = null;
         public Finca                     finca_actual = null;
@@ -798,5 +954,65 @@ namespace WindowsFormsApp4
         }
 
         private tblUnitatsMetriques uni;
+    }
+
+    public class Maquina
+    {
+        public Maquina(tblMaquinaria _maq)
+        {
+            maqui = _maq;
+        }
+
+        public override string ToString()
+        {
+            return maqui.nomMaquina;
+        }
+
+        public tblMaquinaria GetTbl()
+        {
+            return maqui;
+        }
+
+        private tblMaquinaria maqui;
+    }
+
+    public class Personal
+    {
+        public Personal(tblPersonal _per)
+        {
+            pers = _per;
+        }
+
+        public override string ToString()
+        {
+            return pers.nom;
+        }
+
+        public tblPersonal GetTbl()
+        {
+            return pers;
+        }
+
+        private tblPersonal pers;
+    }
+
+    public class Adob
+    {
+        public Adob(tblProductesFitosanitaris _ad)
+        {
+            ad = _ad;
+        }
+
+        public override string ToString()
+        {
+            return ad.NomComercial;
+        }
+
+        public tblProductesFitosanitaris GetTbl()
+        {
+            return ad;
+        }
+
+        private tblProductesFitosanitaris ad;
     }
 }

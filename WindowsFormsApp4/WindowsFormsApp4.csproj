@@ -152,6 +152,12 @@
     <Compile Include="DataSources\DataSourceQuadernPag4.cs" />
     <Compile Include="DataSources\DataSourceQuadernPag5.cs" />
     <Compile Include="DataSources\DataSourecQuadernPag6.cs" />
+    <Compile Include="Forms\ConfiguraQuadernCamp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfiguraQuadernCamp.Designer.cs">
+      <DependentUpon>ConfiguraQuadernCamp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>

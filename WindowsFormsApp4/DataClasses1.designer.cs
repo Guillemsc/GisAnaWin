@@ -63,6 +63,15 @@ namespace WindowsFormsApp4
     partial void InserttblUnitatsMetriques(tblUnitatsMetriques instance);
     partial void UpdatetblUnitatsMetriques(tblUnitatsMetriques instance);
     partial void DeletetblUnitatsMetriques(tblUnitatsMetriques instance);
+    partial void InserttblMaquinaria(tblMaquinaria instance);
+    partial void UpdatetblMaquinaria(tblMaquinaria instance);
+    partial void DeletetblMaquinaria(tblMaquinaria instance);
+    partial void InserttblPersonal(tblPersonal instance);
+    partial void UpdatetblPersonal(tblPersonal instance);
+    partial void DeletetblPersonal(tblPersonal instance);
+    partial void InserttblProductesFitosanitaris(tblProductesFitosanitaris instance);
+    partial void UpdatetblProductesFitosanitaris(tblProductesFitosanitaris instance);
+    partial void DeletetblProductesFitosanitaris(tblProductesFitosanitaris instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -180,6 +189,30 @@ namespace WindowsFormsApp4
 			get
 			{
 				return this.GetTable<tblUnitatsMetriques>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblMaquinaria> tblMaquinaria
+		{
+			get
+			{
+				return this.GetTable<tblMaquinaria>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblPersonal> tblPersonal
+		{
+			get
+			{
+				return this.GetTable<tblPersonal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblProductesFitosanitaris> tblProductesFitosanitaris
+		{
+			get
+			{
+				return this.GetTable<tblProductesFitosanitaris>();
 			}
 		}
 	}
@@ -4409,6 +4442,672 @@ namespace WindowsFormsApp4
 					this._Unitat = value;
 					this.SendPropertyChanged("Unitat");
 					this.OnUnitatChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMaquinaria")]
+	public partial class tblMaquinaria : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _CodigoEmpresa;
+		
+		private string _id;
+		
+		private string _nomMaquina;
+		
+		private System.Nullable<System.DateTime> _dataCompra;
+		
+		private string _numRoma;
+		
+		private System.Nullable<System.DateTime> _darreraInspeccio;
+		
+		private System.Nullable<bool> _enPropietat;
+		
+		private System.Nullable<bool> _llogada;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoEmpresaChanging(string value);
+    partial void OnCodigoEmpresaChanged();
+    partial void OnidChanging(string value);
+    partial void OnidChanged();
+    partial void OnnomMaquinaChanging(string value);
+    partial void OnnomMaquinaChanged();
+    partial void OndataCompraChanging(System.Nullable<System.DateTime> value);
+    partial void OndataCompraChanged();
+    partial void OnnumRomaChanging(string value);
+    partial void OnnumRomaChanged();
+    partial void OndarreraInspeccioChanging(System.Nullable<System.DateTime> value);
+    partial void OndarreraInspeccioChanged();
+    partial void OnenPropietatChanging(System.Nullable<bool> value);
+    partial void OnenPropietatChanged();
+    partial void OnllogadaChanging(System.Nullable<bool> value);
+    partial void OnllogadaChanged();
+    #endregion
+		
+		public tblMaquinaria()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpresa
+		{
+			get
+			{
+				return this._CodigoEmpresa;
+			}
+			set
+			{
+				if ((this._CodigoEmpresa != value))
+				{
+					this.OnCodigoEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoEmpresa = value;
+					this.SendPropertyChanged("CodigoEmpresa");
+					this.OnCodigoEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomMaquina", DbType="VarChar(250)")]
+		public string nomMaquina
+		{
+			get
+			{
+				return this._nomMaquina;
+			}
+			set
+			{
+				if ((this._nomMaquina != value))
+				{
+					this.OnnomMaquinaChanging(value);
+					this.SendPropertyChanging();
+					this._nomMaquina = value;
+					this.SendPropertyChanged("nomMaquina");
+					this.OnnomMaquinaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataCompra", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dataCompra
+		{
+			get
+			{
+				return this._dataCompra;
+			}
+			set
+			{
+				if ((this._dataCompra != value))
+				{
+					this.OndataCompraChanging(value);
+					this.SendPropertyChanging();
+					this._dataCompra = value;
+					this.SendPropertyChanged("dataCompra");
+					this.OndataCompraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numRoma", DbType="VarChar(25)")]
+		public string numRoma
+		{
+			get
+			{
+				return this._numRoma;
+			}
+			set
+			{
+				if ((this._numRoma != value))
+				{
+					this.OnnumRomaChanging(value);
+					this.SendPropertyChanging();
+					this._numRoma = value;
+					this.SendPropertyChanged("numRoma");
+					this.OnnumRomaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_darreraInspeccio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> darreraInspeccio
+		{
+			get
+			{
+				return this._darreraInspeccio;
+			}
+			set
+			{
+				if ((this._darreraInspeccio != value))
+				{
+					this.OndarreraInspeccioChanging(value);
+					this.SendPropertyChanging();
+					this._darreraInspeccio = value;
+					this.SendPropertyChanged("darreraInspeccio");
+					this.OndarreraInspeccioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_enPropietat", DbType="Bit")]
+		public System.Nullable<bool> enPropietat
+		{
+			get
+			{
+				return this._enPropietat;
+			}
+			set
+			{
+				if ((this._enPropietat != value))
+				{
+					this.OnenPropietatChanging(value);
+					this.SendPropertyChanging();
+					this._enPropietat = value;
+					this.SendPropertyChanged("enPropietat");
+					this.OnenPropietatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_llogada", DbType="Bit")]
+		public System.Nullable<bool> llogada
+		{
+			get
+			{
+				return this._llogada;
+			}
+			set
+			{
+				if ((this._llogada != value))
+				{
+					this.OnllogadaChanging(value);
+					this.SendPropertyChanging();
+					this._llogada = value;
+					this.SendPropertyChanged("llogada");
+					this.OnllogadaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblPersonal")]
+	public partial class tblPersonal : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _CodigoEmpresa;
+		
+		private string _id;
+		
+		private string _nom;
+		
+		private string _nif;
+		
+		private string _numCarnet;
+		
+		private string _nivell;
+		
+		private System.Nullable<bool> _personal;
+		
+		private System.Nullable<bool> _contractat;
+		
+		private System.Nullable<bool> _empresa;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoEmpresaChanging(string value);
+    partial void OnCodigoEmpresaChanged();
+    partial void OnidChanging(string value);
+    partial void OnidChanged();
+    partial void OnnomChanging(string value);
+    partial void OnnomChanged();
+    partial void OnnifChanging(string value);
+    partial void OnnifChanged();
+    partial void OnnumCarnetChanging(string value);
+    partial void OnnumCarnetChanged();
+    partial void OnnivellChanging(string value);
+    partial void OnnivellChanged();
+    partial void OnpersonalChanging(System.Nullable<bool> value);
+    partial void OnpersonalChanged();
+    partial void OncontractatChanging(System.Nullable<bool> value);
+    partial void OncontractatChanged();
+    partial void OnempresaChanging(System.Nullable<bool> value);
+    partial void OnempresaChanged();
+    #endregion
+		
+		public tblPersonal()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpresa
+		{
+			get
+			{
+				return this._CodigoEmpresa;
+			}
+			set
+			{
+				if ((this._CodigoEmpresa != value))
+				{
+					this.OnCodigoEmpresaChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoEmpresa = value;
+					this.SendPropertyChanged("CodigoEmpresa");
+					this.OnCodigoEmpresaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nom", DbType="VarChar(250)")]
+		public string nom
+		{
+			get
+			{
+				return this._nom;
+			}
+			set
+			{
+				if ((this._nom != value))
+				{
+					this.OnnomChanging(value);
+					this.SendPropertyChanging();
+					this._nom = value;
+					this.SendPropertyChanged("nom");
+					this.OnnomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nif", DbType="VarChar(10)")]
+		public string nif
+		{
+			get
+			{
+				return this._nif;
+			}
+			set
+			{
+				if ((this._nif != value))
+				{
+					this.OnnifChanging(value);
+					this.SendPropertyChanging();
+					this._nif = value;
+					this.SendPropertyChanged("nif");
+					this.OnnifChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numCarnet", DbType="VarChar(20)")]
+		public string numCarnet
+		{
+			get
+			{
+				return this._numCarnet;
+			}
+			set
+			{
+				if ((this._numCarnet != value))
+				{
+					this.OnnumCarnetChanging(value);
+					this.SendPropertyChanging();
+					this._numCarnet = value;
+					this.SendPropertyChanged("numCarnet");
+					this.OnnumCarnetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nivell", DbType="VarChar(10)")]
+		public string nivell
+		{
+			get
+			{
+				return this._nivell;
+			}
+			set
+			{
+				if ((this._nivell != value))
+				{
+					this.OnnivellChanging(value);
+					this.SendPropertyChanging();
+					this._nivell = value;
+					this.SendPropertyChanged("nivell");
+					this.OnnivellChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_personal", DbType="Bit")]
+		public System.Nullable<bool> personal
+		{
+			get
+			{
+				return this._personal;
+			}
+			set
+			{
+				if ((this._personal != value))
+				{
+					this.OnpersonalChanging(value);
+					this.SendPropertyChanging();
+					this._personal = value;
+					this.SendPropertyChanged("personal");
+					this.OnpersonalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contractat", DbType="Bit")]
+		public System.Nullable<bool> contractat
+		{
+			get
+			{
+				return this._contractat;
+			}
+			set
+			{
+				if ((this._contractat != value))
+				{
+					this.OncontractatChanging(value);
+					this.SendPropertyChanging();
+					this._contractat = value;
+					this.SendPropertyChanged("contractat");
+					this.OncontractatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_empresa", DbType="Bit")]
+		public System.Nullable<bool> empresa
+		{
+			get
+			{
+				return this._empresa;
+			}
+			set
+			{
+				if ((this._empresa != value))
+				{
+					this.OnempresaChanging(value);
+					this.SendPropertyChanging();
+					this._empresa = value;
+					this.SendPropertyChanged("empresa");
+					this.OnempresaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblProductesFitosanitaris")]
+	public partial class tblProductesFitosanitaris : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _CodigoEmpreas;
+		
+		private int _id;
+		
+		private System.Nullable<int> _NumRegistre;
+		
+		private string _NomComercial;
+		
+		private string _Titular;
+		
+		private string _Formula;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodigoEmpreasChanging(string value);
+    partial void OnCodigoEmpreasChanged();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNumRegistreChanging(System.Nullable<int> value);
+    partial void OnNumRegistreChanged();
+    partial void OnNomComercialChanging(string value);
+    partial void OnNomComercialChanged();
+    partial void OnTitularChanging(string value);
+    partial void OnTitularChanged();
+    partial void OnFormulaChanging(string value);
+    partial void OnFormulaChanged();
+    #endregion
+		
+		public tblProductesFitosanitaris()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpreas", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpreas
+		{
+			get
+			{
+				return this._CodigoEmpreas;
+			}
+			set
+			{
+				if ((this._CodigoEmpreas != value))
+				{
+					this.OnCodigoEmpreasChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoEmpreas = value;
+					this.SendPropertyChanged("CodigoEmpreas");
+					this.OnCodigoEmpreasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumRegistre", DbType="Int")]
+		public System.Nullable<int> NumRegistre
+		{
+			get
+			{
+				return this._NumRegistre;
+			}
+			set
+			{
+				if ((this._NumRegistre != value))
+				{
+					this.OnNumRegistreChanging(value);
+					this.SendPropertyChanging();
+					this._NumRegistre = value;
+					this.SendPropertyChanged("NumRegistre");
+					this.OnNumRegistreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NomComercial", DbType="VarChar(250)")]
+		public string NomComercial
+		{
+			get
+			{
+				return this._NomComercial;
+			}
+			set
+			{
+				if ((this._NomComercial != value))
+				{
+					this.OnNomComercialChanging(value);
+					this.SendPropertyChanging();
+					this._NomComercial = value;
+					this.SendPropertyChanged("NomComercial");
+					this.OnNomComercialChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titular", DbType="VarChar(250)")]
+		public string Titular
+		{
+			get
+			{
+				return this._Titular;
+			}
+			set
+			{
+				if ((this._Titular != value))
+				{
+					this.OnTitularChanging(value);
+					this.SendPropertyChanging();
+					this._Titular = value;
+					this.SendPropertyChanged("Titular");
+					this.OnTitularChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Formula", DbType="VarChar(250)")]
+		public string Formula
+		{
+			get
+			{
+				return this._Formula;
+			}
+			set
+			{
+				if ((this._Formula != value))
+				{
+					this.OnFormulaChanging(value);
+					this.SendPropertyChanging();
+					this._Formula = value;
+					this.SendPropertyChanged("Formula");
+					this.OnFormulaChanged();
 				}
 			}
 		}

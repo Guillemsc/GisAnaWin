@@ -22,6 +22,7 @@ namespace WindowsFormsApp4
             ActualitzaLlistaTreballs();
             ActualitzaLListaUnitatsMesura();
             CarregaInformacioInicial();
+
             grid.CleanSelection();
             fertirrigacio_checkbox.SetSelected(false);
 
@@ -321,6 +322,8 @@ namespace WindowsFormsApp4
 
                 Treball treball = propietaris_manager.GetTreballPerTreballId(lineas[i].idFamiliaCoste);
                 tblPartesFinca parte = propietaris_manager.GetPartePerParteId(propietaris_manager.parte_actual.idParte);
+                Personal personal = propietaris_manager.GetPersonalPerId(lineas[i].idAplicador.ToString());
+                Maquina maquina = propietaris_manager.GetMaquinaPerId(lineas[i].idMaquinaria.ToString());
 
                 string metrica_nom = "";
                 if (lineas[i].idUnitatMetrica != null)
@@ -329,10 +332,9 @@ namespace WindowsFormsApp4
                     metrica_nom = metrica.GetTbl().Unitat;
                 }
 
-
                 grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString(), metrica_nom, parte.Estat, 
                     parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)lineas[i].FertirrigacioSiNo ? "Si" : "No", 
-                    lineas[i].EficaciaTractament);
+                    lineas[i].EficaciaTractament, personal, maquina);
             }
 
             grid.CleanSelection();

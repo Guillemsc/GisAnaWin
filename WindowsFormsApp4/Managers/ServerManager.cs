@@ -163,6 +163,45 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public List<tblPersonal> GetPersonal()
+        {
+            List<tblPersonal> ret = new List<tblPersonal>();
+
+            if(servidor.tblPersonal.Count() > 0)
+            {
+                foreach (var prov in servidor.tblPersonal)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
+        public List<tblMaquinaria> GetMaquinaria()
+        {
+            List<tblMaquinaria> ret = new List<tblMaquinaria>();
+
+            if (servidor.tblMaquinaria.Count() > 0)
+            {
+                foreach (var prov in servidor.tblMaquinaria)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
+        public List<tblProductesFitosanitaris> GetAdobs()
+        {
+            List<tblProductesFitosanitaris> ret = new List<tblProductesFitosanitaris>();
+
+            if (servidor.tblProductesFitosanitaris.Count() > 0)
+            {
+                foreach (var prov in servidor.tblProductesFitosanitaris)
+                    ret.Add(prov);
+            }
+
+            return ret;
+        }
+
         public tblCoordenadesFincaParcela AddCoordenades(int id_parcela, double lat, double lon, string codigo_empresa, int id_finca, int id_punt_cor)
         {
             tblCoordenadesFincaParcela ret = new tblCoordenadesFincaParcela();

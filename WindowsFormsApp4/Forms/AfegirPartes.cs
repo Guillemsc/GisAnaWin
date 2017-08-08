@@ -122,9 +122,16 @@ namespace WindowsFormsApp4
                                 linea.EficaciaTractament = int.Parse((string)grid.GetRows()[r].Cells[8].Value);
 
                             if (grid.GetRows()[r].Cells[4].Value != null)
-                            {
                                 linea.idUnitatMetrica = propietaris_manager.GetUnitatMetricaPerNom((string)grid.GetRows()[r].Cells[4].Value).GetTbl().id;
-                            }
+
+                            if (grid.GetRows()[r].Cells[9].Value != null)
+                                linea.idAplicador = int.Parse(propietaris_manager.GetPersonalPerNom((string)grid.GetRows()[r].Cells[9].Value).GetTbl().id);
+                            
+                            if (grid.GetRows()[r].Cells[10].Value != null)
+                                linea.idMaquinaria = int.Parse(propietaris_manager.GetMaquinaPerNom((string)grid.GetRows()[r].Cells[10].Value).GetTbl().id);
+
+                            if (grid.GetRows()[r].Cells[11].Value != null)
+                                linea.idProduteFito = int.Parse(propietaris_manager.GetAdobPerNom((string)grid.GetRows()[r].Cells[11].Value).GetTbl().id.ToString());
 
                             string dec = grid.GetRows()[r].Cells[2].Value.ToString();
                             linea.Unidades = decimal.Parse(dec);

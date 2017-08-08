@@ -188,6 +188,9 @@ namespace WindowsFormsApp4
                 ActualitzaAnalitiquesDesDeServidor();
                 ActualitzaTreballsDesDeServidor();
                 ActualitzaUnitatsMetriquesDesDeServidor();
+                ActualitzaMaquinariaDesDeServidor();
+                ActualitzaPersonalDesDeServidor();
+                ActualitzaAdobsDesDeServidor();
 
                 ActualitzaLlistaParceles();
 
@@ -205,14 +208,14 @@ namespace WindowsFormsApp4
 
             info_parte_form = new ModificaPartes(propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
-            //info_parte_form.ShowDialog();
 
             report_viewer_form = new Imprimir();
 
             visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
 
             quadern_camp_form = new Forms.QuadernCamp();
-            quadern_camp_form.ShowDialog();
+
+            configura_quadern_camp_form = new Forms.ConfiguraQuadernCamp(propietaris_manager, point_manager, server_manager, ui_manager, quadern_camp_form);
             // -----------------------------------
 
         }
@@ -513,74 +516,75 @@ namespace WindowsFormsApp4
         }
 
         // Forms
-        AfegirPartes crea_parte_form = null;
-        ModificaPartes info_parte_form = null;
-        Imprimir report_viewer_form = null;
-        Analitiques visualitza_analitica_form = null;
-        Forms.QuadernCamp quadern_camp_form = null;
+        AfegirPartes       crea_parte_form = null;
+        ModificaPartes     info_parte_form = null;
+        Imprimir           report_viewer_form = null;
+        Analitiques        visualitza_analitica_form = null;
+        Forms.QuadernCamp  quadern_camp_form = null;
+        Forms.ConfiguraQuadernCamp configura_quadern_camp_form = null;
         
         // Windows
-        UI_Window main_win = null;
-        UI_Window map_win = null;
-        UI_Window guarda_canvis_win = null;
+        UI_Window          main_win = null;
+        UI_Window          map_win = null;
+        UI_Window          guarda_canvis_win = null;
 
         // Elements
         UI_MaskedTextInput text_input_lat = null;
         UI_MaskedTextInput text_input_lon = null;
-        UI_Button search_button_coor = null;
-        UI_Text lat_text = null;
-        UI_Text lon_text = null;
-        UI_Button search_button_name = null;
+        UI_Button          search_button_coor = null;
+        UI_Text            lat_text = null;
+        UI_Text            lon_text = null;
+        UI_Button          search_button_name = null;
         UI_MaskedTextInput text_input_nom = null;
-        UI_Button mapsat_button = null;
-        UI_Button imprimir_button = null;
-        UI_Button imprimir_quadern_camp_button = null;
+        UI_Button          mapsat_button = null;
+        UI_Button          imprimir_button = null;
+        UI_Button          imprimir_quadern_camp_button = null;
 
-        UI_Text propietaris_text = null;
-        UI_Text finques_text = null;
-        UI_Text varietat_text = null;
-        UI_Text treballs_text = null;
-        UI_Text llista_parceles_text = null;
-        UI_ListBox llista_parceles_llista = null;
-        UI_Button propietari_finca_neteja = null;
-        UI_Panel divisor_propietari_finca = null;
-        UI_Button varietat_neteja = null;
-        UI_Panel divisor_varietat = null;
-        UI_Button treball_neteja = null;
-        UI_Panel divisor_treball = null;
-        UI_Text any_vinya_text = null;
-        UI_Text a_vinya_text = null;
+        UI_Text            propietaris_text = null;
+        UI_Text            finques_text = null;
+        UI_Text            varietat_text = null;
+        UI_Text            treballs_text = null;
+        UI_Text            llista_parceles_text = null;
+        UI_ListBox         llista_parceles_llista = null;
+        UI_Button          propietari_finca_neteja = null;
+        UI_Panel           divisor_propietari_finca = null;
+        UI_Button          varietat_neteja = null;
+        UI_Panel           divisor_varietat = null;
+        UI_Button          treball_neteja = null;
+        UI_Panel           divisor_treball = null;
+        UI_Text            any_vinya_text = null;
+        UI_Text            a_vinya_text = null;
         UI_MaskedTextInput any_comença = null;
         UI_MaskedTextInput any_acaba = null;
-        UI_Panel divisor_any_vinya = null;
+        UI_Panel           divisor_any_vinya = null;
 
-        UI_Panel editor_parceles_panel = null;
-        UI_Button editor_parceles_crea_button = null;
-        UI_Button editor_parceles_elimina_button = null;
-        UI_Button editor_parceles_guarda_button = null;
-        UI_Text editor_parceles_ultim_guardat = null;
-        UI_Button editor_parceles_opcions = null;
+        UI_Panel           editor_parceles_panel = null;
+        UI_Button          editor_parceles_crea_button = null;
+        UI_Button          editor_parceles_elimina_button = null;
+        UI_Button          editor_parceles_guarda_button = null;
+        UI_Text            editor_parceles_ultim_guardat = null;
+        UI_Button          editor_parceles_opcions = null;
+                           
+        UI_Button          afegir_partes_button = null;
+        UI_Panel           parceles_seleccionades_panel = null;
+        UI_Text            parceles_selecionades_text = null;
+        UI_ListBox         parceles_seleccionades_listbox = null;
+        UI_Text            ha_parceles_seleccionades_text = null;
+        UI_Text            ha_valor_parceles_seleccionades_text = null;
+        UI_Text            partes_seleccionats_text = null;
+        UI_ListBox         partes_seleccionats_listbox = null;
+        UI_Button          elimina_parte_button = null;
+        UI_Button          visualitza_analitiques_button = null;
 
-        UI_Button afegir_partes_button = null;
-        UI_Panel parceles_seleccionades_panel = null;
-        UI_Text parceles_selecionades_text = null;
-        UI_ListBox parceles_seleccionades_listbox = null;
-        UI_Text ha_parceles_seleccionades_text = null;
-        UI_Text ha_valor_parceles_seleccionades_text = null;
-        UI_Text partes_seleccionats_text = null;
-        UI_ListBox partes_seleccionats_listbox = null;
-        UI_Button elimina_parte_button = null;
-        UI_Button visualitza_analitiques_button = null;
+        UI_ComboBox        seleccio_propietari_noms_combobox = null;
+        UI_ComboBox        seleccio_finca_noms_combobox = null;
+        UI_ComboBox        seleccio_varietat_noms_combobox = null;
+                           
+        UI_ComboBox        seleccio_treball_noms_combobox = null;
 
-        UI_ComboBox seleccio_propietari_noms_combobox = null;
-        UI_ComboBox seleccio_finca_noms_combobox = null;
-        UI_ComboBox seleccio_varietat_noms_combobox = null;
-
-        UI_ComboBox seleccio_treball_noms_combobox = null;
-
-        UI_Panel guarda_canvis_panel = null;
-        UI_Text guarda_canvis_text = null;
-        UI_Button guarda_canvis_button = null;
+        UI_Panel           guarda_canvis_panel = null;
+        UI_Text            guarda_canvis_text = null;
+        UI_Button          guarda_canvis_button = null;
 
 
         // Managers
