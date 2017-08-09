@@ -8,6 +8,7 @@ namespace WindowsFormsApp4.DataSources
 {
     public class ReportDataQuadernPag5
     {
+        public ReportDataQuadernPag5() { }
         public ReportDataQuadernPag5(string _data, string _num_finca, string _cultiu, string _plaga, string _superficie, string _num_aplicador,
             string _num_maquinaria, string _kg_brou, string _productes_nom, string _productes_num_registre, string _productes_dosi, 
             string _eficacia)

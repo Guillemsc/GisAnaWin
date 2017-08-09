@@ -575,6 +575,28 @@ namespace WindowsFormsApp4
             return null;
         }
 
+        public List<tblLineasPartesFinca> GetLineasPartePerPropietari(Propietari prop)
+        {
+            List<tblLineasPartesFinca> ret = new List<tblLineasPartesFinca>();
+
+            List<Finca> finques = GetFinquesPerPropietari(prop);
+
+            for(int i = 0; i < finques.Count; i++)
+            {
+                List<tblPartesFinca> partes = GetPartesPerFincaId(finques[i].GetTbl().idFinca);
+
+                for(int p = 0; p < partes.Count; p++)
+                {
+                    List<tblLineasPartesFinca> lineas = GetLineasPerParteId(partes[p].idParte);
+
+                    for (int l = 0; l < lineas.Count; l++)
+                        ret.Add(lineas[l]);
+                }
+            }
+ 
+            return ret;
+        }
+
         public List<tblPartesFinca> GetPartesPerFincaId(int id)
         {
             List<tblPartesFinca> ret = new List<tblPartesFinca>();

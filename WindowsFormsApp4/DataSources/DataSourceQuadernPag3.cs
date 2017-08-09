@@ -8,6 +8,7 @@ namespace WindowsFormsApp4.DataSources
 {
     public class ReportDataQuadernPag3
     {
+        public ReportDataQuadernPag3() { }
         public ReportDataQuadernPag3(string _num_finca, string _nom_finca, string _municipi, string _poligon, string _parcela,
             string _recinte, string _us, string _cultiu, string _superficie, string _sistema_conreu, string _num_rcv)
         {
