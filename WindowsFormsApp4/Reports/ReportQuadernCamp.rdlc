@@ -857,8 +857,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox17</rd:DefaultName>
-                <Top>5.96718cm</Top>
-                <Left>0.03358cm</Left>
+                <Top>6.07301cm</Top>
+                <Left>0.05983cm</Left>
                 <Height>0.6cm</Height>
                 <Width>28.47009cm</Width>
                 <ZIndex>4</ZIndex>
@@ -3670,7 +3670,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox106</rd:DefaultName>
-                <Top>5.79422cm</Top>
+                <Top>4.84172cm</Top>
                 <Left>0.05337cm</Left>
                 <Height>1.90186cm</Height>
                 <Width>27.75888cm</Width>
@@ -4107,21 +4107,21 @@
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo1">
+                            <Textbox Name="num_finca_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!num_finca_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo1</rd:DefaultName>
+                              <rd:DefaultName>num_finca_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4136,21 +4136,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo2">
+                            <Textbox Name="nom_finca_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!nom_finca_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo2</rd:DefaultName>
+                              <rd:DefaultName>nom_finca_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4165,21 +4165,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo3">
+                            <Textbox Name="municipi_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!municipi_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo3</rd:DefaultName>
+                              <rd:DefaultName>municipi_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4194,21 +4194,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo4">
+                            <Textbox Name="poligon_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!poligon_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo4</rd:DefaultName>
+                              <rd:DefaultName>poligon_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4223,21 +4223,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo5">
+                            <Textbox Name="parcela_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!parcela_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo5</rd:DefaultName>
+                              <rd:DefaultName>parcela_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4252,21 +4252,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo6">
+                            <Textbox Name="recinte_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!recinte_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo6</rd:DefaultName>
+                              <rd:DefaultName>recinte_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4281,21 +4281,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo7">
+                            <Textbox Name="us_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!us_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo7</rd:DefaultName>
+                              <rd:DefaultName>us_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4310,21 +4310,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo8">
+                            <Textbox Name="cultiu_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!cultiu_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo8</rd:DefaultName>
+                              <rd:DefaultName>cultiu_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4339,21 +4339,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo9">
+                            <Textbox Name="superficie_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!superficie_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo9</rd:DefaultName>
+                              <rd:DefaultName>superficie_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4368,21 +4368,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo10">
+                            <Textbox Name="sistema_conreu_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!sistema_conreu_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo10</rd:DefaultName>
+                              <rd:DefaultName>sistema_conreu_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4397,21 +4397,21 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="ado_compo11">
+                            <Textbox Name="num_rcv_p3">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!ado_compo.Value</Value>
+                                      <Value>=Fields!num_rcv_p3.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>ado_compo11</rd:DefaultName>
+                              <rd:DefaultName>num_rcv_p3</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -4453,8 +4453,12 @@
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
-                <DataSetName>Pag4</DataSetName>
-                <Top>3.82644cm</Top>
+                <RepeatColumnHeaders>true</RepeatColumnHeaders>
+                <RepeatRowHeaders>true</RepeatRowHeaders>
+                <FixedColumnHeaders>true</FixedColumnHeaders>
+                <FixedRowHeaders>true</FixedRowHeaders>
+                <DataSetName>Pag3</DataSetName>
+                <Top>2.87394cm</Top>
                 <Left>0.082cm</Left>
                 <Height>1.6498cm</Height>
                 <Width>27.77867cm</Width>
@@ -4488,7 +4492,7 @@
                 <Value>generalitat</Value>
                 <Sizing>FitProportional</Sizing>
                 <Top>0.00152cm</Top>
-                <Left>0.02942cm</Left>
+                <Left>0.02957cm</Left>
                 <Height>3.43682cm</Height>
                 <Width>8.14104cm</Width>
                 <Style>
@@ -4518,7 +4522,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox4</rd:DefaultName>
                 <Top>1.0165cm</Top>
-                <Left>16.71833cm</Left>
+                <Left>16.71848cm</Left>
                 <Height>2.42184cm</Height>
                 <Width>11.10355cm</Width>
                 <ZIndex>1</ZIndex>
@@ -5166,9 +5170,10 @@
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
+                <RepeatColumnHeaders>true</RepeatColumnHeaders>
+                <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>Pag4</DataSetName>
-                <Top>3.07336cm</Top>
-                <Left>0.05311cm</Left>
+                <Top>2.7294cm</Top>
                 <Height>1.57042cm</Height>
                 <Width>27.76877cm</Width>
                 <ZIndex>2</ZIndex>
@@ -5221,8 +5226,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox106</rd:DefaultName>
-                <Top>5.35504cm</Top>
-                <Left>0.063cm</Left>
+                <Top>5.01108cm</Top>
+                <Left>0.00989cm</Left>
                 <Height>2.0077cm</Height>
                 <Width>27.75888cm</Width>
                 <ZIndex>3</ZIndex>
@@ -5242,9 +5247,9 @@
             </PageBreak>
             <KeepTogether>true</KeepTogether>
             <Top>47.39032cm</Top>
-            <Left>0.04441cm</Left>
+            <Left>0.04426cm</Left>
             <Height>7.36274cm</Height>
-            <Width>29.13598cm</Width>
+            <Width>29.13613cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -6003,8 +6008,10 @@
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
+                <RepeatColumnHeaders>true</RepeatColumnHeaders>
+                <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>Pag5</DataSetName>
-                <Top>3.21515cm</Top>
+                <Top>2.89765cm</Top>
                 <Left>0.02942cm</Left>
                 <Height>1.57042cm</Height>
                 <Width>27.79351cm</Width>
@@ -6097,7 +6104,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox106</rd:DefaultName>
-                <Top>5.81433cm</Top>
+                <Top>5.49683cm</Top>
                 <Left>0.04426cm</Left>
                 <Height>2.0077cm</Height>
                 <Width>27.75888cm</Width>
@@ -6610,8 +6617,10 @@
                     </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
+                <RepeatColumnHeaders>true</RepeatColumnHeaders>
+                <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>Pag6</DataSetName>
-                <Top>3.10802cm</Top>
+                <Top>2.79052cm</Top>
                 <Height>1.57042cm</Height>
                 <Width>27.79597cm</Width>
                 <ZIndex>2</ZIndex>
@@ -6694,7 +6703,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox106</rd:DefaultName>
-                <Top>5.38969cm</Top>
+                <Top>5.07219cm</Top>
                 <Left>0.01731cm</Left>
                 <Height>1.5579cm</Height>
                 <Width>27.75888cm</Width>
