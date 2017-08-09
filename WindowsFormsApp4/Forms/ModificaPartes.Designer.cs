@@ -96,6 +96,18 @@ namespace WindowsFormsApp4
                 eficacia_combobox = new UI_ComboBox(new Point(460, 130), 150, 30);
                 main_window.AddElement(eficacia_combobox);
 
+                personal_text = new UI_Text(new Point(460, 160), 160, 40, "Personal:");
+                main_window.AddElement(personal_text);
+
+                personal_combobox = new UI_ComboBox(new Point(460, 180), 150, 30);
+                main_window.AddElement(personal_combobox);
+
+                maquinaria_text = new UI_Text(new Point(660, 160), 160, 40, "Maquinaria:");
+                main_window.AddElement(maquinaria_text);
+
+                maquinaria_combobox = new UI_ComboBox(new Point(660, 180), 150, 30);
+                main_window.AddElement(maquinaria_combobox);
+
                 unitats_text = new UI_Text(new Point(20, 212), 100, 80, "Unitats:");
                 main_window.AddElement(unitats_text);
 
@@ -157,6 +169,10 @@ namespace WindowsFormsApp4
         UI_TextInput descripcio_text_input = null;
         UI_Text eficacia_text = null;
         UI_ComboBox eficacia_combobox = null;
+        UI_Text personal_text = null;
+        UI_ComboBox personal_combobox = null;
+        UI_Text maquinaria_text = null;
+        UI_ComboBox maquinaria_combobox = null;
         UI_Grid grid = null;
         UI_Button remove_treball_button = null;
         UI_Button modifica_treball_button = null;

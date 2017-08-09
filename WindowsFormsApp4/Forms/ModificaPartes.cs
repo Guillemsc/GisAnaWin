@@ -22,6 +22,8 @@ namespace WindowsFormsApp4
             ActualitzaLlistaTreballs();
             ActualitzaLListaUnitatsMesura();
             CarregaInformacioInicial();
+            ActualitzaLlistaPersonal();
+            ActualitzaLlistaMaquinaria();
 
             grid.CleanSelection();
             fertirrigacio_checkbox.SetSelected(false);
@@ -74,6 +76,8 @@ namespace WindowsFormsApp4
             tblLineasPartesFinca linea_actual = null;
             Treball treball = null;
             UnitatMetrica unitat = null;
+            Personal personal = null;
+            Maquina maquina = null;
 
             string[] str = grid.GetSelectedRow();
 
@@ -110,11 +114,20 @@ namespace WindowsFormsApp4
             if (treball == null)
                 return;
 
+            personal = propietaris_manager.GetPersonalPerId(linea_actual.idAplicador.ToString());
+            maquina = propietaris_manager.GetMaquinaPerId(linea_actual.idMaquinaria.ToString());
+
             treballs_combobox.SetSelectedElement(treball.GetTbl().Descripcio);
             data_dataselect.SetDate((DateTime)propietaris_manager.parte_actual.Fecha);
             descripcio_text_input.SetText(linea_actual.Descripcion);
             unitats_text_input.SetText(linea_actual.Unidades.ToString());
             fertirrigacio_checkbox.SetSelected((bool)linea_actual.FertirrigacioSiNo);
+
+            if (personal != null)
+                personal_combobox.SetSelectedElement(personal.ToString());
+
+            if (maquina != null)
+                maquinaria_combobox.SetSelectedElement(maquina.ToString());
 
             if(unitat != null)
                 unitats_mesura_combobox.SetSelectedElement(unitat.ToString());
@@ -132,6 +145,8 @@ namespace WindowsFormsApp4
 
             Treball treball = treballs_combobox.GetSelected() as Treball;
             UnitatMetrica unitat = unitats_mesura_combobox.GetSelected() as UnitatMetrica;
+            Maquina maquina = maquinaria_combobox.GetSelected() as Maquina;
+            Personal personal = personal_combobox.GetSelected() as Personal;
 
             tblLineasPartesFinca nova_linea = new tblLineasPartesFinca();
 
@@ -148,6 +163,12 @@ namespace WindowsFormsApp4
             nova_linea.idFamiliaCoste = treball.GetTbl().idCost;
             nova_linea.Unidades = decimal.Parse(unitats_text_input.GetText());
             nova_linea.FertirrigacioSiNo = fertirrigacio_checkbox.IsSelected();
+
+            if(maquinaria_combobox.IsSelected())
+                nova_linea.idMaquinaria = int.Parse(maquina.GetTbl().id);
+
+            if(personal_combobox.IsSelected())
+                nova_linea.idAplicador = int.Parse(personal.GetTbl().id);
 
             if (eficacia_combobox.IsSelected())
                 nova_linea.EficaciaTractament = int.Parse((string)eficacia_combobox.GetSelected());
@@ -361,6 +382,30 @@ namespace WindowsFormsApp4
             for(int i = 0; i < unitats.Count; i++)
             {
                 unitats_mesura_combobox.AddElement(unitats[i]);
+            }
+        }
+
+        public void ActualitzaLlistaPersonal()
+        {
+            personal_combobox.Clear();
+
+            List<Personal> personal = propietaris_manager.GetPersonal();
+
+            for(int i = 0; i < personal.Count; i++)
+            {
+                personal_combobox.AddElement(personal[i]);
+            }
+        }
+
+        public void ActualitzaLlistaMaquinaria()
+        {
+            maquinaria_combobox.Clear();
+
+            List<Maquina> maquinaria = propietaris_manager.GetMaquinaria();
+
+            for (int i = 0; i < maquinaria.Count; i++)
+            {
+                maquinaria_combobox.AddElement(maquinaria[i]);
             }
         }
         // ------------------------------------------------------------------ Actualitza

@@ -4474,9 +4474,9 @@
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>37.73303cm</Top>
-            <Left>0.10741cm</Left>
-            <Height>7.69608cm</Height>
+            <Top>35.2724cm</Top>
+            <Left>0.07762cm</Left>
+            <Height>6.74358cm</Height>
             <Width>29.07298cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -5246,8 +5246,8 @@
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>47.39032cm</Top>
-            <Left>0.04426cm</Left>
+            <Top>42.31032cm</Top>
+            <Left>0.11483cm</Left>
             <Height>7.36274cm</Height>
             <Width>29.13613cm</Width>
             <ZIndex>3</ZIndex>
@@ -5314,7 +5314,7 @@
                       <Width>2.58055cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.0368cm</Width>
+                      <Width>2.60634cm</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>3.27214cm</Width>
@@ -5323,27 +5323,33 @@
                       <Width>2.85083cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.96871cm</Width>
+                      <Width>2.14326cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.41211cm</Width>
+                      <Width>2.07657cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.07667cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.17237cm</Width>
-                    </TablixColumn>
-                    <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>1.56084cm</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>2.5cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>2.46647cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>1.87422cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>1.78563cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
-                      <Height>0.97042cm</Height>
+                      <Height>1.87cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -5626,7 +5632,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Productes emprats</Value>
+                                      <Value>Nom comercial i matèria activa</Value>
                                       <Style>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
@@ -5638,6 +5644,74 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox120</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>WhiteSmoke</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox10">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Núm. de registre</Value>
+                                      <Style>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox10</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>WhiteSmoke</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox13">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Dosi</Value>
+                                      <Style>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox13</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -5931,7 +6005,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!productes_dosi.Value</Value>
+                                      <Value>=Fields!productes_nom.Value</Value>
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
@@ -5939,6 +6013,65 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox31</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <rd:Selected>true</rd:Selected>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="productes_num_registre">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!productes_num_registre.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>productes_num_registre</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="productes_dosi">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!productes_dosi.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>productes_dosi</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -5996,6 +6129,8 @@
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
@@ -6013,7 +6148,7 @@
                 <DataSetName>Pag5</DataSetName>
                 <Top>2.89765cm</Top>
                 <Left>0.02942cm</Left>
-                <Height>1.57042cm</Height>
+                <Height>2.47cm</Height>
                 <Width>27.79351cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
@@ -6124,9 +6259,10 @@
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>55.75575cm</Top>
-            <Height>7.82203cm</Height>
-            <Width>29.15929cm</Width>
+            <Top>50.25867cm</Top>
+            <Left>0.14889cm</Left>
+            <Height>7.50453cm</Height>
+            <Width>27.82293cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -6742,7 +6878,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>11.54268in</Width>
+      <Width>11.52391in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

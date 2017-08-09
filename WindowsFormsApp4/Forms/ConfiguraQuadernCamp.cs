@@ -74,6 +74,7 @@ namespace WindowsFormsApp4.Forms
                     p.nif = personal_act.GetTbl().nif;
                     p.num_carnet = personal_act.GetTbl().numCarnet;
                     p.num_quali = personal_act.GetTbl().nivell;
+                    p.num_ordre = personal_act.GetTbl().id;
 
                     pag2t1.Add(p);
                 }
@@ -84,6 +85,7 @@ namespace WindowsFormsApp4.Forms
                     p.nif_2t2 = personal_act.GetTbl().nif;
                     p.num_carnet_2t2 = personal_act.GetTbl().numCarnet;
                     p.num_quali_2t2 = personal_act.GetTbl().nivell;
+                    p.numero_ordre_2t2 = personal_act.GetTbl().id;
 
                     pag2t2.Add(p);
                 }
@@ -93,6 +95,7 @@ namespace WindowsFormsApp4.Forms
                     p.nom_cognom = personal_act.GetTbl().nom;
                     p.nif = personal_act.GetTbl().nif;
                     p.num_registre = personal_act.GetTbl().numCarnet;
+                    p.num_ordre = personal_act.GetTbl().id;
 
                     pag2t3.Add(p);
                 }
@@ -111,6 +114,7 @@ namespace WindowsFormsApp4.Forms
                     p.data_compra = maquina_act.GetTbl().dataCompra.ToString();
                     p.num_roma = maquina_act.GetTbl().numRoma;
                     p.data_ins = maquina_act.GetTbl().darreraInspeccio.ToString();
+                    p.num_ordre = maquina_act.GetTbl().id;
 
                     pag2t4.Add(p);
                 }
@@ -121,6 +125,7 @@ namespace WindowsFormsApp4.Forms
                     p.data_compra_2t5 = maquina_act.GetTbl().dataCompra.ToString();
                     p.num_roma_2t5 = maquina_act.GetTbl().numRoma;
                     p.data_ins_2t5 = maquina_act.GetTbl().darreraInspeccio.ToString();
+                    p.num_ordre_2t5 = maquina_act.GetTbl().id;
 
                     pag2t5.Add(p);
                 }
