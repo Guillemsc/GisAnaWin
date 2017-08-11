@@ -220,7 +220,7 @@ namespace WindowsFormsApp4.Forms
                     }
                     p.num_finca = finca_act.GetTbl().idFinca.ToString();
                     p.cultiu = varietat_act.GetTbl().Nombre;
-                    p.plaga = parte_act.Descripcion;
+                    p.plaga = linea_act.Descripcion;
                     p.superficie = parcela_act.GetTbl().Ha.ToString();
                     p.num_aplicador = linea_act.idAplicador.ToString();
                     p.num_maquinaria = linea_act.idMaquinaria.ToString();

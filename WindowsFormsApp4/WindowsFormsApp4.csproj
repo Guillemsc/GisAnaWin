@@ -213,6 +213,9 @@
     <EmbeddedResource Include="Forms\AfegirPartes.resx">
       <DependentUpon>AfegirPartes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
