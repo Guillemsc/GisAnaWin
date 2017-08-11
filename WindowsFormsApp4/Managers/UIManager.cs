@@ -381,6 +381,8 @@ namespace WindowsFormsApp4
             ComboBox cb = GetElement() as ComboBox;
             cb.SelectedIndex = -1;
             cb.SelectedItem = null;
+            cb.Text = "";
+            cb.SelectedValue = null; 
         }
 
         public void AddElement(object one_object)
@@ -772,6 +774,24 @@ namespace WindowsFormsApp4
             DataGridView d = GetElement() as DataGridView;
 
             return d.Rows;
+        }
+
+        public DataGridViewCell GetRowCell(int row, string cell)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            int index = 0;
+
+            for(int i = 0; i < d.ColumnCount; i++)
+            {
+                if(d.Columns[i].HeaderText == cell)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            
+            return GetRows()[row].Cells[index];
         }
     }
 

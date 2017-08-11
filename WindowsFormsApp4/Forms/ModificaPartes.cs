@@ -24,6 +24,7 @@ namespace WindowsFormsApp4
             CarregaInformacioInicial();
             ActualitzaLlistaPersonal();
             ActualitzaLlistaMaquinaria();
+            ActualitzaListaAdob();
 
             grid.CleanSelection();
             fertirrigacio_checkbox.SetSelected(false);
@@ -78,6 +79,7 @@ namespace WindowsFormsApp4
             UnitatMetrica unitat = null;
             Personal personal = null;
             Maquina maquina = null;
+            Adob adob = null;
 
             string[] str = grid.GetSelectedRow();
 
@@ -116,12 +118,16 @@ namespace WindowsFormsApp4
 
             personal = propietaris_manager.GetPersonalPerId(linea_actual.idAplicador.ToString());
             maquina = propietaris_manager.GetMaquinaPerId(linea_actual.idMaquinaria.ToString());
+            adob = propietaris_manager.GetAdobPerId(linea_actual.idProduteFito.ToString());
 
             treballs_combobox.SetSelectedElement(treball.GetTbl().Descripcio);
             data_dataselect.SetDate((DateTime)propietaris_manager.parte_actual.Fecha);
             descripcio_text_input.SetText(linea_actual.Descripcion);
             unitats_text_input.SetText(linea_actual.Unidades.ToString());
             fertirrigacio_checkbox.SetSelected((bool)linea_actual.FertirrigacioSiNo);
+
+            if(adob != null)
+                adob_combobox.SetSelectedElement(adob.ToString());
 
             if (personal != null)
                 personal_combobox.SetSelectedElement(personal.ToString());
@@ -147,6 +153,7 @@ namespace WindowsFormsApp4
             UnitatMetrica unitat = unitats_mesura_combobox.GetSelected() as UnitatMetrica;
             Maquina maquina = maquinaria_combobox.GetSelected() as Maquina;
             Personal personal = personal_combobox.GetSelected() as Personal;
+            Adob adob = adob_combobox.GetSelected() as Adob;
 
             tblLineasPartesFinca nova_linea = new tblLineasPartesFinca();
 
@@ -176,6 +183,9 @@ namespace WindowsFormsApp4
             if (unitat != null)
                 nova_linea.idUnitatMetrica = unitat.GetTbl().id;
 
+            if (adob != null)
+                nova_linea.idProduteFito = adob.GetTbl().id;
+
             // Comprova que aquesta linea no ha sigut ja modificata i actualitza
             for (int y = 0; y < partes_linea_per_afegir.Count; y++)
             {
@@ -196,7 +206,7 @@ namespace WindowsFormsApp4
 
             grid.ModifyRow(grid.GetSelectedRowIndex(), treball, nova_linea.Descripcion, nova_linea.Unidades.ToString(), 
                 nova_linea.idLinea.ToString(), unitat, parte.Estat, parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, 
-                (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No", nova_linea.EficaciaTractament);
+                (bool)nova_linea.FertirrigacioSiNo ? "Si" : "No", nova_linea.EficaciaTractament, personal, maquina, adob);
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -345,6 +355,7 @@ namespace WindowsFormsApp4
                 tblPartesFinca parte = propietaris_manager.GetPartePerParteId(propietaris_manager.parte_actual.idParte);
                 Personal personal = propietaris_manager.GetPersonalPerId(lineas[i].idAplicador.ToString());
                 Maquina maquina = propietaris_manager.GetMaquinaPerId(lineas[i].idMaquinaria.ToString());
+                Adob adob = propietaris_manager.GetAdobPerId(lineas[i].idProduteFito.ToString());
 
                 string metrica_nom = "";
                 if (lineas[i].idUnitatMetrica != null)
@@ -355,7 +366,7 @@ namespace WindowsFormsApp4
 
                 grid.AddRow(treball, lineas[i].Descripcion, lineas[i].Unidades, lineas[i].idLinea.ToString(), metrica_nom, parte.Estat, 
                     parcela.GetTbl().idParcelaVinicola, parcela.GetTbl().Ha, (bool)lineas[i].FertirrigacioSiNo ? "Si" : "No", 
-                    lineas[i].EficaciaTractament, personal, maquina);
+                    lineas[i].EficaciaTractament, personal, maquina, adob);
             }
 
             grid.CleanSelection();
@@ -406,6 +417,18 @@ namespace WindowsFormsApp4
             for (int i = 0; i < maquinaria.Count; i++)
             {
                 maquinaria_combobox.AddElement(maquinaria[i]);
+            }
+        }
+
+        public void ActualitzaListaAdob()
+        {
+            adob_combobox.Clear();
+
+            List<Adob> adobs = propietaris_manager.GetAdobs();
+
+            for(int i = 0; i < adobs.Count; i++)
+            {
+                adob_combobox.AddElement(adobs[i]);
             }
         }
         // ------------------------------------------------------------------ Actualitza

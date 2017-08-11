@@ -96,6 +96,12 @@ namespace WindowsFormsApp4
                 eficacia_combobox = new UI_ComboBox(new Point(460, 130), 150, 30);
                 main_window.AddElement(eficacia_combobox);
 
+                adob_text = new UI_Text(new Point(660, 110), 100, 40, "Adob:");
+                main_window.AddElement(adob_text);
+
+                adob_combobox = new UI_ComboBox(new Point(660, 130), 150, 30);
+                main_window.AddElement(adob_combobox);
+
                 personal_text = new UI_Text(new Point(460, 160), 160, 40, "Personal:");
                 main_window.AddElement(personal_text);
 
@@ -142,7 +148,7 @@ namespace WindowsFormsApp4
                 grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130); grid.AddColumn("tblLinea", 0, true, false);
                 grid.AddColumn("Unitat Metrica", 200, true); grid.AddColumn("Estat", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
                 grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 150, true);
-                grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true);
+                grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true); grid.AddColumn("Adob", 100, true);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
 
@@ -173,6 +179,8 @@ namespace WindowsFormsApp4
         UI_ComboBox personal_combobox = null;
         UI_Text maquinaria_text = null;
         UI_ComboBox maquinaria_combobox = null;
+        UI_Text adob_text = null;
+        UI_ComboBox adob_combobox = null;
         UI_Grid grid = null;
         UI_Button remove_treball_button = null;
         UI_Button modifica_treball_button = null;

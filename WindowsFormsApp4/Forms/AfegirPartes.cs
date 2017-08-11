@@ -101,7 +101,7 @@ namespace WindowsFormsApp4
 
                 for (int r = 0; r < grid.GetRows().Count; r++)
                 {
-                    tblLineasPartesFinca li = grid.GetRows()[r].Cells[3].Value as tblLineasPartesFinca;
+                    tblLineasPartesFinca li = grid.GetRowCell(r, "tblLinea").Value as tblLineasPartesFinca;
 
                     for (int p = 0; p < parceles.Count; p++)
                     {
@@ -116,24 +116,24 @@ namespace WindowsFormsApp4
                             linea.idParcela = parcela_actual.GetTbl().idParcela;
                             linea.idLinea = propietaris_manager.GetPartesLineaNewId();
                             linea.idParte = parte.idParte;
-                            linea.FertirrigacioSiNo = (bool)grid.GetRows()[r].Cells[7].Value;
+                            linea.FertirrigacioSiNo = (bool)grid.GetRowCell(r, "Fertirrigació").Value;
 
-                            if(grid.GetRows()[r].Cells[8].Value != null)
-                                linea.EficaciaTractament = int.Parse((string)grid.GetRows()[r].Cells[8].Value);
+                            if (grid.GetRows()[r].Cells[8].Value != null)
+                                linea.EficaciaTractament = int.Parse((string)grid.GetRowCell(r, "Eficacia tractament").Value);
 
                             if (grid.GetRows()[r].Cells[4].Value != null)
-                                linea.idUnitatMetrica = propietaris_manager.GetUnitatMetricaPerNom((string)grid.GetRows()[r].Cells[4].Value).GetTbl().id;
+                                linea.idUnitatMetrica = propietaris_manager.GetUnitatMetricaPerNom((string)grid.GetRowCell(r, "Unitat Metrica").Value).GetTbl().id;
 
                             if (grid.GetRows()[r].Cells[9].Value != null)
-                                linea.idAplicador = int.Parse(propietaris_manager.GetPersonalPerNom((string)grid.GetRows()[r].Cells[9].Value).GetTbl().id);
+                                linea.idAplicador = int.Parse(propietaris_manager.GetPersonalPerNom((string)grid.GetRowCell(r, "Aplicador").Value).GetTbl().id);
                             
                             if (grid.GetRows()[r].Cells[10].Value != null)
-                                linea.idMaquinaria = int.Parse(propietaris_manager.GetMaquinaPerNom((string)grid.GetRows()[r].Cells[10].Value).GetTbl().id);
+                                linea.idMaquinaria = int.Parse(propietaris_manager.GetMaquinaPerNom((string)grid.GetRowCell(r, "Maquinaria").Value).GetTbl().id);
 
                             if (grid.GetRows()[r].Cells[11].Value != null)
-                                linea.idProduteFito = int.Parse(propietaris_manager.GetAdobPerNom((string)grid.GetRows()[r].Cells[11].Value).GetTbl().id.ToString());
+                                linea.idProduteFito = int.Parse(propietaris_manager.GetAdobPerNom((string)grid.GetRowCell(r, "Adob").Value).GetTbl().id.ToString());
 
-                            string dec = grid.GetRows()[r].Cells[2].Value.ToString();
+                            string dec = grid.GetRowCell(r, "Unitats").Value.ToString();
                             linea.Unidades = decimal.Parse(dec);
 
                             propietaris_manager.AfegirParteLinea(linea);

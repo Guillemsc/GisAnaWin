@@ -21,28 +21,19 @@ namespace WindowsFormsApp4.Forms
 
         private void QuadernCamp_Load(object sender, EventArgs e)
         {
-            ReportDataQuadernPag1 pag1 = new ReportDataQuadernPag1("a", "a", "a", "a", "a", "a");
-            ReportDataQuadernPag2t1 pag2t1 = new ReportDataQuadernPag2t1("a", "a", "a", "a", "a");
-            ReportDataQuadernPag2t2 pag2t2 = new ReportDataQuadernPag2t2("a", "a", "a", "a", "a");
-            ReportDataQuadernPag2t3 pag2t3 = new ReportDataQuadernPag2t3("a", "a", "a", "a");
-            ReportDataQuadernPag2t4 pag2t4 = new ReportDataQuadernPag2t4("a", "a", "a", "a", "a");
-            ReportDataQuadernPag2t5 pag2t5 = new ReportDataQuadernPag2t5("a", "a", "a", "a", "a");
-            ReportDataQuadernPag3 pag3 = new ReportDataQuadernPag3("a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a");
-            ReportDataQuadernPag4 pag4 = new ReportDataQuadernPag4("a", "a", "a", "a", "a", "a", "a", "a", "a");
-            ReportDataQuadernPag5 pag5 = new ReportDataQuadernPag5("a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a");
-            ReportDataQuadernPag6 pag6 = new ReportDataQuadernPag6("a", "a", "a", "a", "a", "a", "a", "a");
 
-            //SetInfo(pag1, pag2t1, pag2t2, pag2t3, pag2t4, pag2t5, pag3, pag4, pag5, pag6);
         }
 
         public void SetInfo(ReportDataQuadernPag1 pag1, List<ReportDataQuadernPag2t1> pag2t1, List<ReportDataQuadernPag2t2> pag2t2, 
             List<ReportDataQuadernPag2t3> pag2t3, List<ReportDataQuadernPag2t4> pag2t4, List<ReportDataQuadernPag2t5> pag2t5,
             List<ReportDataQuadernPag3> pag3, List<ReportDataQuadernPag4> pag4, List<ReportDataQuadernPag5> pag5, List<ReportDataQuadernPag6> pag6)
         {
+            this.reportViewer.Clear();
+            this.reportViewer.RefreshReport();
+
             this.Size = new System.Drawing.Size(983, 689);
             this.MaximizeBox = false;
             this.reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
-            //this.reportViewer.Clear();
 
             report1DSBindingSource.DataSource = pag1;
             report2DSBindingSource.DataSource = pag2t1;

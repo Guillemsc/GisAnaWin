@@ -28,6 +28,8 @@ namespace WindowsFormsApp4.Forms
             {
                 propietaris_combobox.AddElement(propietaris[i]);
             }
+
+            propietaris_combobox.CleanSelection();
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -148,7 +150,10 @@ namespace WindowsFormsApp4.Forms
                 p.parcela_p3 = parcela_act.GetTbl().Parcela;
                 p.recinte_p3 = "";
                 p.us_p3 = "Vi";
-                p.cultiu_p3 = varietat.GetTbl().Nombre;
+
+                if(varietat != null)
+                    p.cultiu_p3 = varietat.GetTbl().Nombre;
+
                 p.superficie_p3 = parcela_act.GetTbl().Ha.ToString();
                 p.sistema_conreu_p3 = "3.1: S / 3.2: L";
                 p.num_rcv_p3 = parcela_act.GetTbl().idParcelaVinicola;
