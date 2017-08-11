@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace WindowsFormsApp4.Forms
 {
     public partial class ConfiguraQuadernCamp : Form
     {
+        private object reportViewer;
+
         public ConfiguraQuadernCamp(PropietarisManager _propietaris_manager, PointsManager _points_manager, 
             ServerManager _server_manager, UIManager _ui_manager, Forms.QuadernCamp q_form)
         {
@@ -113,9 +116,17 @@ namespace WindowsFormsApp4.Forms
                 {
                     DataSources.ReportDataQuadernPag2t4 p = new DataSources.ReportDataQuadernPag2t4();
                     p.tipo_maquina = maquina_act.GetTbl().nomMaquina;
-                    p.data_compra = maquina_act.GetTbl().dataCompra.ToString();
+                    if (maquina_act.GetTbl().dataCompra != null)
+                    {
+                        DateTime d = (DateTime)maquina_act.GetTbl().dataCompra;
+                        p.data_compra = d.ToShortDateString();
+                    }
                     p.num_roma = maquina_act.GetTbl().numRoma;
-                    p.data_ins = maquina_act.GetTbl().darreraInspeccio.ToString();
+                    if (maquina_act.GetTbl().darreraInspeccio != null)
+                    {
+                        DateTime da = (DateTime)maquina_act.GetTbl().darreraInspeccio;
+                        p.data_ins = da.ToShortDateString();
+                    }
                     p.num_ordre = maquina_act.GetTbl().id;
 
                     pag2t4.Add(p);
@@ -124,9 +135,17 @@ namespace WindowsFormsApp4.Forms
                 {
                     DataSources.ReportDataQuadernPag2t5 p = new DataSources.ReportDataQuadernPag2t5();
                     p.tipo_maquina_2t5 = maquina_act.GetTbl().nomMaquina;
-                    p.data_compra_2t5 = maquina_act.GetTbl().dataCompra.ToString();
+                    if (maquina_act.GetTbl().dataCompra != null)
+                    {
+                        DateTime d = (DateTime)maquina_act.GetTbl().dataCompra;
+                        p.data_compra_2t5 = d.ToShortDateString();
+                    }
                     p.num_roma_2t5 = maquina_act.GetTbl().numRoma;
-                    p.data_ins_2t5 = maquina_act.GetTbl().darreraInspeccio.ToString();
+                    if (maquina_act.GetTbl().darreraInspeccio != null)
+                    {
+                        DateTime da = (DateTime)maquina_act.GetTbl().darreraInspeccio;
+                        p.data_ins_2t5 = da.ToShortDateString();
+                    }
                     p.num_ordre_2t5 = maquina_act.GetTbl().id;
 
                     pag2t5.Add(p);
@@ -179,7 +198,11 @@ namespace WindowsFormsApp4.Forms
                 if (linea_act.idProduteFito == null)
                 {
                     DataSources.ReportDataQuadernPag4 p = new DataSources.ReportDataQuadernPag4();
-                    p.data = parte_act.Fecha.ToString();
+                    if (parte_act.Fecha != null)
+                    {
+                        DateTime d = (DateTime)parte_act.Fecha;
+                        p.data = d.ToShortDateString();
+                    }
                     p.num_finca = finca_act.GetTbl().idFinca.ToString();
                     p.cultiu = varietat_act.GetTbl().Nombre;
                     p.superficie = parcela_act.GetTbl().Ha.ToString();
@@ -190,7 +213,11 @@ namespace WindowsFormsApp4.Forms
                 else
                 {
                     DataSources.ReportDataQuadernPag5 p = new DataSources.ReportDataQuadernPag5();
-                    p.data = parte_act.Fecha.ToString();
+                    if (parte_act.Fecha != null)
+                    {
+                        DateTime d = (DateTime)parte_act.Fecha;
+                        p.data = d.ToShortDateString();
+                    }
                     p.num_finca = finca_act.GetTbl().idFinca.ToString();
                     p.cultiu = varietat_act.GetTbl().Nombre;
                     p.plaga = parte_act.Descripcion;
@@ -213,8 +240,6 @@ namespace WindowsFormsApp4.Forms
                     pag5.Add(p);
                 }
             }
-
-
 
             quadern_form.SetInfo(pag1, pag2t1, pag2t2, pag2t3, pag2t4, pag2t5, pag3, pag4, pag5, pag6);
 

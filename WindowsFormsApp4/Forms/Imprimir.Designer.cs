@@ -78,6 +78,7 @@ namespace WindowsFormsApp4
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report2DSBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.MaximizeBox = false;
 
         }
 

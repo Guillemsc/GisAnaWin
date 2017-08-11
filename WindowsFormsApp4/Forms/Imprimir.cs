@@ -26,7 +26,6 @@ namespace WindowsFormsApp4
         public void SetInfo(List<ReportDataParte> partes, List<ReportDataAnalitica> analitiques, string nom_empresa, string imatge_url, string data)
         {
             this.Size = new System.Drawing.Size(983, 689);
-            this.MaximizeBox = false;
             this.reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             this.reportViewer.Clear();
 

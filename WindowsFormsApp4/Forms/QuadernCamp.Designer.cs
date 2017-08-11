@@ -147,6 +147,7 @@
             this.Name = "QuadernCamp";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.QuadernCamp_Load);
+            this.MaximizeBox = false;
 
             ((System.ComponentModel.ISupportInitialize)(this.report1DSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.report2DSBindingSource)).EndInit();

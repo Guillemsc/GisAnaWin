@@ -879,7 +879,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>COMPROMISOS DEL TITULAR</Value>
+                        <Value>COMPROMISOS DEL TITULAR:</Value>
                         <Style>
                           <FontSize>11pt</FontSize>
                           <FontWeight>Bold</FontWeight>
@@ -890,9 +890,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>6.74357cm</Top>
-                <Left>0.0968cm</Left>
-                <Height>0.83812cm</Height>
+                <Top>7.42267cm</Top>
+                <Left>0.04321cm</Left>
+                <Height>0.59118cm</Height>
                 <Width>8.14104cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
@@ -1097,9 +1097,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox19</rd:DefaultName>
                 <Top>15.77496cm</Top>
-                <Left>0.063cm</Left>
+                <Left>0.11411cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.37855cm</Width>
+                <Width>4.21936cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
@@ -1118,7 +1118,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>12/3/1996</Value>
+                        <Value>=Parameters!Data.Value</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -1127,9 +1127,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox20</rd:DefaultName>
                 <Top>15.73968cm</Top>
-                <Left>4.90171cm</Left>
+                <Left>4.50986cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.14042cm</Width>
+                <Width>9.59069cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
@@ -6023,7 +6023,6 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -6149,7 +6148,7 @@
                 <Top>2.89765cm</Top>
                 <Left>0.02942cm</Left>
                 <Height>2.47cm</Height>
-                <Width>27.79351cm</Width>
+                <Width>27.79352cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -6262,7 +6261,7 @@
             <Top>50.25867cm</Top>
             <Left>0.14889cm</Left>
             <Height>7.50453cm</Height>
-            <Width>27.82293cm</Width>
+            <Width>27.82294cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -6891,10 +6890,23 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Data">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Data</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>

@@ -32,7 +32,6 @@ namespace WindowsFormsApp4.Forms
             this.reportViewer.RefreshReport();
 
             this.Size = new System.Drawing.Size(983, 689);
-            this.MaximizeBox = false;
             this.reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
 
             report1DSBindingSource.DataSource = pag1;
@@ -46,6 +45,10 @@ namespace WindowsFormsApp4.Forms
             report9DSBindingSource.DataSource = pag5;
             report10DSBindingSource.DataSource = pag6;
 
+            ReportParameter[] para = new ReportParameter[1];
+            para[0] = new ReportParameter("Data", System.DateTime.Today.ToLongDateString());
+
+            reportViewer.LocalReport.SetParameters(para);
 
             this.reportViewer.LocalReport.EnableExternalImages = true;
             System.Drawing.Printing.PageSettings setup = this.reportViewer.GetPageSettings();
