@@ -4,38 +4,6 @@ using System.Drawing;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-
-// ---------------------------------------------------------------------- Botons
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Servidor --------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-// -------------------------------------------------------------------- Servidor
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Utils -----------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------- Utils
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Gmap ------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------ Gmap
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Actualitza ------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-// ------------------------------------------------------------------ Actualitza
-// -----------------------------------------------------------------------------
-
 namespace WindowsFormsApp4
 {
     partial class Principal
@@ -58,22 +26,64 @@ namespace WindowsFormsApp4
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent(string[] args)
+        private void InitializeComponent()
         {
-            for(int i = 0; i < args.Length; i++)
+            this.gmap = new GMap.NET.WindowsForms.GMapControl();
+            this.SuspendLayout();
+            // 
+            // gmap
+            // 
+            this.gmap.Bearing = 0F;
+            this.gmap.CanDragMap = true;
+            this.gmap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gmap.GrayScaleMode = false;
+            this.gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gmap.LevelsKeepInMemmory = 5;
+            this.gmap.Location = new System.Drawing.Point(0, 0);
+            this.gmap.MarkersEnabled = true;
+            this.gmap.MaxZoom = 2;
+            this.gmap.MinZoom = 2;
+            this.gmap.MouseWheelZoomEnabled = true;
+            this.gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gmap.Name = "gmap";
+            this.gmap.NegativeMode = false;
+            this.gmap.PolygonsEnabled = true;
+            this.gmap.RetryLoadTile = 0;
+            this.gmap.RoutesEnabled = true;
+            this.gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gmap.ShowTileGridLines = false;
+            this.gmap.Size = new System.Drawing.Size(150, 150);
+            this.gmap.TabIndex = 0;
+            this.gmap.Zoom = 0D;
+            // 
+            // Principal
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Principal";
+            this.ResumeLayout(false);
+
+        }
+
+        void LoadArgs(string[] args)
+        {
+            for (int i = 0; i < args.Length; i++)
             {
                 string curr_string = args[i];
 
-                switch(i)
+                switch (i)
                 {
                     case 0:
                         finca_id = curr_string;
                         break;
                 }
             }
+        }
 
-            this.gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.SuspendLayout();
+        // Load
+        void Carrega()
+        {
+
             // 
             // gmap
             // 
@@ -128,14 +138,6 @@ namespace WindowsFormsApp4
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            #region Windows Form Designer generated code
-
-            #endregion
-        }
-
-        // Load
-        override protected void OnLoad(EventArgs e)
-        {
             // Managers --------------------------
             point_manager = new PointsManager(gmap);
             propietaris_manager = new PropietarisManager();
@@ -216,6 +218,10 @@ namespace WindowsFormsApp4
             quadern_camp_form = new Forms.QuadernCamp();
 
             configura_quadern_camp_form = new Forms.ConfiguraQuadernCamp(propietaris_manager, point_manager, server_manager, ui_manager, quadern_camp_form);
+
+            //personal_form = new Forms.Perso(propietaris_manager, point_manager, server_manager, ui_manager);
+
+            maquinaria_form = new Forms.Maquinaria(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
         }
@@ -262,12 +268,12 @@ namespace WindowsFormsApp4
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
                 map_win.AddElement(mapsat_button);
 
-                imprimir_button = new UI_Button(new Point(620, 550), 50, 23, "Imprimir");
+                imprimir_button = new UI_Button(new Point(630, 550), 50, 23, "Imprimir");
                 imprimir_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 imprimir_button.GetElement().Click += new System.EventHandler(this.ImprimirMapa);
                 map_win.AddElement(imprimir_button);
 
-                imprimir_quadern_camp_button = new UI_Button(new Point(400, 550), 200, 23, "Imprimir quadern de camp");
+                imprimir_quadern_camp_button = new UI_Button(new Point(470, 550), 150, 23, "Imprimir quadern de camp");
                 imprimir_quadern_camp_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 imprimir_quadern_camp_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
                 map_win.AddElement(imprimir_quadern_camp_button); 
@@ -275,6 +281,16 @@ namespace WindowsFormsApp4
                 editor_parceles_ultim_guardat = new UI_Text(new Point(520, 505), 100, 25, "");
                 editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(editor_parceles_ultim_guardat);
+
+                personal_button = new UI_Button(new Point(250, 550), 100, 23, "Personal");
+                personal_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                personal_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                map_win.AddElement(personal_button);
+
+                maquinaria_button = new UI_Button(new Point(360, 550), 100, 23, "Maquinaria ");
+                maquinaria_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                maquinaria_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                map_win.AddElement(maquinaria_button);
             }
             ui_manager.AddUIWindow(map_win);
 
@@ -522,6 +538,8 @@ namespace WindowsFormsApp4
         Analitiques        visualitza_analitica_form = null;
         Forms.QuadernCamp  quadern_camp_form = null;
         Forms.ConfiguraQuadernCamp configura_quadern_camp_form = null;
+        Forms.Perso        personal_form = null;
+        Forms.Maquinaria   maquinaria_form = null;
         
         // Windows
         UI_Window          main_win = null;
@@ -585,6 +603,10 @@ namespace WindowsFormsApp4
         UI_Panel           guarda_canvis_panel = null;
         UI_Text            guarda_canvis_text = null;
         UI_Button          guarda_canvis_button = null;
+
+        UI_Button          personal_button = null;
+        UI_Button          maquinaria_button = null;
+        UI_Button          brou_button = null;
 
 
         // Managers

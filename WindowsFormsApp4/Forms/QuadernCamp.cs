@@ -17,6 +17,7 @@ namespace WindowsFormsApp4.Forms
         public QuadernCamp()
         {
             InitializeComponent();
+            Carrega();
         }
 
         private void QuadernCamp_Load(object sender, EventArgs e)

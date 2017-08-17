@@ -30,6 +30,14 @@ namespace WindowsFormsApp4
         /// </summary>
         private void InitializeComponent()
         {
+
+
+        }
+
+        #endregion
+
+        void Carrega()
+        {
             this.components = new System.ComponentModel.Container();
 
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
@@ -46,8 +54,8 @@ namespace WindowsFormsApp4
             // 
             // reportViewer
             // 
-            this.reportViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.reportViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 
             reportDataSource1.Value = this.report1DSBindingSource;
@@ -79,10 +87,8 @@ namespace WindowsFormsApp4
             ((System.ComponentModel.ISupportInitialize)(this.report2DSBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.MaximizeBox = false;
-
         }
 
-        #endregion
         private System.Windows.Forms.BindingSource report1DSBindingSource;
         private System.Windows.Forms.BindingSource report2DSBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;

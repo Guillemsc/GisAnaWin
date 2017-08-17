@@ -20,7 +20,9 @@ namespace WindowsFormsApp4
     {
         public Principal(string[] args)
         {
-            InitializeComponent(args);
+            LoadArgs(args);
+            InitializeComponent();
+            Carrega();
         }
 
         // -----------------------------------------------------------------------------
@@ -1308,6 +1310,11 @@ namespace WindowsFormsApp4
                 propietaris_manager.finca_actual = finca;
                 propietaris_manager.propietari_actual = propietari;
             }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
         }
 
 

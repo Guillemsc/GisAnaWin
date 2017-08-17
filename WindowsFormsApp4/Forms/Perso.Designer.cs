@@ -1,0 +1,46 @@
+﻿using System;
+
+namespace WindowsFormsApp4.Forms
+{
+    partial class Perso
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Text = "Perso";
+        }
+
+        #endregion
+
+        void Carrega(PropietarisManager _propietaris_manager, PointsManager _points_manager,
+            ServerManager _server_manager, UIManager _ui_manager)
+        {
+
+        }
+    }
+}

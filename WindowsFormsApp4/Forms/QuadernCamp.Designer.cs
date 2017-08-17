@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+    
+        }
+
+        #endregion
+
+        void Carrega()
+        {
             this.components = new System.ComponentModel.Container();
 
             // Pag1
@@ -161,8 +168,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.report10DSBindingSource)).EndInit();
             this.ResumeLayout(false);
         }
-
-        #endregion
 
         private System.Windows.Forms.BindingSource report1DSBindingSource;
         private System.Windows.Forms.BindingSource report2DSBindingSource;

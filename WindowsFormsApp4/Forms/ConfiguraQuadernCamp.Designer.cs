@@ -28,7 +28,12 @@ namespace WindowsFormsApp4.Forms
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(PropietarisManager _propietaris_manager, PointsManager _points_manager, 
+        private void InitializeComponent()
+        {
+
+        }
+
+        void Carrega(PropietarisManager _propietaris_manager, PointsManager _points_manager,
             ServerManager _server_manager, UIManager _ui_manager, Forms.QuadernCamp q_form)
         {
             this.components = new System.ComponentModel.Container();

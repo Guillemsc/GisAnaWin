@@ -28,7 +28,15 @@ namespace WindowsFormsApp4
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
+        private void InitializeComponent()
+        {
+
+        }
+
+        #endregion
+
+        void Carrega(PropietarisManager _propietaris_manager, PointsManager _points_manager, 
+            ServerManager _server_manager, UIManager _ui_manager)
         {
             this.SuspendLayout();
             // 
@@ -44,8 +52,6 @@ namespace WindowsFormsApp4
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-
-            #endregion
 
             // Set Managers ----------------------
             propietaris_manager = _propietaris_manager;

@@ -16,6 +16,7 @@ namespace WindowsFormsApp4
         public Imprimir()
         {
             InitializeComponent();
+            Carrega();
         }
 
         private void Form4_Load(object sender, EventArgs e)

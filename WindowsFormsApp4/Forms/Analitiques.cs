@@ -14,7 +14,8 @@ namespace WindowsFormsApp4
     {
         public Analitiques(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
         {
-            InitializeComponent(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            InitializeComponent();
+            Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }
 
         private void Form5_Load(object sender, EventArgs e)

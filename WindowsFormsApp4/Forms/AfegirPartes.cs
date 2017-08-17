@@ -14,7 +14,8 @@ namespace WindowsFormsApp4
     {
         public AfegirPartes(PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
         {
-            InitializeComponent(propietaris_manager, points_manager, server_manager, ui_manager);
+            InitializeComponent();
+            Carrega(propietaris_manager, points_manager, server_manager, ui_manager);
         }
 
         private void Form2_Load(object sender, EventArgs e)

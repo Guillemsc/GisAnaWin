@@ -29,7 +29,15 @@ namespace WindowsFormsApp4
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, UIManager _ui_manager)
+        private void InitializeComponent()
+        {
+
+        }
+
+        #endregion
+
+        void Carrega(PropietarisManager _propietaris_manager, PointsManager _points_manager, ServerManager _server_manager, 
+            UIManager _ui_manager)
         {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -53,8 +61,6 @@ namespace WindowsFormsApp4
             LoadUI();
             // -----------------------------------
         }
-
-        #endregion
 
         public void LoadUI()
         {
