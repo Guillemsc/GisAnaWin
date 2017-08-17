@@ -18,5 +18,30 @@ namespace WindowsFormsApp4.Forms
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }
+
+        public void PersonalClick(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Accepta(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Crea(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Elimina(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Actualitza(object sender, EventArgs e)
+        {
+
+        }
     }
 }

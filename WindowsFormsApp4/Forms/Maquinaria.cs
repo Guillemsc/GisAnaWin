@@ -15,7 +15,8 @@ namespace WindowsFormsApp4.Forms
         public Maquinaria(PropietarisManager _propietaris_manager, PointsManager _points_manager,
             ServerManager _server_manager, UIManager _ui_manager)
         {
-            InitializeComponent(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            InitializeComponent();
+            Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }
     }
 }

@@ -78,6 +78,27 @@ namespace WindowsFormsApp4
                         break;
                 }
             }
+
+            if (finca_id != "")
+            {
+                Finca f = propietaris_manager.GetFincaPerId(finca_id);
+
+                if (f != null)
+                {
+                    propietaris_manager.finca_actual = f;
+
+                    Propietari p = propietaris_manager.GetPropietariPerFinca(f);
+
+                    propietaris_manager.propietari_actual = p;
+
+                    ActualitzaLlistaPropietari();
+                    ActualitzaLlistaFinques();
+                    seleccio_propietari_noms_combobox.SetSelectedElement(propietaris_manager.propietari_actual.GetTbl().Nombre);
+                    seleccio_finca_noms_combobox.SetSelectedElement(propietaris_manager.finca_actual.GetTbl().Nom1);
+
+                    ActualitzaLlistaParceles();
+                }
+            }
         }
 
         // Load
@@ -198,7 +219,6 @@ namespace WindowsFormsApp4
 
                 UpdateLatLon();
 
-                LoadArgs();
             }
 
             gmap.ZoomAndCenterMarkers(point_manager.overlay_finca.Id);
@@ -219,7 +239,7 @@ namespace WindowsFormsApp4
 
             configura_quadern_camp_form = new Forms.ConfiguraQuadernCamp(propietaris_manager, point_manager, server_manager, ui_manager, quadern_camp_form);
 
-            //personal_form = new Forms.Perso(propietaris_manager, point_manager, server_manager, ui_manager);
+            personal_form = new Forms.Perso(propietaris_manager, point_manager, server_manager, ui_manager);
 
             maquinaria_form = new Forms.Maquinaria(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
@@ -284,12 +304,12 @@ namespace WindowsFormsApp4
 
                 personal_button = new UI_Button(new Point(250, 550), 100, 23, "Personal");
                 personal_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
-                personal_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                personal_button.GetElement().Click += new System.EventHandler(this.ObreFinestraPersonal);
                 map_win.AddElement(personal_button);
 
                 maquinaria_button = new UI_Button(new Point(360, 550), 100, 23, "Maquinaria ");
                 maquinaria_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
-                maquinaria_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                maquinaria_button.GetElement().Click += new System.EventHandler(this.ObreFinestraMaquinaria);
                 map_win.AddElement(maquinaria_button);
             }
             ui_manager.AddUIWindow(map_win);
@@ -417,7 +437,6 @@ namespace WindowsFormsApp4
 
                     editor_parceles_opcions = new UI_Button(new Point(330, 3), 100, 25, "Opcions parcela");
                     editor_parceles_guarda_button.SetColor(Color.Cornsilk);
-                    editor_parceles_opcions.GetElement().Click += new System.EventHandler(this.ObreFinestraOpcionsParcela);
                     editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
                 editor_parceles_panel.SetVisible(false);
@@ -507,29 +526,7 @@ namespace WindowsFormsApp4
             ConfigurationManager.RefreshSection("connectionStrings");
         }
 
-        private void LoadArgs()
-        {
-            if(finca_id != "")
-            {
-                Finca f = propietaris_manager.GetFincaPerId(finca_id);
 
-                if (f != null)
-                {
-                    propietaris_manager.finca_actual = f;
-
-                    Propietari p = propietaris_manager.GetPropietariPerFinca(f);
-
-                    propietaris_manager.propietari_actual = p;
-
-                    ActualitzaLlistaPropietari();
-                    ActualitzaLlistaFinques();
-                    seleccio_propietari_noms_combobox.SetSelectedElement(propietaris_manager.propietari_actual.GetTbl().Nombre);
-                    seleccio_finca_noms_combobox.SetSelectedElement(propietaris_manager.finca_actual.GetTbl().Nom1);
-
-                    ActualitzaLlistaParceles();
-                }
-            }
-        }
 
         // Forms
         AfegirPartes       crea_parte_form = null;

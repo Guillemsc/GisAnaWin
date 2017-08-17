@@ -20,24 +20,15 @@ namespace WindowsFormsApp4
     {
         public Principal(string[] args)
         {
-            LoadArgs(args);
             InitializeComponent();
             Carrega();
+
+            LoadArgs(args);
         }
 
         // -----------------------------------------------------------------------------
         // Botons ----------------------------------------------------------------------
         // -----------------------------------------------------------------------------
-
-        private void ObreFinestraOpcionsParcela(object sender, EventArgs e)
-        {
-            MouseEventArgs m = e as MouseEventArgs;
-
-            if(m.Button == MouseButtons.Right)
-            {
-                //int i = 0;
-            }
-        }
 
         // Event que es crida per a actualitzar la llista de propietaris
         private void ActualitzaLlistaPropietariEvent(object sender, EventArgs e)
@@ -303,6 +294,16 @@ namespace WindowsFormsApp4
         public void ObreFormVisualitzaAnalitiques(object sender, EventArgs e)
         {
             visualitza_analitica_form.ShowDialog();
+        }
+
+        public void ObreFinestraPersonal(object sender, EventArgs e)
+        {
+            personal_form.ShowDialog();
+        }
+
+        public void ObreFinestraMaquinaria(object sender, EventArgs e)
+        {
+            maquinaria_form.ShowDialog();
         }
 
         // Obre la finestra per a imprimir la imatge del mapa

@@ -228,6 +228,9 @@
     <EmbeddedResource Include="Forms\Analitiques.resx">
       <DependentUpon>Analitiques.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Perso.resx">
+      <DependentUpon>Perso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
