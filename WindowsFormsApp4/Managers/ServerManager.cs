@@ -233,6 +233,16 @@ namespace WindowsFormsApp4
             servidor.tblAnaliticaFincaParcela.InsertOnSubmit(analitica);
         }
 
+        public void AddPersonal(tblPersonal personal)
+        {
+            servidor.tblPersonal.InsertOnSubmit(personal);
+        }
+
+        public void AddMaquinaria(tblMaquinaria maquinaria)
+        {
+            servidor.tblMaquinaria.InsertOnSubmit(maquinaria);
+        }
+
         public void DeleteCoordenades(tblCoordenadesFincaParcela coordenates)
         {
             servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);
@@ -251,6 +261,16 @@ namespace WindowsFormsApp4
         public void DeleteAnalitica(tblAnaliticaFincaParcela analitica)
         {
             servidor.tblAnaliticaFincaParcela.DeleteOnSubmit(analitica);
+        }
+
+        public void DeletePersonal(tblPersonal personal)
+        {
+            servidor.tblPersonal.DeleteOnSubmit(personal);
+        }
+
+        public void DeleteMaquinaria(tblMaquinaria maquinaria)
+        {
+            servidor.tblMaquinaria.DeleteOnSubmit(maquinaria);
         }
 
         public void SubmitChanges()

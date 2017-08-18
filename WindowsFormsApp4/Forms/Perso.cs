@@ -17,31 +17,255 @@ namespace WindowsFormsApp4.Forms
         {
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            ActualitzaLlistaPersonal();
+        }
+
+        void ActualitzaLlistaPersonal()
+        {
+            grid.Clear();
+            grid.CleanSelection();
+
+            List<Personal> personal = propietaris_manager.GetPersonal();
+
+            List<Personal> to_grid = new List<Personal>();
+
+            for (int i = 0; i < personal.Count; i++)
+            {
+                Personal p = personal[i];
+                
+                if (!personal_per_eliminar.Contains(p) && !personal_per_afegir.Contains(p))
+                    to_grid.Add(p);
+                   
+            }
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                Personal p = personal_per_afegir[i];
+
+                to_grid.Add(p);
+            }
+
+            while (to_grid.Count > 0)
+            {
+                grid.AddRow(to_grid[0].GetTbl().nom, to_grid[0].GetTbl().nif, to_grid[0].GetTbl().numCarnet, to_grid[0].GetTbl().nivell, to_grid[0].GetTbl().id);
+
+                to_grid.Remove(to_grid[0]);
+            }
         }
 
         public void PersonalClick(object sender, EventArgs e)
         {
+            if (!grid.IsSelected())
+                return;
 
+            int id = int.Parse((string)grid.GetRowCell(grid.GetSelectedRowIndex(), "id").Value);
+
+            Personal personal = propietaris_manager.GetPersonalPerId(id.ToString());
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (personal_per_afegir[i].GetTbl().id == id.ToString())
+                    personal = personal_per_afegir[i];
+            }
+
+            if (personal == null)
+                return;
+
+            nom_text_input.SetText(personal.GetTbl().nom);
+            nif_text_input.SetText(personal.GetTbl().nif);
+            num_carnet_text_input.SetText(personal.GetTbl().numCarnet);
+            qualificacio_text_input.SetText(personal.GetTbl().nivell);
         }
 
         public void Accepta(object sender, EventArgs e)
         {
+            List<Personal> personal = propietaris_manager.GetPersonal();
 
+            for (int i = 0; i < personal_per_eliminar.Count; i++)
+            {
+                bool exists = false;
+                for (int y = 0; y < personal.Count; y++)
+                {
+                    if (personal[y].GetTbl() == personal_per_eliminar[i].GetTbl())
+                        exists = true;
+                }
+
+                if (exists)
+                    server_manager.DeletePersonal(personal_per_eliminar[i].GetTbl());
+
+                propietaris_manager.GetPersonal().Remove(personal_per_eliminar[i]);
+            }
+
+            server_manager.SubmitChanges();
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                bool exists = false;
+                for (int y = 0; y < personal.Count; y++)
+                {
+                    if (personal[y].GetTbl().id == personal_per_afegir[i].GetTbl().id)
+                        exists = true;
+                }
+
+                if (!exists)
+                    propietaris_manager.AfegirPersonal(personal_per_afegir[i]);
+
+
+                server_manager.AddPersonal(personal_per_afegir[i].GetTbl());
+            }
+
+            server_manager.SubmitChanges();
+
+            grid.CleanSelection();
+
+            personal_per_afegir.Clear();
+            personal_per_eliminar.Clear();
+
+            this.Hide();
         }
 
         public void Crea(object sender, EventArgs e)
         {
+            if (!FormulariComplert())
+                return;
 
+            tblPersonal p = new tblPersonal();
+
+            p.nom = nom_text_input.GetText();
+            p.nif = nif_text_input.GetText();
+            p.numCarnet = num_carnet_text_input.GetText();
+            p.nivell = qualificacio_text_input.GetText();
+            p.id = GetPersonalNewId().ToString();
+            p.CodigoEmpresa = "0";
+
+            Personal personal = new Personal(p);
+
+            personal_per_afegir.Add(personal);
+
+            ActualitzaLlistaPersonal();
         }
 
         public void Elimina(object sender, EventArgs e)
         {
+            if (!grid.IsSelected())
+                return;
 
+            int id = int.Parse((string)grid.GetRowCell(grid.GetSelectedRowIndex(), "id").Value);
+
+            Personal personal = propietaris_manager.GetPersonalPerId(id.ToString());
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (personal_per_afegir[i].GetTbl().id == id.ToString())
+                {
+                    personal = personal_per_afegir[i];
+                    break;
+                }
+            }
+
+            if (personal == null)
+                return;
+
+            bool exists = true;
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (personal_per_afegir[i].GetTbl().id == personal.GetTbl().id)
+                {
+                    personal_per_afegir.RemoveAt(i);
+                    exists = false;
+                    break;
+                }
+            }
+
+            if (exists)
+                personal_per_eliminar.Add(personal);
+
+            ActualitzaLlistaPersonal();
         }
 
         public void Actualitza(object sender, EventArgs e)
         {
+            if (!grid.IsSelected())
+                return;
 
+            int id = int.Parse((string)grid.GetRowCell(grid.GetSelectedRowIndex(), "id").Value);
+
+            Personal personal = propietaris_manager.GetPersonalPerId(id.ToString());
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (personal_per_afegir[i].GetTbl().id == id.ToString())
+                {
+                    personal = personal_per_afegir[i];
+                    break;
+                }
+            }
+
+            if (personal == null)
+                return;
+
+            if (!FormulariComplert())
+                return;
+
+            personal_per_eliminar.Add(personal);
+
+            tblPersonal p = new tblPersonal();
+
+            p.nom = nom_text_input.GetText();
+            p.nif = nif_text_input.GetText();
+            p.numCarnet = num_carnet_text_input.GetText();
+            p.nivell = qualificacio_text_input.GetText();
+            p.id = GetPersonalNewId().ToString();
+            p.CodigoEmpresa = "0";
+
+            Personal nou_personal = new Personal(p);
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (personal_per_afegir[i].GetTbl().id == nou_personal.GetTbl().id)
+                {
+                    personal_per_afegir.RemoveAt(i);
+                    break;
+                }
+            }
+
+            personal_per_afegir.Add(nou_personal);
+
+            ActualitzaLlistaPersonal();
+
+            grid.CleanSelection();
+        }
+
+        bool FormulariComplert()
+        {
+            if (nom_text_input.GetText() != "" && nif_text_input.GetText() != "" && num_carnet_text_input.GetText() != ""
+                && qualificacio_text_input.GetText() != "")
+                return true;
+            return false;
+        }
+
+
+        public int GetPersonalNewId()
+        {
+            int ret = -1;
+
+            List<Personal> personal = propietaris_manager.GetPersonal();
+
+            for (int i = 0; i < personal.Count; i++)
+            {
+                if (int.Parse(personal[i].GetTbl().id) > ret)
+                    ret = int.Parse(personal[i].GetTbl().id);
+            }
+
+            for (int i = 0; i < personal_per_afegir.Count; i++)
+            {
+                if (int.Parse(personal_per_afegir[i].GetTbl().id) > ret)
+                    ret = int.Parse(personal_per_afegir[i].GetTbl().id);
+            }
+
+            ret++;
+
+            return ret;
         }
     }
 }

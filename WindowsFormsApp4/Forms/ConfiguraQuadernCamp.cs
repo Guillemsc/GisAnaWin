@@ -60,9 +60,9 @@ namespace WindowsFormsApp4.Forms
             pag1.titular_explotacio = propi.GetTbl().Nombre;
             pag1.titular_explotacio_nif = propi.GetTbl().Cif;
             pag1.titular_explotacio_ccpae = propi.GetTbl().idCAE;
-            //pag1.assessor_explotacio = 
-            //pag1.assessor_explotacio_nif = 
-            //pag1.assessor_explotacio_registre = 
+            pag1.assessor_explotacio = propi.GetTbl().Nombre;
+            pag1.assessor_explotacio_nif = propi.GetTbl().Cif;
+            pag1.assessor_explotacio_registre = propi.GetTbl().idCAE;
 
             // Pag2
             List<Personal> personal = propietaris_manager.GetPersonal();

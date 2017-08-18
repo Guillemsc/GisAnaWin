@@ -78,20 +78,20 @@ namespace WindowsFormsApp4.Forms
             {
                 grid = new UI_Grid(new Point(15, 15), 470, 405);
                 grid.AddColumn("Nom", 150, true); grid.AddColumn("NIF", 150, true); grid.AddColumn("Núm aplicador", 70, true);
-                grid.AddColumn("Qualificació", 120, true);
+                grid.AddColumn("Qualificació", 120, true); grid.AddColumn("id", 120, true, false);
                 grid.GetElement().Click += new System.EventHandler(this.PersonalClick);
                 main_window.AddElement(grid);
 
 
-                elimina_button = new UI_Button(new Point(14, 431), 100, 30, "Elimina analítica");
+                elimina_button = new UI_Button(new Point(14, 431), 100, 30, "Elimina persona");
                 elimina_button.GetElement().Click += new System.EventHandler(this.Elimina);
                 main_window.AddElement(elimina_button);
 
-                actualitza_button = new UI_Button(new Point(633, 431), 120, 30, "Actualitza analítica");
+                actualitza_button = new UI_Button(new Point(633, 431), 120, 30, "Actualitza persona");
                 actualitza_button.GetElement().Click += new System.EventHandler(this.Actualitza);
                 main_window.AddElement(actualitza_button);
 
-                crea_button = new UI_Button(new Point(503, 431), 120, 30, "Crea analítica");
+                crea_button = new UI_Button(new Point(503, 431), 120, 30, "Crea persona");
                 crea_button.GetElement().Click += new System.EventHandler(this.Crea);
                 main_window.AddElement(crea_button);
 
