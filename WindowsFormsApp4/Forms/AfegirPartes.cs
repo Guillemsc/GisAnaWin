@@ -22,6 +22,28 @@ namespace WindowsFormsApp4
         {
             ActualitzaLlistaTreballs();
             CarregaLListaPartes();
+
+            List<object> unitats = new List<object>();
+            List<object> maquinaria = new List<object>();
+            List<object> aplicadors = new List<object>();
+            List<object> adobs = new List<object>();
+
+            for (int i = 0; i < propietaris_manager.GetUnitatsMetriques().Count; i++)
+                unitats.Add(propietaris_manager.GetUnitatsMetriques()[i]);
+
+            for (int i = 0; i < propietaris_manager.GetMaquinaria().Count; i++)
+                maquinaria.Add(propietaris_manager.GetMaquinaria()[i]);
+
+            for (int i = 0; i < propietaris_manager.GetPersonal().Count; i++)
+                aplicadors.Add(propietaris_manager.GetPersonal()[i]);
+
+            for (int i = 0; i < propietaris_manager.GetAdobs().Count; i++)
+                adobs.Add(propietaris_manager.GetAdobs()[i]);
+
+            grid.UpdateComboBoxColumn("Aplicador", aplicadors);
+            grid.UpdateComboBoxColumn("Unitats", unitats);
+            grid.UpdateComboBoxColumn("Maquinaria", maquinaria);
+            grid.UpdateComboBoxColumn("Adobs", adobs);
         }
 
         // ---------------------------------------------------------------------- Botons

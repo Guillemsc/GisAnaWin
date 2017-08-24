@@ -89,6 +89,15 @@ namespace WindowsFormsApp4.Forms
 
             if (maquina.GetTbl().darreraInspeccio != null) 
             inspeccio_data.SetDate((DateTime)maquina.GetTbl().darreraInspeccio);
+
+            if (maquina.GetTbl().enPropietat != null && (bool)maquina.GetTbl().enPropietat)
+            {
+                propia_radiobutton.Check();
+            }
+            else if (maquina.GetTbl().llogada != null && (bool)maquina.GetTbl().llogada)
+            {
+                llogada_radiobutton.Check();
+            }
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -150,6 +159,14 @@ namespace WindowsFormsApp4.Forms
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
             p.id = GetMaquinariaNewId().ToString();
+
+            var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (checkedButton == propia_radiobutton.GetElement())
+                p.enPropietat = true;
+
+            else if (checkedButton == llogada_radiobutton.GetElement())
+                p.llogada = true;
 
             Maquina maquina = new Maquina(p);
 
@@ -228,18 +245,31 @@ namespace WindowsFormsApp4.Forms
             p.dataCompra = data_data.GetDate();
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
-            p.id = GetMaquinariaNewId().ToString();
+            p.id = maquinaria.GetTbl().id;
+
+            var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (checkedButton == propia_radiobutton.GetElement())
+                p.enPropietat = true;
+
+            else if (checkedButton == llogada_radiobutton.GetElement())
+                p.llogada = true;
 
             Maquina nova_maquina = new Maquina(p);
 
+            bool found = false;
             for (int i = 0; i < maquinaria_per_afegir.Count; i++)
             {
                 if (maquinaria_per_afegir[i].GetTbl().id == nova_maquina.GetTbl().id)
                 {
                     maquinaria_per_afegir.RemoveAt(i);
+                    found = true;
                     break;
                 }
             }
+
+            if (!found)
+                nova_maquina.GetTbl().id = GetMaquinariaNewId().ToString();
 
             maquinaria_per_afegir.Add(nova_maquina);
 

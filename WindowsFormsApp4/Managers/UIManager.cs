@@ -632,6 +632,30 @@ namespace WindowsFormsApp4
             d.Columns.Add(column);
         }
 
+        public void UpdateComboBoxColumn(string name, List<object> obj)
+        {
+            DataGridView d = GetElement() as DataGridView;
+
+            DataGridViewComboBoxColumn c = null;
+
+            for (int i = 0; i < d.Columns.Count; i++)
+            {
+                if(d.Columns[i].Name == name)
+                {
+                    c = (DataGridViewComboBoxColumn)d.Columns[i];
+                    break;
+                }
+            }
+
+            c.Items.Clear();
+
+            for (int i = 0; i < obj.Count; i++)
+                c.Items.Add(obj[i].ToString());
+
+            if (obj.Count == 0)
+                c.Items.Add("Empty");
+        }
+
         public void AddRow(params object[] text)
         {
             DataGridView d = GetElement() as DataGridView;

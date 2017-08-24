@@ -75,6 +75,19 @@ namespace WindowsFormsApp4.Forms
             nif_text_input.SetText(personal.GetTbl().nif);
             num_carnet_text_input.SetText(personal.GetTbl().numCarnet);
             qualificacio_text_input.SetText(personal.GetTbl().nivell);
+
+            if(personal.GetTbl().personal != null && (bool)personal.GetTbl().personal)
+            {
+                propi_radiobutton.Check();
+            }
+            else if (personal.GetTbl().contractat != null && (bool)personal.GetTbl().contractat)
+            {
+                contractat_radiobutton.Check();
+            }
+            else if (personal.GetTbl().empresa != null && (bool)personal.GetTbl().empresa)
+            {
+                serveis_radiobutton.Check();
+            }
         }
 
         public void Accepta(object sender, EventArgs e)
@@ -137,6 +150,17 @@ namespace WindowsFormsApp4.Forms
             p.nivell = qualificacio_text_input.GetText();
             p.id = GetPersonalNewId().ToString();
             p.CodigoEmpresa = "0";
+
+            var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (checkedButton == propi_radiobutton.GetElement())
+                p.personal = true;
+
+            else if (checkedButton == contractat_radiobutton.GetElement())
+                p.contractat = true;
+
+            else if (checkedButton == serveis_radiobutton.GetElement())
+                p.empresa = true;
 
             Personal personal = new Personal(p);
 
@@ -215,25 +239,39 @@ namespace WindowsFormsApp4.Forms
             p.nif = nif_text_input.GetText();
             p.numCarnet = num_carnet_text_input.GetText();
             p.nivell = qualificacio_text_input.GetText();
-            p.id = GetPersonalNewId().ToString();
+            p.id = personal.GetTbl().id;
             p.CodigoEmpresa = "0";
+
+            var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (checkedButton == propi_radiobutton.GetElement())
+                p.personal = true;
+
+            else if (checkedButton == contractat_radiobutton.GetElement())
+                p.contractat = true;
+
+            else if (checkedButton == serveis_radiobutton.GetElement())
+                p.empresa = true;
 
             Personal nou_personal = new Personal(p);
 
+            bool found = false;
             for (int i = 0; i < personal_per_afegir.Count; i++)
             {
                 if (personal_per_afegir[i].GetTbl().id == nou_personal.GetTbl().id)
                 {
                     personal_per_afegir.RemoveAt(i);
+                    found = true;
                     break;
                 }
             }
 
+            if (!found)
+                nou_personal.GetTbl().id = GetPersonalNewId().ToString();
+
             personal_per_afegir.Add(nou_personal);
 
             ActualitzaLlistaPersonal();
-
-            grid.CleanSelection();
         }
 
         bool FormulariComplert()
@@ -243,7 +281,6 @@ namespace WindowsFormsApp4.Forms
                 return true;
             return false;
         }
-
 
         public int GetPersonalNewId()
         {
