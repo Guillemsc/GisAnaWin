@@ -642,10 +642,13 @@ namespace WindowsFormsApp4
             {
                 if(d.Columns[i].Name == name)
                 {
-                    c = (DataGridViewComboBoxColumn)d.Columns[i];
+                    c = d.Columns[i] as DataGridViewComboBoxColumn;
                     break;
                 }
             }
+
+            if (c == null)
+                return;
 
             c.Items.Clear();
 
@@ -773,10 +776,15 @@ namespace WindowsFormsApp4
             DataGridView d = GetElement() as DataGridView;
 
             if (d.CurrentRow != null)
+            {
                 d.CurrentRow.Selected = false;
+            }
 
             if (d.CurrentCell != null)
+            {
                 d.CurrentCell.Selected = false;
+                d.CurrentCell = null;
+            }
 
             d.ClearSelection();
         }

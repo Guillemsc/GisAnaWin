@@ -56,7 +56,7 @@ namespace WindowsFormsApp4.Forms
                 if (to_grid[0].GetTbl().darreraInspeccio != null)
                     inspeccio = (DateTime)to_grid[0].GetTbl().darreraInspeccio;
 
-                grid.AddRow(to_grid[0].GetTbl().nomMaquina, compra.ToShortDateString(), to_grid[0].GetTbl().numRoma, inspeccio, to_grid[0].GetTbl().id);
+                grid.AddRow(to_grid[0].GetTbl().nomMaquina, compra.ToShortDateString(), to_grid[0].GetTbl().numRoma, inspeccio.ToShortDateString(), to_grid[0].GetTbl().id);
 
                 to_grid.Remove(to_grid[0]);
             }
@@ -159,6 +159,7 @@ namespace WindowsFormsApp4.Forms
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
             p.id = GetMaquinariaNewId().ToString();
+            p.CodigoEmpresa = "0";
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
@@ -246,6 +247,7 @@ namespace WindowsFormsApp4.Forms
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
             p.id = maquinaria.GetTbl().id;
+            p.CodigoEmpresa = "0";
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 

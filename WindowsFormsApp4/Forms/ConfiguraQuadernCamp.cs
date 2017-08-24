@@ -73,7 +73,7 @@ namespace WindowsFormsApp4.Forms
             {
                 Personal personal_act = personal[i];
                 
-                if((bool)personal_act.GetTbl().personal)
+                if(personal_act.GetTbl().personal != null && (bool)personal_act.GetTbl().personal)
                 {
                     DataSources.ReportDataQuadernPag2t1 p = new DataSources.ReportDataQuadernPag2t1();
                     p.nom_cognom = personal_act.GetTbl().nom;
@@ -84,7 +84,7 @@ namespace WindowsFormsApp4.Forms
 
                     pag2t1.Add(p);
                 }
-                else if ((bool)personal_act.GetTbl().contractat)
+                else if (personal_act.GetTbl().contractat != null && (bool)personal_act.GetTbl().contractat)
                 {
                     DataSources.ReportDataQuadernPag2t2 p = new DataSources.ReportDataQuadernPag2t2();
                     p.nom_cognom_2t2 = personal_act.GetTbl().nom;
@@ -95,7 +95,7 @@ namespace WindowsFormsApp4.Forms
 
                     pag2t2.Add(p);
                 }
-                else if((bool)personal_act.GetTbl().empresa)
+                else if(personal_act.GetTbl().empresa != null && (bool)personal_act.GetTbl().empresa)
                 {
                     DataSources.ReportDataQuadernPag2t3 p = new DataSources.ReportDataQuadernPag2t3();
                     p.nom_cognom = personal_act.GetTbl().nom;
@@ -113,7 +113,7 @@ namespace WindowsFormsApp4.Forms
             {
                 Maquina maquina_act = maquines[i];
 
-                if((bool)maquina_act.GetTbl().enPropietat)
+                if(maquina_act.GetTbl().enPropietat != null && (bool)maquina_act.GetTbl().enPropietat)
                 {
                     DataSources.ReportDataQuadernPag2t4 p = new DataSources.ReportDataQuadernPag2t4();
                     p.tipo_maquina = maquina_act.GetTbl().nomMaquina;
@@ -132,7 +132,7 @@ namespace WindowsFormsApp4.Forms
 
                     pag2t4.Add(p);
                 }
-                else if ((bool)maquina_act.GetTbl().llogada)
+                else if (maquina_act.GetTbl().llogada != null && (bool)maquina_act.GetTbl().llogada)
                 {
                     DataSources.ReportDataQuadernPag2t5 p = new DataSources.ReportDataQuadernPag2t5();
                     p.tipo_maquina_2t5 = maquina_act.GetTbl().nomMaquina;

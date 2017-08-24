@@ -127,17 +127,25 @@ namespace WindowsFormsApp4
             unitats_text_input.SetText(linea_actual.Unidades.ToString());
             fertirrigacio_checkbox.SetSelected((bool)linea_actual.FertirrigacioSiNo);
 
-            if(adob != null)
+            if (adob != null)
                 adob_combobox.SetSelectedElement(adob.ToString());
+            else
+                adob_combobox.CleanSelection();
 
             if (personal != null)
                 personal_combobox.SetSelectedElement(personal.ToString());
+            else
+                personal_combobox.CleanSelection();
 
             if (maquina != null)
                 maquinaria_combobox.SetSelectedElement(maquina.ToString());
+            else
+                maquinaria_combobox.CleanSelection();
 
-            if(unitat != null)
+            if (unitat != null)
                 unitats_mesura_combobox.SetSelectedElement(unitat.ToString());
+            else
+                unitats_mesura_combobox.CleanSelection();
 
             eficacia_combobox.SetSelectedElement(linea_actual.EficaciaTractament.ToString());
 
