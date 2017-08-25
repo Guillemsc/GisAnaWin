@@ -243,6 +243,11 @@ namespace WindowsFormsApp4
             servidor.tblMaquinaria.InsertOnSubmit(maquinaria);
         }
 
+        public void AddAdob(tblProductesFitosanitaris adob)
+        {
+            servidor.tblProductesFitosanitaris.InsertOnSubmit(adob);
+        }
+
         public void DeleteCoordenades(tblCoordenadesFincaParcela coordenates)
         {
             servidor.tblCoordenadesFincaParcela.DeleteOnSubmit(coordenates);
@@ -271,6 +276,11 @@ namespace WindowsFormsApp4
         public void DeleteMaquinaria(tblMaquinaria maquinaria)
         {
             servidor.tblMaquinaria.DeleteOnSubmit(maquinaria);
+        }
+
+        public void DeleteAdob(tblProductesFitosanitaris adob)
+        {
+            servidor.tblProductesFitosanitaris.DeleteOnSubmit(adob);
         }
 
         public void SubmitChanges()

@@ -306,6 +306,11 @@ namespace WindowsFormsApp4
             maquinaria_form.ShowDialog();
         }
 
+        public void ObreFinestraAdobats(object sender, EventArgs e)
+        {
+            adobats_form.ShowDialog();
+        }
+
         // Obre la finestra per a imprimir la imatge del mapa
         // i la informacio sobre partes i analitiques
         public void ImprimirMapa(object sender, EventArgs e)

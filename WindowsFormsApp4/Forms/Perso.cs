@@ -255,20 +255,6 @@ namespace WindowsFormsApp4.Forms
 
             Personal nou_personal = new Personal(p);
 
-            bool found = false;
-            for (int i = 0; i < personal_per_afegir.Count; i++)
-            {
-                if (personal_per_afegir[i].GetTbl().id == nou_personal.GetTbl().id)
-                {
-                    personal_per_afegir.RemoveAt(i);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-                nou_personal.GetTbl().id = GetPersonalNewId().ToString();
-
             personal_per_afegir.Add(nou_personal);
 
             ActualitzaLlistaPersonal();

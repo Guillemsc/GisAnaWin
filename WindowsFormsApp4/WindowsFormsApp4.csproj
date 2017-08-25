@@ -158,6 +158,12 @@
     <Compile Include="Forms\ConfiguraQuadernCamp.Designer.cs">
       <DependentUpon>ConfiguraQuadernCamp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Adobats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Adobats.Designer.cs">
+      <DependentUpon>Adobats.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>

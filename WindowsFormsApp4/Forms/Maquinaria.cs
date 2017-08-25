@@ -259,20 +259,6 @@ namespace WindowsFormsApp4.Forms
 
             Maquina nova_maquina = new Maquina(p);
 
-            bool found = false;
-            for (int i = 0; i < maquinaria_per_afegir.Count; i++)
-            {
-                if (maquinaria_per_afegir[i].GetTbl().id == nova_maquina.GetTbl().id)
-                {
-                    maquinaria_per_afegir.RemoveAt(i);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-                nova_maquina.GetTbl().id = GetMaquinariaNewId().ToString();
-
             maquinaria_per_afegir.Add(nova_maquina);
 
             ActualitzaLlistaMaquinaria();

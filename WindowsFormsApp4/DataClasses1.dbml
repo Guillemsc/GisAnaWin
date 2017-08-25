@@ -222,7 +222,7 @@
   </Table>
   <Table Name="dbo.tblProductesFitosanitaris" Member="tblProductesFitosanitaris">
     <Type Name="tblProductesFitosanitaris">
-      <Column Name="CodigoEmpreas" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CodigoEmpresa" Type="System.String" DbType="NChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NumRegistre" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NomComercial" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />

@@ -43,7 +43,7 @@ namespace WindowsFormsApp4
             grid.UpdateComboBoxColumn("Aplicador", aplicadors);
             grid.UpdateComboBoxColumn("Unitats", unitats);
             grid.UpdateComboBoxColumn("Maquinaria", maquinaria);
-            grid.UpdateComboBoxColumn("Adobs", adobs);
+            grid.UpdateComboBoxColumn("Adob", adobs);
         }
 
         // ---------------------------------------------------------------------- Botons

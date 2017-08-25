@@ -4957,7 +4957,7 @@ namespace WindowsFormsApp4
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _CodigoEmpreas;
+		private string _CodigoEmpresa;
 		
 		private int _id;
 		
@@ -4973,8 +4973,8 @@ namespace WindowsFormsApp4
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCodigoEmpreasChanging(string value);
-    partial void OnCodigoEmpreasChanged();
+    partial void OnCodigoEmpresaChanging(string value);
+    partial void OnCodigoEmpresaChanged();
     partial void OnidChanging(int value);
     partial void OnidChanged();
     partial void OnNumRegistreChanging(System.Nullable<int> value);
@@ -4992,22 +4992,22 @@ namespace WindowsFormsApp4
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpreas", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string CodigoEmpreas
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CodigoEmpresa
 		{
 			get
 			{
-				return this._CodigoEmpreas;
+				return this._CodigoEmpresa;
 			}
 			set
 			{
-				if ((this._CodigoEmpreas != value))
+				if ((this._CodigoEmpresa != value))
 				{
-					this.OnCodigoEmpreasChanging(value);
+					this.OnCodigoEmpresaChanging(value);
 					this.SendPropertyChanging();
-					this._CodigoEmpreas = value;
-					this.SendPropertyChanged("CodigoEmpreas");
-					this.OnCodigoEmpreasChanged();
+					this._CodigoEmpresa = value;
+					this.SendPropertyChanged("CodigoEmpresa");
+					this.OnCodigoEmpresaChanged();
 				}
 			}
 		}

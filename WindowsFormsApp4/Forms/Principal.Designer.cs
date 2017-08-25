@@ -242,6 +242,8 @@ namespace WindowsFormsApp4
             personal_form = new Forms.Perso(propietaris_manager, point_manager, server_manager, ui_manager);
 
             maquinaria_form = new Forms.Maquinaria(propietaris_manager, point_manager, server_manager, ui_manager);
+
+            adobats_form = new Forms.Adobats(propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
         }
@@ -302,15 +304,20 @@ namespace WindowsFormsApp4
                 editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 map_win.AddElement(editor_parceles_ultim_guardat);
 
-                personal_button = new UI_Button(new Point(250, 550), 100, 23, "Personal");
+                personal_button = new UI_Button(new Point(313, 550), 70, 23, "Personal");
                 personal_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 personal_button.GetElement().Click += new System.EventHandler(this.ObreFinestraPersonal);
                 map_win.AddElement(personal_button);
 
-                maquinaria_button = new UI_Button(new Point(360, 550), 100, 23, "Maquinaria ");
+                maquinaria_button = new UI_Button(new Point(390, 550), 70, 23, "Maquinaria");
                 maquinaria_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 maquinaria_button.GetElement().Click += new System.EventHandler(this.ObreFinestraMaquinaria);
                 map_win.AddElement(maquinaria_button);
+
+                brou_button = new UI_Button(new Point(245, 550), 60, 23, "Brou");
+                brou_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                brou_button.GetElement().Click += new System.EventHandler(this.ObreFinestraAdobats);
+                map_win.AddElement(brou_button);
             }
             ui_manager.AddUIWindow(map_win);
 
@@ -537,6 +544,7 @@ namespace WindowsFormsApp4
         Forms.ConfiguraQuadernCamp configura_quadern_camp_form = null;
         Forms.Perso        personal_form = null;
         Forms.Maquinaria   maquinaria_form = null;
+        Forms.Adobats      adobats_form = null;
         
         // Windows
         UI_Window          main_win = null;
