@@ -1266,7 +1266,7 @@ namespace WindowsFormsApp4
             for (int y = 0; y < partes_to_add.Count; y++)
             {
                 Finca f = propietaris_manager.GetFincaPerId(partes_to_add[y].idFinca.ToString());
-                UI_Text t = new UI_Text(new Point(5, 5), 100, 30,f.GetTbl().Nom1 + "  ID: " + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30,f.GetTbl().Nom1.Substring(0, 14) + ".  ID: " + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
 
                 partes_seleccionats_listbox.AddElement(t);
                 ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
