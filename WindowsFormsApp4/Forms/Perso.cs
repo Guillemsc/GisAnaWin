@@ -17,7 +17,23 @@ namespace WindowsFormsApp4.Forms
         {
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            ActualitzaLlistaPropietaris();
             ActualitzaLlistaPersonal();
+        }
+
+        private void ActualitzaLlistaPropietaris()
+        {
+            propietari_combo.Clear();
+            propietari_combo.CleanSelection();
+
+            List<Propietari> propietaris = propietaris_manager.GetPropietaris();
+
+            for(int i = 0; i< propietaris.Count; i++)
+            {
+                propietari_combo.AddElement(propietaris[i]);
+            }
+
+            propietari_combo.CleanSelection();
         }
 
         void ActualitzaLlistaPersonal()
@@ -71,12 +87,22 @@ namespace WindowsFormsApp4.Forms
             if (personal == null)
                 return;
 
+            Propietari prop = null;
+
+            if(personal.GetTbl().idProveedor != null)
+                prop = propietaris_manager.GetPropietariPerId((int)personal.GetTbl().idProveedor);
+
             nom_text_input.SetText(personal.GetTbl().nom);
             nif_text_input.SetText(personal.GetTbl().nif);
             num_carnet_text_input.SetText(personal.GetTbl().numCarnet);
             qualificacio_text_input.SetText(personal.GetTbl().nivell);
 
-            if(personal.GetTbl().personal != null && (bool)personal.GetTbl().personal)
+            if (prop != null)
+                propietari_combo.SetSelectedElement(prop.ToString());
+            else
+                propietari_combo.CleanSelection();
+
+            if (personal.GetTbl().personal != null && (bool)personal.GetTbl().personal)
             {
                 propi_radiobutton.Check();
             }
@@ -143,13 +169,15 @@ namespace WindowsFormsApp4.Forms
                 return;
 
             tblPersonal p = new tblPersonal();
+            Propietari propietari = propietari_combo.GetSelected() as Propietari;
 
             p.nom = nom_text_input.GetText();
             p.nif = nif_text_input.GetText();
             p.numCarnet = num_carnet_text_input.GetText();
             p.nivell = qualificacio_text_input.GetText();
             p.id = GetPersonalNewId().ToString();
-            p.CodigoEmpresa = "0";
+            p.CodigoEmpresa = propietari.GetTbl().CodigoEmpresa;
+            p.idProveedor = int.Parse(propietari.GetTbl().idProveedor);
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
@@ -234,13 +262,15 @@ namespace WindowsFormsApp4.Forms
             personal_per_eliminar.Add(personal);
 
             tblPersonal p = new tblPersonal();
+            Propietari propietari = propietari_combo.GetSelected() as Propietari;
 
             p.nom = nom_text_input.GetText();
             p.nif = nif_text_input.GetText();
             p.numCarnet = num_carnet_text_input.GetText();
             p.nivell = qualificacio_text_input.GetText();
             p.id = personal.GetTbl().id;
-            p.CodigoEmpresa = "0";
+            p.CodigoEmpresa = propietari.GetTbl().CodigoEmpresa;
+            p.idProveedor = int.Parse(propietari.GetTbl().idProveedor);
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
@@ -263,7 +293,7 @@ namespace WindowsFormsApp4.Forms
         bool FormulariComplert()
         {
             if (nom_text_input.GetText() != "" && nif_text_input.GetText() != "" && num_carnet_text_input.GetText() != ""
-                && qualificacio_text_input.GetText() != "")
+                && qualificacio_text_input.GetText() != "" && propietari_combo.IsSelected())
                 return true;
             return false;
         }

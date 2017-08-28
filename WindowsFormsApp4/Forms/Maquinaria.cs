@@ -17,7 +17,23 @@ namespace WindowsFormsApp4.Forms
         {
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            ActualitzaLlistaPropietaris();
             ActualitzaLlistaMaquinaria();
+        }
+
+        private void ActualitzaLlistaPropietaris()
+        {
+            propietari_combo.Clear();
+            propietari_combo.CleanSelection();
+
+            List<Propietari> propietaris = propietaris_manager.GetPropietaris();
+
+            for (int i = 0; i < propietaris.Count; i++)
+            {
+                propietari_combo.AddElement(propietaris[i]);
+            }
+
+            propietari_combo.CleanSelection();
         }
 
         void ActualitzaLlistaMaquinaria()
@@ -80,6 +96,13 @@ namespace WindowsFormsApp4.Forms
             if (maquina == null)
                 return;
 
+            Propietari prop = null;
+
+            if (maquina.GetTbl().idProveedor != null)
+                prop = propietaris_manager.GetPropietariPerId((int)maquina.GetTbl().idProveedor);
+            else
+                propietari_combo.CleanSelection();
+
             tipus_text_input.SetText(maquina.GetTbl().nomMaquina);
 
             if(maquina.GetTbl().dataCompra != null)
@@ -89,6 +112,9 @@ namespace WindowsFormsApp4.Forms
 
             if (maquina.GetTbl().darreraInspeccio != null) 
             inspeccio_data.SetDate((DateTime)maquina.GetTbl().darreraInspeccio);
+
+            if (prop != null)
+                propietari_combo.SetSelectedElement(prop.ToString());
 
             if (maquina.GetTbl().enPropietat != null && (bool)maquina.GetTbl().enPropietat)
             {
@@ -153,13 +179,15 @@ namespace WindowsFormsApp4.Forms
                 return;
 
             tblMaquinaria p = new tblMaquinaria();
+            Propietari propietari = propietari_combo.GetSelected() as Propietari;
 
             p.nomMaquina = tipus_text_input.GetText();
             p.dataCompra = data_data.GetDate();
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
             p.id = GetMaquinariaNewId().ToString();
-            p.CodigoEmpresa = "0";
+            p.CodigoEmpresa = propietari.GetTbl().CodigoEmpresa;
+            p.idProveedor = int.Parse(propietari.GetTbl().idProveedor);
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
@@ -241,13 +269,15 @@ namespace WindowsFormsApp4.Forms
             maquinaria_per_eliminar.Add(maquinaria);
 
             tblMaquinaria p = new tblMaquinaria();
+            Propietari propietari = propietari_combo.GetSelected() as Propietari;
 
             p.nomMaquina = tipus_text_input.GetText();
             p.dataCompra = data_data.GetDate();
             p.numRoma = roma_text_input.GetText();
             p.darreraInspeccio = inspeccio_data.GetDate();
             p.id = maquinaria.GetTbl().id;
-            p.CodigoEmpresa = "0";
+            p.CodigoEmpresa = propietari.GetTbl().CodigoEmpresa;
+            p.idProveedor = int.Parse(propietari.GetTbl().idProveedor);
 
             var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 

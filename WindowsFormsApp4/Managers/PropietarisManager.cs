@@ -845,6 +845,22 @@ namespace WindowsFormsApp4
             return ret;
         }
 
+        public Propietari GetPropietariPerId(int id)
+        {
+            Propietari ret = null;
+
+            for (int i = 0; i < propietaris.Count; i++)
+            {
+                if (propietaris[i].GetTbl().idProveedor.ToLower().Replace(" ", "") == id.ToString())
+                {
+                    ret = propietaris[i];
+                    break;
+                }
+            }
+
+            return ret;
+        }
+
         List<Propietari>                 propietaris = new List<Propietari>();
         List<Finca>                      finques = new List<Finca>();
         List<Parcela>                    parceles = new List<Parcela>();

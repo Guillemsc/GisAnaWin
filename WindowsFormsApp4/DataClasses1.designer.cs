@@ -63,15 +63,15 @@ namespace WindowsFormsApp4
     partial void InserttblUnitatsMetriques(tblUnitatsMetriques instance);
     partial void UpdatetblUnitatsMetriques(tblUnitatsMetriques instance);
     partial void DeletetblUnitatsMetriques(tblUnitatsMetriques instance);
-    partial void InserttblMaquinaria(tblMaquinaria instance);
-    partial void UpdatetblMaquinaria(tblMaquinaria instance);
-    partial void DeletetblMaquinaria(tblMaquinaria instance);
-    partial void InserttblPersonal(tblPersonal instance);
-    partial void UpdatetblPersonal(tblPersonal instance);
-    partial void DeletetblPersonal(tblPersonal instance);
     partial void InserttblProductesFitosanitaris(tblProductesFitosanitaris instance);
     partial void UpdatetblProductesFitosanitaris(tblProductesFitosanitaris instance);
     partial void DeletetblProductesFitosanitaris(tblProductesFitosanitaris instance);
+    partial void InserttblPersonal(tblPersonal instance);
+    partial void UpdatetblPersonal(tblPersonal instance);
+    partial void DeletetblPersonal(tblPersonal instance);
+    partial void InserttblMaquinaria(tblMaquinaria instance);
+    partial void UpdatetblMaquinaria(tblMaquinaria instance);
+    partial void DeletetblMaquinaria(tblMaquinaria instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -192,11 +192,11 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		public System.Data.Linq.Table<tblMaquinaria> tblMaquinaria
+		public System.Data.Linq.Table<tblProductesFitosanitaris> tblProductesFitosanitaris
 		{
 			get
 			{
-				return this.GetTable<tblMaquinaria>();
+				return this.GetTable<tblProductesFitosanitaris>();
 			}
 		}
 		
@@ -208,11 +208,11 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		public System.Data.Linq.Table<tblProductesFitosanitaris> tblProductesFitosanitaris
+		public System.Data.Linq.Table<tblMaquinaria> tblMaquinaria
 		{
 			get
 			{
-				return this.GetTable<tblProductesFitosanitaris>();
+				return this.GetTable<tblMaquinaria>();
 			}
 		}
 	}
@@ -4467,27 +4467,23 @@ namespace WindowsFormsApp4
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMaquinaria")]
-	public partial class tblMaquinaria : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblProductesFitosanitaris")]
+	public partial class tblProductesFitosanitaris : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _CodigoEmpresa;
 		
-		private string _id;
+		private int _id;
 		
-		private string _nomMaquina;
+		private System.Nullable<int> _NumRegistre;
 		
-		private System.Nullable<System.DateTime> _dataCompra;
+		private string _NomComercial;
 		
-		private string _numRoma;
+		private string _Titular;
 		
-		private System.Nullable<System.DateTime> _darreraInspeccio;
-		
-		private System.Nullable<bool> _enPropietat;
-		
-		private System.Nullable<bool> _llogada;
+		private string _Formula;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -4495,28 +4491,24 @@ namespace WindowsFormsApp4
     partial void OnCreated();
     partial void OnCodigoEmpresaChanging(string value);
     partial void OnCodigoEmpresaChanged();
-    partial void OnidChanging(string value);
+    partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnnomMaquinaChanging(string value);
-    partial void OnnomMaquinaChanged();
-    partial void OndataCompraChanging(System.Nullable<System.DateTime> value);
-    partial void OndataCompraChanged();
-    partial void OnnumRomaChanging(string value);
-    partial void OnnumRomaChanged();
-    partial void OndarreraInspeccioChanging(System.Nullable<System.DateTime> value);
-    partial void OndarreraInspeccioChanged();
-    partial void OnenPropietatChanging(System.Nullable<bool> value);
-    partial void OnenPropietatChanged();
-    partial void OnllogadaChanging(System.Nullable<bool> value);
-    partial void OnllogadaChanged();
+    partial void OnNumRegistreChanging(System.Nullable<int> value);
+    partial void OnNumRegistreChanged();
+    partial void OnNomComercialChanging(string value);
+    partial void OnNomComercialChanged();
+    partial void OnTitularChanging(string value);
+    partial void OnTitularChanged();
+    partial void OnFormulaChanging(string value);
+    partial void OnFormulaChanged();
     #endregion
 		
-		public tblMaquinaria()
+		public tblProductesFitosanitaris()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string CodigoEmpresa
 		{
 			get
@@ -4536,8 +4528,8 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
 		{
 			get
 			{
@@ -4556,122 +4548,82 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomMaquina", DbType="VarChar(250)")]
-		public string nomMaquina
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumRegistre", DbType="Int")]
+		public System.Nullable<int> NumRegistre
 		{
 			get
 			{
-				return this._nomMaquina;
+				return this._NumRegistre;
 			}
 			set
 			{
-				if ((this._nomMaquina != value))
+				if ((this._NumRegistre != value))
 				{
-					this.OnnomMaquinaChanging(value);
+					this.OnNumRegistreChanging(value);
 					this.SendPropertyChanging();
-					this._nomMaquina = value;
-					this.SendPropertyChanged("nomMaquina");
-					this.OnnomMaquinaChanged();
+					this._NumRegistre = value;
+					this.SendPropertyChanged("NumRegistre");
+					this.OnNumRegistreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataCompra", DbType="DateTime")]
-		public System.Nullable<System.DateTime> dataCompra
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NomComercial", DbType="VarChar(250)")]
+		public string NomComercial
 		{
 			get
 			{
-				return this._dataCompra;
+				return this._NomComercial;
 			}
 			set
 			{
-				if ((this._dataCompra != value))
+				if ((this._NomComercial != value))
 				{
-					this.OndataCompraChanging(value);
+					this.OnNomComercialChanging(value);
 					this.SendPropertyChanging();
-					this._dataCompra = value;
-					this.SendPropertyChanged("dataCompra");
-					this.OndataCompraChanged();
+					this._NomComercial = value;
+					this.SendPropertyChanged("NomComercial");
+					this.OnNomComercialChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numRoma", DbType="VarChar(25)")]
-		public string numRoma
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titular", DbType="VarChar(250)")]
+		public string Titular
 		{
 			get
 			{
-				return this._numRoma;
+				return this._Titular;
 			}
 			set
 			{
-				if ((this._numRoma != value))
+				if ((this._Titular != value))
 				{
-					this.OnnumRomaChanging(value);
+					this.OnTitularChanging(value);
 					this.SendPropertyChanging();
-					this._numRoma = value;
-					this.SendPropertyChanged("numRoma");
-					this.OnnumRomaChanged();
+					this._Titular = value;
+					this.SendPropertyChanged("Titular");
+					this.OnTitularChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_darreraInspeccio", DbType="DateTime")]
-		public System.Nullable<System.DateTime> darreraInspeccio
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Formula", DbType="VarChar(250)")]
+		public string Formula
 		{
 			get
 			{
-				return this._darreraInspeccio;
+				return this._Formula;
 			}
 			set
 			{
-				if ((this._darreraInspeccio != value))
+				if ((this._Formula != value))
 				{
-					this.OndarreraInspeccioChanging(value);
+					this.OnFormulaChanging(value);
 					this.SendPropertyChanging();
-					this._darreraInspeccio = value;
-					this.SendPropertyChanged("darreraInspeccio");
-					this.OndarreraInspeccioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_enPropietat", DbType="Bit")]
-		public System.Nullable<bool> enPropietat
-		{
-			get
-			{
-				return this._enPropietat;
-			}
-			set
-			{
-				if ((this._enPropietat != value))
-				{
-					this.OnenPropietatChanging(value);
-					this.SendPropertyChanging();
-					this._enPropietat = value;
-					this.SendPropertyChanged("enPropietat");
-					this.OnenPropietatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_llogada", DbType="Bit")]
-		public System.Nullable<bool> llogada
-		{
-			get
-			{
-				return this._llogada;
-			}
-			set
-			{
-				if ((this._llogada != value))
-				{
-					this.OnllogadaChanging(value);
-					this.SendPropertyChanging();
-					this._llogada = value;
-					this.SendPropertyChanged("llogada");
-					this.OnllogadaChanged();
+					this._Formula = value;
+					this.SendPropertyChanged("Formula");
+					this.OnFormulaChanged();
 				}
 			}
 		}
@@ -4721,6 +4673,8 @@ namespace WindowsFormsApp4
 		
 		private System.Nullable<bool> _empresa;
 		
+		private System.Nullable<int> _idProveedor;
+		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4743,6 +4697,8 @@ namespace WindowsFormsApp4
     partial void OncontractatChanged();
     partial void OnempresaChanging(System.Nullable<bool> value);
     partial void OnempresaChanged();
+    partial void OnidProveedorChanging(System.Nullable<int> value);
+    partial void OnidProveedorChanged();
     #endregion
 		
 		public tblPersonal()
@@ -4930,6 +4886,26 @@ namespace WindowsFormsApp4
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProveedor", DbType="Int")]
+		public System.Nullable<int> idProveedor
+		{
+			get
+			{
+				return this._idProveedor;
+			}
+			set
+			{
+				if ((this._idProveedor != value))
+				{
+					this.OnidProveedorChanging(value);
+					this.SendPropertyChanging();
+					this._idProveedor = value;
+					this.SendPropertyChanged("idProveedor");
+					this.OnidProveedorChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -4951,23 +4927,29 @@ namespace WindowsFormsApp4
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblProductesFitosanitaris")]
-	public partial class tblProductesFitosanitaris : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMaquinaria")]
+	public partial class tblMaquinaria : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _CodigoEmpresa;
 		
-		private int _id;
+		private string _id;
 		
-		private System.Nullable<int> _NumRegistre;
+		private string _nomMaquina;
 		
-		private string _NomComercial;
+		private System.Nullable<System.DateTime> _dataCompra;
 		
-		private string _Titular;
+		private string _numRoma;
 		
-		private string _Formula;
+		private System.Nullable<System.DateTime> _darreraInspeccio;
+		
+		private System.Nullable<bool> _enPropietat;
+		
+		private System.Nullable<bool> _llogada;
+		
+		private System.Nullable<int> _idProveedor;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -4975,24 +4957,30 @@ namespace WindowsFormsApp4
     partial void OnCreated();
     partial void OnCodigoEmpresaChanging(string value);
     partial void OnCodigoEmpresaChanged();
-    partial void OnidChanging(int value);
+    partial void OnidChanging(string value);
     partial void OnidChanged();
-    partial void OnNumRegistreChanging(System.Nullable<int> value);
-    partial void OnNumRegistreChanged();
-    partial void OnNomComercialChanging(string value);
-    partial void OnNomComercialChanged();
-    partial void OnTitularChanging(string value);
-    partial void OnTitularChanged();
-    partial void OnFormulaChanging(string value);
-    partial void OnFormulaChanged();
+    partial void OnnomMaquinaChanging(string value);
+    partial void OnnomMaquinaChanged();
+    partial void OndataCompraChanging(System.Nullable<System.DateTime> value);
+    partial void OndataCompraChanged();
+    partial void OnnumRomaChanging(string value);
+    partial void OnnumRomaChanged();
+    partial void OndarreraInspeccioChanging(System.Nullable<System.DateTime> value);
+    partial void OndarreraInspeccioChanged();
+    partial void OnenPropietatChanging(System.Nullable<bool> value);
+    partial void OnenPropietatChanged();
+    partial void OnllogadaChanging(System.Nullable<bool> value);
+    partial void OnllogadaChanged();
+    partial void OnidProveedorChanging(System.Nullable<int> value);
+    partial void OnidProveedorChanged();
     #endregion
 		
-		public tblProductesFitosanitaris()
+		public tblMaquinaria()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoEmpresa", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string CodigoEmpresa
 		{
 			get
@@ -5012,8 +5000,8 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id
 		{
 			get
 			{
@@ -5032,82 +5020,142 @@ namespace WindowsFormsApp4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumRegistre", DbType="Int")]
-		public System.Nullable<int> NumRegistre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomMaquina", DbType="VarChar(250)")]
+		public string nomMaquina
 		{
 			get
 			{
-				return this._NumRegistre;
+				return this._nomMaquina;
 			}
 			set
 			{
-				if ((this._NumRegistre != value))
+				if ((this._nomMaquina != value))
 				{
-					this.OnNumRegistreChanging(value);
+					this.OnnomMaquinaChanging(value);
 					this.SendPropertyChanging();
-					this._NumRegistre = value;
-					this.SendPropertyChanged("NumRegistre");
-					this.OnNumRegistreChanged();
+					this._nomMaquina = value;
+					this.SendPropertyChanged("nomMaquina");
+					this.OnnomMaquinaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NomComercial", DbType="VarChar(250)")]
-		public string NomComercial
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataCompra", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dataCompra
 		{
 			get
 			{
-				return this._NomComercial;
+				return this._dataCompra;
 			}
 			set
 			{
-				if ((this._NomComercial != value))
+				if ((this._dataCompra != value))
 				{
-					this.OnNomComercialChanging(value);
+					this.OndataCompraChanging(value);
 					this.SendPropertyChanging();
-					this._NomComercial = value;
-					this.SendPropertyChanged("NomComercial");
-					this.OnNomComercialChanged();
+					this._dataCompra = value;
+					this.SendPropertyChanged("dataCompra");
+					this.OndataCompraChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Titular", DbType="VarChar(250)")]
-		public string Titular
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numRoma", DbType="VarChar(25)")]
+		public string numRoma
 		{
 			get
 			{
-				return this._Titular;
+				return this._numRoma;
 			}
 			set
 			{
-				if ((this._Titular != value))
+				if ((this._numRoma != value))
 				{
-					this.OnTitularChanging(value);
+					this.OnnumRomaChanging(value);
 					this.SendPropertyChanging();
-					this._Titular = value;
-					this.SendPropertyChanged("Titular");
-					this.OnTitularChanged();
+					this._numRoma = value;
+					this.SendPropertyChanged("numRoma");
+					this.OnnumRomaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Formula", DbType="VarChar(250)")]
-		public string Formula
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_darreraInspeccio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> darreraInspeccio
 		{
 			get
 			{
-				return this._Formula;
+				return this._darreraInspeccio;
 			}
 			set
 			{
-				if ((this._Formula != value))
+				if ((this._darreraInspeccio != value))
 				{
-					this.OnFormulaChanging(value);
+					this.OndarreraInspeccioChanging(value);
 					this.SendPropertyChanging();
-					this._Formula = value;
-					this.SendPropertyChanged("Formula");
-					this.OnFormulaChanged();
+					this._darreraInspeccio = value;
+					this.SendPropertyChanged("darreraInspeccio");
+					this.OndarreraInspeccioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_enPropietat", DbType="Bit")]
+		public System.Nullable<bool> enPropietat
+		{
+			get
+			{
+				return this._enPropietat;
+			}
+			set
+			{
+				if ((this._enPropietat != value))
+				{
+					this.OnenPropietatChanging(value);
+					this.SendPropertyChanging();
+					this._enPropietat = value;
+					this.SendPropertyChanged("enPropietat");
+					this.OnenPropietatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_llogada", DbType="Bit")]
+		public System.Nullable<bool> llogada
+		{
+			get
+			{
+				return this._llogada;
+			}
+			set
+			{
+				if ((this._llogada != value))
+				{
+					this.OnllogadaChanging(value);
+					this.SendPropertyChanging();
+					this._llogada = value;
+					this.SendPropertyChanged("llogada");
+					this.OnllogadaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idProveedor", DbType="Int")]
+		public System.Nullable<int> idProveedor
+		{
+			get
+			{
+				return this._idProveedor;
+			}
+			set
+			{
+				if ((this._idProveedor != value))
+				{
+					this.OnidProveedorChanging(value);
+					this.SendPropertyChanging();
+					this._idProveedor = value;
+					this.SendPropertyChanged("idProveedor");
+					this.OnidProveedorChanged();
 				}
 			}
 		}

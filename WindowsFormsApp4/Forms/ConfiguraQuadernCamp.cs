@@ -72,8 +72,11 @@ namespace WindowsFormsApp4.Forms
             for (int i = 0; i < personal.Count; i++)
             {
                 Personal personal_act = personal[i];
-                
-                if(personal_act.GetTbl().personal != null && (bool)personal_act.GetTbl().personal)
+
+                if (personal_act.GetTbl().idProveedor.ToString() != propi.GetTbl().idProveedor.ToLower().Replace(" ", ""))
+                    continue;
+
+                if (personal_act.GetTbl().personal != null && (bool)personal_act.GetTbl().personal)
                 {
                     DataSources.ReportDataQuadernPag2t1 p = new DataSources.ReportDataQuadernPag2t1();
                     p.nom_cognom = personal_act.GetTbl().nom;
@@ -112,6 +115,9 @@ namespace WindowsFormsApp4.Forms
             for(int i = 0; i < maquines.Count; i++)
             {
                 Maquina maquina_act = maquines[i];
+
+                if (maquina_act.GetTbl().idProveedor.ToString() != propi.GetTbl().idProveedor.ToLower().Replace(" ", ""))
+                    continue;
 
                 if(maquina_act.GetTbl().enPropietat != null && (bool)maquina_act.GetTbl().enPropietat)
                 {
@@ -175,7 +181,7 @@ namespace WindowsFormsApp4.Forms
                     p.cultiu_p3 = varietat.GetTbl().Nombre;
 
                 p.superficie_p3 = parcela_act.GetTbl().Ha.ToString();
-                p.sistema_conreu_p3 = "3.1: S / 3.2: L";
+                p.sistema_conreu_p3 = "S / L";
                 p.num_rcv_p3 = parcela_act.GetTbl().idParcelaVinicola;
 
                 pag3.Add(p);

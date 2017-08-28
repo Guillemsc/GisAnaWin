@@ -91,32 +91,38 @@ namespace WindowsFormsApp4.Forms
                 accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
                 main_window.AddElement(accepta_button);
 
-                tipus_text = new UI_Text(new Point(500, 15), 150, 30, "Tipus màquinaria");
+                propietari_text = new UI_Text(new Point(500, 15), 150, 30, "Propietari");
+                main_window.AddElement(propietari_text);
+
+                propietari_combo = new UI_ComboBox(new Point(500, 45), 200, 40);
+                main_window.AddElement(propietari_combo);
+
+                tipus_text = new UI_Text(new Point(500, 85), 150, 30, "Tipus màquinaria");
                 main_window.AddElement(tipus_text);
 
-                tipus_text_input = new UI_MaskedTextInput(new Point(500, 40), 200, 50);
+                tipus_text_input = new UI_MaskedTextInput(new Point(500, 110), 200, 50);
                 main_window.AddElement(tipus_text_input);
 
-                data_text = new UI_Text(new Point(750, 15), 150, 30, "Data Compra");
+                data_text = new UI_Text(new Point(750, 85), 150, 30, "Data Compra");
                 main_window.AddElement(data_text);
 
-                data_data = new UI_DateSelect(new Point(750, 40), 200, 50);
+                data_data = new UI_DateSelect(new Point(750, 110), 200, 50);
                 main_window.AddElement(data_data);
 
 
-                roma_text = new UI_Text(new Point(500, 85), 150, 30, "Número ROMA");
+                roma_text = new UI_Text(new Point(500, 155), 150, 30, "Número ROMA");
                 main_window.AddElement(roma_text);
 
-                roma_text_input = new UI_MaskedTextInput(new Point(500, 110), 200, 50);
+                roma_text_input = new UI_MaskedTextInput(new Point(500, 180), 200, 50);
                 main_window.AddElement(roma_text_input);
 
-                inspeccio_text = new UI_Text(new Point(750, 85), 150, 30, "Darrera inspecció");
+                inspeccio_text = new UI_Text(new Point(750, 155), 150, 30, "Darrera inspecció");
                 main_window.AddElement(inspeccio_text);
 
-                inspeccio_data = new UI_DateSelect(new Point(750, 110), 200, 50);
+                inspeccio_data = new UI_DateSelect(new Point(750, 180), 200, 50);
                 main_window.AddElement(inspeccio_data);
 
-                tipus_panel = new UI_Panel(new Point(500, 150), 400, 100);
+                tipus_panel = new UI_Panel(new Point(500, 220), 400, 100);
                 main_window.AddElement(tipus_panel);
 
                 propia_radiobutton = new UI_RadioButton(new Point(0, 0), "Propia");
@@ -131,6 +137,8 @@ namespace WindowsFormsApp4.Forms
         UI_Window main_window = null;
         UI_Grid grid = null;
 
+        UI_Text propietari_text = null;
+        UI_ComboBox propietari_combo = null;
         UI_Text tipus_text = null;
         UI_MaskedTextInput tipus_text_input = null;
         UI_Text data_text = null;

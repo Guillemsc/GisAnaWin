@@ -99,32 +99,38 @@ namespace WindowsFormsApp4.Forms
                 accepta_button.GetElement().Click += new System.EventHandler(this.Accepta);
                 main_window.AddElement(accepta_button);
 
-                nom_text = new UI_Text(new Point(500, 15), 150, 30, "Nom");
+                propietari_text = new UI_Text(new Point(500, 15), 150, 30, "Propietari");
+                main_window.AddElement(propietari_text);
+
+                propietari_combo = new UI_ComboBox(new Point(500, 45), 200, 40);
+                main_window.AddElement(propietari_combo);
+
+                nom_text = new UI_Text(new Point(500, 85), 150, 30, "Nom");
                 main_window.AddElement(nom_text);
 
-                nom_text_input = new UI_MaskedTextInput(new Point(500, 40), 200, 50);
+                nom_text_input = new UI_MaskedTextInput(new Point(500, 110), 200, 50);
                 main_window.AddElement(nom_text_input);
 
-                nif_text = new UI_Text(new Point(750, 15), 150, 30, "NIF");
+                nif_text = new UI_Text(new Point(750, 85), 150, 30, "NIF");
                 main_window.AddElement(nif_text);
 
-                nif_text_input = new UI_MaskedTextInput(new Point(750, 40), 200, 50);
+                nif_text_input = new UI_MaskedTextInput(new Point(750, 110), 200, 50);
                 main_window.AddElement(nif_text_input);
 
 
-                num_carnet_text = new UI_Text(new Point(500, 85), 150, 30, "Num aplicador");
+                num_carnet_text = new UI_Text(new Point(500, 155), 150, 30, "Num aplicador");
                 main_window.AddElement(num_carnet_text);
 
-                num_carnet_text_input = new UI_MaskedTextInput(new Point(500, 110), 200, 50);
+                num_carnet_text_input = new UI_MaskedTextInput(new Point(500, 180), 200, 50);
                 main_window.AddElement(num_carnet_text_input);
 
-                qualificacio_text = new UI_Text(new Point(750, 85), 150, 30, "Nivell qualificació");
+                qualificacio_text = new UI_Text(new Point(750, 155), 150, 30, "Nivell qualificació");
                 main_window.AddElement(qualificacio_text);
 
-                qualificacio_text_input = new UI_MaskedTextInput(new Point(750, 110), 200, 50);
+                qualificacio_text_input = new UI_MaskedTextInput(new Point(750, 180), 200, 50);
                 main_window.AddElement(qualificacio_text_input);
 
-                tipus_panel = new UI_Panel(new Point(500, 150), 400, 100);
+                tipus_panel = new UI_Panel(new Point(500, 210), 400, 100);
                 main_window.AddElement(tipus_panel);
 
                 propi_radiobutton = new UI_RadioButton(new Point(0, 0), "Propi");
@@ -142,6 +148,8 @@ namespace WindowsFormsApp4.Forms
         UI_Window main_window = null;
         UI_Grid grid = null;
 
+        UI_Text propietari_text = null;
+        UI_ComboBox propietari_combo = null;
         UI_Text nom_text = null;
         UI_MaskedTextInput nom_text_input = null;
         UI_Text nif_text = null;
