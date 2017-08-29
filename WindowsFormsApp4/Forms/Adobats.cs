@@ -17,7 +17,15 @@ namespace WindowsFormsApp4.Forms
         {
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+        }
+
+        public void LoadF(object sender, EventArgs e)
+        {
             ActualitzaLlistaAdobs();
+
+            nom_text_input.SetText("");
+            num_registre_input.SetText("");
+            formula_text_input.SetText("");
         }
 
         void ActualitzaLlistaAdobs()

@@ -51,6 +51,7 @@ namespace WindowsFormsApp4.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.Load += new System.EventHandler(this.LoadF);
 
             // Set Managers ----------------------
             propietaris_manager = _propietaris_manager;

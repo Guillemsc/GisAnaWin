@@ -775,6 +775,7 @@ namespace WindowsFormsApp4
         {
             DataGridView d = GetElement() as DataGridView;
 
+            d.Refresh();
             if (d.CurrentRow != null)
             {
                 d.CurrentRow.Selected = false;
@@ -787,6 +788,18 @@ namespace WindowsFormsApp4
             }
 
             d.ClearSelection();
+
+            for (int i = 0; i < d.Rows.Count; i++)
+            {
+                d.Rows[i].Selected = false;
+            }
+
+            for(int i = 0; i < d.ColumnCount; i++)
+            {
+                d.Columns[i].Selected = false;
+            }
+
+            d.Refresh();
         }
 
         public void SetReadOnlyColumn(int index, bool set)

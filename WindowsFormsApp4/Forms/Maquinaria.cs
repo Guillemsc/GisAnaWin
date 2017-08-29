@@ -17,8 +17,20 @@ namespace WindowsFormsApp4.Forms
         {
             InitializeComponent();
             Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+        }
+
+        public void LoadF(object sender, EventArgs e)
+        {
             ActualitzaLlistaPropietaris();
             ActualitzaLlistaMaquinaria();
+
+            tipus_text_input.SetText("");
+            roma_text_input.SetText("");
+            propietari_combo.CleanSelection();
+
+            var checkedButton = tipus_panel.GetElement().Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            if (checkedButton != null)
+                checkedButton.Checked = false;
         }
 
         private void ActualitzaLlistaPropietaris()

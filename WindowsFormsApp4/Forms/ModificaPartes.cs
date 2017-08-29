@@ -33,6 +33,16 @@ namespace WindowsFormsApp4
             eficacia_combobox.Clear();
             eficacia_combobox.AddElement("0"); eficacia_combobox.AddElement("1");
             eficacia_combobox.AddElement("2"); eficacia_combobox.AddElement("3");
+
+            treballs_combobox.CleanSelection();
+            descripcio_text_input.SetText("");
+            unitats_text_input.SetText("");
+            fertirrigacio_checkbox.SetSelected(false);
+            adob_combobox.CleanSelection();
+            personal_combobox.CleanSelection();
+            maquinaria_combobox.CleanSelection();
+            unitats_mesura_combobox.CleanSelection();
+            eficacia_combobox.CleanSelection();
         }
 
         // ---------------------------------------------------------------------- Botons
