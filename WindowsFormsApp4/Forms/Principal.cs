@@ -394,9 +394,6 @@ namespace WindowsFormsApp4
                 }
             }
 
-
-
-
             report_viewer_form.SetInfo(info_partes, info_analitiques, propietaris_manager.empresa_nom, "file:///" + folderName + fileName, System.DateTime.Today.ToLongDateString());
             report_viewer_form.ShowDialog();
             this.Enabled = true;
@@ -893,6 +890,7 @@ namespace WindowsFormsApp4
             }
         }       
 
+        // Busca un nom d'una localització al mapa
         public void SearchName(object sender, EventArgs e)
         {
             string search = text_input_nom.GetText();
@@ -954,7 +952,7 @@ namespace WindowsFormsApp4
 
         // -------------------------
 
-        // Actualitza la llista de propietaris en la UI
+        // Actualitza la combobox de propietaris
         public void ActualitzaLlistaPropietari()
         {
             List<Propietari> proveedors = propietaris_manager.GetPropietaris();
@@ -969,6 +967,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Actualitza la combobox de finques
         public void ActualitzaLlistaFinques()
         {
             seleccio_finca_noms_combobox.CleanSelection();
@@ -999,6 +998,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Actualitza la combobox de varietats
         public void ActualitzaLlistaVarietats()
         {
             seleccio_varietat_noms_combobox.Clear();
@@ -1024,6 +1024,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Actualitza la combobox de treballs
         public void ActualitzaLlistaTreballs()
         {
             seleccio_treball_noms_combobox.Clear();
@@ -1036,6 +1037,7 @@ namespace WindowsFormsApp4
             }
         }
 
+        // Actualitza la llisa de parceles segons els camps seleccionats
         public void ActualitzaLlistaParceles()
         {
             this.Enabled = false;
