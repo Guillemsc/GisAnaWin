@@ -151,9 +151,9 @@ namespace WindowsFormsApp4
                 main_window.AddElement(modifica_treball_button);
 
                 grid = new UI_Grid(new Point(22, 320), 870, 150);
-                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 200); grid.AddColumn("Unitats", 130); grid.AddColumn("tblLinea", 0, true, false);
-                grid.AddColumn("Unitat Metrica", 200, true); grid.AddColumn("Estat", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
-                grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 150, true);
+                grid.AddColumn("Treball", 70, true); grid.AddColumn("Descripció", 300); grid.AddColumn("Unitats", 200); grid.AddColumn("tblLinea", 0, true, false);
+                grid.AddColumn("Unitat Metrica", 130, true); grid.AddColumn("Estat", 200, true); grid.AddColumn("Parcela viti", 100, true); grid.AddColumn("Ha", 60, true);
+                grid.AddColumn("Fertirrigació", 100, true); grid.AddColumn("Eficacia tractament", 70, true);
                 grid.AddColumn("Aplicador", 100, true); grid.AddColumn("Maquinaria", 100, true); grid.AddColumn("Adob", 100, true);
                 grid.GetElement().Click += new System.EventHandler(this.LineaParteClick);
                 main_window.AddElement(grid);
