@@ -45,7 +45,7 @@ namespace WindowsFormsApp4.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 470);
-            this.Name = "Personal";
+            this.Name = "Maquinaria";
             this.Text = this.Name;
             this.ResumeLayout(false);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

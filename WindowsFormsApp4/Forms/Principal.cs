@@ -1270,8 +1270,8 @@ namespace WindowsFormsApp4
                 Finca f = propietaris_manager.GetFincaPerId(partes_to_add[y].idFinca.ToString());
 
                 string name = f.GetTbl().Nom1;
-                if (name.Length > 14)
-                    name = name.Substring(0, 14);
+                if (name.Length > 13)
+                    name = name.Substring(0, 13);
 
                 UI_Text t = new UI_Text(new Point(5, 5), 100, 30, name + ".  ID: " + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
 

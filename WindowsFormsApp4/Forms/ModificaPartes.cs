@@ -57,25 +57,18 @@ namespace WindowsFormsApp4
 
             int id = int.Parse(str[3]);
 
-            List<tblLineasPartesFinca> lineas = propietaris_manager.GetLineasPerParteId(propietaris_manager.parte_actual.idParte);
+            tblLineasPartesFinca linea = propietaris_manager.GetLineaPartePerLineaID(id);
+            
+            partes_linea_per_eliminar.Add(linea);
 
-            for(int i = 0; i < lineas.Count; i++)
+            for(int a = 0; a < partes_linea_per_afegir.Count; a++)
             {
-                if(lineas[i].idLinea == id)
+                if (partes_linea_per_afegir[a].idLinea == linea.idLinea)
                 {
-                    partes_linea_per_eliminar.Add(lineas[i]);
-
-                    for(int a = 0; a < partes_linea_per_afegir.Count; a++)
-                    {
-                        if (partes_linea_per_afegir[a].idLinea == lineas[i].idLinea)
-                        {
-                            partes_linea_per_afegir.RemoveAt(a);
-                            break;
-                        }
-                    }
+                    partes_linea_per_afegir.RemoveAt(a);
                     break;
                 }
-            }
+            }             
 
             grid.DeleteRow(grid.GetSelectedRowIndex());
         }

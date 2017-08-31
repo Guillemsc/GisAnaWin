@@ -151,7 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 689);
             this.Controls.Add(this.reportViewer);
-            this.Name = "QuadernCamp";
+            this.Name = "Quadern de camp";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.QuadernCamp_Load);
             this.MaximizeBox = false;

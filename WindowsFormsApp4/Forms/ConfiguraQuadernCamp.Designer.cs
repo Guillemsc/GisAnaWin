@@ -38,7 +38,7 @@ namespace WindowsFormsApp4.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "Imprimir";
+            this.Name = "Imprimir quadern camp";
             this.Text = this.Name;
             this.Load += new System.EventHandler(this.Form_Load);
             this.ClientSize = new System.Drawing.Size(230, 120);
