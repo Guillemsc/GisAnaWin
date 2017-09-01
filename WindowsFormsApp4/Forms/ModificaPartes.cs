@@ -12,10 +12,10 @@ namespace WindowsFormsApp4
 {
     public partial class ModificaPartes : Form
     {
-        public ModificaPartes(PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
+        public ModificaPartes(Principal principal, PropietarisManager propietaris_manager, PointsManager points_manager, ServerManager server_manager, UIManager ui_manager)
         {
             InitializeComponent();
-            Carrega(propietaris_manager, points_manager, server_manager, ui_manager);
+            Carrega(principal, propietaris_manager, points_manager, server_manager, ui_manager);
         }
 
         private void Form3_Load(object sender, EventArgs e)

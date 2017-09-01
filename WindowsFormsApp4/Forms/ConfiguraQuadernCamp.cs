@@ -15,11 +15,11 @@ namespace WindowsFormsApp4.Forms
     {
         private object reportViewer;
 
-        public ConfiguraQuadernCamp(PropietarisManager _propietaris_manager, PointsManager _points_manager, 
+        public ConfiguraQuadernCamp(Principal principal, PropietarisManager _propietaris_manager, PointsManager _points_manager, 
             ServerManager _server_manager, UIManager _ui_manager, Forms.QuadernCamp q_form)
         {
             InitializeComponent();
-            Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager, q_form);
+            Carrega(principal, _propietaris_manager, _points_manager, _server_manager, _ui_manager, q_form);
         }
 
         public void Form_Load(object sender, EventArgs e)

@@ -12,15 +12,18 @@ namespace WindowsFormsApp4.Forms
 {
     public partial class Adobats : Form
     {
-        public Adobats(PropietarisManager _propietaris_manager, PointsManager _points_manager,
+        public Adobats(Principal principal, PropietarisManager _propietaris_manager, PointsManager _points_manager,
             ServerManager _server_manager, UIManager _ui_manager)
         {
             InitializeComponent();
-            Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            Carrega(principal, _propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }
 
         public void LoadF(object sender, EventArgs e)
         {
+            adobs_per_afegir.Clear();
+            adobs_per_eliminar.Clear();
+
             ActualitzaLlistaAdobs();
 
             nom_text_input.SetText("");

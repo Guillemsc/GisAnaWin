@@ -33,7 +33,7 @@ namespace WindowsFormsApp4.Forms
 
         }
 
-        void Carrega(PropietarisManager _propietaris_manager, PointsManager _points_manager,
+        void Carrega(Principal _principal, PropietarisManager _propietaris_manager, PointsManager _points_manager,
             ServerManager _server_manager, UIManager _ui_manager, Forms.QuadernCamp q_form)
         {
             this.components = new System.ComponentModel.Container();
@@ -48,6 +48,7 @@ namespace WindowsFormsApp4.Forms
             point_manager = _points_manager;
             server_manager = _server_manager;
             ui_manager = _ui_manager;
+            principal = _principal;
 
             quadern_form = q_form;
             // -----------------------------------
@@ -87,6 +88,8 @@ namespace WindowsFormsApp4.Forms
         public UIManager ui_manager = null;
         public IDManager id_manager = null;
         public ServerManager server_manager = null;
+
+        Principal principal = null;
 
         public Forms.QuadernCamp quadern_form = null;
     }

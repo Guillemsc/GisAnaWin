@@ -12,15 +12,18 @@ namespace WindowsFormsApp4.Forms
 {
     public partial class Maquinaria : Form
     {
-        public Maquinaria(PropietarisManager _propietaris_manager, PointsManager _points_manager,
+        public Maquinaria(Principal principal, PropietarisManager _propietaris_manager, PointsManager _points_manager,
             ServerManager _server_manager, UIManager _ui_manager)
         {
             InitializeComponent();
-            Carrega(_propietaris_manager, _points_manager, _server_manager, _ui_manager);
+            Carrega(principal, _propietaris_manager, _points_manager, _server_manager, _ui_manager);
         }
 
         public void LoadF(object sender, EventArgs e)
         {
+            maquinaria_per_afegir.Clear();
+            maquinaria_per_eliminar.Clear();
+
             ActualitzaLlistaPropietaris();
             ActualitzaLlistaMaquinaria();
 

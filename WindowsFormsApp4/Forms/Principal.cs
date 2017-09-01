@@ -1270,10 +1270,10 @@ namespace WindowsFormsApp4
                 Finca f = propietaris_manager.GetFincaPerId(partes_to_add[y].idFinca.ToString());
 
                 string name = f.GetTbl().Nom1;
-                if (name.Length > 13)
-                    name = name.Substring(0, 13);
+                if (name.Length > 15)
+                    name = name.Substring(0, 15);
 
-                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, name + ".  ID: " + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
+                UI_Text t = new UI_Text(new Point(5, 5), 100, 30, name + ". ID:" + partes_to_add[y].idParte.ToString(), partes_to_add[y].idParte.ToString());
 
                 partes_seleccionats_listbox.AddElement(t);
                 ListBox l = partes_seleccionats_listbox.GetElement() as ListBox;
@@ -1325,7 +1325,12 @@ namespace WindowsFormsApp4
             }
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

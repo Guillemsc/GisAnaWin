@@ -137,6 +137,11 @@ namespace WindowsFormsApp4
             _element.LostFocus += ev;
         }
 
+        public void SetFont(string font, float size)
+        {
+            _element.Font = new System.Drawing.Font(font, size, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
         Control _element = null;
         string _type;
     }
@@ -165,6 +170,15 @@ namespace WindowsFormsApp4
         {
             Button b = GetElement() as Button;
             b.BackColor = back;
+        }
+
+        public void AddImage(ImageList image_list, int index)
+        {
+            Button b = GetElement() as Button;
+
+            b.ImageIndex = index;
+            b.ImageList = image_list;
+            b.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
         }
     }
 

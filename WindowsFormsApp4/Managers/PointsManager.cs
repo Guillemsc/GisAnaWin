@@ -106,7 +106,7 @@ namespace WindowsFormsApp4
 
         public override string ToString()
         {
-            return _tbl.Nom;
+            return _tbl.idParcelaVinicola;
         }
 
         public void AddCoordenades(List<tblCoordenadesFincaParcela> marcadors)

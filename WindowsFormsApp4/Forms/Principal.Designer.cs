@@ -28,7 +28,10 @@ namespace WindowsFormsApp4
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.gmap = new GMap.NET.WindowsForms.GMapControl();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // gmap
@@ -56,6 +59,24 @@ namespace WindowsFormsApp4
             this.gmap.Size = new System.Drawing.Size(150, 150);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 0D;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Add_File.png");
+            this.imageList1.Images.SetKeyName(1, "Add_User.png");
+            this.imageList1.Images.SetKeyName(2, "Checkmark.png");
+            this.imageList1.Images.SetKeyName(3, "Delete-Trash.png");
+            this.imageList1.Images.SetKeyName(4, "Logout.png");
+            this.imageList1.Images.SetKeyName(5, "Note.png");
+            this.imageList1.Images.SetKeyName(6, "Plus-Add.png");
+            this.imageList1.Images.SetKeyName(7, "Print.png");
+            this.imageList1.Images.SetKeyName(8, "Refresh.png");
+            this.imageList1.Images.SetKeyName(9, "Search.png");
+            this.imageList1.Images.SetKeyName(10, "Tractor.png");
+            this.imageList1.Images.SetKeyName(11, "Volume.png");
+            this.imageList1.Images.SetKeyName(12, "World_Map.png");
             // 
             // Principal
             // 
@@ -151,9 +172,9 @@ namespace WindowsFormsApp4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 581);
+            this.ClientSize = new System.Drawing.Size(800, 581); // 800, 581
             this.Controls.Add(this.gmap);
-            this.MinimumSize = new System.Drawing.Size(815, 606);
+            this.MinimumSize = new System.Drawing.Size(815, 606); // 816, 606
             this.Name = "Gis AnaWin";
             this.Text = this.Name;
             this.ResumeLayout(false);
@@ -225,27 +246,28 @@ namespace WindowsFormsApp4
             // -----------------------------------
 
             // Forms -----------------------------
-            crea_parte_form = new AfegirPartes(propietaris_manager, point_manager, server_manager, ui_manager);
+            crea_parte_form = new AfegirPartes(this, propietaris_manager, point_manager, server_manager, ui_manager);
             crea_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(CreaParteTanca);
 
-            info_parte_form = new ModificaPartes(propietaris_manager, point_manager, server_manager, ui_manager);
+            info_parte_form = new ModificaPartes(this, propietaris_manager, point_manager, server_manager, ui_manager);
             info_parte_form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(InfoParteTanca);
 
             report_viewer_form = new Imprimir();
 
-            visualitza_analitica_form = new Analitiques(propietaris_manager, point_manager, server_manager, ui_manager);
+            visualitza_analitica_form = new Analitiques(this, propietaris_manager, point_manager, server_manager, ui_manager);
 
             quadern_camp_form = new Forms.QuadernCamp();
 
-            configura_quadern_camp_form = new Forms.ConfiguraQuadernCamp(propietaris_manager, point_manager, server_manager, ui_manager, quadern_camp_form);
+            configura_quadern_camp_form = new Forms.ConfiguraQuadernCamp(this, propietaris_manager, point_manager, server_manager, ui_manager, quadern_camp_form);
 
-            personal_form = new Forms.Perso(propietaris_manager, point_manager, server_manager, ui_manager);
+            personal_form = new Forms.Perso(this, propietaris_manager, point_manager, server_manager, ui_manager);
 
-            maquinaria_form = new Forms.Maquinaria(propietaris_manager, point_manager, server_manager, ui_manager);
+            maquinaria_form = new Forms.Maquinaria(this, propietaris_manager, point_manager, server_manager, ui_manager);
 
-            adobats_form = new Forms.Adobats(propietaris_manager, point_manager, server_manager, ui_manager);
+            adobats_form = new Forms.Adobats(this, propietaris_manager, point_manager, server_manager, ui_manager);
             // -----------------------------------
 
+            this.MinimumSize = new System.Drawing.Size(1027, 606);
         }
 
         public void LoadUI()
@@ -257,66 +279,86 @@ namespace WindowsFormsApp4
             {
                 text_input_lat = new UI_MaskedTextInput(new Point(16, 535), 92, 50);
                 text_input_lat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                text_input_lat.SetFont("Courier New", 8.5f);
                 map_win.AddElement(text_input_lat);
 
                 text_input_lon = new UI_MaskedTextInput(new Point(123, 535), 92, 50);
                 text_input_lon.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                text_input_lon.SetFont("Courier New", 8.5f);
                 map_win.AddElement(text_input_lon);
 
                 search_button_coor = new UI_Button(new Point(15, 510), 201, 23, "Cerca coordenades");
                 search_button_coor.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_coor.GetElement().Click += new System.EventHandler(this.SearchLatLon);
+                search_button_coor.SetFont("Courier New", 8.5f);
                 map_win.AddElement(search_button_coor);
 
                 lat_text = new UI_Text(new Point(16, 560), 193, 40, "Lat");
                 lat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                lat_text.SetFont("Courier New", 8.5f);
                 map_win.AddElement(lat_text);
 
                 lon_text = new UI_Text(new Point(123, 560), 193, 40, "Lon");
                 lon_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                lon_text.SetFont("Courier New", 8.5f);
                 map_win.AddElement(lon_text);
 
                 search_button_name = new UI_Button(new Point(15, 453), 201, 23, "Cerca nom");
                 search_button_name.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
                 search_button_name.GetElement().Click += new System.EventHandler(this.SearchName);
+                search_button_name.SetFont("Courier New", 8.5f);
                 map_win.AddElement(search_button_name);
 
                 text_input_nom = new UI_MaskedTextInput(new Point(16, 478), 200, 50);
                 text_input_nom.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                text_input_nom.SetFont("Courier New", 8.5f);
                 map_win.AddElement(text_input_nom);
 
-                mapsat_button = new UI_Button(new Point(690, 550), 100, 23, "Canvia a Mapa");
+                mapsat_button = new UI_Button(new Point(630, 550), 160, 25, "Canvia a Mapa");
                 mapsat_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 mapsat_button.GetElement().Click += new System.EventHandler(this.SwitchMapSat);
+                mapsat_button.AddImage(imageList1, 12);
+                mapsat_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(mapsat_button);
 
-                imprimir_button = new UI_Button(new Point(630, 550), 50, 23, "Imprimir");
+                imprimir_button = new UI_Button(new Point(523, 550), 100, 25, "Imprimir");
                 imprimir_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 imprimir_button.GetElement().Click += new System.EventHandler(this.ImprimirMapa);
+                imprimir_button.AddImage(imageList1, 7);
+                imprimir_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(imprimir_button);
 
-                imprimir_quadern_camp_button = new UI_Button(new Point(470, 550), 150, 23, "Imprimir quadern de camp");
+                imprimir_quadern_camp_button = new UI_Button(new Point(312, 550), 205, 25, "Imprimir quadern de camp");
                 imprimir_quadern_camp_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 imprimir_quadern_camp_button.GetElement().Click += new System.EventHandler(this.ImprimirQuadernCamp);
+                imprimir_quadern_camp_button.AddImage(imageList1, 5);
+                imprimir_quadern_camp_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(imprimir_quadern_camp_button); 
 
                 editor_parceles_ultim_guardat = new UI_Text(new Point(520, 505), 100, 25, "");
                 editor_parceles_ultim_guardat.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
+                editor_parceles_ultim_guardat.SetFont("Courier New", 8.5f);
                 map_win.AddElement(editor_parceles_ultim_guardat);
 
-                personal_button = new UI_Button(new Point(313, 550), 70, 23, "Personal");
+                personal_button = new UI_Button(new Point(216, 550), 90, 25, "Personal");
                 personal_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 personal_button.GetElement().Click += new System.EventHandler(this.ObreFinestraPersonal);
+                personal_button.AddImage(imageList1, 1);
+                personal_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(personal_button);
 
-                maquinaria_button = new UI_Button(new Point(390, 550), 70, 23, "Maquinaria");
+                maquinaria_button = new UI_Button(new Point(102, 550), 110, 25, "Maquinaria");
                 maquinaria_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 maquinaria_button.GetElement().Click += new System.EventHandler(this.ObreFinestraMaquinaria);
+                maquinaria_button.AddImage(imageList1, 10);
+                maquinaria_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(maquinaria_button);
 
-                brou_button = new UI_Button(new Point(245, 550), 60, 23, "Brou");
+                brou_button = new UI_Button(new Point(30, 550), 65, 25, "Brou");
                 brou_button.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 brou_button.GetElement().Click += new System.EventHandler(this.ObreFinestraAdobats);
+                brou_button.AddImage(imageList1, 11);
+                brou_button.SetFont("Courier New", 8.5f);
                 map_win.AddElement(brou_button);
             }
             ui_manager.AddUIWindow(map_win);
@@ -327,6 +369,7 @@ namespace WindowsFormsApp4
                 // Propietaris - Finques
                 propietaris_text = new UI_Text(new Point(15, 15), 193, 40, "Propietari: ");
                 propietaris_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                propietaris_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(propietaris_text);
 
                 seleccio_propietari_noms_combobox = new UI_ComboBox(new Point(15, 35), 200, 80);
@@ -334,10 +377,12 @@ namespace WindowsFormsApp4
                 seleccio_propietari_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_propietari_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaPropietariEvent));
                 seleccio_propietari_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaPropietariEvent));
+                seleccio_propietari_noms_combobox.SetFont("Courier New", 8.5f);
                 main_win.AddElement(seleccio_propietari_noms_combobox);
 
                 finques_text = new UI_Text(new Point(15, 65), 193, 40, "Finca: ");
                 finques_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                finques_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(finques_text);
 
                 seleccio_finca_noms_combobox = new UI_ComboBox(new Point(15, 84), 200, 100);
@@ -345,10 +390,12 @@ namespace WindowsFormsApp4
                 seleccio_finca_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_finca_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaFinquesEvent));
                 seleccio_finca_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaFincaEvent));
+                seleccio_finca_noms_combobox.SetFont("Courier New", 8.5f);
                 main_win.AddElement(seleccio_finca_noms_combobox);
 
-                propietari_finca_neteja = new UI_Button(new Point(15, 110), 46, 20, "Neteja");
+                propietari_finca_neteja = new UI_Button(new Point(15, 110), 60, 22, "Neteja");
                 propietari_finca_neteja.GetElement().Click += new System.EventHandler(this.NetejaPropietariFinca);
+                propietari_finca_neteja.SetFont("Courier New", 8.5f);
                 main_win.AddElement(propietari_finca_neteja);
 
                 divisor_propietari_finca = new UI_Panel(new Point(18, 135), 195, 1);
@@ -358,6 +405,7 @@ namespace WindowsFormsApp4
                 // Varietat
                 varietat_text = new UI_Text(new Point(15, 145), 193, 40, "Varietat: ");
                 varietat_text.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
+                varietat_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(varietat_text);
 
                 seleccio_varietat_noms_combobox = new UI_ComboBox(new Point(15, 164), 200, 100);
@@ -365,18 +413,21 @@ namespace WindowsFormsApp4
                 seleccio_varietat_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_varietat_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaVarietatsEvent));
                 seleccio_varietat_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaVarietatEvent));
+                seleccio_varietat_noms_combobox.SetFont("Courier New", 8.5f);
                 main_win.AddElement(seleccio_varietat_noms_combobox);
 
-                varietat_neteja = new UI_Button(new Point(15, 190), 46, 20, "Neteja");
+                varietat_neteja = new UI_Button(new Point(15, 190), 60, 22, "Neteja");
                 varietat_neteja.GetElement().Click += new System.EventHandler(this.NetejaVarietat);
+                varietat_neteja.SetFont("Courier New", 8.5f);
                 main_win.AddElement(varietat_neteja);
 
                 divisor_varietat = new UI_Panel(new Point(18, 215), 195, 1);
-                divisor_varietat.SetColor(Color.Black);
+                divisor_varietat.SetColor(Color.Black);    
                 main_win.AddElement(divisor_varietat);
 
                 // Treballs
                 treballs_text = new UI_Text(new Point(15, 225), 100, 40, "Treballs: ");
+                treballs_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(treballs_text);
 
                 seleccio_treball_noms_combobox = new UI_ComboBox(new Point(15, 245), 200, 100);
@@ -384,10 +435,12 @@ namespace WindowsFormsApp4
                 seleccio_treball_noms_combobox.SetDrowDownVisibleItems(30);
                 seleccio_treball_noms_combobox.DropDown(new System.EventHandler(this.ActualitzaLlistaTreballsEvent));
                 seleccio_treball_noms_combobox.ItemSelected(new System.EventHandler(this.SeleccionaTreballEvent));
+                seleccio_treball_noms_combobox.SetFont("Courier New", 8.5f);
                 main_win.AddElement(seleccio_treball_noms_combobox);
 
-                treball_neteja = new UI_Button(new Point(15, 270), 46, 20, "Neteja");
+                treball_neteja = new UI_Button(new Point(15, 270), 60, 22, "Neteja");
                 treball_neteja.GetElement().Click += new System.EventHandler(this.NetejaTreball);
+                treball_neteja.SetFont("Courier New", 8.5f);
                 main_win.AddElement(treball_neteja);
 
                 divisor_treball = new UI_Panel(new Point(18, 295), 195, 1);
@@ -396,17 +449,21 @@ namespace WindowsFormsApp4
 
                 // Any vinya
                 any_vinya_text = new UI_Text(new Point(15, 305), 100, 40, "Any: ");
+                any_vinya_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(any_vinya_text);
 
                 a_vinya_text = new UI_Text(new Point(110, 332), 100, 40, "a");
+                a_vinya_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(a_vinya_text);
 
                 any_comença = new UI_MaskedTextInput(new Point(16, 325), 92, 40, "1900");
                 any_comença.OnLostFocus(ActualitzaLlistaParcelesEvent);
+                any_comença.SetFont("Courier New", 8.5f);
                 main_win.AddElement(any_comença);
 
-                any_acaba = new UI_MaskedTextInput(new Point(123, 325), 92, 40, DateTime.Now.Year.ToString());
+                any_acaba = new UI_MaskedTextInput(new Point(125, 325), 90, 40, DateTime.Now.Year.ToString());
                 any_acaba.OnLostFocus(ActualitzaLlistaParcelesEvent);
+                any_acaba.SetFont("Courier New", 8.5f);
                 main_win.AddElement(any_acaba);
 
                 divisor_any_vinya = new UI_Panel(new Point(18, 350), 195, 1);
@@ -415,81 +472,94 @@ namespace WindowsFormsApp4
 
                 // Parceles
                 llista_parceles_text = new UI_Text(new Point(15, 355), 200, 30, "Parceles:");
+                llista_parceles_text.SetFont("Courier New", 8.5f);
                 main_win.AddElement(llista_parceles_text);
 
                 llista_parceles_llista = new UI_ListBox(new Point(15, 375), 200, 80);
                 llista_parceles_llista.GetElement().Click += new System.EventHandler(this.ParcelaClick);
                 llista_parceles_llista.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Bottom);
+                llista_parceles_llista.SetFont("Courier New", 8.5f);
                 main_win.AddElement(llista_parceles_llista);
 
                 // Editor parceles
-                editor_parceles_panel = new UI_Panel(new Point(229, 0), 440, 30);
+                editor_parceles_panel = new UI_Panel(new Point(229, 0), 380, 30);
                 editor_parceles_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
                 main_win.AddElement(editor_parceles_panel);
                 {
-                    editor_parceles_crea_button = new UI_Button(new Point(5, 3), 100, 25, "Crea parcela");
+                    editor_parceles_crea_button = new UI_Button(new Point(5, 3), 120, 25, "Crea parcela");
                     editor_parceles_crea_button.SetColor(Color.Cornsilk);
                     editor_parceles_crea_button.GetElement().Click += new System.EventHandler(this.CreaParcela);
+                    editor_parceles_crea_button.SetFont("Courier New", 8.5f);
                     editor_parceles_panel.AddElement(editor_parceles_crea_button);
 
-                    editor_parceles_elimina_button = new UI_Button(new Point(110, 3), 100, 25, "Elimina parcela");
+                    editor_parceles_elimina_button = new UI_Button(new Point(130, 3), 120, 25, "Elimina parcela");
                     editor_parceles_elimina_button.SetColor(Color.Cornsilk);
                     editor_parceles_elimina_button.GetElement().Click += new System.EventHandler(this.EliminaParcela);
+                    editor_parceles_elimina_button.SetFont("Courier New", 8.5f);
                     editor_parceles_panel.AddElement(editor_parceles_elimina_button);
 
-                    editor_parceles_guarda_button = new UI_Button(new Point(220, 3), 100, 25, "Guarda canvis");
+                    editor_parceles_guarda_button = new UI_Button(new Point(255, 3), 120, 25, "Guarda canvis");
                     editor_parceles_guarda_button.SetColor(Color.Cornsilk);
                     editor_parceles_guarda_button.GetElement().Click += new System.EventHandler(this.GuardaCanvis);
+                    editor_parceles_guarda_button.SetFont("Courier New", 8.5f);
                     editor_parceles_panel.AddElement(editor_parceles_guarda_button);
-
-                    editor_parceles_opcions = new UI_Button(new Point(330, 3), 100, 25, "Opcions parcela");
-                    editor_parceles_guarda_button.SetColor(Color.Cornsilk);
-                    editor_parceles_panel.AddElement(editor_parceles_opcions);
                 }
                 editor_parceles_panel.SetVisible(false);
 
                 // Parceles / Partes seleccionades / Analitiques
-                parceles_seleccionades_panel = new UI_Panel(new Point(670, 0), 150, 480);
+                parceles_seleccionades_panel = new UI_Panel(new Point(630, 0), 190, 480);
                 parceles_seleccionades_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                 {
-                    afegir_partes_button = new UI_Button(new Point(5, 5), 120, 30, "Afegir partes");
+                    afegir_partes_button = new UI_Button(new Point(5, 5), 160, 30, "Afegir partes");
                     afegir_partes_button.SetColor(Color.Cornsilk);
                     afegir_partes_button.GetElement().Click += new System.EventHandler(this.ObreFormPartes);
+                    afegir_partes_button.SetFont("Courier New", 8.5f);
+                    afegir_partes_button.AddImage(imageList1, 0);
                     parceles_seleccionades_panel.AddElement(afegir_partes_button);
 
-                    elimina_parte_button = new UI_Button(new Point(5, 37), 120, 30, "Elimina parte");
+                    elimina_parte_button = new UI_Button(new Point(5, 37), 160, 30, "Elimina parte");
                     elimina_parte_button.SetColor(Color.Cornsilk);
                     elimina_parte_button.GetElement().Click += new System.EventHandler(this.EliminaParte);
                     elimina_parte_button.SetEnabled(false);
+                    elimina_parte_button.AddImage(imageList1, 3);
+                    elimina_parte_button.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(elimina_parte_button);
 
-                    visualitza_analitiques_button = new UI_Button(new Point(5, 71), 120, 40, "Visualitza analítiques");
+                    visualitza_analitiques_button = new UI_Button(new Point(5, 71), 160, 40, "Analítiques");
                     visualitza_analitiques_button.SetColor(Color.Cornsilk);
                     visualitza_analitiques_button.GetElement().Click += new System.EventHandler(this.ObreFormVisualitzaAnalitiques);
+                    visualitza_analitiques_button.AddImage(imageList1, 11);
+                    visualitza_analitiques_button.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(visualitza_analitiques_button);
 
                     parceles_selecionades_text = new UI_Text(new Point(2, 140), 100, 30, "Parceles seleccionades:");
+                    parceles_selecionades_text.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(parceles_selecionades_text);
 
-                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 160), 130, 150);
+                    parceles_seleccionades_listbox = new UI_ListBox(new Point(0, 160), 170, 150);
                     parceles_seleccionades_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
                     parceles_seleccionades_listbox.SetAutoSize(true);
+                    parceles_seleccionades_listbox.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(parceles_seleccionades_listbox);
 
                     ha_parceles_seleccionades_text = new UI_Text(new Point(2, 310), 100, 30, "Ha totals:");
+                    ha_parceles_seleccionades_text.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(ha_parceles_seleccionades_text);
 
-                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(52, 310), 100, 30, "0");
+                    ha_valor_parceles_seleccionades_text = new UI_Text(new Point(82, 310), 150, 30, "0");
+                    ha_valor_parceles_seleccionades_text.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(ha_valor_parceles_seleccionades_text);
 
                     partes_seleccionats_text = new UI_Text(new Point(2, 340), 100, 10, "Partes:");
+                    partes_seleccionats_text.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_text);
 
-                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 360), 130, 150);
+                    partes_seleccionats_listbox = new UI_ListBox(new Point(0, 360), 170, 150);
                     partes_seleccionats_listbox.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom);
                     partes_seleccionats_listbox.SetAutoSize(true);
                     partes_seleccionats_listbox.GetElement().Click += new System.EventHandler(ClickParte);
                     partes_seleccionats_listbox.GetElement().DoubleClick += new System.EventHandler(ObreFormInfoPartes);
+                    partes_seleccionats_listbox.SetFont("Courier New", 8.5f);
                     parceles_seleccionades_panel.AddElement(partes_seleccionats_listbox);
                 }
                 main_win.AddElement(parceles_seleccionades_panel);
@@ -504,14 +574,17 @@ namespace WindowsFormsApp4
                 guarda_canvis_panel.SetColor(Color.Cornsilk);
                 guarda_canvis_panel.GetElement().Anchor = (System.Windows.Forms.AnchorStyles.None);
                 guarda_canvis_panel.GetElement().Dock = System.Windows.Forms.DockStyle.None;
+                guarda_canvis_panel.SetFont("Courier New", 8.5f);
                 guarda_canvis_win.AddElement(guarda_canvis_panel);
 
                 guarda_canvis_text = new UI_Text(new Point(5, 7), 25, 100, "Canvis guardats correctament");
                 guarda_canvis_text.SetTextSize(12);
+                guarda_canvis_text.SetFont("Courier New", 8.5f);
                 guarda_canvis_panel.AddElement(guarda_canvis_text);
 
                 guarda_canvis_button = new UI_Button(new Point(58, 35), 120, 30, "D'acord");
                 guarda_canvis_button.GetElement().Click += new System.EventHandler(this.ConfirmaGuardaCanvis);
+                guarda_canvis_button.SetFont("Courier New", 8.5f);
                 guarda_canvis_panel.AddElement(guarda_canvis_button);
             }
             ui_manager.AddUIWindow(guarda_canvis_win);
@@ -627,6 +700,7 @@ namespace WindowsFormsApp4
 
         // Starting args
         string finca_id = "";
+        public System.Windows.Forms.ImageList imageList1;
     }
 }
 
