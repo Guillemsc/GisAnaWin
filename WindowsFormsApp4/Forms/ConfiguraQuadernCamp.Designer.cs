@@ -30,6 +30,15 @@ namespace WindowsFormsApp4.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfiguraQuadernCamp));
+            this.SuspendLayout();
+            // 
+            // ConfiguraQuadernCamp
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ConfiguraQuadernCamp";
+            this.ResumeLayout(false);
 
         }
 

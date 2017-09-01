@@ -231,8 +231,35 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\Adobats.resx">
+      <DependentUpon>Adobats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AfegirPartes.resx">
+      <DependentUpon>AfegirPartes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Analitiques.resx">
+      <DependentUpon>Analitiques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfiguraQuadernCamp.resx">
+      <DependentUpon>ConfiguraQuadernCamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Imprimir.resx">
+      <DependentUpon>Imprimir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maquinaria.resx">
+      <DependentUpon>Maquinaria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModificaPartes.resx">
+      <DependentUpon>ModificaPartes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Perso.resx">
+      <DependentUpon>Perso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QuadernCamp.resx">
+      <DependentUpon>QuadernCamp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
